@@ -1,8 +1,8 @@
 {% load static %}
-<nav id="header" class="navbar navbar-expand-lg navbar-dark color-nav" style="background-color: rgb(0, 55, 138) ;">
+<nav id="header" class="navbar navbar-expand-lg navbar-dark color-nav" style="background-color: rgb(27, 63, 117) ;">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'posts:home' %}">
-        <img src="{% static "images/Drekx.png" %}" alt="Drekx">
+      <a class="navbar-brand" href="{% url 'users:login' %}">
+        <img src="{% static "img/Logo.png" %}" alt="VentGram">
           
       </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
           <ul class="text-nav navbar-nav ml-auto mt-2 mt-lg-0 ">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'posts:home' %}">Inicio</a>
+              <a class="nav-link" href="{% url 'users:login' %}">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://www.youtube.com/channel/UCoOqccgdZwG7VzXJV8bbtHA?view_as=subscriber">Canal Youtube</a>

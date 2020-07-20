@@ -1,0 +1,26 @@
+{% extends 'users/base.html' %}
+{% block head_content %}
+<title>Login | VentGram</title>
+{% endblock %}
+{% block title %}
+    <h3 class="text-center" style="color: rgb(68, 68, 68);">VentGram</h3>
+    <br>
+{% endblock %}
+{% block container %}
+
+    {% if form.errors %}
+        <p class="alert alert-danger">{{error}}</p>
+    {% endif %}
+    <form method="POST" action="{% url 'users:login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Username" name="username">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" placeholder="Password" name="password">
+        </div>
+        <button class="btn btn-primary btn-block mt-5" type="submit">Inicar Sesion </button>
+    </form>
+    <p class="mt-4"> ¿Aún no tienes una cuenta? <a href="{% url "users:signup" %}">Registarte aquí.</a> </p>
+    
+{% endblock %}

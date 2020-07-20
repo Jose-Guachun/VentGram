@@ -1,0 +1,29 @@
+html, body {
+    background: #fafafa;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+footer{
+    background: rgb(32, 32, 32) ;
+    width: 100%;
+    position: relative;
+    align-self: flex-end;
+    margin-top: 90px;
+}
+
+#header img{
+    width:70px;
+}
+
+#auth-container {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+}
+
+#main-navbar {
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.0975);
+}
