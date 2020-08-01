@@ -3,24 +3,35 @@
 <title>Login | VentGram</title>
 {% endblock %}
 {% block title %}
-    <h3 class="text-center" style="color: rgb(68, 68, 68);">VentGram</h3>
-    <br>
+<h5 class="card-title text-center mt-3 mb-0 pb-0" style="color: rgb(68, 68, 68);">Bienvenido</h5>
+<hr class="mt-1">
 {% endblock %}
 {% block container %}
+{% if form.errors %}
+  <p class="alert alert-danger">Your username and password didn't match. Please try again.</p>
+{% endif %}
+  <form method="POST" action="{% url 'users:login' %}">
+    {% csrf_token %}
 
-    {% if form.errors %}
-        <p class="alert alert-danger">{{error}}</p>
-    {% endif %}
-    <form method="POST" action="{% url 'users:login' %}">
-        {% csrf_token %}
-        <div class="form-group">
-            <input class="form-control" type="text" placeholder="Username" name="username">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" placeholder="Password" name="password">
-        </div>
-        <button class="btn btn-primary btn-block mt-5" type="submit">Inicar Sesion </button>
-    </form>
-    <p class="mt-4"> ¿Aún no tienes una cuenta? <a href="{% url "users:signup" %}">Registarte aquí.</a> </p>
-    
+    <div class="form-label-group">
+      <input type="text" id="inputUser" class="form-control" placeholder="username" name="username" required>
+      <label for="inputUser">Usuario</label>
+    </div>
+
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+      <label for="inputPassword">Contraseña</label>
+    </div>
+
+    <div class="custom-control custom-checkbox mb-3">
+      <input type="checkbox" class="custom-control-input" id="customCheck1">
+      <label class="custom-control-label ml-3" style="color: rgb(92, 92, 92);" for="customCheck1">Recordar Contraseña</label>
+    </div>
+
+    <hr class="my-4">
+  <button class="btn btn-lg btn-primary btn-block btn-login font-weight-bold text-uppercase" type="submit">Inciar sesíon</button>
+  <p class="d-block text-center mt-2 mb-1 small"> ¿Aún no tienes una cuenta? <a href="{% url "users:signup" %}">Registarte aquí.</a> </p>
+  <p class="d-block text-center small"> ¿Se te olvidó tu contraseña? <a href="{% url "users:signup" %}">Recuperar contraseña</a> </p>
+  </form>            
 {% endblock %}
+    

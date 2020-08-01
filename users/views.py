@@ -3,13 +3,15 @@
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import views as auth_views
-from django.views.generic import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import FormView, ListView
 
 #Models
-from django.contrib.auth.models import User
+
 
 #Forms
 from users.forms import SignupForm
+
 
 
 class LoginView(auth_views.LoginView):

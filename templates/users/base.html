@@ -13,22 +13,24 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 
 </head>
-
-
-
-<body class="h-100">
-    {% include 'users/nav.html' %}
-    <div class="container h-100 py-5 mb-5">
-        <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-sm-12 col-md-5 col-lg-5 pt-2 pl-5 pr-5 pb-5" id="auth-container">
-                
-                <img src="{% static "img/Login.png" %}" class="img-fluid rounded mx-auto d-block pb-4" style="max-width: 60%;">
-                {% block title %}{% endblock %}
-                {% block container %}{% endblock%}
-
+{% include 'users/nav.html' %}
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="card card-signin flex-row my-5">
+              <div class="card-img-left d-none d-md-flex ">
+                 <!-- Background image for card set in CSS! -->
+              </div>
+              <div class="card-body">
+                        <img src="{% static "img/Login.png" %}" class="img-fluid rounded mx-auto d-block" style="max-width: 40%;">
+                        {% block title %}{% endblock %}
+                        {% block container %}{% endblock%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

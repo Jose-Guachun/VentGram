@@ -1,0 +1,18 @@
+#Postss Urls
+
+#Django
+from django.urls import path
+
+
+#importaciones de apps
+from posts import views
+
+urlpatterns = [
+
+    #managment
+    path(
+        route='',
+        view=views.PostFeedView.as_view(),
+        name='feed'
+        ),
+]

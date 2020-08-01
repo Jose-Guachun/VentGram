@@ -1,13 +1,59 @@
 {% extends 'users/base.html' %}
 {% block head_content%}
-<title>SignUp | Registro</title>
+<title>Sign up | VentGram</title>
 {% endblock %}
-
+{% block title %}
+<h5 class="card-title text-center pb-0 mb-0" style="color: rgb(68, 68, 68);">Registro</h5>
+<hr class="pt-0">
+{% endblock %}
 {% block container %}
-    <form action="{% url 'users:signup' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary btn-block mt-5" type="submit">Register</button>
-    </form>
-    <br>
+
+{% if form.errors %}
+<div class="alert alert-danger">  
+{% for field in form %}
+  {{ field.errors }}
+{% endfor %}
+</div> 
+{% endif %}
+
+<form action="{% url "users:signup" %}" method="POST">
+  {% csrf_token %}
+
+  <div class="form-label-group">
+    <input type="text" id="inputUser" class="form-control" placeholder="Nombre de usuario" name="username" required>
+    <label for="inputUser">Nombre de usuario</label>
+  </div>
+  
+  <div class="form-label-group">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required>
+    <label for="inputPassword">Contraseña</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="password" id="inputPassword_Confirmation" class="form-control" placeholder="Confirmar Contraseña" name="password_confirmation" required>
+    <label for="inputPassword_Confirmation">Confirmar Contraseña</label>
+  </div>
+       
+  <hr>
+
+  <div class="form-label-group">
+    <input type="text" id="inputFirstName" class="form-control " placeholder="Nombres" name="first_name" required autofocus>
+    <label for="inputFirstName">Nombres</label>
+  </div>
+  
+  <div class="form-label-group">
+    <input type="text" id="inputLastName" class="form-control" placeholder="Apellidos" name="last_name" required>
+    <label for="inputLastName">Apellidos</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Dirección de correo electrónico" name="email" required>
+    <label for="inputEmail">Dirección de correo electrónico</label>
+  </div>
+
+  
+  
+  <button class="btn btn-lg btn-primary btn-block btn-login font-weight-bold text-uppercase" type="submit">Registrarse</button>
+  <p class="d-block text-center mt-2 small"> ¿Ya tienes una cuenta? <a href="{% url "users:login" %}">Inicia sesíon.</a> </p>   
+</form>
 {% endblock %}
