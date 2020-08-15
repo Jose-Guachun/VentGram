@@ -6,59 +6,60 @@ from django.contrib import admin
 from django.db import models
 
 #Models
-from django.contrib.auth.models import User
-from users.models import Profile, Ciudad, Pais, Provincia
+from users.models import User, Profile, City, Country, Province
 
 # Register your models here.
-admin.site.register(Pais)
-class PaisAdmin(admin.ModelAdmin):
-    list_display=(
-        'pk',
-        'pais',)
-    list_display_links=('pk', 'pais',)
-    fieldsets=(
-        ('Pais', {
-            'fields':('pais'),
-        })
-        )
 
-admin.site.register(Provincia)
-class ProvinciadAdmin(admin.ModelAdmin):
-    list_display=(
-        'pk',
-        'pais',
-        'provincia',)
 
-admin.site.register(Ciudad)
-class CiudadAdmin(admin.ModelAdmin):
+class CustomUserAdmin(BaseUserAdmin):
+    list_display=('email', 'username', 'first_name', 'last_name','is_staff', 'is_client')
+    list_filter=('is_client', 'is_staff', 'created', 'modified')
+
+admin.site.register(Country)
+class CountryAdmin(admin.ModelAdmin):
     list_display=(
         'pk',
-        'provincia',
-        'ciudad',)
+        'country',)
+
+admin.site.register(Province)
+class ProvinceAdmin(admin.ModelAdmin):
+    list_display=(
+        'pk',
+        'country',
+        'province',)
+
+admin.site.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display=(
+        'pk',
+        'province',
+        'city',)
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display=(
         'pk',
         'user',
-        'ciudad',
-        'genero',
-        'fecha_nacimiento',
+        'city',
+        'dni',
+        'gender',
+        'birth_date',
         'biography',
         'phone_number',
-        'nivel_educativo',
-        'trabajo',
+        'education_level',
+        'work_area',
+        'profile',
         'picture',)
 
-    list_display_links=('pk', 'user', 'ciudad',)
+    list_display_links=('pk', 'user', 'city',)
 
     list_editable=(
-        'genero',
-        'fecha_nacimiento',
+        'gender',
+        'birth_date',
         'biography',
         'phone_number',
-        'nivel_educativo',
-        'trabajo',
+        'education_level',
+        'work_area',
         'picture',)
 
     search_fields=(
@@ -81,9 +82,9 @@ class ProfileAdmin(admin.ModelAdmin):
             'fields':
                 (
                     'user', 'picture',
-                    'genero',
-                    'fecha_nacimiento','nivel_educativo',
-                    'trabajo',
+                    'gender',
+                    'birth_date','education_level',
+                    'work_area',
                     ),
         }),
         ('Extra info',{
@@ -114,5 +115,5 @@ class UserAdmin(BaseUserAdmin):
         'is_staff'
     )
     
-admin.site.unregister(User)
+
 admin.site.register(User, UserAdmin,)

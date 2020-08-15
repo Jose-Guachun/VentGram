@@ -1,8 +1,8 @@
 {% load static %}
-<nav id="header" class="navbar navbar-expand-lg navbar-dark color-nav" style="background-color: rgb(27, 63, 117) ;">
+<nav id="header" class="navbar navbar-expand-lg navbar-dark py-0">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'users:login' %}">
-        <img src="{% static "img/Logo.png" %}" alt="VentGram">
+      <a href="{% url 'posts:feed' %}">
+        <img src="{% static "img/Logo.png" %}" alt="VentGram" loading="lazy">
           
       </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">

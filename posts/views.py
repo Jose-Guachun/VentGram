@@ -8,4 +8,8 @@ from django.shortcuts import render
 class PostFeedView(LoginRequiredMixin, TemplateView):
     #retornar todas las publicaciones
     template_name='posts/feed.html'
+    
+class PostHomeView(TemplateView):
+    #retornar todas las publicaciones
+    template_name='posts/home.html'
 
