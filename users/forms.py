@@ -2,17 +2,16 @@
 from django import forms
 
 #models
-from django.contrib.auth.models import User
-from users.models import Profile
+from users.models import Profile, User
 
-class SignupForm(forms.Form):
-    first_name=forms.CharField(label=False,min_length=2, max_length=50,)
-    last_name=forms.CharField(label=False,min_length=2, max_length=50,)
-    email=forms.CharField(label=False, min_length=6, max_length=70,widget=forms.EmailInput(),)
-    username=forms.CharField(label=False, min_length=4, max_length=50,)
+class SignupForm(forms.ModelForm):
     password=forms.CharField(label=False, max_length=70, widget=forms.PasswordInput(),)
     password_confirmation=forms.CharField(label=False, max_length=70,  widget=forms.PasswordInput(),)
     
+    class Meta:
+        model=User
+        fields=('email', 'username', 'first_name', 'last_name')
+
     
 
     def clean_email(self):

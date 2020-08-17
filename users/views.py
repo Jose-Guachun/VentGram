@@ -43,3 +43,6 @@ class SignupView(FormView):
         #save form data
         form.save()
         return super().form_valid(form)
+        
+class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
+    template_name='users/logget_auth.html'

@@ -1,7 +1,7 @@
 #django
 from django.db import models
 from django.conf import settings
-from django.contrib.auth import get_user_model
+
 
 #utilities
 from utils.models import CRideModel
@@ -9,7 +9,7 @@ from utils.models import CRideModel
 class Profile(CRideModel):
     #profile model
     #extencio de proxy model mas informacion en la base de datos
-    user=models.OneToOneField(get_user_model(), on_delete=models.CASCADE,)
+    user=models.OneToOneField('users.User', on_delete=models.CASCADE,)
     city=models.ForeignKey('users.City', on_delete=models.CASCADE, blank=True, null=True)
     
     dni=models.CharField(max_length=10, blank=True)

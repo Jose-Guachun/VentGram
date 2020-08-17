@@ -4,16 +4,13 @@
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib import admin
 from django.db import models
+from django.contrib.auth.models import Group
 
 #Models
 from users.models import User, Profile, City, Country, Province
 
 # Register your models here.
 
-
-class CustomUserAdmin(BaseUserAdmin):
-    list_display=('email', 'username', 'first_name', 'last_name','is_staff', 'is_client')
-    list_filter=('is_client', 'is_staff', 'created', 'modified')
 
 admin.site.register(Country)
 class CountryAdmin(admin.ModelAdmin):
@@ -72,7 +69,6 @@ class ProfileAdmin(admin.ModelAdmin):
 
     list_filter=(
         'user__is_active',
-        'user__is_staff',
         'created',
         'modified',
     )
@@ -111,9 +107,12 @@ class UserAdmin(BaseUserAdmin):
         'email',
         'first_name',
         'last_name',
+        'is_admin',
         'is_active',
-        'is_staff'
+        'is_staff',
     )
-    
+    list_filter=('is_admin',)
+    filter_horizontal = ()
 
 admin.site.register(User, UserAdmin,)
+admin.site.unregister(Group)
