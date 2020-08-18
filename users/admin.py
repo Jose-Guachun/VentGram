@@ -107,11 +107,11 @@ class UserAdmin(BaseUserAdmin):
         'email',
         'first_name',
         'last_name',
-        'is_admin',
         'is_active',
         'is_staff',
+
     )
-    list_filter=('is_admin',)
+    list_filter=('is_staff',)
     filter_horizontal = ()
 
 admin.site.register(User, UserAdmin,)

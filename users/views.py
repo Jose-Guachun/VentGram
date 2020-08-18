@@ -2,16 +2,24 @@
 #Django
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth import views as auth_views
+from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth import login, views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import FormView, ListView, UpdateView
+from django.views.generic import ListView, UpdateView, TemplateView 
+from django.views.generic.edit import FormView
+from django.http import HttpResponseRedirect
+
+#Django decorators
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_protect
 
 #Models
 from users.models import Profile
 
 #Forms
-from users.forms import SignupForm
-
+from users.forms import SignupForm, LoginForm
+from django.contrib.auth.forms import AuthenticationForm
 
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     #update profile view
@@ -29,9 +37,23 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
         return reverse('users:detail', kwargs={'username':username})
 
 
-class LoginView(auth_views.LoginView):
+class LoginView(FormView):
     #login view
     template_name='users/login.html'
+    form_class=LoginForm
+    success_url=reverse_lazy('posts:feed')
+
+    @method_decorator(csrf_protect)
+    @method_decorator(never_cache)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return super(LoginView, self).dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        return super(LoginView, self).form_valid(form)
 
 class SignupView(FormView):
     #Signup con classe base view

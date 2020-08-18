@@ -1,8 +1,17 @@
 #Django
 from django import forms
-
+from django.contrib.auth.forms import AuthenticationForm
 #models
 from users.models import Profile, User
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.EmailField(label="Correo electrónico")
+
+    class Meta:
+        model = User
+        fields = ["username", "password"]
+
 
 class SignupForm(forms.ModelForm):
     password=forms.CharField(label=False, max_length=70, widget=forms.PasswordInput(),)
