@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block head_content %}
+    blog
+{% endblock%}
+
+{% block content %}
+<h2>Enviar correo</h2>
+<form action="{% url 'users:mail' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="mail" placeholder="example@exanoke.com">
+    <input type="submit" value="enviar">
+</form>
+
+{% endblock %}

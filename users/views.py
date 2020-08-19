@@ -9,6 +9,9 @@ from django.views.generic import ListView, UpdateView, TemplateView
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 
+from django.template.loader import get_template
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 #Django decorators
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -68,3 +71,26 @@ class SignupView(FormView):
         
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     template_name='users/logget_auth.html'
+
+def send_email(mail):
+    context={'mail': mail}
+
+    template=get_template('users/correo.html')
+    content=template.render(context)
+
+    email=EmailMultiAlternatives(
+        'un correo de prueba',
+        'hola ue hace',
+        settings.EMAIL_HOST_USER,
+        [mail]
+    )
+    email.attach_alternative(content, 'text/html')
+    email.send()
+
+def email_verified(request):
+    if request.method== 'POST':
+        mail = request.POST.get('mail')
+
+        send_email(mail)
+
+    return render(request, 'users/mail.html', {})

@@ -27,4 +27,10 @@ urlpatterns = [
         view=views.UpdateProfileView.as_view(),
         name='update'
         ),
+
+    path(
+        route='mail/',
+        view=views.email_verified,
+        name='mail'
+        ),    
 ]

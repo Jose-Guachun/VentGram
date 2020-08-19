@@ -73,12 +73,6 @@ TEMPLATES = [
     },
 ]
 
-#modelo de usuario personalizado
-AUTH_USER_MODEL = 'users.User'
-
-
-#autenticacion de backend
-
 
 WSGI_APPLICATION = 'VentGram.wsgi.application'
 
@@ -144,3 +138,14 @@ MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 MEDIA_URL='/media/'
 LOGIN_URL='/users/login/'
 
+
+# Modelo de usuario personalizado
+AUTH_USER_MODEL = 'users.User'
+
+# Config de envio de email
+
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_USE_TLS=True
+EMAI_PORT=587
+EMAIL_HOST_USER="imaginecreate49@gmail.com"
+EMAIL_HOST_PASSWORD="19201996"
