@@ -28,6 +28,9 @@ class City(models.Model):
     province=models.ForeignKey(Province, on_delete=models.CASCADE)
     name_city=models.CharField(max_length=50, blank=True)
 
+    def natural_key(self):
+        return (self.name_city)
+    
     def __str__(self):
     #return namce_city
         return self.name_city

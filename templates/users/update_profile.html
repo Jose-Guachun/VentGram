@@ -1,88 +1,149 @@
-
-{% extends 'base.html' %}
-{% block head_content %}
+{% extends 'posts/base.html' %}
 {% load static %}
-<title>@{{ request.user.username }} | Update profile</title>
-{% endblock %}
+{% block head_content %}
+@{{ user.username|capfirst }} | Update profile
+{% endblock%}
 
-{% block container %}
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-6 p-4" id="profile-box">
-
-            <form action="{% url 'users:update' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-
-                <div class="media">
+{% block content %}
+<div class="EditProfile mt-4">
+    <h1>Editar Perfil</h1> 
+</div>
+<div class="row">
+    <section class="col-sm-12 col-md-4">
+        <form action="{% url 'users:update' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="text-center">
                     {% if profile.picture %}
-                        <img src="{{ profile.picture.url }}" class="rounded-circle" height="50" />
-                    {% else%}
-                        <img src="{% static 'img/Dreks-1.png' %}" class="rounded-circle" height="50" />
+                        <img src="{{ profile.picture.url }}" class="rounded-circle" alt="profile-image" width="128" height="128">
+                    {% else %}
+                        <img src="{% static 'img/user-default1.png' %}" class="rounded-circle" alt="profile-image" width="128" height="128">
                     {% endif %}
 
+                    <h4 class="mb-0 mt-2 text-capitalize">
+                        {{ user.first_name}} {{ user.last_name }}
+                    </h4>
+                    <h6>
+                        {{ profile.profile }}
+                    </h6>
+
                     <div class="media-body">
-                        <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
                         <p class="ml-4"><input type="file" name="picture" required="true"></p>
                     </div>
-                </div>
-                {% for error in form.picture.errors %}
-                <div class="alert alert-danger">
-                    <b>Picture:</b>{{ error }}
-                </div>
-                {% endfor %}
-                <hr><br>
-
-                {# Website-field #}
-                <div class="form-group">
-                    <label>Website</label>
-                    <input
-                        class="form-control {% if form.website.errors %}is-invalid{% endif %}"
-                        type="text"
-                        name="website"
-                        placeholder="Website"
-                        value="{% if form.errors %}{{form.website.value }}{% else %}{{ profile.website }}{% endif %}"
-                    />
-                    <div class="invalid-feedback">
-                        {% for error in form.website.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                </div>
 
 
-                {# Biography-field #}
-                <div class="form-group">
-                    <label>Biography</label>
-                    <textarea 
-                    class="form-control {% if form.biography.errors %}is-invalid{% endif %}" 
-                    name="biography"
-                    >{% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}</textarea>
-                    <div class="invalid-feedback">
-                        {% for error in form.biography.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                </div>
+                </div>  
+                <div class="text-left text-muted font-13">`
+                    <h5> Biografia</h5>
+                    <p class="mb-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium minus dolore omnis fuga mollitia voluptatibus dicta labore laborum, nobis sapiente voluptas beatae, asperiores expedita. Similique repudiandae odio possimus facere assumenda.
+                    </p>
 
-                <div class="form-group">
-                    <label>Phone number</label>
-                    <input
-                        class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}" 
-                        type="text"
-                        name="phone_number"
-                        placeholder="Phone number"
-                        value="{% if form.errors %}{{ form.phone_number.value }}{% else %}{{ profile.phone_number}}{% endif %}"
-                    />
-                    <div class="invalid-feedback">
-                        {% for error in form.phone_number.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
+                    <p class="mb-2">
+                        <strong>Nombres : </strong>
+                        <span class="ml-2 text-capitalize"> {{ user.first_name }} {{ user.last_name }}</span>
+                    </p>
+                    <p class="mb-2">
+                        <strong>Telefono : </strong>
+                        <span class="ml-2 text-capitalize"> {{ profile.phone_number }}</span>
+                    </p>
+                    <p class="mb-2">
+                        <strong>Email : </strong>
+                        <span class="ml-2 text-capitalize"> {{ user.email}}</span>
+                    </p>
+                    <p class="mb-2">
+                        <strong>Ubicacion: </strong>
+                        <span class="ml-2 text-capitalize"> {{ profile.city.name_city }}</span>
+                    </p>
                 </div>
-
-                <button type="submit" class="btn btn-primary btn-block mt-5">Update info</button>
-            </form>
+            </div>
         </div>
-    </div>
+        <div class="card mb-4">
+            <div div class="card-body">
+                <h5>mensajes</h5>
+            </div>
+        </div>
+    </form>
+    </section>
+
+    <section class="col-md-8">
+        <form  action="{% url 'users:update' %}" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+        <div class="card">
+            <div class="card-body">
+                    <h5 class="text-uppercase"><i class="fas fa-user-circle"></i>Informacion Personal</h5> 
+                    <hr>      
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label>Nombres </label>
+                            <input type="text" class="form-control" placeholder="Ingresa los nombres">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label>Apellidos </label>
+                            <input type="text" class="form-control" placeholder="Ingresa los apellidos">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label>Nombres </label>
+                            <input type="text" class="form-control" placeholder="Ingresa los nombres">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label>Apellidos </label>
+                            <input type="text" class="form-control" placeholder="Ingresa los apellidos">
+                        </div>
+                    </div>
+                
+                
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                    <h5 class="text-uppercase"><i class="fas fa-user-circle"></i>Informacion Personal</h5> 
+                    <hr>      
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label>Nombres </label>
+                            <input type="text" class="form-control" placeholder="Ingresa los nombres">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label>Apellidos </label>
+                            <input type="text" class="form-control" placeholder="Ingresa los apellidos">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label>Nombres </label>
+                            <input type="text" class="form-control" placeholder="Ingresa los nombres">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label>Apellidos </label>
+                            <input type="text" class="form-control" placeholder="Ingresa los apellidos">
+                        </div>
+                    </div>
+                
+                
+                </div>
+            </div>
+        </div>  
+        </form>
+    </section>           
 </div>
+
 {% endblock %}

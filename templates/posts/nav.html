@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
           <ul class="text-nav navbar-nav ml-auto mt-2 mt-lg-0 ">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'users:login' %}">Inicio</a>
+              <a class="nav-link" href="{% url 'posts:home' %}">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://www.youtube.com/channel/UCoOqccgdZwG7VzXJV8bbtHA?view_as=subscriber">Canal Youtube</a>
@@ -23,11 +23,7 @@
               <a class="nav-link text-donaciones " href="#">Donaciones</a>
             </li>
           </ul>
-          <a href="{% url 'users:login' %}" type="button" class="btn btn-suscribe"><i class="far fa-user"></i> Inicar Sesion</a>
-          <!---<form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>-->
+          <a href="{% url 'users:logout' %}" type="button" class="btn btn-suscribe"><i class="far fa-user"></i> Cerrar sesion</a>
         </div>
       </div>
 </nav>

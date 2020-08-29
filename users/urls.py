@@ -9,11 +9,17 @@ from users import views
 
 urlpatterns = [
 
-    #managment
+    #managment 
     path(
         route='login/',
         view=views.LoginView.as_view(),
         name='login',
+        ),
+        
+    path(
+        route='logout/',
+        view=views.LogoutView.as_view(),
+        name='logout',
         ),
 
     path(
@@ -32,5 +38,7 @@ urlpatterns = [
         route='mail/',
         view=views.email_verified,
         name='mail'
-        ),    
+        ),
+
+   
 ]

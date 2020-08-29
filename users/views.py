@@ -28,7 +28,17 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
     #update profile view
     template_name='users/update_profile.html'
     model=Profile
-    fields=['website', 'biography', 'phone_number', 'picture']
+    fields=[
+        'dni', 
+        'gender', 
+        'birth_date', 
+        'biography', 
+        'phone_number', 
+        'education_level', 
+        'work_area', 
+        'profile', 
+        'picture',
+        ]
 
     def get_object(self):
         #return user profile
@@ -71,6 +81,7 @@ class SignupView(FormView):
         
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     template_name='users/logget_auth.html'
+
 
 def send_email(mail):
     context={'mail': mail}

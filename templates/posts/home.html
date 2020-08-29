@@ -1,13 +1,13 @@
-{% extends 'posts/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block head_content %}
-  Update Profile| Ventgram 
+  Ventgram | Gestor de Proyectos de Emprendimiento
 {% endblock%}
 
-{% block container %}
+{% block content %}
+
 <!--main-->
-{% block main %}
 <main id="main">
     <div id="carousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -50,19 +50,17 @@
                 esperando que sea de su agrado y les sirva en su fromacion
                 personal y profesional.
               </p>
-              <a href="#" class="btn btn-outline-light">Crear Cuenta</a>
-              <button type="button" class="btn btn-suscribe">Inicar Sesion</button>
+              <a href="{% url 'users:signup' %}" class="btn btn-outline-light"><span class="icon-house"></span>Crear Cuenta</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </main>
-  {% endblock %}
 <!--main-->
 
 <!--title-->
-{% block title %}
+<div class="container">
 <br>
 <div class="row">
   <div class="col text-center text-uppercase">
@@ -71,14 +69,12 @@
   </div>
 </div>
 <hr>
-{% endblock %} 
 <!--title-->
 
 
 <!--content-->
-{% block post %}
 <div class="row">
-  <div class="col-12 col-md-3 mb-4">
+  <div class="col-12 col-md-4 col-lg-3 mb-4">
     <div class="card">
         <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}" alt="Fotos de Ginger"></a>
       <div class="card-body">
@@ -91,7 +87,7 @@
       </div>
     </div>
   </div>
-  <div class="col-12 col-md-3 mb-4">
+  <div class="col-12 col-md-4 col-lg-3 mb-4">
     <div class="card">
         <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}" alt="Fotos de Ginger"></a>
       <div class="card-body">
@@ -104,7 +100,7 @@
       </div>
     </div>
   </div>
-  <div class="col-12 col-md-3 mb-4">
+  <div class="col-12 col-md-4 col-lg-3 mb-4">
     <div class="card">
         <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}" alt="Fotos de Ginger"></a>
       <div class="card-body">
@@ -118,7 +114,7 @@
     </div>
   </div>
 
-<div class="col-12 col-md-3 mb-4">
+<div class="col-12 col-md-4 col-lg-3 mb-4">
   <div class="card">
       <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}" alt="Fotos de Ginger"></a>
     <div class="card-body">
@@ -132,9 +128,6 @@
   </div>
 </div>
 </div>
-
-{% endblock %}
 <!--content-->
-
-
-{% endblock %} 
+</div>
+{% endblock %}

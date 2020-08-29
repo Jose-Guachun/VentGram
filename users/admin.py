@@ -57,6 +57,7 @@ class ProfileAdmin(admin.ModelAdmin):
         'phone_number',
         'education_level',
         'work_area',
+        'profile',
         'picture',)
 
     search_fields=(
@@ -81,6 +82,7 @@ class ProfileAdmin(admin.ModelAdmin):
                     'gender',
                     'birth_date','education_level',
                     'work_area',
+                    'profile',
                     ),
         }),
         ('Extra info',{

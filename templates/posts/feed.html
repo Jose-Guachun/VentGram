@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'posts/base.html' %}
 {% block head_content %}
-
+Home | VentGram
 {% endblock%}
-{% block content%}
-    
+
+{% block content %}
     <div class="col-md-8">
         <p>
             {{ user.username }} | {{ user.first_name}} {{ user.last_name }} | {{user.email}} 
