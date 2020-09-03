@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #LocalApp
     'users',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'VentGram.middleware.SignUpBlockMiddleware',
 ]
 
 ROOT_URLCONF = 'VentGram.urls'
