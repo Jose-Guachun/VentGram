@@ -18,7 +18,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 
 #Models
-from users.models import Profile
+from users.models import Profile, User
 
 #Forms
 from users.forms import SignupForm, LoginForm

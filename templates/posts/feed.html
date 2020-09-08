@@ -4,9 +4,13 @@ Home | VentGram
 {% endblock%}
 
 {% block content %}
+<form action="{% url 'users:update' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="col-md-8">
         <p>
             {{ user.username }} | {{ user.first_name}} {{ user.last_name }} | {{user.email}} 
         </p>
     </div>
+</form>
+    
 {% endblock %}

@@ -4,13 +4,9 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: Nunito,sans-serif;
+  background-color: #fafbfe !important; 
 }
 
-.EditProfile h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  padding: 0 0.5rem;
-}
 .card-body {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
@@ -27,9 +23,21 @@ html, body {
   font-size: 1.125rem;
   color:rgb(90, 90, 90)
 }
-.h6, h6{
+
+.h5, h5{
+  font-weight: 600;
   font-size: 1.125rem;
-  color:rgb(143, 143, 143)
+  color:rgb(90, 90, 90)
+}
+
+.h6, h6{
+  font-weight: 600;
+  font-size: 1.125rem;
+  color:rgb(70, 70, 70)
+}
+.negrita{
+  font-weight: 600;
+  color:rgb(90, 90, 90)
 }
 
 
@@ -39,7 +47,9 @@ html, body {
 .font-13 {
   font-size: 13px!important;
 }
+
 /* ----General*/
+
 
 /* ----footer*/
 footer{
@@ -51,29 +61,6 @@ footer{
 
 }
 /* ----footer*/
-
-/* ----imagen perfil de usuario*/
-.rounded-circle {
-  border-radius: 50%!important;
-}
-
-.img-thumbnail {
-  padding: .25rem;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: .25rem;
-  max-width: 100%;
-  height: auto;
-}
-.avatar-lg {
-  height: 6rem;
-  width: 6rem;
-}
-img {
-  vertical-align: middle;
-  border-style: none;
-}
-/* ----imagen perfil de usuario*/
 
 /* ----navbar*/
 #header img{
@@ -143,4 +130,5 @@ img {
   .card-img-top:hover{
       filter:brightness(85%);
   }
+}
 /* ----card contenedor image*/
