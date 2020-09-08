@@ -26,7 +26,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     #update profile view
-    template_name='users/update_profile.html'
+    template_name='profile/update_profile.html'
     model=Profile
     fields=[
         'dni', 

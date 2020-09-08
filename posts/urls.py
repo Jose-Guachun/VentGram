@@ -21,4 +21,5 @@ urlpatterns = [
         view=views.PostFeedView.as_view(),
         name='feed'
         ),
+        
 ]

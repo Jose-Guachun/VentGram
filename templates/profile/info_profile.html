@@ -1,0 +1,58 @@
+{% load static %}
+<section class="col-md-12 col-lg-4">
+    <form action="{% url 'users:update' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="text-center">
+                {% if profile.picture %}
+                    <img src="{{ profile.picture.url }}" class="rounded-circle" alt="profile-image" width="128" height="128">
+                {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" class="rounded-circle" alt="profile-image" width="128" height="128">
+                {% endif %}
+
+                <h4 class="mb-0 mt-2 text-capitalize">
+                    {{ user.first_name}} {{ user.last_name }}
+                </h4>
+                <h6>
+                    {{ profile.profile }}
+                </h6>
+
+                <div class="media-body">
+                    <p class="ml-4"><input type="file" name="picture" required="true"></p>
+                </div>
+
+
+            </div>  
+            <div class="text-left text-muted font-13">`
+                <h5> Biografia</h5>
+                <p class="mb-3">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium minus dolore omnis fuga mollitia voluptatibus dicta labore laborum, nobis sapiente voluptas beatae, asperiores expedita. Similique repudiandae odio possimus facere assumenda.
+                </p>
+
+                <p class="mb-2">
+                    <strong>Nombres : </strong>
+                    <span class="ml-2 text-capitalize"> {{ user.first_name }} {{ user.last_name }}</span>
+                </p>
+                <p class="mb-2">
+                    <strong>Telefono : </strong>
+                    <span class="ml-2 text-capitalize"> {{ profile.phone_number }}</span>
+                </p>
+                <p class="mb-2">
+                    <strong>Email : </strong>
+                    <span class="ml-2 text-capitalize"> {{ user.email}}</span>
+                </p>
+                <p class="mb-2">
+                    <strong>Ubicacion: </strong>
+                    <span class="ml-2 text-capitalize"> {{ profile.city.name_city }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div div class="card-body">
+            <h5>mensajes</h5>
+        </div>
+    </div>
+</form>
+</section>

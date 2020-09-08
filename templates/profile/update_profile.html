@@ -1,0 +1,17 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block head_content %}
+@{{ user.username|capfirst }} | Update profile
+{% endblock%}
+
+{% block content %}
+    <div class="EditProfile mt-4">
+        <h1>Editar Perfil</h1> 
+    </div>
+    <div class="row">
+        {% include 'profile/info_profile.html' %} 
+        {% include 'profile/content_profile.html' %}
+          
+    </div>
+
+{% endblock %}

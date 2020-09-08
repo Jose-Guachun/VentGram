@@ -1,33 +1,49 @@
+
+
+
 {% load static %}
 <nav id="header" class="navbar navbar-expand-lg navbar-dark py-0">
     <div class="container">
-      <a href="{% url 'posts:home' %}">
-        <img src="{% static "img/Logo.png" %}" alt="VentGram" loading="lazy">
-          
+      <a href="{% url 'posts:feed' %}">
+        <img src="{% static 'img/Logo.png' %}" alt="VentGram" loading="lazy"> 
       </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
-          <ul class="text-nav navbar-nav ml-auto mt-2 mt-lg-0 ">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'users:login' %}">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://www.youtube.com/channel/UCoOqccgdZwG7VzXJV8bbtHA?view_as=subscriber">Canal Youtube</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Lugares</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-donaciones " href="#">Donaciones</a>
-            </li>
-          </ul>
-          <a href="{% url 'users:login' %}" type="button" class="btn btn-suscribe"><i class="far fa-user"></i> Inicar Sesion</a>
-          <!---<form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>-->
-        </div>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
+        <ul class="text-nav navbar-nav ml-auto mt-2 mt-lg-0 ">
+  
+          <li class="dropdown show">
+              <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="account-user-avatar"> 
+                  {% if user.profile.picture %}
+                    <img src="{{ user.profile.picture.url }}" class="rounded-circle" alt="profile-image" width="25" height="45">
+                  {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" class="rounded-circle" alt="profile-image" width="25" height="45">
+                  {% endif %}
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown" aria-labelledby="topbar-userdrop" style>
+              <!-- item-->
+              <div class=" dropdown-header noti-title">
+                  <h6 class="text-overflow m-0 negrita">Bienvenido !</h6>
+              </div>
+
+              <!-- item-->
+              <a href="{% url 'users:update' %}" class="dropdown-item notify-item">
+                  <i class="fas fa-user-circle negrita"></i>
+                  <span>Mi Perfil</span>
+              </a>
+              <!-- item-->
+              <a href="{% url 'users:logout' %}" class="dropdown-item notify-item">
+                  <i class="fas fa-sign-out-alt negrita"></i>
+                  <span>Cerrar Sesion</span>
+              </a>
+
+          </div>
+          </li>
+
+        </ul>
       </div>
+    </div>
 </nav>
