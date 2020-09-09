@@ -40,5 +40,11 @@ urlpatterns = [
         name='mail'
         ),
 
+    #profile
+    path(
+        route='<str:username>/',
+        view=views.UserDetailView.as_view(),
+        name='detail'
+    ),
    
 ]

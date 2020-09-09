@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth import login, views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, UpdateView, TemplateView 
+from django.views.generic import ListView, UpdateView, TemplateView, DetailView 
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 
@@ -24,10 +24,22 @@ from users.models import Profile, User
 from users.forms import SignupForm, LoginForm
 from django.contrib.auth.forms import AuthenticationForm
 
+class UserDetailView(LoginRequiredMixin ,DetailView):
+    #User detail view
+
+    template_name='users/detail.html'
+    slug_field='username'
+    slug_url_kwarg='username'
+    queryset=User.objects.all()
+    context_object_name='user'
+
+
+
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     #update profile view
     template_name='profile/update_profile.html'
     model=Profile
+    second_model=User
     fields=[
         'dni', 
         'gender', 

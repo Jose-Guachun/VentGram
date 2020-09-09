@@ -1,12 +1,9 @@
 {% load static %}
 <section class="col-md-12 col-lg-8">
-    <form  action="{% url 'users:update' %}" method="POST" enctype="multipart/form-data" >
-        {% csrf_token %}
     <div class="card mb-4">
         <div class="card-body negrita">
             <h5 class="text-uppercase negrita"><i class="fas fa-user-circle p-2"></i>Informacion Personal</h5> 
             <hr class="mt-0">
-
             <div class="row mb-3">
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
@@ -39,22 +36,54 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
                         <label>Cedula </label>
-                        <input type="text" class="form-control" name="dni"  placeholder="Ingrese su numero de cedula">
-                    </div>
+                        <input
+                        class="form-control {% if form.dni.errors %}is-invalid{% endif %}" 
+                        type="text"  
+                        name="dni"  
+                        placeholder="Ingrese su numero de cedula"
+                        value="{% if form.errors %}{{form.dni.value }}{% else %}{{ profile.dni }}{% endif %}"/>
+                        
+                        <div class="invalid-feedback">
+                            {% for error in form.dni.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    </div> 
                 </div>
+
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
                         <label>Telefono Móvil </label>
-                        <input type="text" class="form-control" name="phone_number" placeholder="Ingrese su numero de telefono/celular">
+                        <input
+                        class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}" 
+                        type="text" 
+                        name="phone_number" 
+                        placeholder="Ingrese su numero de telefono/celular"
+                        value="{% if form.errors %}{{form.phone_number.value }}{% else %}{{ profile.phone_number }}{% endif %}">
+                        <div class="invalid-feedback">
+                            {% for error in form.dni.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Biografia</label>
-                        <textarea class="form-control" name="biography" id="userbio" rows="4" placeholder="Escribe tu biografia">
+                        <textarea 
+                        class="form-control {% if form.biography.errors %}is-invalid{% endif %}" 
+                        name="biography">
+                        {% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}
                         </textarea>
+                        <div class="invalid-feedback">
+                            {% for error in form.biography.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
                         <label>Genero </label>
@@ -72,10 +101,13 @@
                     <div class="form-group">
                         <label>Cumpleaños </label>
                         <div class="EditProfile-input">
-                            <input type="date" name="birth_date">
+                            <input 
+                            type="date" 
+                            name="birth_date">
                         </div> 
                     </div>
                 </div>
+
             </div>
 
             <h5 class="text-uppercase negrita"><i class="fas fa-university p-2"></i>Estudios </h5> 
@@ -99,10 +131,10 @@
                     <div class="form-group">
                         <label>Medio en el que laboras</label>
                         <select class="form-control">
-                            <option value="desarrollador">Desarrollador</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="diseño">Diseño</option>
-                            <option value="negocios">Negocios</option>
+                            <option name="work_area" value="desarrollador">Desarrollador</option>
+                            <option name="work_area" value="marketing">Marketing</option>
+                            <option name="work_area" value="diseño">Diseño</option>
+                            <option name="work_area" value="negocios">Negocios</option>
                           </select>
                     </div>
                 </div>
@@ -150,5 +182,4 @@
             </div>
         </div>
     </div> 
-    </form>
 </section> 

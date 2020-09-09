@@ -11,5 +11,5 @@ class PostFeedView(LoginRequiredMixin, TemplateView):
     
 class PostHomeView(TemplateView):
     #retornar todas las publicaciones
-    template_name='posts/home.html'
+    template_name='home.html'
 

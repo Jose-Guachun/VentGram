@@ -1,7 +1,5 @@
 {% load static %}
 <section class="col-md-12 col-lg-4">
-    <form action="{% url 'users:update' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
     <div class="card mb-4">
         <div class="card-body">
             <div class="text-center">
@@ -19,7 +17,7 @@
                 </h6>
 
                 <div class="media-body">
-                    <p class="ml-4"><input type="file" name="picture" required="true"></p>
+                    <p class="ml-4"><input type="file" name="picture"></p>
                 </div>
 
 
@@ -54,5 +52,4 @@
             <h5>mensajes</h5>
         </div>
     </div>
-</form>
 </section>
