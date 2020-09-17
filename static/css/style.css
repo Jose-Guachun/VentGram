@@ -74,7 +74,7 @@ body {
 	font-family: 'Source Sans Pro', sans-serif;
 	overflow-x: hidden;
 	font-weight: 400;
-	background-color: #f2f2f2;
+	background-color: #494949;
 }
 ol, ul {
 	list-style: none;
@@ -255,6 +255,7 @@ nav ul li:hover > ul,
 	float: left;
 	width: 100%;
 	position: relative;
+	background-color: rgba(243, 243, 243, 0.603);
 }
 
 .overlay:before {
@@ -726,7 +727,7 @@ main {
 .main-left-sidebar {
 	float: left;
 	width: 100%;
-	margin-top: -20px;
+	margin-top: 140px;
 }
 .full-width {
 	float: left;

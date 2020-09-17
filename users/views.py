@@ -24,6 +24,11 @@ from users.models import Profile, User
 from users.forms import SignupForm, LoginForm
 from django.contrib.auth.forms import AuthenticationForm
 
+
+class ProfileView(TemplateView):
+    #retornar todas las publicaciones
+    template_name='profile/profile.html'
+
 class UserDetailView(LoginRequiredMixin ,DetailView):
     #User detail view
 

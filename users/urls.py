@@ -39,12 +39,18 @@ urlpatterns = [
         view=views.UpdateUserView.as_view(),
         name='update_user'
         ),
+
+    path(
+        route='me/profile',
+        view=views.ProfileView.as_view(),
+        name='profile'
+        ),
+    
     path(
         route='mail/',
         view=views.email_verified,
         name='mail'
         ),
-
     #profile
     path(
         route='<str:username>/',
