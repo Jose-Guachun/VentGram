@@ -1,17 +1,115 @@
 {% extends 'posts/base.html' %}
-{% load static %}
 {% block head_content %}
-Home | VentGram
+    Home | VentGram
 {% endblock%}
+{% load static %}
 
-{% block content %}
-<form action="{% url 'users:update' %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="col-md-8">
-        <p>
-            {{ user.username }} | {{ user.first_name}} {{ user.last_name }} | {{user.email}} 
-        </p>
-    </div>
-</form>
+
+    {% block info_user %}
+        {% include 'profile/info_profile.html' %}
+    {% endblock %}
+
+    {% block posts %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-ws-sec">
+                    <div class="post-topbar">
+                        <div class="user-picy">
+                        {% if user.profile.picture %}
+                            <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="50" height="50">
+                        {% else %}
+                            <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="50" height="50">
+                        {% endif %}
+                        </div>
+                        <div class="post-st">
+                            <ul>
+                                <li><a class="post_project active" href="#" title="">Publicar un proyecto</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--post-st end-->
+                    </div>
+                    <!--post-topbar end-->
+                </div>
+                <!--main-ws-sec end-->
+            </div>
+
+            <div class="col-lg-6 col-md-6 mb-3">
+                <div class="main-ws-sec card">
+                    <div class="box">
+                            <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}"
+                                alt="Fotos de Ginger"></a>
+                    </div> 
+                        <div class="card-body">
+                          <div class="badges">
+                            <span class="badge badge-warning">Psicologia</span>
+                            <span class="badge badge-info">Psicologia clinica</span>
+                          </div>
+                          <h5 class="card-title"> <a href="#">Ginger Saeteros</a> </h5>
+                          <p class="card-text">Graduada en Unemi de licenciada en psicologia, lleva años de experiencia en el trato de
+                            la salud mental de trabajadores.</p>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 mb-3">
+                <div class="main-ws-sec card">
+                        <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}"
+                            alt="Fotos de Ginger"></a>
+                        <div class="card-body">
+                          <div class="badges">
+                            <span class="badge badge-warning">Psicologia</span>
+                            <span class="badge badge-info">Psicologia clinica</span>
+                          </div>
+                          <h5 class="card-title"> <a href="#">Ginger Saeteros</a> </h5>
+                          <p class="card-text">Graduada en Unemi de licenciada en psicologia, lleva años de experiencia en el trato de
+                            la salud mental de trabajadores.</p>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 mb-3">
+                <div class="main-ws-sec card">
+                        <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}"
+                            alt="Fotos de Ginger"></a>
+                        <div class="card-body">
+                          <div class="badges">
+                            <span class="badge badge-warning">Psicologia</span>
+                            <span class="badge badge-info">Psicologia clinica</span>
+                          </div>
+                          <h5 class="card-title"> <a href="#">Ginger Saeteros</a> </h5>
+                          <p class="card-text">Graduada en Unemi de licenciada en psicologia, lleva años de experiencia en el trato de
+                            la salud mental de trabajadores.</p>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 mb-3">
+                <div class="main-ws-sec card">
+                        <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}"
+                            alt="Fotos de Ginger"></a>
+                        <div class="card-body">
+                          <div class="badges">
+                            <span class="badge badge-warning">Psicologia</span>
+                            <span class="badge badge-info">Psicologia clinica</span>
+                          </div>
+                          <h5 class="card-title"> <a href="#">Ginger Saeteros</a> </h5>
+                          <p class="card-text">Graduada en Unemi de licenciada en psicologia, lleva años de experiencia en el trato de
+                            la salud mental de trabajadores.</p>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+    {% endblock %}
+
+    {% block filter %}
+        {% include 'posts/filter.html' %}
+    {% endblock %}
     
-{% endblock %}
+    {% block post_project %}
+        {% include 'posts/post_project.html' %} 
+    {% endblock %}
+       
+
+
+
+

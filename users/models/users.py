@@ -81,12 +81,12 @@ class User(CRideModel ,AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
-
+    
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=['username', 'first_name', 'last_name', ]
 
 
     def __str__ (self):
-        return self.email
+        return self.username
         
     

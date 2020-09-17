@@ -19,7 +19,7 @@ class Profile(CRideModel):
     phone_number=models.CharField(max_length=20, blank=True)
     education_level=models.CharField(max_length=50, blank=True)
     work_area=models.CharField(max_length=100, blank=True)
-    profile=models.CharField(max_length=50, blank=True)
+    home_address=models.CharField(max_length=100, blank=True)
     
     picture=models.ImageField(
         upload_to='users/pictures',

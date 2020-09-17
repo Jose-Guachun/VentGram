@@ -45,7 +45,7 @@ class ProfileAdmin(admin.ModelAdmin):
         'phone_number',
         'education_level',
         'work_area',
-        'profile',
+        'home_address',
         'picture',)
 
     list_display_links=('pk', 'user', 'city',)
@@ -57,7 +57,7 @@ class ProfileAdmin(admin.ModelAdmin):
         'phone_number',
         'education_level',
         'work_area',
-        'profile',
+        'home_address',
         'picture',)
 
     search_fields=(
@@ -82,7 +82,7 @@ class ProfileAdmin(admin.ModelAdmin):
                     'gender',
                     'birth_date','education_level',
                     'work_area',
-                    'profile',
+                    'home_address',
                     ),
         }),
         ('Extra info',{

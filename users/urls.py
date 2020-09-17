@@ -29,11 +29,16 @@ urlpatterns = [
         ),
     
     path(
-        route='me/profile/',
+        route='me/settings/',
         view=views.UpdateProfileView.as_view(),
-        name='update'
+        name='setting'
         ),
 
+    path(
+        route='me/user/',
+        view=views.UpdateUserView.as_view(),
+        name='update_user'
+        ),
     path(
         route='mail/',
         view=views.email_verified,

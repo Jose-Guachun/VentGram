@@ -1,0 +1,391 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_content %}
+@{{ user.username|capfirst }} | Settings
+{% endblock%}
+
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+
+{% block content %}
+<section class="profile-account-setting">
+    <div class="container">
+        <div class="account-tabs-setting">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="acc-leftbar">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-acc-tab" data-toggle="tab" href="#nav-acc" role="tab" aria-controls="nav-acc" aria-selected="true"><i class="fas fa-id-badge"></i>Perfil</a>
+                            <a class="nav-item nav-link" id="nav-status-tab" data-toggle="tab" href="#nav-status" role="tab" aria-controls="nav-status" aria-selected="false"><i class="far fa-user"></i>Usuario</a>
+                            <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i>Cambiar Contraseña</a>
+                            <a class="nav-item nav-link" id="nav-notification-tab" data-toggle="tab" href="#nav-notification" role="tab" aria-controls="nav-notification" aria-selected="false"><i class="fas fa-globe-americas"></i>Redes Sociales</a>
+
+                          </div>
+                    </div><!--acc-leftbar end-->
+                </div>
+                <div class="col-lg-9">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-acc" role="tabpanel" aria-labelledby="nav-acc-tab">
+                            <!--acc-setting-->
+                            <div class="acc-setting">
+                                <h3>Perfil de usuario</h3>
+                                <form action="{% url 'users:setting' %}" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-lg-12 mt-2 mb-4" >
+                                                    <div class="usr-pic">
+                                                    {% if user.profile.picture %}
+                                                        <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="110" height="110">
+                                                    {% else %}
+                                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="110" height="110">
+                                                    {% endif %}
+                                                    <div class="add-dp" id="OpenImgUpload">
+                                                        <input type="file" id="file" name="picture">
+                                                        <label for="file"><i class="fas fa-camera"></i></label>												
+                                                    </div>
+                                                    </div>
+                                            </div>
+                                    <div class="cp-field col-sm-12 col-md-6 ">
+                                        <h5>Cedula </h5>
+                                        <div class="cpp-fiel">
+                                            <input
+                                            class="{% if form.dni.errors %}is-invalid{% endif %}" 
+                                            type="text"  
+                                            name="dni"  
+                                            placeholder="Ingrese su numero de cedula"
+                                            value="{% if form.errors %}{{form.dni.value }}{% else %}{{ profile.dni }}{% endif %}"
+                                            />
+                                            <i class="far fa-address-card"></i>
+
+                                            <div class="invalid-feedback">
+                                                {% for error in form.dni.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="cp-field col-sm-12 col-md-6 ">
+                                        <h5>Telefono Celular </h5>
+                                        <div class="cpp-fiel">
+                                            <input
+                                            class="{% if form.phone_number.errors %}is-invalid{% endif %}" 
+                                            type="text"  
+                                            name="phone_number"  
+                                            placeholder="Ingrese su numero de telefono celular"
+                                            value="{% if form.errors %}{{form.phone_number.value }}{% else %}{{ profile.phone_number }}{% endif %}"
+                                            />
+                                            <i class="fas fa-mobile-alt"></i>
+
+                                            <div class="invalid-feedback">
+                                                {% for error in form.phone_number.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="cp-field col-sm-12 col-md-12">
+                                        <h5>Direccion de casa</h5>
+                                        <div class="cpp-fiel">
+                                            <input
+                                            class="{% if form.home_address.errors %}is-invalid{% endif %}" 
+                                            type="text"  
+                                            name="home_address"  
+                                            placeholder="Ingrese la direccion de su domicilio"
+                                            value="{% if form.errors %}{{form.home_address.value }}{% else %}{{ profile.home_address}}{% endif %}"
+                                            />
+                                            <i class="fas fa-map-marked-alt"></i>
+
+                                            <div class="invalid-feedback">
+                                                {% for error in form.home_address.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cp-field">
+                                        <div class="cpp-fiel">
+                                            <h5>Biografia</h5>
+                                            <textarea class="form-control {% if form.biography.errors %}is-invalid{% endif %}" name="biography">
+                                            {% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}
+                                            </textarea>
+                                            <div class="invalid-feedback">
+                                                {% for error in form.biography.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notbar col-sm-12 col-md-12">
+                                        <div class="cpp-fiel">
+                                            <h4>Genero </h4>
+                                            <div class="form-check">
+                                                <label>
+                                                    <input type="radio" name="gender" value="masculino"> Masculino</label>
+                                                <label>
+                                                    <input type="radio" name="gender" value="femenino"> Femenino</label>
+                                                <label>
+                                                    <input type="radio" name="gender" value="otro"> Otro</label> 
+                                            </div> 
+                                        </div>
+                                    </div>  
+                                    <div class="cp-field col-sm-12 col-md-6">
+                                        <div class="cpp-fiel">
+                                            <h5>Pais</h5>
+                                            <div class="form-group">
+                                                <select class="form-control" id="exampleFormControlSelect1" style="-webkit-appearance: menulist-button;">
+                                                    <option name="name_country" value="Ecuador">{{ profile.city.province.country }}</option>
+                                                </select>
+                                            </div>
+                                            <h5>Provincia</h5>
+                                            <div class="form-group">
+                                                <select class="form-control" id="exampleFormControlSelect2" style="-webkit-appearance: menulist-button;">
+                                                    <option name="name_province" value="cañar">{{ profile.city.province}}</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <h5>Ciudad</h5>
+                                            <div class="form-group">
+                                                <select class="form-control" id="exampleFormControlSelect3" style="-webkit-appearance: menulist-button;">
+                                                    <option name="name_city" value="La Troncal">{{ profile.city }}</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="cp-field col-sm-12 col-md-6 ">
+                                        <div class="cpp-fiel">
+                                            
+                                        
+                                            <h5>Nivel educativo</h5>
+                                                <div class="form-group">
+                                                    <select class="form-control" id="exampleFormControlSelect3" style="-webkit-appearance: menulist-button;">
+                                                        <option name="education_level" value="primaria">Primaria</option>
+                                                        <option name="education_level" value="secundaria">Secundaria</option>
+                                                        <option name="education_level" value="tecnico">Técnico</option>
+                                                        <option name="education_level" value="universidad">Universidad</option>
+                                                        <option name="education_level" value="maestria">Maestria</option>
+                                                        <option name="education_level" value="doctorado">Doctorado</option>
+                                                    </select>
+                                                </div>
+                                            <h5>Medio en el que laboras</h5>
+                                            <div class="form-group">
+                                                <select class="form-control" id="exampleFormControlSelect3" style="-webkit-appearance: menulist-button;">
+                                                    <option name="work_area" value="desarrollador">Desarrollador</option>
+                                                    <option name="work_area" value="marketing">Marketing</option>
+                                                    <option name="work_area" value="diseño">Diseño</option>
+                                                    <option name="work_area" value="negocios">Negocios</option>
+                                                  </select>
+                                            </div>
+                                            
+                                        </div>
+                                        <div>
+                                            <div class="cpp-fiel">
+                                                <h5>Cumpleaños </h5>
+                                                <div class="EditProfile-input">
+                                                    <input 
+                                                    type="date" 
+                                                    name="birth_date">
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="save-stngs pd2">
+                                    <ul>
+                                        <li><button type="submit">Guardar Configuracion</button></li>
+                                        <li><button type="submit">Cancelar Configuracion</button></li>
+                                    </ul>
+                                </div>
+                                </form>
+                            </div>
+                            <!--acc-setting end-->
+                        </div>
+
+                          <div class="tab-pane fade" id="nav-status" role="tabpanel" aria-labelledby="nav-status-tab">
+                              <div class="acc-setting">
+                                <h3>Configuracion de cuenta</h3>
+                                <form action="{% url 'users:update_user' %}" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                        
+                                            <div class="cp-field col-sm-12 col-md-6">
+                                                <h5>Nombres</h5>
+                                                <div class="cpp-fiel">
+                                                    <input 
+                                                    type="text" 
+                                                    class="{% if form.first_name.errors %}is-invalid{% endif %}" 
+                                                    name="first_name" 
+                                                    placeholder="Ingrese su nombre"
+                                                    value="{% if form.errors %}{{form.first_name.value }}{% else %}{{ user.first_name }}{% endif %}"
+                                                    />
+                                                    <i class="fas fa-signature"></i>
+        
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.first_name.errors %}
+                                                            {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cp-field col-sm-12 col-md-6">
+                                                <h5>Apellidos</h5>
+                                                <div class="cpp-fiel">
+                                                    <input 
+                                                    type="text" 
+                                                    class="{% if form.last_name.errors %}is-invalid{% endif %}" 
+                                                    name="last_name" 
+                                                    placeholder="Ingrese su apellido"
+                                                    value="{% if form.errors %}{{form.last_name.value }}{% else %}{{ user.last_name }}{% endif %}"
+                                                    />
+                                                    <i class="fas fa-signature"></i>
+        
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.first_name.errors %}
+                                                            {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cp-field col-sm-12 col-md-6">
+                                                <h5>Nombre de Usuario</h5>
+                                                <div class="cpp-fiel">
+                                                    <input 
+                                                    type="text" 
+                                                    class="{% if form.username.errors %}is-invalid{% endif %}" 
+                                                    name="username" 
+                                                    placeholder="Ingrese su nombre de usuario"
+                                                    value="{% if form.errors %}{{form.username.value }}{% else %}{{ user.username }}{% endif %}"
+                                                    />
+                                                    <i class="fas fa-at"></i>
+        
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.username.errors %}
+                                                            {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cp-field col-sm-12 col-md-6">
+                                                <h5>Correo Electronico</h5>
+                                                <div class="cpp-fiel">
+                                                    <input 
+                                                    type="email" 
+                                                    class="{% if form.email.errors %}is-invalid{% endif %}" 
+                                                    name="email" 
+                                                    placeholder="Ingrese su correo electronico"
+                                                    value="{% if form.errors %}{{form.email.value }}{% else %}{{ user.email }}{% endif %}"
+                                                    />
+                                                    <i class="fas fa-envelope"></i>
+        
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.email.errors %}
+                                                            {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                    <div class="save-stngs pd2">
+                                        <ul>
+                                            <li><button type="submit">Guardar Configuracion</button></li>
+                                            <li><button type="submit">Cancelar Configuracion</button></li>
+                                        </ul>
+                                    </div>
+                                </form>
+                              </div>
+                              <!--acc-setting end-->
+                          </div>
+                          <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
+                              <div class="acc-setting">
+                                <h3>Configuracion de cuenta</h3>
+                                <form>
+                                    <div class="cp-field">
+                                        <h5>Contraseña anterior</h5>
+                                        <div class="cpp-fiel">
+                                            <input type="text" name="old-password" placeholder="Contraseña anterior">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cp-field">
+                                        <h5>Nueva contraseña</h5>
+                                        <div class="cpp-fiel">
+                                            <input type="text" name="new-password" placeholder="Nueva contraseña">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cp-field">
+                                        <h5>Repite la contraseña</h5>
+                                        <div class="cpp-fiel">
+                                            <input type="text" name="repeat-password" placeholder="Repite la contraseña">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cp-field">
+                                        <h5><a href="#" title="">¿Se te olvidó tu contraseña?</a></h5>
+                                    </div>
+                                    <div class="save-stngs pd2">
+                                        <ul>
+                                            <li><button type="submit">Guardar configuracion</button></li>
+                                            <li><button type="submit">Cancelar configuracion</button></li>
+                                        </ul>
+                                    </div><!--save-stngs end-->
+                                </form>
+                            </div><!--acc-setting end-->
+                          </div>
+                          <div class="tab-pane fade" id="nav-notification" role="tabpanel" aria-labelledby="nav-notification-tab">
+                              <div class="acc-setting">
+                                <h3>Redes Sociales</h3>
+                                  <form action="{% url 'users:setting' %}" method="POST" enctype="multipart/form-data">
+                                  <div class="row notbar" >
+                                    <div class="col-sm-12 col-md-6">
+                                        <h4>Facebook</h4>
+                                        <div class="form-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fab fa-facebook "></i></span>
+                                                <input type="text" class="form-control" name="facebook" placeholder="Url">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <h4>Twitter</h4>
+                                        <div class="form-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter "></i></span>
+                                                <input type="text" class="form-control" name="Twitter" placeholder="Url">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-12 col-md-6 ">
+                                        <h4>Linkedind</h4>
+                                        <div class="form-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fab fa-linkedin-in"></i></span>
+                                                <input type="text" class="form-control" name="linkedind" placeholder="Url">
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                  
+                                <div class="save-stngs pd2">
+                                    <ul>
+                                        <li><button type="submit">Guardar configuracion</button></li>
+                                        <li><button type="submit">Cancelar configuracion</button></li>
+                                    </ul>
+                                </div>
+                            </div> 
+                                  </form>
+                                  
+                                  <!--notifications-list end-->
+                              </div><!--acc-setting end-->
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--account-tabs-setting end-->
+    </div>
+</section>
+{% endblock %}
+{% block footer %}
+  {% include 'footer.html' %}
+{% endblock %}

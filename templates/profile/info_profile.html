@@ -1,5 +1,39 @@
 {% load static %}
-<section class="col-md-12 col-lg-4">
+    <div class="user-data full-width">
+        <div class="user-profile">
+            <div class="username-dt">
+                <div class="usr-pic">
+                {% if user.profile.picture %}
+                    <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="110" height="110">
+                {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="110" height="110">
+                {% endif %}
+
+                </div>
+            </div>
+            <!--username-dt end-->
+            <div class="user-specs">
+                <h3>{{user.first_name}} {{user.last_name}}</h3>
+                <span>{{user.profile.profile}}</span>
+            </div>
+        </div>
+        <!--user-profile end-->
+        
+        <div class="user_pro_status">
+            <ul class="flw-status">
+                <li>
+                    <span>Siguiendo</span>
+                    <b>34</b>
+                </li>
+                <li>
+                    <span>Seguidores</span>
+                    <b>155</b>
+                </li>
+            </ul>
+        </div>  
+    </div>
+    <!--user-data end-->
+<!--<section class="col-md-12 col-lg-4">
     <div class="card mb-4">
         <div class="card-body">
             <div class="text-center">
@@ -52,4 +86,4 @@
             <h5>mensajes</h5>
         </div>
     </div>
-</section>
+</section>--->

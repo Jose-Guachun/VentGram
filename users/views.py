@@ -37,9 +37,8 @@ class UserDetailView(LoginRequiredMixin ,DetailView):
 
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     #update profile view
-    template_name='profile/update_profile.html'
+    template_name='profile/account_setting.html'
     model=Profile
-    second_model=User
     fields=[
         'dni', 
         'gender', 
@@ -48,7 +47,7 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
         'phone_number', 
         'education_level', 
         'work_area', 
-        'profile', 
+        'home_address', 
         'picture',
         ]
 
@@ -59,8 +58,26 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         #Return to users profile.
         username=self.object.user.username
-        return reverse('users:detail', kwargs={'username':username})
+        return reverse('users:setting')
 
+class UpdateUserView(LoginRequiredMixin, UpdateView):
+    #update User view
+    model=User
+    fields=[
+        'username', 
+        'email', 
+        'first_name', 
+        'last_name', 
+        ]
+
+    def get_object(self):
+        #return user profile
+        return self.request.user
+    
+    def get_success_url(self):
+        #Return to users profile.
+        username=self.object.user.username
+        return reverse('users:setting')
 
 class LoginView(FormView):
     #login view
