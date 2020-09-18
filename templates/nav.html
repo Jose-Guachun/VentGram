@@ -4,12 +4,6 @@
     <div class="logo">
       <a href="{% url 'posts:feed' %}" title=""><img src="{% static 'img/logo.png' %}" alt=""></a>
     </div><!--logo end-->
-    <div class="search-bar">
-      <form>
-        <input type="text" name="search" placeholder="Search...">
-        <button type="submit"><i class="la la-search"></i></button>
-      </form>
-    </div><!--search-bar end-->
     <nav>
       <ul>
         <li>
@@ -25,7 +19,7 @@
           </a>
         </li>
         <li>
-          <a href="{% url 'users:profile' %}" title="">
+          <a href="{% url 'users:profile' %}" title="Perfil">
             <span><img src="{% static 'img/icon4.png' %}" alt=""></span>
             Perfil
           </a>
@@ -148,9 +142,26 @@
         {% endif %}
       </div>
       <div class="user-account-settingss" id="users">
+        <ul class="on-off-status">
+            <div class="usy-dt mr-2">
+                {% if user.profile.picture %}
+                  <img src="{{ user.profile.picture.url }}" alt="profile-image" width="37" height="37">
+                {% else %}
+                  <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
+                {% endif %}
+            </div>
+
+            <div >
+              <div class="fgt-sec">
+              <h6 class="mt-1 ml-0">{{user.first_name|capfirst}}</h6>
+              <a href="{% url 'users:profile' %}"><p>Ver mi perfil</p></a>
+              </div>
+            </div>
+
+        </ul>
+
         <h3>Ajustes</h3>
         <ul class="us-links">
-          <li><a href="#" title="">Perfil</a></li>
           <li><a href="{% url 'users:setting' %}" title="">Configuracion de Cuenta</a></li>
 
         </ul>

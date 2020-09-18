@@ -25,9 +25,6 @@ from users.forms import SignupForm, LoginForm
 from django.contrib.auth.forms import AuthenticationForm
 
 
-class ProfileView(TemplateView):
-    #retornar todas las publicaciones
-    template_name='profile/profile.html'
 
 class UserDetailView(LoginRequiredMixin ,DetailView):
     #User detail view
@@ -38,7 +35,9 @@ class UserDetailView(LoginRequiredMixin ,DetailView):
     queryset=User.objects.all()
     context_object_name='user'
 
-
+class ProfileView(LoginRequiredMixin, TemplateView):
+    #muestra el perfil del usuario
+    template_name='profile/me_profile.html'
 
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     #update profile view

@@ -360,8 +360,12 @@ header {
 }
 .search-bar {
 	float: left;
-	width: 280px;
-	margin-top: 9px;
+	width: 100%;
+	border-top: 1px solid #e4e4e4;
+    border-left: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+	
 }
 .search-bar form {
 	float: left;
@@ -387,14 +391,14 @@ header {
 	border: 0;
 }
 .search-bar form button i {
-	color: #e44d3a;
+	color: #147925;
 	font-size: 20px;
 	font-weight: bold;
 }
 
 nav {
 	float: left;
-	width: 65%;
+	width: 89%;
 	text-align: right;
 	padding-right: 13px;
 }
@@ -592,7 +596,7 @@ nav > ul > li > a:hover {
 .on-off-status {
 	float: left;
 	width: 100%;
-	padding: 20px;
+	padding: 10px;
 	border-bottom: 1px solid #e5e5e5;
 }
 .on-off-status li {
@@ -741,7 +745,8 @@ main {
 .username-dt {
 	float: left;
 	width: 100%;
-	background-color: #e44d3a;
+	background: #191431;
+	background: linear-gradient(to right, rgb(43, 43, 71),rgb(2, 102, 94) );
 	padding-top: 40px;
 }
 .user-data {
@@ -980,9 +985,9 @@ main {
 .post-topbar {
 	float: left;
 	width: 100%;
-	padding: 23px 20px;
+	padding: 10px 15px;
 	background-color: #fff;
-	border-top: 4px solid #e44d3a;
+	border-top: 4px solid rgb(2, 102, 94);
 	border-left: 1px solid #e4e4e4;
 	border-bottom: 1px solid #e4e4e4;
 	border-right: 1px solid #e4e4e4;
@@ -1024,7 +1029,8 @@ main {
 }
 .post-st ul li a:hover,
 .post-st ul li a.active {
-	background-color: #e44d3a;
+	background: #191431;
+	background: linear-gradient(to right, rgb(2, 102, 94), rgb(43, 43, 71) );
 	color: #fff;
 }
 
@@ -2351,7 +2357,8 @@ select {
 	color: #000000;
 	font-size: 14px;
 	font-weight: 500;
-	margin-left: 10px;
+	margin-left: 2px;
+	margin-top: 4px;
 }
 .checky-sec > a {
 	float: right;
@@ -3776,7 +3783,7 @@ a:hover {
 }
 .filter-heading h3 {
 	float: left;
-	color: #e44d3a;
+	color: #0b86a5;
 	font-size: 18px;
 	font-weight: 600;
 }

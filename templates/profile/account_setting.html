@@ -45,6 +45,11 @@
                                                         <label for="file"><i class="fas fa-camera"></i></label>												
                                                     </div>
                                                     </div>
+                                                    {% for error in form.picture.errors %}
+                                                    <div class="alert alert-danger">
+                                                    <b>Picture:</b>{{ error }}
+                                                    </div>
+                                                    {% endfor %}
                                             </div>
                                     <div class="cp-field col-sm-12 col-md-6 ">
                                         <h5>Cedula </h5>

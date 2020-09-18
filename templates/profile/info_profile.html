@@ -16,7 +16,9 @@
                 <h3>{{user.first_name}} {{user.last_name}}</h3>
                 <span>{{user.profile.profile}}</span>
             </div>
+            
         </div>
+
         <!--user-profile end-->
         
         <div class="user_pro_status">
@@ -30,8 +32,35 @@
                     <b>155</b>
                 </li>
             </ul>
-        </div>  
+ 
+        </div>
     </div>
+    <div class="main-ws-sec">
+        <div class="post-topbar">
+            <div class="usy-dt">
+            {% if user.profile.picture %}
+                <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="50" height="50">
+            {% else %}
+                <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="50" height="50">
+            {% endif %}
+            </div>
+            <div class="post-st mb-3">
+                <ul>
+                    <li><a class="post_project active" href="#" title="">Publicar un proyecto</a>
+                    </li>
+                </ul>
+            </div>
+            <!--post-st end-->
+            <div class="search-bar mb-3">
+                <form>
+                    <input type="text" name="search" placeholder="Search...">
+                    <button type="submit"><i class="la la-search"></i></button>
+                </form>
+            </div><!--search-bar end--> 
+        </div>
+        <!--post-topbar end-->
+    </div>
+
     <!--user-data end-->
 <!--<section class="col-md-12 col-lg-4">
     <div class="card mb-4">
