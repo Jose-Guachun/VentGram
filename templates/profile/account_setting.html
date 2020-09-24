@@ -36,9 +36,9 @@
                                         <div class="col-lg-12 mt-2 mb-4" >
                                                     <div class="usr-pic">
                                                     {% if user.profile.picture %}
-                                                        <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="110" height="110">
+                                                        <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="96" height="96">
                                                     {% else %}
-                                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="110" height="110">
+                                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
                                                     {% endif %}
                                                     <div class="add-dp" id="OpenImgUpload">
                                                         <input type="file" id="file" name="picture">
@@ -188,10 +188,10 @@
                                             <div class="cpp-fiel">
                                                 <h5>Cumpleaños </h5>
                                                 <div class="EditProfile-input">
-                                                    <input 
-                                                    type="date" 
-                                                    name="birth_date">
-                                                </div> 
+                                                    <input type="date"  name="birth_date" value="{{ profile.birth_date |date:"Y-m-d" }}">
+                                                    
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>

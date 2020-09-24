@@ -1,4 +1,5 @@
 /* ----General*/
+
 .card-body {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
@@ -42,6 +43,12 @@
 
 /* ----General*/
 
+
+/* ----Romper texto en varias lineas*/
+
+
+
+/* ----Romper texto en varias lineas*/
 
 /* ----footer*/
 footer{
@@ -107,32 +114,45 @@ footer{
 /* ----card contenedor image*/
 .box {
   width: 100%;
-  height: 120px;
+  height: 115px;
   margin-right: 25px;
   overflow: hidden;
   border-radius: 5px;
   border: 1px;
   float: left;
   background-color:rgb(255, 255, 255);
-  padding-bottom:10px ;
+  
+
+  position:relative;
+
+  display: flex;
+  align-items: center;
+
+
+}
+
+.txt {
+  position: absolute;
+  margin-top: 50px;
+  padding: 20px;
 }
 
 @media(max-width: 991px){
   .box{
-    height: 60px;
+    height: 120px;
   }
 }
 
 @media(max-width:768px){
   .box{
-    height: 140px;
+    height: 130px;
   }
   .card-img-top{
       filter: brightness(100%);
   
   }
   .card-img-top:hover{
-      filter:brightness(85%);
+      filter:brightness(65%);
   }
 }
 @media(min-width: 769px){
@@ -140,7 +160,7 @@ footer{
       filter: brightness(100%);
   }
   .card-img-top:hover{
-      filter:brightness(85%);
+      filter:brightness(65%);
   }
 }
 

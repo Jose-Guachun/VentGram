@@ -25,7 +25,6 @@ from users.forms import SignupForm, LoginForm
 from django.contrib.auth.forms import AuthenticationForm
 
 
-
 class UserDetailView(LoginRequiredMixin ,DetailView):
     #User detail view
 

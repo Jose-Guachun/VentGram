@@ -21,5 +21,16 @@ urlpatterns = [
         view=views.PostFeedView.as_view(),
         name='feed'
         ),
+
+    path(
+        route='posts/view_project',
+        view=views.ViewProjectView.as_view(),
+        name='view_project'
+        ),
+    path(
+        route='posts/project',
+        view=views.PostProjectView.as_view(),
+        name='project'
+        ),
         
 ]

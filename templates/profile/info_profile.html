@@ -1,21 +1,27 @@
 {% load static %}
+<h6 >UN PROYECTO DE</h6>
+<hr class="mt-2">
     <div class="user-data full-width">
         <div class="user-profile">
-            <div class="username-dt">
+
                 <div class="usr-pic">
                 {% if user.profile.picture %}
-                    <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="110" height="110">
+                    <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="96" height="96">
                 {% else %}
-                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="110" height="110">
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
                 {% endif %}
 
                 </div>
-            </div>
             <!--username-dt end-->
-            <div class="user-specs">
-                <h3>{{user.first_name}} {{user.last_name}}</h3>
-                <span>{{user.profile.profile}}</span>
+            <div class="user-specs pb-0">
+                <h3>{{user.username}}</h3>
             </div>
+                    <div class="badges">
+                        <span class="badge badge-info">{{user.profile.work_area}}</span>
+                    </div>
+                    <div class="user-specs py-2">
+                        <span><i class="fas fa-map-marker-alt pr-1"></i> {{user.profile.city}}, {{user.profile.city.province.country}}</span>
+                    </div>
             
         </div>
 
@@ -23,43 +29,22 @@
         
         <div class="user_pro_status">
             <ul class="flw-status">
-                <li>
-                    <span>Siguiendo</span>
-                    <b>34</b>
-                </li>
-                <li>
-                    <span>Seguidores</span>
-                    <b>155</b>
-                </li>
+                
+                <a href="{% url 'posts:feed' %}" type="button" class="btn btn-secondary mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-plus-circle mr-2"></i>Seguir</a>
+                <a href="{% url 'posts:feed' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="far fa-envelope mr-2"></i>Mensaje</a>
             </ul>
  
         </div>
     </div>
-    <div class="main-ws-sec">
-        <div class="post-topbar">
-            <div class="usy-dt">
-            {% if user.profile.picture %}
-                <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="50" height="50">
-            {% else %}
-                <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="50" height="50">
-            {% endif %}
-            </div>
-            <div class="post-st mb-3">
-                <ul>
-                    <li><a class="post_project active" href="#" title="">Publicar un proyecto</a>
-                    </li>
-                </ul>
-            </div>
-            <!--post-st end-->
-            <div class="search-bar mb-3">
-                <form>
-                    <input type="text" name="search" placeholder="Search...">
-                    <button type="submit"><i class="la la-search"></i></button>
-                </form>
-            </div><!--search-bar end--> 
-        </div>
-        <!--post-topbar end-->
-    </div>
+<h6>DETALLES</h6>
+<hr class="mt-2">
+<div class="user-specs py-2">
+    <h5>Titulo</h5>
+    <h5>Fecha de publicacion</h5>
+    <h5>CATEGORIA</h5>
+    <h5>TECNOLOGIAS UTILIZADAS</h5>
+</div>
+
 
     <!--user-data end-->
 <!--<section class="col-md-12 col-lg-4">

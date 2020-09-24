@@ -1,109 +1,291 @@
 {% extends 'posts/base.html' %}
 {% block head_content %}
-    Home | VentGram
+    Inicio | VentGram
 {% endblock%}
 {% load static %}
+<!--herencia de posts/base html estructura de cuerpo de html-->
 
-    {% block info_user %}
-        {% include 'profile/info_profile.html' %}
+    {% block other_top %}
+    <!--agregar vistas al inicio sin ningun contenedor puesto -->
     {% endblock %}
-
-
-
-    {% block posts %}
-    <div class="row">
-        <div class="col-12">
-
-        </div>
-
-    </div>
+    
+    {% block row %}
+    <div class="col-lg-12 pd-right-none pd-left-none">
         <div class="row">
-            <div class="col-lg-6 offset-lg-3">
 
+            <div class="col-lg-5 col-md-7 pd-right-none">
+                <div class="usy-dt">
+                    {% if user.profile.picture %}
+                        <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="40" height="40">
+                    {% else %}
+                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
+                    {% endif %}
+                    </div>
+                <div class="post-st mb-3">
+                    <ul>
+                        <li><a class="post_project" href="#" title="">
+                            <i class="far fa-plus-square mr-2"></i>Añadir nuevo proyecto</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--post-st end-->
             </div>
-
+            <div class="offset-lg-3 col-lg-4  col-md-5 pd-right-none mt-1">
+                <div class="search-bar mb-3">
+                    <form>
+                        <input type="text" name="search" placeholder="Search...">
+                        <button type="submit"><i class="la la-search"></i></button>
+                    </form>
+                </div><!--search-bar end--> 
+            </div>
             <div class="col-lg-12 pd-right-none">
                 <!--main-ws-sec end-->
                 <div class="sign_link">
-                    <h3>Proyectos de Emprendimiento </h3>  
+                    <h3>Ultimos proyectos publicados </h3>  
                 </div>
             </div>
   
-            <div class="col-lg-6 col-md-12 pd-right-none mb-3">
-                <div class="main-ws-sec card">
-                    <div class="box">
-                            <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}"
-                                alt="Fotos de Ginger"></a>
-                    </div> 
-                        <div class="card-body">
-                          <div class="badges">
-                            <span class="badge badge-warning">Psicologia</span>
-                            <span class="badge badge-info">Psicologia clinica</span>
-                          </div>
-                          <h5 class="card-title"> <a href="#">Ginger Saeteros</a> </h5>
-                          <p class="card-text">Graduada en Unemi de licenciada en psicologia, lleva años de experiencia en el trato de
-                            la salud mental de trabajadores.</p>
+            <div class="col-lg-4 col-md-6 pd-right-none mb-3">
+                <div class="main-ws-sec">
+                        <div class="posts-section">
+                            <div class="box">
+                                    <a title="Aspectos" href="{% url 'posts:view_project' %}"><img class="card-img-top" src="{%static 'img/fon.jpg' %}"
+                                    alt="Project"></a>
+                                    <div class="txt">
+                                        <div class="usy-dt">
+                                            <img src="{% static 'img/resources/user3.png' %}" alt="">
+                                            <div class="usy-name pt-2">
+                                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
+                                                <span><img src="{% static 'img/clock.png' %}" alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div> 
+                          <div class="post-bar pt-1">
+
+                            <div class="epi-sec">
+                                <ul class="descp">
+                                    <li><img src="{% static 'img/icon8.png' %}" alt=""><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Codificador épico</font></font></span></li>
+                                    <li><img src="{% static 'img/icon9.png' %}" alt=""><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">India</font></font></span></li>
+                                </ul>
+                                <ul class="bk-links">
+                                    <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                                    <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="job_descp">
+                                <h3><a href="{% url 'posts:view_project' %}">Aplicación Móvil IOS Shopping</a></h3>
+                                <div class="module overflow">
+                                    <p >{{TruncateText}} </p>
+                                </div>
+                                    
+                                <ul class="skill-tags">
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTML</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PHP</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSS</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Javascript</font></font></a></li>
+	
+                                </ul>
+                            </div>
+                            <div class="job-status-bar">
+                                <ul class="like-com">
+                                    <li>
+                                        <a href="#"><i class="fas fa-heart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Me gusta</font></font></a>
+                                        <img src="{% static 'img/liked-img.png'  %}" alt="">
+                                        <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">25</font></font></span>
+                                    </li> 
+                                </ul>
+                                <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas 50</font></font></a>
+                            </div>
+                            </div>
                         </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 pd-right-none mb-3">
-                <div class="main-ws-sec card">
-                        <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}"
-                            alt="Fotos de Ginger"></a>
-                        <div class="card-body">
-                          <div class="badges">
-                            <span class="badge badge-warning">Psicologia</span>
-                            <span class="badge badge-info">Psicologia clinica</span>
-                          </div>
-                          <h5 class="card-title"> <a href="#">Ginger Saeteros</a> </h5>
-                          <p class="card-text">Graduada en Unemi de licenciada en psicologia, lleva años de experiencia en el trato de
-                            la salud mental de trabajadores.</p>
+            <div class="col-lg-4 col-md-6 pd-right-none mb-3">
+                <div class="main-ws-sec">
+                        <div class="posts-section">
+                            <div class="box">
+                                    <a title="Aspectos" href="#"><img class="card-img-top" src="{%static 'img/fon.jpg' %}"
+                                    alt="Project"></a>
+                                    <div class="txt">
+                                        <div class="usy-dt">
+                                            <img src="{% static 'img/resources/user3.png' %}" alt="">
+                                            <div class="usy-name pt-2">
+                                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
+                                                <span><img src="{% static 'img/clock.png' %}" alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div> 
+                          <div class="post-bar">
+
+                            <div class="epi-sec">
+                                <ul class="descp">
+                                    <li><img src="{% static 'img/icon8.png' %}" alt=""><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Codificador épico</font></font></span></li>
+                                    <li><img src="{% static 'img/icon9.png' %}" alt=""><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">India</font></font></span></li>
+                                </ul>
+                                <ul class="bk-links">
+                                    <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                                    <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="job_descp">
+                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Desarrollador senior de Wordpress</font></font></h3>
+                                <p>
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </font><font style="vertical-align: inherit;">Aliquam luctus hendrerit metus, ut ullamcorper quam finibus en. 
+                                        </font>
+                                        <font style="vertical-align: inherit;">Etiam id magna sit amet ... </font></font><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ver más</font></font></a></p>
+                                <ul class="skill-tags">
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTML</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PHP</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSS</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Javascript</font></font></a></li>
+	
+                                </ul>
+                            </div>
+                            <div class="job-status-bar">
+                                <ul class="like-com">
+                                    <li>
+                                        <a href="#"><i class="fas fa-heart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Me gusta</font></font></a>
+                                        <img src="{% static 'img/liked-img.png'  %}" alt="">
+                                        <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">25</font></font></span>
+                                    </li> 
+                                    <li><a href="#" class="com"><i class="fas fa-comment-alt"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Comentario 15</font></font></a></li>
+                                </ul>
+                                <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas 50</font></font></a>
+                            </div>
+                            </div>
                         </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 pd-right-none mb-3">
-                <div class="main-ws-sec card">
-                        <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}"
-                            alt="Fotos de Ginger"></a>
-                        <div class="card-body">
-                          <div class="badges">
-                            <span class="badge badge-warning">Psicologia</span>
-                            <span class="badge badge-info">Psicologia clinica</span>
-                          </div>
-                          <h5 class="card-title"> <a href="#">Ginger Saeteros</a> </h5>
-                          <p class="card-text">Graduada en Unemi de licenciada en psicologia, lleva años de experiencia en el trato de
-                            la salud mental de trabajadores.</p>
+            <div class="col-lg-4 col-md-6 pd-right-none mb-3">
+                <div class="main-ws-sec">
+                        <div class="posts-section">
+                            <div class="box">
+                                    <a title="Aspectos" href="#"><img class="card-img-top" src="{%static 'img/fon.jpg' %}"
+                                    alt="Project"></a>
+                                    <div class="txt">
+                                        <div class="usy-dt">
+                                            <img src="{% static 'img/resources/user3.png' %}" alt="">
+                                            <div class="usy-name pt-2">
+                                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
+                                                <span><img src="{% static 'img/clock.png' %}" alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div> 
+                          <div class="post-bar">
+
+                            <div class="epi-sec">
+                                <ul class="descp">
+                                    <li><img src="{% static 'img/icon8.png' %}" alt=""><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Codificador épico</font></font></span></li>
+                                    <li><img src="{% static 'img/icon9.png' %}" alt=""><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">India</font></font></span></li>
+                                </ul>
+                                <ul class="bk-links">
+                                    <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                                    <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="job_descp">
+                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Desarrollador senior de Wordpress</font></font></h3>
+                                <p>
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </font><font style="vertical-align: inherit;">Aliquam luctus hendrerit metus, ut ullamcorper quam finibus en. 
+                                        </font>
+                                        <font style="vertical-align: inherit;">Etiam id magna sit amet ... </font></font><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ver más</font></font></a></p>
+                                <ul class="skill-tags">
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTML</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PHP</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSS</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Javascript</font></font></a></li>
+	
+                                </ul>
+                            </div>
+                            <div class="job-status-bar">
+                                <ul class="like-com">
+                                    <li>
+                                        <a href="#"><i class="fas fa-heart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Me gusta</font></font></a>
+                                        <img src="{% static 'img/liked-img.png'  %}" alt="">
+                                        <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">25</font></font></span>
+                                    </li> 
+                                    <li><a href="#" class="com"><i class="fas fa-comment-alt"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Comentario 15</font></font></a></li>
+                                </ul>
+                                <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas 50</font></font></a>
+                            </div>
+                            </div>
                         </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 pd-right-none mb-3">
-                <div class="main-ws-sec card">
-                        <a title="Aspectos" href="#"><img class="card-img-top" src="{%static "img/fon.jpg" %}"
-                            alt="Fotos de Ginger"></a>
-                        <div class="card-body">
-                          <div class="badges">
-                            <span class="badge badge-warning">Psicologia</span>
-                            <span class="badge badge-info">Psicologia clinica</span>
-                          </div>
-                          <h5 class="card-title"> <a href="#">Ginger Saeteros</a> </h5>
-                          <p class="card-text">Graduada en Unemi de licenciada en psicologia, lleva años de experiencia en el trato de
-                            la salud mental de trabajadores.</p>
+            <div class="col-lg-4 col-md-6 pd-right-none mb-3">
+                <div class="main-ws-sec">
+                        <div class="posts-section">
+                            <div class="box">
+                                    <a title="Aspectos" href="#"><img class="card-img-top" src="{%static 'img/fon.jpg' %}"
+                                    alt="Project"></a>
+                                    <div class="txt">
+                                        <div class="usy-dt">
+                                            <img src="{% static 'img/resources/user3.png' %}" alt="">
+                                            <div class="usy-name pt-2">
+                                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
+                                                <span><img src="{% static 'img/clock.png' %}" alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div> 
+                          <div class="post-bar">
+
+                            <div class="epi-sec">
+                                <ul class="descp">
+                                    <li><img src="{% static 'img/icon8.png' %}" alt=""><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Codificador épico</font></font></span></li>
+                                    <li><img src="{% static 'img/icon9.png' %}" alt=""><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">India</font></font></span></li>
+                                </ul>
+                                <ul class="bk-links">
+                                    <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                                    <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="job_descp">
+                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Desarrollador senior de Wordpress</font></font></h3>
+                                <p>
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </font><font style="vertical-align: inherit;">Aliquam luctus hendrerit metus, ut ullamcorper quam finibus en. 
+                                        </font>
+                                        <font style="vertical-align: inherit;">Etiam id magna sit amet ... </font></font><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ver más</font></font></a></p>
+                                <ul class="skill-tags">
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTML</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PHP</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSS</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Javascript</font></font></a></li>
+	
+                                </ul>
+                            </div>
+                            <div class="job-status-bar">
+                                <ul class="like-com">
+                                    <li>
+                                        <a href="#"><i class="fas fa-heart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Me gusta</font></font></a>
+                                        <img src="{% static 'img/liked-img.png'  %}" alt="">
+                                        <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">25</font></font></span>
+                                    </li> 
+                                    <li><a href="#" class="com"><i class="fas fa-comment-alt"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Comentario 15</font></font></a></li>
+                                </ul>
+                                <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas 50</font></font></a>
+                            </div>
+                            </div>
                         </div>
                 </div>
             </div>
         </div>
-
-
-    {% endblock %}
-
-    {% block filter %}
-    
-        {% include 'posts/filter.html' %}
+    </div>
     {% endblock %}
     
-    {% block post_project %}
+    {% block other_button %}
+    <!--agregar vistas al final sin ningun contenedor puesto -->
         {% include 'posts/post_project.html' %} 
     {% endblock %}
+
+<!--herencia de posts/base html estructura de cuerpo de html-->
+
        
 
 

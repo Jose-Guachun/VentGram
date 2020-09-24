@@ -3,38 +3,29 @@
 {% block head_content %}
    
 {% endblock%}
+
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock%}
+
 {% block content %}
-<main>
-    <div class="main-section">
-        <div class="container">
-            <div class="main-section-data">
-                <div class="row">
 
-                    <div class="col-lg-3 col-md-4 pd-right-none pd-left-none">
-                        {% block info_user %}
+    {% block other_top %}
+    {% endblock %}
+    <main>
+        <div class="main-section">
+            <div class="container">
+                <div class="main-section-data">
+                    <div class="row">
+                        {% block row %}
+                       
                         {% endblock %}
                     </div>
-                    <div class="col-lg-9 col-md-8 pd-right-none pd-left-none">
-                        {% block posts %}
-                        {% endblock %}
-                    </div>
-                    <div class="col-lg-2 col-md-4 pd-right-none ">
-                        {% block filter %}
-                        {% endblock %}
-                        <!--filter-secs end-->
-                    </div>
-
-                </div>
-            </div><!-- main-section-data end-->
-        </div> 
-    </div>
-</main>
-
-{% block post_project %}
-
-{% endblock %}
+                </div><!-- main-section-data end-->
+            </div> 
+        </div>
+    </main>
+    {% block other_button %}
+    {% endblock %}
 
 {% endblock %}

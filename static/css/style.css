@@ -375,7 +375,7 @@ header {
 .search-bar form input {
 	width: 100%;
 	background-color: #fff;
-	height: 38px;
+	height: 30px;
 	color: #b2b2b2;
 	font-size: 12px;
 	border: 0;
@@ -736,11 +736,9 @@ main {
 .full-width {
 	float: left;
 	width: 100%;
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0);
 	margin-bottom: 20px;
-	border-left: 1px solid #e5e5e5;
-	border-right: 1px solid #e5e5e5;
-	border-bottom: 1px solid #e5e5e5;
+
 }
 .username-dt {
 	float: left;
@@ -753,8 +751,9 @@ main {
 	text-align: center;
 }
 .usr-pic {
-	width: 110px;
-	height: 110px;
+	padding-top: 10px;
+	width: 96px;
+	height: 96px;
 	margin: 0 auto;
 	margin-bottom: -48px;
 }
@@ -769,6 +768,7 @@ main {
 	width: 100%;
 }
 .user-profile {
+
 	float: left;
 	width: 100%;
 }
@@ -777,12 +777,37 @@ main {
 	width: 100%;
 	padding: 63px 0 27px 0;
 }
+
 .user-specs h3 {
 	color: #000000;
 	font-size: 24px;
 	text-transform: capitalize;
 	font-weight: 600;
 	margin-bottom: 8px;
+}
+.user-specs h4 {
+	text-transform: capitalize;
+	font-weight: 400;
+}
+.user-specs a{
+	text-transform: capitalize;
+	font-weight: 400;
+}
+.user-specs a{
+	color: rgb(92, 92, 92) !important;
+	font-weight: 500;
+  }
+  
+
+.user-specs a:hover{
+	  color: rgb(87, 6, 141) !important;
+  }
+	
+.user-specs h5 {
+	color: #686868;
+	font-size: 14px;
+	font-weight: 500;
+	margin-bottom: 10px;
 }
 .user-specs span {
 	color: #686868;
@@ -1007,8 +1032,9 @@ main {
 	object-fit: cover;
 }
 .post-st {
-	float: right;
+	float: left;
 	margin-top: 5px;
+	padding-left: 10px;
 }
 .post-st ul li {
 	display: inline-block;
@@ -1018,13 +1044,13 @@ main {
 	margin-right: 0;
 }
 .post-st ul li a {
-	color: #b2b2b2;
+	color: #a0a0a0;
 	font-size: 16px;
 	display: inline-block;
-	background-color: #e5e5e5;
-	height: 40px;
-	padding: 0 15px;
-	line-height: 40px;
+	background-color: #d4d4d4;
+	height: 30px;
+	padding: 0 10px;
+	line-height: 30px;
 	font-weight: 500;
 }
 .post-st ul li a:hover,
@@ -1075,7 +1101,6 @@ main {
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
 	border-radius: 100px;
-	margin-top: 2px;
 }
 .ed-opts {
 	float: right;
@@ -1132,7 +1157,7 @@ main {
 	margin-left: 15px;
 }
 .usy-name h3 {
-	color: #000000;
+	color: #ffffff;
 	font-size: 18px;
 	text-transform: capitalize;
 	font-weight: 600;
@@ -1140,7 +1165,7 @@ main {
 	margin-top: 2px;
 }
 .usy-name span {
-	color: #b2b2b2;
+	color: #e4e4e4;
 	font-size: 14px;
 }
 .usy-name img {
@@ -1244,10 +1269,18 @@ main {
 }
 .job_descp h3 {
 	color: #333;
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: 600;
 	margin-bottom: 15px;
 }
+.job_descp a{
+	color: rgb(70, 70, 70) !important;
+  }
+  
+
+.job_descp a:hover{
+	  color: rgb(0, 138, 126) !important;
+  }
 .job-dt {
 	float: left;
 	width: 100%;
@@ -1893,7 +1926,9 @@ main {
 .post-project h3 {
 	float: left;
 	width: 100%;
-	background-color: #e44d3a;
+	background: #191431;
+	background: linear-gradient(to right, rgb(2, 102, 94), rgb(43, 43, 71) );
+
 	color: #fff;
 	text-align: center;
 	font-size: 18px;
@@ -1942,7 +1977,8 @@ main {
 	margin-right: 15px;
 }
 .post-project-fields form ul li button.active {
-	background-color: #e44d3a;
+	background: #191431;
+	background: linear-gradient(to right, rgb(2, 102, 94), rgb(43, 43, 71) );
 	color: #fff;
 }
 .post-project-fields form ul li button,
@@ -2674,7 +2710,6 @@ footer {
 .user_pro_status {
 	float: left;
 	width: 100%;
-	border-bottom: 1px solid #e5e5e5;
 	padding-bottom: 27px;
 }
 .flw-hr {
