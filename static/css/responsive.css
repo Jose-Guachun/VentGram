@@ -1,7 +1,7 @@
 
 
 @media (max-width: 991px) {
-	header nav {position: fixed;top: 0;left: 0;width: 200px;height: 100%;background-color: #e44d3a;padding: 25px 20px;opacity: 0;visibility: hidden;z-index: 0}
+	header nav {position: fixed;top: 0;left: 0;width: 150px;height: 100%;background-color: rgba(43, 43, 71, 0.568);padding: 25px 20px;opacity: 0;visibility: hidden;z-index: 0}
 	header nav.active {opacity: 1;visibility: visible;z-index: 9999;}
 	header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}
 	.menu-btn {display: block;}

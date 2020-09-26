@@ -34,6 +34,10 @@ class UserDetailView(LoginRequiredMixin ,DetailView):
     queryset=User.objects.all()
     context_object_name='user'
 
+class PublicProfileView(LoginRequiredMixin, TemplateView):
+    #muestra el perfil del usuario
+    template_name='profile/public_profile.html'
+
 class ProfileView(LoginRequiredMixin, TemplateView):
     #muestra el perfil del usuario
     template_name='profile/me_profile.html'
@@ -65,6 +69,7 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
     #update User view
+    template_name='profile/account_setting.html'
     model=User
     fields=[
         'username', 

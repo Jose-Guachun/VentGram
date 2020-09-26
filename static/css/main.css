@@ -33,7 +33,15 @@
   color:rgb(90, 90, 90)
 }
 
-
+.file_s {
+  width: 100%;
+  float: left;
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+}
 .text-muted {
   color: #98a6ad!important;
 }
@@ -78,7 +86,12 @@ footer{
   filter: grayscale(10%);
 }
 
-
+.logo1 a{
+	float: left;
+	width: 200px;
+	margin-right: 14px;
+	margin-top: 3px;
+}
 #carousel{
   position: relative;
 
@@ -121,20 +134,26 @@ footer{
   border: 1px;
   float: left;
   background-color:rgb(255, 255, 255);
-  
-
   position:relative;
-
   display: flex;
   align-items: center;
-
-
+}
+.logo a h3{
+  color: white;
+  font-size: 40px;
+  border-radius:50%;
 }
 
 .txt {
   position: absolute;
   margin-top: 50px;
   padding: 20px;
+}
+.card-img-top{
+  filter:brightness(85%);
+}
+.card-img-top:hover{
+  filter:brightness(65%);
 }
 
 @media(max-width: 991px){
@@ -147,22 +166,9 @@ footer{
   .box{
     height: 130px;
   }
-  .card-img-top{
-      filter: brightness(100%);
-  
-  }
-  .card-img-top:hover{
-      filter:brightness(65%);
-  }
+
 }
-@media(min-width: 769px){
-  .card-img-top{
-      filter: brightness(100%);
-  }
-  .card-img-top:hover{
-      filter:brightness(65%);
-  }
-}
+
 
 
 /* ----card contenedor image*/

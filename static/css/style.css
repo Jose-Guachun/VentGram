@@ -281,10 +281,11 @@ header {
 }
 .logo {
 	float: left;
-	width: 40px;
+	width: 200px;
 	margin-right: 14px;
-	margin-top: 10px;
+	margin-top: 3px;
 }
+
 .logo.pd-btm {
 	padding-bottom: 10px;
 }
@@ -398,7 +399,7 @@ header {
 
 nav {
 	float: left;
-	width: 89%;
+	width: 75%;
 	text-align: right;
 	padding-right: 13px;
 }
@@ -759,19 +760,30 @@ main {
 }
 .usr-pic > img {
 	float: none;
-	border: 5px solid #fff;
+	border: 1px solid #fff;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
-	border-radius: 100px;
+	border-radius: 50%;
 	width: 100%;
 }
-.user-profile {
+a .usr-pic img:hover {
+	border-color: rgb(43, 43, 71);
+}
 
+
+.user-profile {
 	float: left;
 	width: 100%;
 }
+.user-profile a{
+
+    color: rgb(92, 92, 92) !important;
+    font-weight: 500
+}
+
+
 .user-specs {
 	float: left;
 	width: 100%;
@@ -785,6 +797,11 @@ main {
 	font-weight: 600;
 	margin-bottom: 8px;
 }
+a .user-specs h3:hover {
+	color: rgba(43, 43, 71, 0.767);;
+	
+}
+
 .user-specs h4 {
 	text-transform: capitalize;
 	font-weight: 400;
@@ -1935,6 +1952,13 @@ main {
 	font-weight: 500;
 	padding: 20px 0;
 }
+.post-project h4 {
+	color: #525252;
+	text-align: left;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 5px 10px;
+}
 .post-project-fields {
 	float: left;
 	width: 100%;
@@ -1957,10 +1981,10 @@ main {
 .post-project-fields form textarea,
 .post-project-fields form select {
 	width: 100%;
-	color: #b2b2b2;
+	color: #2b2b2b;
 	font-size: 14px;
 	border: 1px solid #e5e5e5;
-	margin-bottom: 20px;
+	margin-bottom: 8px;
 	font-weight: 500;
 }
 .post-project-fields form select {
@@ -1994,7 +2018,7 @@ main {
 }
 .post-project-fields form ul li button:hover,
 .post-project-fields form ul li a:hover {
-	background-color: #e44d3a;
+	background-color: #fc1d00;
 	color: #fff;
 } 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -2341,6 +2365,10 @@ select {
 }
 .fgt-sec {
 	float: left;
+}
+.fgt-sec h6{
+	font-weight: 600;
+	text-transform: capitalize;
 }
 .fgt-sec input[type="checkbox"] {
 	display: none;
@@ -2705,8 +2733,10 @@ footer {
 	-o-border-radius: 100px;
 	border-radius: 100px;
 	float: none;
-	border: 5px solid #fff;
+	border: 1px solid white;
 }
+
+
 .user_pro_status {
 	float: left;
 	width: 100%;
@@ -2930,7 +2960,7 @@ footer {
 	display: inline-block;
 	color: #ffffff;
 	font-size: 16px;
-	background-color: #e44d3a;
+	background-color: #2b9097;
 	padding: 12px;
 	font-weight: 500;
 }
@@ -3805,7 +3835,7 @@ a:hover {
 .filter-secs {
 	float: left;
 	width: 100%;
-	background-color: #fff;
+	background-color: rgba(243, 243, 243, 0.493);
 	box-shadow: 0px 2px #e4e4e4;
     border: 1px solid #e5e5e5;
 }
@@ -3818,7 +3848,7 @@ a:hover {
 }
 .filter-heading h3 {
 	float: left;
-	color: #0b86a5;
+	color: #494949;
 	font-size: 18px;
 	font-weight: 600;
 }
@@ -5985,8 +6015,15 @@ a:hover {
 	padding: 0!important;
 }
 .paddy{
-	padding:20px;
+	padding-left: 20px;
 	float: left;
+}
+.paddy a{
+	color: rgb(39, 39, 39);
+	font-weight: 500;
+}
+.paddy a:hover{
+	color: rgb(161, 4, 4);
 }
 .dropdown-menu {
     position: absolute;

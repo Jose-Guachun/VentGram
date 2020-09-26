@@ -12,7 +12,6 @@ class LoginForm(AuthenticationForm):
         model = User
         fields = ["username", "password"]
 
-
 class SignupForm(forms.ModelForm):
     password=forms.CharField(label=False, max_length=70, widget=forms.PasswordInput(),)
     password_confirmation=forms.CharField(label=False, max_length=70,  widget=forms.PasswordInput(),)

@@ -1,8 +1,12 @@
 {% load static %}
-<nav id="header" class="navbar navbar-expand-lg color-nav py-0" style="background-color: rgb(43, 43, 71);">
-  <div class="container">
-    <a href="{% url 'posts:home' %}">
-      <img src="{% static "img/Logo.png" %}" alt="VentGram" loading="lazy" >
-    </a>
-  </div> 
-</nav>
+
+  <div id="header" class="navbar navbar-expand-lg navbar-dark py-0">
+    <div class="container">
+      <div class="logo py-1">
+        <a href="{% url 'posts:home' %}">
+          <img src="{% static "img/Logo_VG.png" %}" width="20px" height="45px" alt="VentGram">
+  
+        </a>
+    </div>
+  </div>
+</div>

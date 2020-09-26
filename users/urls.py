@@ -45,6 +45,12 @@ urlpatterns = [
         view=views.ProfileView.as_view(),
         name='profile'
         ),
+
+    path(
+        route='public/profile',
+        view=views.PublicProfileView.as_view(),
+        name='public_profile'
+        ),
     
     path(
         route='mail/',
