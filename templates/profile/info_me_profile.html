@@ -1,0 +1,46 @@
+{% load static %}
+<div class="main-left-sidebar">
+    <div class="user_profile">
+        <div class="user-pro-img mb-0">
+            {% if user.profile.picture %}
+            <img src="{{ user.profile.picture.url }}" alt="profile-image" width="180" height="180">
+            {% else %}
+            <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="180" height="180">
+            {% endif %}
+
+        </div>
+        <!--user-pro-img end-->
+        <div class="user-specs  pt-1 pb-0 pl-3 pr-3">
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+        </div>
+        <div class="badges">
+            <span class="badge badge-info">{{user.profile.work_area}}</span>
+        </div>
+        <div class="user-specs py-2">
+            <span><i class="fas fa-map-marker-alt pr-1"></i> {{user.profile.city}}, {{user.profile.city.province.country}}</span>
+        </div>
+
+        <!--user_pro_status end-->
+
+        <div class="text-left text-muted pl-3 pr-3 py-4">
+            <p class="mb-2">
+                <strong>Usuario : </strong>
+                <span class="ml-2 text-capitalize">@{{ user.username }}</span>
+                <br>
+                <strong>Telefono : </strong>
+                <span class="ml-2 text-capitalize"> {{ user.profile.phone_number }}</span>
+                <br>
+                <strong>Email : </strong>
+                <span class="ml-2 text-capitalize"> {{ user.email}}</span>
+            </p>
+            <div class="text-center">
+                <a href=""><i class="fab fa-facebook"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+    <!--user_profile end-->
+
+</div>
+<!--main-left-sidebar end-->

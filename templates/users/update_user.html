@@ -1,0 +1,90 @@
+<div class="acc-setting">
+    <h3>Configuracion de cuenta</h3>
+    <form action="{% url 'users:update_user' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            
+                <div class="cp-field col-sm-12 col-md-6">
+                    <h5>Nombres</h5>
+                    <div class="cpp-fiel">
+                        <input 
+                        type="text" 
+                        class="{% if form.first_name.errors %}is-invalid{% endif %}" 
+                        name="first_name" 
+                        placeholder="Ingrese su nombre"
+                        value="{% if form.errors %}{{form.first_name.value }}{% else %}{{ user.first_name }}{% endif %}"
+                        />
+                        <i class="fas fa-signature"></i>
+
+                        <div class="invalid-feedback">
+                            {% for error in form.first_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="cp-field col-sm-12 col-md-6">
+                    <h5>Apellidos</h5>
+                    <div class="cpp-fiel">
+                        <input 
+                        type="text" 
+                        class="{% if form.last_name.errors %}is-invalid{% endif %}" 
+                        name="last_name" 
+                        placeholder="Ingrese su apellido"
+                        value="{% if form.errors %}{{form.last_name.value }}{% else %}{{ user.last_name }}{% endif %}"
+                        />
+                        <i class="fas fa-signature"></i>
+
+                        <div class="invalid-feedback">
+                            {% for error in form.first_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="cp-field col-sm-12 col-md-6">
+                    <h5>Nombre de Usuario</h5>
+                    <div class="cpp-fiel">
+                        <input 
+                        type="text" 
+                        class="{% if form.username.errors %}is-invalid{% endif %}" 
+                        name="username" 
+                        placeholder="Ingrese su nombre de usuario"
+                        value="{% if form.errors %}{{form.username.value }}{% else %}{{ user.username }}{% endif %}"
+                        />
+                        <i class="fas fa-at"></i>
+
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="cp-field col-sm-12 col-md-6">
+                    <h5>Correo Electronico</h5>
+                    <div class="cpp-fiel">
+                        <input 
+                        type="email" 
+                        class="{% if form.email.errors %}is-invalid{% endif %}" 
+                        name="email" 
+                        placeholder="Ingrese su correo electronico"
+                        value="{% if form.errors %}{{form.email.value }}{% else %}{{ user.email }}{% endif %}"
+                        />
+                        <i class="fas fa-envelope"></i>
+
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            
+        <div class="save-stngs pd2">
+            <ul>
+                <li><button type="submit">Guardar Configuracion</button></li>
+                <li><button type="submit">Cancelar Configuracion</button></li>
+            </ul>
+        </div>
+    </form>
+  </div>

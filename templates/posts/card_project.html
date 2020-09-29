@@ -1,0 +1,95 @@
+{% load static %}
+<div class="posts-section">
+    <div class="box">
+        <a title="Aspectos" href="{% url 'posts:view_project' %}"><img class="card-img-top"
+                src="{%static 'img/Android-App.png' %}" alt="Project"></a>
+        <div class="txt">
+            <div class="usy-dt">
+                <img src="{% static 'img/resources/user3.png' %}" alt="">
+                <div class="usy-name pt-2">
+                    <h3>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">John Doe</font>
+                        </font>
+                    </h3>
+                    <span><img src="{% static 'img/clock.png' %}" alt="">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Hace 3 minutos</font>
+                        </font>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-bar pt-1">
+        <div class="epi-sec">
+            <ul class="descp">
+                <li><img src="{% static 'img/icon8.png' %}" alt=""><span>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Codificador épico</font>
+                        </font>
+                    </span></li>
+                <li><img src="{% static 'img/icon9.png' %}" alt=""><span>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">India</font>
+                        </font>
+                    </span></li>
+            </ul>
+            <ul class="bk-links">
+                <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+            </ul>
+        </div>
+        <div class="job_descp">
+            <h3><a href="{% url 'posts:view_project' %}">Aplicación Móvil IOS Shopping</a></h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque rem blanditiis nisi,montrea
+                <a href="{% url 'posts:view_project' %}" title="">ver más</a></p>
+    
+            <ul class="skill-tags">
+                <li><a href="#" title="">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">HTML</font>
+                        </font>
+                    </a></li>
+                <li><a href="#" title="">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">PHP</font>
+                        </font>
+                    </a></li>
+                <li><a href="#" title="">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">CSS</font>
+                        </font>
+                    </a></li>
+                <li><a href="#" title="">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Javascript</font>
+                        </font>
+                    </a></li>
+    
+            </ul>
+        </div>
+        <div class="job-status-bar">
+            <ul class="like-com">
+                <li>
+                    <a href="#"><i class="fas fa-heart"></i>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;"> Me gusta</font>
+                        </font>
+                    </a>
+                    <img src="{% static 'img/liked-img.png'  %}" alt="">
+                    <span>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">25</font>
+                        </font>
+                    </span>
+                </li>
+            </ul>
+            <a href="#"><i class="fas fa-eye"></i>
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">Vistas 50</font>
+                </font>
+            </a>
+        </div>
+    </div>
+</div>

@@ -21,8 +21,9 @@ from django.views.decorators.csrf import csrf_protect
 from users.models import Profile, User
 
 #Forms
-from users.forms import SignupForm, LoginForm
+from users.forms import ProfileForm, SignupForm, LoginForm, UserForm
 from django.contrib.auth.forms import AuthenticationForm
+
 
 
 class UserDetailView(LoginRequiredMixin ,DetailView):
@@ -42,21 +43,10 @@ class ProfileView(LoginRequiredMixin, TemplateView):
     #muestra el perfil del usuario
     template_name='profile/me_profile.html'
 
-class UpdateProfileView(LoginRequiredMixin, UpdateView):
+class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
     #update profile view
     template_name='profile/account_setting.html'
-    model=Profile
-    fields=[
-        'dni', 
-        'gender', 
-        'birth_date', 
-        'biography', 
-        'phone_number', 
-        'education_level', 
-        'work_area', 
-        'home_address', 
-        'picture',
-        ]
+    form_class=ProfileForm
 
     def get_object(self):
         #return user profile
@@ -64,27 +54,19 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
     
     def get_success_url(self):
         #Return to users profile.
-        username=self.object.user.username
         return reverse('users:setting')
 
-class UpdateUserView(LoginRequiredMixin, UpdateView):
+class UpdateUserView(FormView, LoginRequiredMixin, UpdateView):
     #update User view
     template_name='profile/account_setting.html'
-    model=User
-    fields=[
-        'username', 
-        'email', 
-        'first_name', 
-        'last_name', 
-        ]
-
+    form_class=UserForm
+    
     def get_object(self):
         #return user profile
         return self.request.user
     
     def get_success_url(self):
         #Return to users profile.
-        username=self.object.user.username
         return reverse('users:setting')
 
 class LoginView(FormView):

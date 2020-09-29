@@ -1,0 +1,182 @@
+<!--acc-setting-->
+{% load static %}
+<div class="acc-setting">
+    <h3>Perfil de usuario</h3>
+    <form action="{% url 'users:setting' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 mt-2 mb-5">
+                <div class="usr-pic">
+                    {% if user.profile.picture %}
+                    <img src="{{ user.profile.picture.url }}" alt="profile-image" width="96" height="96">
+                    {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
+                    {% endif %}
+                    <div class="add-dp" id="OpenImgUpload">
+                        <input type="file" id="file" name="picture">
+                        <label for="file"><i class="fas fa-camera"></i></label>
+                    </div>
+                </div>
+                {% for error in form.picture.errors %}
+                <div class="alert alert-danger">
+                    <b>Picture:</b>{{ error }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="cp-field col-sm-12 col-md-6 ">
+                <h5>Cedula </h5>
+                <div class="cpp-fiel">
+                    <input class="{% if form.dni.errors %}is-invalid{% endif %}" type="text" name="dni"
+                        placeholder="Ingrese su numero de cedula"
+                        value="{% if form.errors %}{{form.dni.value }}{% else %}{{ user.profile.dni }}{% endif %}" />
+                    <i class="far fa-address-card"></i>
+
+                    <div class="invalid-feedback">
+                        {% for error in form.dni.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="cp-field col-sm-12 col-md-6 ">
+                <h5>Telefono Celular </h5>
+                <div class="cpp-fiel">
+                    <input class="{% if form.phone_number.errors %}is-invalid{% endif %}" type="text"
+                        name="phone_number" placeholder="Ingrese su numero de telefono celular"
+                        value="{% if form.errors %}{{form.phone_number.value }}{% else %}{{ user.profile.phone_number }}{% endif %}" />
+                    <i class="fas fa-mobile-alt"></i>
+
+                    <div class="invalid-feedback">
+                        {% for error in form.phone_number.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="cp-field col-sm-12 col-md-12">
+                <h5>Direccion de casa</h5>
+                <div class="cpp-fiel">
+                    <input class="{% if form.home_address.errors %}is-invalid{% endif %}" type="text"
+                        name="home_address" placeholder="Ingrese la direccion de su domicilio"
+                        value="{% if form.errors %}{{form.home_address.value }}{% else %}{{ user.profile.home_address}}{% endif %}" />
+                    <i class="fas fa-map-marked-alt"></i>
+
+                    <div class="invalid-feedback">
+                        {% for error in form.home_address.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            {# Biography-field #}
+            <div class="cp-field">
+                <div class="cpp-fiel">
+                    <div class="form-group">
+                        <h5>Biografia</h5>
+                        <textarea class="form-control {% if form.biography.errors %}is-invalid{% endif %}"
+                            name="biography">{% if form.errors %}{{ form.biography.value }}{% else %}{{ user.profile.biography }}{% endif %}</textarea>
+                        <div class="invalid-feedback">
+                            {% for error in form.biography.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notbar col-sm-12 col-md-12">
+                <div class="cpp-fiel">
+                    <h4>Genero </h4>
+                    <div class="form-check">
+                        <label>
+                            <input type="radio" name="gender" value="masculino"> Masculino</label>
+                        <label>
+                            <input type="radio" name="gender" value="femenino"> Femenino</label>
+                        <label>
+                            <input type="radio" name="gender" value="otro"> Otro</label>
+                    </div>
+                </div>
+            </div>
+            <div class="cp-field col-sm-12 col-md-6">
+                <div class="cpp-fiel">
+                    <h5>Pais</h5>
+                    <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1"
+                            style="-webkit-appearance: menulist-button;">
+                            <option name="name_country" value="Ecuador">{{ user.profile.city.province.country }}</option>
+                        </select>
+                    </div>
+                    <h5>Provincia</h5>
+                    <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect2"
+                            style="-webkit-appearance: menulist-button;">
+                            <option name="name_province" value="cañar">{{ user.profile.city.province}}</option>
+                        </select>
+                    </div>
+
+                    <h5>Ciudad</h5>
+                    <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect3"
+                            style="-webkit-appearance: menulist-button;">
+                            <option name="name_city" value="La Troncal">{{ user.profile.city }}</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="cp-field col-sm-12 col-md-6 ">
+                <div class="cpp-fiel">
+
+
+                    <h5>Nivel educativo</h5>
+                    <div class="form-group">
+                        <select  name="education_level" class="form-control" id="exampleFormControlSelect3"
+                            style="-webkit-appearance: menulist-button;">
+
+                            {% if users.profile.work_area ==''  %}
+                                <option selected="true" disabled="disabled">seleccione el Nivel Educativo</option>
+                                {% else %}
+                                <option selected="true" value="{{  }}">seleccione el Nivel Educativo</option>
+                            {% endif %}
+                            <option value="primaria">Primaria</option>
+                            <option value="secundaria">Secundaria</option>
+                            <option value="tecnico">Técnico</option>
+                            <option value="universidad">Universidad</option>
+                            <option value="maestria">Maestria</option>
+                            <option value="doctorado">Doctorado</option>
+                        </select>
+                    </div>
+                    <h5>Medio en el que laboras</h5>
+                    <div class="form-group">
+                        <select name="work_area" class="form-control" id="exampleFormControlSelect3"
+                            style="-webkit-appearance: menulist-button;">
+                            <option value="desarrollador">Desarrollador</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="diseño">Diseño</option>
+                            <option value="negocios">Negocios</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="cpp-fiel">
+                        <h5>Cumpleaños </h5>
+                        <div class="EditProfile-input">
+                            <input type="date" name="birth_date" value="{{ user.profile.birth_date |date:"Y-m-d" }}">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="save-stngs pd2">
+            <ul>
+                <li><button type="submit">Guardar Configuracion</button></li>
+                <li><button type="submit">Cancelar Configuracion</button></li>
+            </ul>
+        </div>
+    </form>
+</div>
+<!--acc-setting end-->

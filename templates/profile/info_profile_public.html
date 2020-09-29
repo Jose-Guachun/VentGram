@@ -1,0 +1,107 @@
+{% load static %}
+<h6 >UN PROYECTO DE</h6>
+<hr class="mt-2">
+    <div class="user-data full-width">
+        <div class="user-profile">
+            <a href="{% url 'users:public_profile' %}">
+                <div class="usr-pic">
+                {% if user.profile.picture %}
+                    <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="96" height="96">
+                {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
+                {% endif %}
+
+                </div>
+            <!--username-dt end-->
+                <div class="user-specs pb-0">
+                    <h3>{{user.username}}</h3>
+                </div>
+                </a>
+                    <div class="badges">
+                        <span class="badge badge-info">{{user.profile.work_area}}</span>
+                    </div>
+                    <div class="user-specs py-2">
+                        <span><i class="fas fa-map-marker-alt pr-1"></i> {{user.profile.city}}, {{user.profile.city.province.country}}</span>
+                    </div>
+            
+        </div>
+        
+        <!--user-profile
+        
+        <div class="user_pro_status">
+            <ul class="flw-status">
+                
+                <a href="{% url 'posts:feed' %}" type="button" class="btn btn-secondary mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-plus-circle mr-2"></i>Seguir</a>
+                <a href="{% url 'posts:feed' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="far fa-envelope mr-2"></i>Mensaje</a>
+            </ul>
+ 
+        </div>
+        -->
+    </div>
+<h6>DETALLES</h6>
+<hr class="mt-2">
+<div class="user-specs py-2">
+    <h5>Aplicación móvil iOS Shopping</h5>
+    <h5>Publicado el 25 de septiembre del 2020</h5>
+    <h5 class="mt-4">CATEGORIA</h5>
+    <h5>Desarrollo e ingenieria</h5>
+    <h5 class="mt-4">TECNOLOGIAS UTILIZADAS</h5>
+    <h5>C# Xamarin</h5>
+</div>
+
+
+    <!--user-data end-->
+<!--<section class="col-md-12 col-lg-4">
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="text-center">
+                {% if profile.picture %}
+                    <img src="{{ profile.picture.url }}" class="rounded-circle" alt="profile-image" width="128" height="128">
+                {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" class="rounded-circle" alt="profile-image" width="128" height="128">
+                {% endif %}
+
+                <h4 class="mb-0 mt-2 text-capitalize">
+                    {{ user.first_name}} {{ user.last_name }}
+                </h4>
+                <h6>
+                    {{ profile.profile }}
+                </h6>
+
+                <div class="media-body">
+                    <p class="ml-4"><input type="file" name="picture"></p>
+                </div>
+
+
+            </div>  
+            <div class="text-left text-muted font-13">`
+                <h5> Biografia</h5>
+                <p class="mb-3">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium minus dolore omnis fuga mollitia voluptatibus dicta labore laborum, nobis sapiente voluptas beatae, asperiores expedita. Similique repudiandae odio possimus facere assumenda.
+                </p>
+
+                <p class="mb-2">
+                    <strong>Nombres : </strong>
+                    <span class="ml-2 text-capitalize"> {{ user.first_name }} {{ user.last_name }}</span>
+                </p>
+                <p class="mb-2">
+                    <strong>Telefono : </strong>
+                    <span class="ml-2 text-capitalize"> {{ profile.phone_number }}</span>
+                </p>
+                <p class="mb-2">
+                    <strong>Email : </strong>
+                    <span class="ml-2 text-capitalize"> {{ user.email}}</span>
+                </p>
+                <p class="mb-2">
+                    <strong>Ubicacion: </strong>
+                    <span class="ml-2 text-capitalize"> {{ profile.city.name_city }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div div class="card-body">
+            <h5>mensajes</h5>
+        </div>
+    </div>
+</section>--->

@@ -1,0 +1,192 @@
+{% extends 'posts/base.html' %}
+{% block head_content %}
+Perfil | @{{user.username|capfirst}} | VentGram
+{% endblock%}
+{% load static %}
+
+{% block other_top %}
+<!--agregar vistas al inicio sin ningun contenedor puesto -->
+{% endblock %}
+
+{% block row %}
+
+    <div class="col-lg-3">
+        {% include 'profile/info_me_profile.html' %}
+        <!--right-sidebar end-->
+    </div>
+    <div class="col-lg-6">
+        <div class="main-ws-sec">
+            <div class="user-tab-sec rewivew">
+                <div class="tab-feed st2 settingjb">
+                    <ul>
+                        <li data-tab="feed-dd" class="active">
+                            <a href="#" title="">
+                                <img src="{% static 'img/ic1.png'  %}" alt="">
+                                <span>Inicio</span>
+                            </a>
+                        </li>
+                        <li data-tab="saved-jobs">
+                            <a href="#" title="">
+                                <img src="{% static 'img/ic5.png'  %}" alt="">
+                                <span>Publicar</span>
+                            </a>
+                        </li>
+                        <li data-tab="portfolio-dd">
+                            <a href="#" title="">
+                                <img src="{% static 'img/ic3.png'  %}" alt="">
+                                <span>Portfolio</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div><!-- tab-feed end-->
+            </div>
+            <!--user-tab-sec end-->
+            <div class="product-feed-tab" id="saved-jobs">
+                {% include 'posts/post_project.html' %}
+            </div>
+            <div class="product-feed-tab current" id="feed-dd">
+                {% include 'posts/card_project.html' %}
+                {% include 'posts/card_project.html' %}
+            </div>
+
+            <!--product-feed-tab end-->
+
+
+            <div class="product-feed-tab" id="portfolio-dd">
+                <div class="portfolio-gallery-sec">
+                    <h3>Portfolio</h3>
+                    <div class="portfolio-btn">
+                        <a href="#" title=""><i class="fas fa-plus-square"></i> Añadir </a>
+                    </div>
+                    <div class="gallery_pf">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/shop.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/Android-App.png'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/resources/pf-img1.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/resources/pf-img1.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/resources/pf-img1.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/resources/pf-img1.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <div class="gallery_pt">
+                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
+                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                </div>
+                                <!--gallery_pt end-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--gallery_pf end-->
+                </div>
+                <!--portfolio-gallery-sec end-->
+            </div>
+            <!--product-feed-tab end-->
+
+        </div>
+        <!--main-ws-sec end-->
+    </div>
+    <div class="col-lg-3">
+        <div class="right-sidebar">
+
+                <ul class="flw-status text-left">
+                    <a href="{% url 'users:setting' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Editar Perfil</a>
+                </ul>
+            <div class="widget widget-portfolio">
+                <div class="wd-heady">
+                    <h3>Portfolio</h3>
+                    <img src="{% static 'img/photo-icon.png' %}" alt="">
+                </div>
+                <div class="pf-gallery">
+                    <ul>
+                        <li><a href="#" title=""><img src="{% static 'img/shop.jpg'%}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/Android-App.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery3.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery4.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery5.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery6.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery7.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery8.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery9.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery10.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery11.png' %}" alt=""></a>
+                        </li>
+                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery12.png' %}" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+                <!--pf-gallery end-->
+            </div>
+            <!--widget-portfolio end-->
+        </div>
+    </div>
+
+{% endblock%}
+{% block other_button %}
+{% endblock %}

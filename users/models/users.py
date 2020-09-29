@@ -2,7 +2,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 from django.db import models
-
+from django.core import validators
 
 #Utilities
 from utils.models import CRideModel
@@ -29,7 +29,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, username, first_name, last_name, password=None, **extra_fields):
         return self._create_user(email, username, first_name, last_name, password, True, True, **extra_fields)
 
-class User(CRideModel ,AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin):
     """User model
     extends from Django AbstarctBaseUser, change the username field
     to email and some extra fields.
@@ -45,13 +45,13 @@ class User(CRideModel ,AbstractBaseUser, PermissionsMixin):
     username=models.CharField(
         'username', 
         unique=True, 
-        max_length=150,
+        max_length=30,
         error_messages={
             'unique': 'Nombre de Usuario en uso'
         }
     )
-    first_name = models.CharField('first name', max_length=150, blank=True, null=True)
-    last_name = models.CharField('last name', max_length=150, blank=True, null=True)
+    first_name = models.CharField('first name', max_length=30, validators=[validators.MinLengthValidator(3)] , blank=True, null=True)
+    last_name = models.CharField('last name', max_length=30,validators=[validators.MinLengthValidator(3)], blank=True, null=True)
     code=models.CharField(
         'code', 
         max_length=20, 
@@ -61,7 +61,7 @@ class User(CRideModel ,AbstractBaseUser, PermissionsMixin):
         }
         )
 
-    is_client=models.BooleanField(
+    is_admin=models.BooleanField(
         'client status',
         default=True,
         help_text=(

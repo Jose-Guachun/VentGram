@@ -1,0 +1,45 @@
+{% extends 'posts/base.html' %}
+{% block head_content %}
+    Proyectos | VentGram
+{% endblock%}
+{% load static %}
+
+    {% block other_top %}
+    {% endblock %}
+    
+    {% block row %}
+    <div class="col-lg-3 col-md-4">
+        {% include 'posts/filter.html' %}
+    </div>
+    <div class="col-lg-9 col-md-8 pd-right-none pd-left-none">
+        <div class="row">
+            {% include 'posts/new_post_shear.html' %}
+            <div class="col-lg-12 pd-right-none">
+                <!--main-ws-sec end-->
+                <div class="sign_link">
+                    <h3>Proyectos nuevos</h3>  
+                </div>
+            </div>
+  
+            <div class="col-lg-6 col-md-12 pd-right-none mb-3">
+                {% include 'posts/card_project.html' %}
+            </div>
+            <div class="col-lg-6 col-md-12 pd-right-none mb-3">
+                {% include 'posts/card_project.html' %}
+            </div>
+            <div class="col-lg-6 col-md-12 pd-right-none mb-3">
+                {% include 'posts/card_project.html' %}
+            </div>
+            <div class="col-lg-6 col-md-12 pd-right-none mb-3">
+                {% include 'posts/card_project.html' %}
+            </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    
+    {% block other_button %}
+    <div class="post-popup pst-pj">
+        {% include 'posts/post_project.html' %}
+    </div><!--post-project-popup end-->
+    {% endblock %}

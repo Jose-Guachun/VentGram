@@ -1,0 +1,173 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block head_content %}
+   project | VentGram
+{% endblock%}
+
+    {% block other_top %}
+    
+    {% endblock %}
+        {% block row %}
+        <div class="col-lg-5 col-md-7 pd-left-none">
+            <div class="usy-dt">
+                {% if user.profile.picture %}
+                    <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="40" height="40">
+                {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
+                {% endif %}
+                </div>
+            <div class="post-st mb-3">
+                <ul>
+                    <li><a class="post_project active" href="#" title="">Publicar nuevo proyecto</a>
+                    </li>
+                </ul>
+            </div>
+            <!--post-st end-->
+        </div>
+         <div class="col-lg-9 col-md-9 pd-left-none">
+            <div class="main-ws-sec">
+                <div class="posts-section">
+                    <div class="post-bar">
+                        <div class="user-specs pt-3 pb-0">
+                            <div class="ed-opts">
+                                <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                <ul class="ed-options">
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar post</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">No guardado</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">No licitar</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cerca</font></font></a></li>
+                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esconder</font></font></a></li>
+                                </ul>
+                            </div>
+                            <h3>Aplicación móvil iOS Shopping</h3>
+                            <a href="{% url 'users:public_profile' %}">Por: {{user.first_name }} {{user.last_name}} | @{{user.username }}</a>
+                            <h4 class="pt-1">colaboradores: Jose Guachun | @Jose</h4>
+                            <hr>
+                        </div>
+                        <div class="job_descp accountnone">
+                            <ul class="skill-tags">
+                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTML</font></font></a></li>
+                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PHP</font></font></a></li>
+                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSS</font></font></a></li>
+                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Javascript</font></font></a></li>
+                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Wordpress</font></font></a></li>
+                            </ul>
+                            <h3>Objetivo</h3>
+                            <p>El objetivo de este proyecto es desarrollar la primera aplicación multiplataforma para
+                                satisfacer las necesidades de los clientes en algunos de sus Supermercados</p>
+                                <hr>
+                            <h3>Descripcion</h3>
+                            <p>Ésta va a permitir por un lado, planificar la lista de la compra de forma más libre, cómoda y rápida,
+                                y por otro lado, agilizar el proceso de compra añadiendo la interacción con las ventajas
+                                que nos ofrecen los dispositivos móviles.
+                                Se pretende desarrollar una nueva estrategia digital para diferenciarse de la
+                                competencia, mejorando la imagen corporativa y el modelo de tienda de proximidad.
+                                Con el desarrollo de la aplicación móvil se busca establecer una nueva oportunidad de
+                                contacto entre el Grupo y sus clientes, reinventado la compra y mejorando la
+                                experiencia en los diferentes supermercados.
+                                Para ello, se desarrollará una aplicación web móvil utilizando HTML5, CSS3, Javascript y
+                                otras librerías cómo jQuery Mobile. Esta aplicación podrá ser encapsulada
+                                posteriormente utilizando el Framework Cordova, para así poder distribuirla en las
+                                principales plataformas móviles (inicialmente en Android y posteriormente en IOS).</p>
+                                <img src="{% static 'img/Android-App.png' %}" width="100%">
+                        </div>
+                        
+                        <div class="user_pro_status">
+                            <hr>
+                            <h5 class="mb-3" >DOCUMENTO</h5>
+                                <h5 class="mb-2"><i class="fas fa-file-alt mr-2"></i>Aplicación móvil iOS Shopping.pdf</h5>
+                                <a  href="{% url 'posts:feed' %}" type="button" class="btn btn-danger mb-2 " style="padding: .275rem .55rem; font-size: 0.8rem;">Ver documento</a>
+                        </div>
+                        <div class="job-status-bar btm-line">                                               
+                           <ul class="like-com">
+                                <li>
+                                    <a href="#" class="active"><i class="fas fa-heart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Me gusta</font></font></a>
+                                    <img src="{% static 'img/liked-img.png' %}" alt="">
+                                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">25</font></font></span>
+                                </li>
+                                <!--<li><a href="#" class="com"><i class="fas fa-comment-alt"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Comentarios 15</font></font></a></li>-->
+                            </ul>
+                            <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas 50</font></font></a>                                             
+                        </div>
+                        <div class="comment-area">
+                            <i class="la la-plus-circle"></i>
+                            <div class="post_topbar">
+                                <div class="usy-dt">
+                                    <img src="{% static 'img/login.png' %}" width="40px" height="40px">
+                                    <div class="usy-name">
+                                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
+                                        <span><img src="{% static 'img/clock.png' %} " alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reply-area">
+                                <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem ipsum dolor sit amet,</font></font></p>
+                                <span><i class="la la-mail-reply"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Respuesta</font></font></span>
+                                <div class="comment-area reply-rply1">
+                                    <div class="post_topbar">
+                                        <div class="usy-dt">
+                                            <img src="{% static 'img/login.png' %}" width="40px" height="40px">
+                                            <div class="usy-name">
+                                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
+                                                <span><img src="{% static 'img/clock.png' %} " alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="reply-area">
+                                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hola John</font></font></p>
+                                        <span><i class="la la-mail-reply"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Respuesta</font></font></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-area">
+                            <div class="post_topbar">
+                                <div class="usy-dt">
+                                    <img src="{% static 'img/login.png' %}" width="40px" height="40px" alt="">
+                                    <div class="usy-name">
+                                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
+                                        <span><img src="{% static 'img/clock.png' %}" alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reply-area">
+                                <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </font><font style="vertical-align: inherit;">Aliquam luctus hendrerit metus, ut ullamcorper quam finibus en.</font></font></p>
+                                <span><i class="la la-mail-reply"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Respuesta</font></font></span>
+                            </div>
+                        </div>
+                        <div class="postcomment">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {% if user.profile.picture %}
+                                        <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="40" height="40">
+                                    {% else %}
+                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-8">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inputPassword" placeholder="Publicar un comentario">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-2">
+                                    <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enviar</font></font></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--post-bar end-->
+            </div>
+         </div>
+         <div class="col-lg-3 col-md-3 pd-right-none">
+            {% include 'profile/info_profile_public.html' %}
+        </div>             
+        {% endblock %}
+
+    {% block other_button %}
+    <div class="post-popup pst-pj">
+        {% include 'posts/post_project.html' %}
+    </div><!--post-project-popup end-->
+    {% endblock %}
