@@ -27,6 +27,13 @@ urlpatterns = [
         view=views.ViewProjectView.as_view(),
         name='view_project'
         ),
+
+    path(
+        route='posts/new_project',
+        view=views.CreatedProjectView.as_view(),
+        name='new_project'
+        ), 
+
     path(
         route='posts/project',
         view=views.PostProjectView.as_view(),

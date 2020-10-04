@@ -18,7 +18,7 @@
                 </div>
             <div class="post-st mb-3">
                 <ul>
-                    <li><a class="post_project active" href="#" title="">Publicar nuevo proyecto</a>
+                    <li><a href="{% url 'posts:new_project' %}" title=""><i class="far fa-plus-square mr-2"></i>Añadir nuevo proyecto</a>
                     </li>
                 </ul>
             </div>
@@ -168,6 +168,6 @@
 
     {% block other_button %}
     <div class="post-popup pst-pj">
-        {% include 'posts/post_project.html' %}
+        {% include 'posts/new_project.html' %}
     </div><!--post-project-popup end-->
     {% endblock %}

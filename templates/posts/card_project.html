@@ -1,37 +1,42 @@
 {% load static %}
 <div class="posts-section">
     <div class="box">
-        <a title="Aspectos" href="{% url 'posts:view_project' %}"><img class="card-img-top"
-                src="{%static 'img/Android-App.png' %}" alt="Project"></a>
+        <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:view_project' %}"><img class="card-img-top"
+                src="{{ project.image.url }}" alt="Project"></a>
         <div class="txt">
             <div class="usy-dt">
-                <img src="{% static 'img/resources/user3.png' %}" alt="">
+                <a href="{% url 'users:public_profile' %}">
+                    <img src="{{ project.profile.picture.url }}" alt="{{ project.user.get_full_name }}" width="50px" height="50px ">
+                </a>
                 <div class="usy-name pt-2">
-                    <h3>
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">John Doe</font>
-                        </font>
-                    </h3>
+                    <a href="{% url 'users:public_profile' %}">
+                        <h3>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">{{ project.user.first_name }} {{ project.user.last_name }}</font>
+                            </font>
+                        </h3>
+                    </a>
                     <span><img src="{% static 'img/clock.png' %}" alt="">
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Hace 3 minutos</font>
+                            <font style="vertical-align: inherit;">{{ project.created }}</font>
                         </font>
                     </span>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="post-bar pt-1">
         <div class="epi-sec">
             <ul class="descp">
                 <li><img src="{% static 'img/icon8.png' %}" alt=""><span>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Codificador épico</font>
+                            <font style="vertical-align: inherit;">{{ project.profile.work_area }}</font>
                         </font>
                     </span></li>
                 <li><img src="{% static 'img/icon9.png' %}" alt=""><span>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">India</font>
+                            <font style="vertical-align: inherit;">{{ project.profile.city }}</font>
                         </font>
                     </span></li>
             </ul>
@@ -41,9 +46,8 @@
             </ul>
         </div>
         <div class="job_descp">
-            <h3><a href="{% url 'posts:view_project' %}">Aplicación Móvil IOS Shopping</a></h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque rem blanditiis nisi,montrea
-                <a href="{% url 'posts:view_project' %}" title="">ver más</a></p>
+            <h3><a href="{% url 'posts:view_project' %}">{{ project.title }}</a></h3>
+            <p>{{ project.description}} <a href="{% url 'posts:view_project' %}" title="">...ver más</a></p>
     
             <ul class="skill-tags">
                 <li><a href="#" title="">

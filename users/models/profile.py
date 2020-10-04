@@ -6,6 +6,7 @@ from django.conf import settings
 from utils.models import CRideModel
 from django.core import validators
 from users.validators import vcedula, SoloNumeros
+
 class Profile(CRideModel):
     #profile model
     #extencio de proxy model mas informacion en la base de datos

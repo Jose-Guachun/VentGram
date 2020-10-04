@@ -1,3 +1,14 @@
 from django.contrib import admin
 
-# Register your models here.
+from posts.models import Project
+
+
+
+admin.site.register(Project)
+class PostAdmin(admin.ModelAdmin):
+    list_display=(
+        'pk',
+        'title',
+        'description',
+        'status',
+    )

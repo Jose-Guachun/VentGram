@@ -22,7 +22,8 @@ class ProfileForm(forms.ModelForm):
             "picture"]
     widgets = {
     'education_level': forms.Select(attrs={'class': 'form-control'}),
-    'work_area': forms.Select(attrs={'class': 'form-control'})
+    'work_area': forms.Select(attrs={'class': 'form-control'}),
+    'gender': forms.Select(attrs={'class': 'form-control'}),
     }
 
 class UserForm(forms.ModelForm):

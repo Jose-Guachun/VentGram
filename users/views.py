@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, UpdateView, TemplateView, DetailView 
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
+from django.template import Context
 
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
@@ -18,12 +19,11 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 
 #Models
-from users.models import Profile, User
+from users.models import Profile, User, City, Province, Country
 
 #Forms
 from users.forms import ProfileForm, SignupForm, LoginForm, UserForm
 from django.contrib.auth.forms import AuthenticationForm
-
 
 
 class UserDetailView(LoginRequiredMixin ,DetailView):
@@ -47,10 +47,26 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
     #update profile view
     template_name='profile/account_setting.html'
     form_class=ProfileForm
-
     def get_object(self):
         #return user profile
         return self.request.user.profile
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateProfileView, self).get_context_data(**kwargs)
+        country=Country.objects.all()
+        province=Province.objects.all()
+        city=City.objects.all()   
+        studies=('Primaria', 'Secundaria', 'Universidad', 'Maestria', 'Doctorado')
+        work=('Desarrollo', 'Marketing', 'Diseño', 'Negocios', 'Electronica')
+        gender=('Masculino', 'Femenino', 'Otro')
+        
+        context['country']=country
+        context['province']=province
+        context['city']=city
+        context['studies'] = studies
+        context['work'] = work
+        context['gender']= gender
+        return context
     
     def get_success_url(self):
         #Return to users profile.

@@ -57,6 +57,7 @@ urlpatterns = [
         view=views.email_verified,
         name='mail'
         ),
+
     #profile
     path(
         route='<str:username>/',

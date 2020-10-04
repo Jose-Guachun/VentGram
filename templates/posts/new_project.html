@@ -1,0 +1,166 @@
+{% extends 'posts/base.html' %}
+
+{% block head_content %}
+Nuevo Proyecto | VentGram
+{% endblock%}
+{% load static %}
+<!--herencia de posts/base html estructura de cuerpo de html-->
+
+{% block other_top %}
+<!--agregar vistas al inicio sin ningun contenedor puesto -->
+{% endblock %}
+
+{% block row %}
+<div class="col-lg-3 col-md-12 pd-right-none">
+    {% include 'profile/info_me_profile.html' %}
+</div>
+<div class="col-lg-9 col-md-12 pd-right-none ">
+    {% if form.errors %}
+    <div class="alert alert-danger">  
+        {% for field in form %}
+            {{ field.errors }}
+        {% endfor %}
+    </div> 
+    {% endif %}
+    <div class="post-project">
+        <h3>Nuevo Proyecto</h3>
+        <div class="post-project-fields">
+            <form  method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <input type="hidden" name="user" value="{{ user.pk }}" />
+                <input type="hidden" name="profile" value="{{ profile.pk }}" />
+
+                <div class="row">
+
+                        <div class="col-sm-12 col-md-6 mb-2">
+                            <h4>Titulo</h4>
+                            <input class="{% if form.title.errors %}is-invalid{% endif %}" type="text" name="title" placeholder="Ingrese un titulo">
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-2">
+                            <h4>Imagen Cabecera</h4>
+                            <input class="py-2 {% if form.image.errors %}is-invalid{% endif %}" type="file" id="id_image" name="image" accept="image/*" required>
+                            <div class="invalid-feedback">
+                                {% for error in form.image.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-2">
+                            <h4>Colaboradores</h4>
+                            <input 
+                                class="{% if form.collaborators.errors %}is-invalid{% endif %}" 
+                                type="text" name="collaborators" 
+                                placeholder="Opcional, Eje. Pedro Aguirre, John Cardenas">
+                            <div class="invalid-feedback">
+                                {% for error in form.collaborators.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-2">
+                            <h4>Url</h4>
+                            <input 
+                                class="{% if form.website.errors %}is-invalid{% endif %}" 
+                                type="text" 
+                                name="website" 
+                                placeholder="Opcional, Ingrese la url del proyecto">
+                            <div class="invalid-feedback">
+                                {% for error in form.website.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-2">
+                            <h4>Categoria</h4>
+                            <div class="inp-field ">
+                                <select name="category" class="form-control {% if form.category.errors %}is-invalid{% endif %}">
+                                    <option>Categoria</option>
+                                    <option>Category 1</option>
+                                    <option>Category 2</option>
+                                    <option>Category 3</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {% for error in form.category.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-2">
+                            <h4>Estado</h4>
+                            <div class="inp-field">
+                                <select name="status" class="form-control {% if form.status.errors %}is-invalid{% endif %}">
+                                    <option>Iniciado</option>
+                                    <option>En Proceso</option>
+                                    <option>Finalizado</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {% for error in form.status.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 mb-2">
+                            <h4>Documento</h4>
+                            <input 
+                                class="py-2 {% if form.document.errors %}is-invalid{% endif %}" 
+                                type="file" id="id_document" 
+                                name="document" 
+                                required>
+                            <div class="invalid-feedback">
+                                {% for error in form.document.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-2">
+                            <h4>Objetivo</h4>
+                            <textarea 
+                                class="{% if form.objetive.errors %}is-invalid{% endif %}" 
+                                name="objective" 
+                                placeholder="Opcional, Ingrese el objetivo del proyecto"></textarea>
+                            
+                            <div class="invalid-feedback">
+                                {% for error in form.objetive.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mb-2">
+                            <h4>Descripcion</h4>
+                            <textarea 
+                                class="{% if form.description.errors %}is-invalid{% endif %}"    
+                                name="description" 
+                                placeholder="Ingrese la descripcion del proyecto"></textarea>
+                            <div class="invalid-feedback">
+                                {% for error in form.description.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mb-2">
+                            <ul>
+                                <li><button class="active" type="submit">Publicar</button></li>
+                                <li><a href="{% url 'posts:feed' %}" title="">Cancelar</a></li>
+                            </ul>
+                        </div>
+                </div>
+            </form>
+        </div><!--post-project-fields end-->
+        <!--icon de x  <a href="#" title=""><i class="la la-times-circle-o"></i></a>  end-->
+    </div><!--post-project end-->
+</div>
+   
+{% endblock %}
+
+{% block other_button %}
+{% endblock %}
