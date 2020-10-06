@@ -39,9 +39,9 @@
                                     <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esconder</font></font></a></li>
                                 </ul>
                             </div>
-                            <h3>Aplicación móvil iOS Shopping</h3>
-                            <a href="{% url 'users:public_profile' %}">Por: {{user.first_name }} {{user.last_name}} | @{{user.username }}</a>
-                            <h4 class="pt-1">colaboradores: Jose Guachun | @Jose</h4>
+                            <h3>{{ project.title }}</h3>
+                            <a href="{% url 'users:detail' project.user.username %}">Por: {{project.user.first_name }} {{project.user.last_name}} | @{{project.user.username }}</a>
+                            <h4 class="pt-1">colaboradores: {{ project.collaborators }}</h4>
                             <hr>
                         </div>
                         <div class="job_descp accountnone">
@@ -53,23 +53,11 @@
                                 <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Wordpress</font></font></a></li>
                             </ul>
                             <h3>Objetivo</h3>
-                            <p>El objetivo de este proyecto es desarrollar la primera aplicación multiplataforma para
-                                satisfacer las necesidades de los clientes en algunos de sus Supermercados</p>
+                            <p>{{ project.objetive }}</p>
                                 <hr>
                             <h3>Descripcion</h3>
-                            <p>Ésta va a permitir por un lado, planificar la lista de la compra de forma más libre, cómoda y rápida,
-                                y por otro lado, agilizar el proceso de compra añadiendo la interacción con las ventajas
-                                que nos ofrecen los dispositivos móviles.
-                                Se pretende desarrollar una nueva estrategia digital para diferenciarse de la
-                                competencia, mejorando la imagen corporativa y el modelo de tienda de proximidad.
-                                Con el desarrollo de la aplicación móvil se busca establecer una nueva oportunidad de
-                                contacto entre el Grupo y sus clientes, reinventado la compra y mejorando la
-                                experiencia en los diferentes supermercados.
-                                Para ello, se desarrollará una aplicación web móvil utilizando HTML5, CSS3, Javascript y
-                                otras librerías cómo jQuery Mobile. Esta aplicación podrá ser encapsulada
-                                posteriormente utilizando el Framework Cordova, para así poder distribuirla en las
-                                principales plataformas móviles (inicialmente en Android y posteriormente en IOS).</p>
-                                <img src="{% static 'img/Android-App.png' %}" width="100%">
+                            <p>{{ project.description }}</p>
+                                <img src="{{ project.image.url }}" width="100%">
                         </div>
                         
                         <div class="user_pro_status">
@@ -138,8 +126,8 @@
                         <div class="postcomment">
                             <div class="row">
                                 <div class="col-md-2">
-                                    {% if user.profile.picture %}
-                                        <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="40" height="40">
+                                    {% if request.user.profile.picture %}
+                                        <img src="{{ request.user.profile.picture.url }}"  alt="profile-image" width="40" height="40">
                                     {% else %}
                                         <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
                                     {% endif %}

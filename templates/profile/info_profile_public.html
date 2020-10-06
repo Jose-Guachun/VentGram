@@ -3,10 +3,10 @@
 <hr class="mt-2">
     <div class="user-data full-width">
         <div class="user-profile">
-            <a href="{% url 'users:public_profile' %}">
+            <a href="{% url 'users:detail' project.user.username %}">
                 <div class="usr-pic">
                 {% if user.profile.picture %}
-                    <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="96" height="96">
+                    <img src="{{ project.profile.picture.url }}"  alt="profile-image" width="96" height="96">
                 {% else %}
                     <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
                 {% endif %}
@@ -14,14 +14,14 @@
                 </div>
             <!--username-dt end-->
                 <div class="user-specs pb-0">
-                    <h3>{{user.username}}</h3>
+                    <h3>{{project.user.username}}</h3>
                 </div>
                 </a>
                     <div class="badges">
-                        <span class="badge badge-info">{{user.profile.work_area}}</span>
+                        <span class="badge badge-info">{{project.profile.work_area}}</span>
                     </div>
                     <div class="user-specs py-2">
-                        <span><i class="fas fa-map-marker-alt pr-1"></i> {{user.profile.city}}, {{user.profile.city.province.country}}</span>
+                        <span><i class="fas fa-map-marker-alt pr-1"></i> {{project.profile.city}}, {{project.profile.city.province.country}}</span>
                     </div>
             
         </div>
@@ -41,8 +41,8 @@
 <h6>DETALLES</h6>
 <hr class="mt-2">
 <div class="user-specs py-2">
-    <h5>Aplicación móvil iOS Shopping</h5>
-    <h5>Publicado el 25 de septiembre del 2020</h5>
+    <h5>{{ project.title }}</h5>
+    <h5>{{ project.created}}</h5>
     <h5 class="mt-4">CATEGORIA</h5>
     <h5>Desarrollo e ingenieria</h5>
     <h5 class="mt-4">TECNOLOGIAS UTILIZADAS</h5>

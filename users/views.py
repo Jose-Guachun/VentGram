@@ -20,6 +20,7 @@ from django.views.decorators.csrf import csrf_protect
 
 #Models
 from users.models import Profile, User, City, Province, Country
+from posts.models import Project
 
 #Forms
 from users.forms import ProfileForm, SignupForm, LoginForm, UserForm
@@ -29,19 +30,17 @@ from django.contrib.auth.forms import AuthenticationForm
 class UserDetailView(LoginRequiredMixin ,DetailView):
     #User detail view
 
-    template_name='users/detail.html'
+    template_name='profile/public_profile.html'
     slug_field='username'
     slug_url_kwarg='username'
     queryset=User.objects.all()
     context_object_name='user'
 
-class PublicProfileView(LoginRequiredMixin, TemplateView):
-    #muestra el perfil del usuario
-    template_name='profile/public_profile.html'
-
-class ProfileView(LoginRequiredMixin, TemplateView):
-    #muestra el perfil del usuario
-    template_name='profile/me_profile.html'
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        user=self.get_object()
+        context['projects']=Project.objects.filter(user=user).order_by('-created')
+        return context
 
 class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
     #update profile view

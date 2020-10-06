@@ -109,6 +109,7 @@ class UserAdmin(BaseUserAdmin):
         'email',
         'first_name',
         'last_name',
+        'is_admin',
         'is_active',
         'is_staff',
 

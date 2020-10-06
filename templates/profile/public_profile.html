@@ -45,8 +45,9 @@ Perfil | @{{user.username|capfirst}} | VentGram
                 
             </div>
             <div class="product-feed-tab current" id="feed-dd">
+                {% for project in projects %}
                 {% include 'posts/card_project.html' %}
-                {% include 'posts/card_project.html' %}
+                {% endfor %}
             </div>
 
             <!--product-feed-tab end-->
@@ -206,8 +207,18 @@ Perfil | @{{user.username|capfirst}} | VentGram
                 <ul class="flw-status text-left">
                     <a href="{% url 'users:setting' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Mensaje</a>
                 </ul> --->
+                {% if user == request.user %}
+                <ul class="flw-status text-left">
+                    <a href="{% url 'users:setting' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Editar Perfil</a>
+                </ul>
+                {% else %}
+                    <a href=""class="ml-5 btn btn-sm btn-primary">
+                        Follow
+                    </a>
+                {% endif %}
             <div class="widget widget-portfolio">
                 <div class="wd-heady">
+                    
                     <h3>Portfolio</h3>
                     <img src="{% static 'img/photo-icon.png' %}" alt="">
                 </div>

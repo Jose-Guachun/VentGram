@@ -18,14 +18,14 @@ urlpatterns = [
         
     path(
         route='posts/feed',
-        view=views.PostFeedView.as_view(),
+        view=views.ProjectFeedView.as_view(),
         name='feed'
         ),
 
     path(
-        route='posts/view_project',
-        view=views.ViewProjectView.as_view(),
-        name='view_project'
+        route='posts/<int:pk>/',
+        view=views.ProjectDetailView.as_view(),
+        name='detail_project'
         ),
 
     path(

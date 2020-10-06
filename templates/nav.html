@@ -19,7 +19,7 @@
           </a>
         </li>
         <li>
-          <a href="{% url 'users:profile' %}" title="Perfil">
+          <a href="{% url 'users:detail' request.user.username %}" title="Perfil">
             <span><img src="{% static 'img/icon4.png' %}" alt=""></span>
             Perfil
           </a>
@@ -131,8 +131,8 @@
     </div><!--menu-btn end-->
     <div class="user-account">
       <div class="user-info mr-0">
-        {% if user.profile.picture %}
-          <img src="{{ user.profile.picture.url }}" alt="profile-image" width="35" height="35">
+        {% if request.user.profile.picture %}
+          <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="35" height="35">
         {% else %}
           <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="35" height="35">
         {% endif %}
@@ -141,7 +141,7 @@
         <ul class="on-off-status">
             <div class="usy-dt mr-2">
                 {% if user.profile.picture %}
-                  <img src="{{ user.profile.picture.url }}" alt="profile-image" width="37" height="37">
+                  <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
                 {% else %}
                   <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
                 {% endif %}
@@ -150,7 +150,7 @@
             <div >
               <div class="fgt-sec">
               <h6 class="mt-1 ml-0">{{user.first_name|capfirst}}</h6>
-              <a href="{% url 'users:profile' %}"><p>Ver mi perfil</p></a>
+              <a href="{% url 'users:detail' request.user.username %}"><p>Ver mi perfil</p></a>
               </div>
             </div>
 
