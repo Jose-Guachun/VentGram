@@ -3,13 +3,40 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import FormView, ListView, TemplateView, CreateView, DetailView
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
+from django.db.models import Q
+from django.core.paginator import Paginator
 
-#Model
 from users.models import Profile
-from posts.models import Project
+from posts.models import Project, Category
 #forms
 from posts.forms import ProjectForm
 
+
+def FilterProjectView(request):
+    busqueda = request.GET.get("buscar")
+    projects = Project.objects.all()
+    if busqueda:
+        projects = Project.objects.filter(
+            Q(title__icontains = busqueda) |  
+            Q(description__icontains = busqueda) 
+        ).distinct()
+    paginator=Paginator(projects, 6)
+    page=request.GET.get('page')
+    projects=paginator.get_page(page)
+    return render(request, 'posts/list_project.html', {'projects':projects})
+
+def ProjectFeedVie(request):
+    busqueda = request.GET.get("buscar")
+    projects = Project.objects.all()
+    if busqueda:
+        projects = Project.objects.filter(
+            Q(title__icontains = busqueda) | 
+            Q(description__icontains = busqueda) 
+        ).distinct()
+    paginator=Paginator(projects, 6)
+    page=request.GET.get('page')
+    projects=paginator.get_page(page)
+    return render(request, 'posts/feed.html', {'projects':projects})
 
 class ProjectDetailView(LoginRequiredMixin, DetailView):
     #retornar detalle de post
@@ -22,16 +49,9 @@ class ProjectFeedView(LoginRequiredMixin, ListView):
     template_name='posts/feed.html'
     model=Project
     ordering=('-created',)
-    paginate_by=20
+    paginate_by=6
     context_object_name='projects'
-
-    def get_context_data(self, **kwargs):
-        context=super().get_context_data(**kwargs)
-        project=Project.objects.all()[5:6]
-        context['description']=project[:20] 
-        return context
-
-
+    
 class CreatedProjectView(LoginRequiredMixin, CreateView):
     #Crear un nuevo post
     template_name='posts/new_project.html'
@@ -40,18 +60,11 @@ class CreatedProjectView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
+        context['categorys']=Category.objects.all()
         context['user']=self.request.user
         context['profile']=self.request.user.profile
         return context
-
-
-class PostProjectView(TemplateView):
-    template_name='posts/list_project.html'
-
-# Create your views here.
-
-
-    
+  
 class PostHomeView(TemplateView):
     #retornar todas las publicaciones
     template_name='home.html'

@@ -1,0 +1,22 @@
+
+
+        <div class="col-12 text-center">
+            {% if projects.has_previous %}
+
+            <a class="btn btn-danger" href="?page={{ projects.previous_page_number }}">
+                Anterior
+            </a>
+
+        {% endif %}
+
+            <a class="btn btn-danger" href="#">
+                {{ projects.number }} de {{ projects.paginator.num_pages }}
+            </a>
+
+        {% if projects.has_next %}
+
+            <a class="btn btn-danger" href="?page={{ projects.next_page_number }}">
+                Siguiente
+            </a>
+            {% endif %}
+        </div>        

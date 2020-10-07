@@ -13,18 +13,29 @@ Inicio | VentGram
 <div class="col-lg-12 pd-right-none pd-left-none">
     <div class="row">
         {% include 'posts/section_post_shear.html' %}
+
+        {% if projects %}
         <div class="col-lg-12 pd-right-none">
             <!--main-ws-sec end-->
             <div class="sign_link">
-                <h3>Ultimos proyectos publicados </h3>
+                <h3>Proyectos </h3>
             </div>
         </div>
         {% for project in projects %}
-            <div class="col-lg-4 col-md-6 pd-right-none mb-3">
-                {% include 'posts/card_project.html' %}
+        <div class="col-lg-4 col-md-6 pd-right-none mb-3">
+            {% include 'posts/card_project.html' %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-lg-4 col-md-6 pd-right-none mb-3">
+            <div class="sign_link">
+                <h3>No hay proyectos publicados </h3>
             </div>
-        {% endfor %}   
+        </div>
+        {% endif %}
+
     </div>
+    {% include 'pagination.html' %}
 </div>
 {% endblock %}
 

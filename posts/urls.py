@@ -10,6 +10,8 @@ from posts import views
 urlpatterns = [
 
     #managment
+
+
     path(
         route='',
         view=views.PostHomeView.as_view(),
@@ -18,7 +20,7 @@ urlpatterns = [
         
     path(
         route='posts/feed',
-        view=views.ProjectFeedView.as_view(),
+        view=views.ProjectFeedVie,
         name='feed'
         ),
 
@@ -35,9 +37,9 @@ urlpatterns = [
         ), 
 
     path(
-        route='posts/project',
-        view=views.PostProjectView.as_view(),
-        name='project'
+        route='posts/Filter',
+        view=views.FilterProjectView,
+        name='list_project'
         ),
         
 ]

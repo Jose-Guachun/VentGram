@@ -46,10 +46,11 @@ Perfil | @{{user.username|capfirst}} | VentGram
             </div>
             <div class="product-feed-tab current" id="feed-dd">
                 {% for project in projects %}
-                {% include 'posts/card_project.html' %}
+                    {% include 'posts/card_project.html' %}
                 {% endfor %}
+                {% include 'pagination.html' %}
             </div>
-
+            
             <!--product-feed-tab end-->
             <div class="product-feed-tab" id="info-dd">
                 <div class="user-profile-ov">
@@ -197,10 +198,14 @@ Perfil | @{{user.username|capfirst}} | VentGram
                 <!--portfolio-gallery-sec end-->
             </div>
             <!--product-feed-tab end-->
-
+            
         </div>
         <!--main-ws-sec end-->
+        
     </div>
+
+
+
     <div class="col-lg-3">
         <div class="right-sidebar">
             <!--main-ws-sec

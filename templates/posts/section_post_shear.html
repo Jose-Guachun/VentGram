@@ -18,8 +18,8 @@
 </div>
 <div class="offset-lg-3 col-lg-4  col-md-5 pd-right-none mt-1">
     <div class="search-bar mb-3">
-        <form>
-            <input type="text" name="search" placeholder="Search...">
+        <form method="GET" enctype="multipart/form-data">
+            <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar }}">
             <button type="submit"><i class="la la-search"></i></button>
         </form>
     </div>

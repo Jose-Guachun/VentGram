@@ -1,12 +1,16 @@
 {% load static %}
 <div class="posts-section">
     <div class="box">
-        <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.pk %}"><img class="card-img-top"
-                src="{{ project.image.url }}" alt="Project"></a>
+        <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.pk %}">
+            <img class="card-img-top" src="{{ project.image.url }}" alt="Project"></a>
         <div class="txt">
             <div class="usy-dt">
                 <a href="{% url 'users:detail' project.user.username %}">
-                    <img src="{{ project.profile.picture.url }}" alt="{{ project.user.get_full_name }}" width="50px" height="50px ">
+                    {% if project.profile.picture %}
+                    <img src="{{ project.profile.picture.url }}" alt="profile-image" width="50" height="50">
+                    {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="50" height="50">
+                    {% endif %}
                 </a>
                 <div class="usy-name pt-2">
                     <a href="{% url 'users:detail' project.user.username %}">
@@ -47,7 +51,7 @@
         </div>
         <div class="job_descp">
             <h3><a href="{% url 'posts:detail_project' project.pk %}">{{ project.title }}</a></h3>
-            <p>{{ description }} <a href="{% url 'posts:detail_project' project.pk %}" title="">...ver más</a></p>
+            <p>{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.pk %}" title="">...ver más</a></p>
     
             <ul class="skill-tags">
                 <li><a href="#" title="">

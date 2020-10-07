@@ -12,6 +12,7 @@ class ProjectForm(forms.ModelForm):
         fields=[
             'user', 
             'profile',
+            'category',
             'title',
             'description', 
             'objetive',

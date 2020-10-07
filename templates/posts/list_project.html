@@ -20,13 +20,21 @@
                     <h3>Proyectos nuevos</h3>  
                 </div>
             </div>
-  
+            {% if projects %}
+                {% for project in projects %}
+                    <div class="col-lg-6 col-md-12 pd-right-none mb-3">
+                        {% include 'posts/card_project.html' %}
+                    </div>
+                {% endfor %}
+            {% else %}
             <div class="col-lg-6 col-md-12 pd-right-none mb-3">
-                {% include 'posts/card_project.html' %}
+                <h1>No hay proyectos publicados</h1>
             </div>
+            {% endif %}
             </div>
-        </div>
+            {% include 'pagination.html' %}
     </div>
+ 
     {% endblock %}
     
     {% block other_button %}

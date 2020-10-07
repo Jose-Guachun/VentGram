@@ -80,10 +80,19 @@ Nuevo Proyecto | VentGram
                             <h4>Categoria</h4>
                             <div class="inp-field ">
                                 <select name="category" class="form-control {% if form.category.errors %}is-invalid{% endif %}">
-                                    <option>Categoria</option>
-                                    <option>Category 1</option>
-                                    <option>Category 2</option>
-                                    <option>Category 3</option>
+                                    {% if project.category %}
+                                    <option selected="true" value="{{ project.category }}">{{ project.category }}</option>
+                                    {% for value in categorys %}
+                                        {% if  value != project.category %}
+                                            <option value="{{ value.pk }}">{{ value }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                    <option selected="true" disabled="disabled">Seleccionar Categorias</option>
+                                    {% for value in categorys %}
+                                        <option value="{{ value.pk }}">{{ value }}</option>
+                                    {% endfor %}
+                                {% endif %}
                                 </select>
                                 <div class="invalid-feedback">
                                     {% for error in form.category.errors %}
@@ -126,7 +135,7 @@ Nuevo Proyecto | VentGram
                             <h4>Objetivo</h4>
                             <textarea 
                                 class="{% if form.objetive.errors %}is-invalid{% endif %}" 
-                                name="objective" 
+                                name="objetive" 
                                 placeholder="Opcional, Ingrese el objetivo del proyecto"></textarea>
                             
                             <div class="invalid-feedback">

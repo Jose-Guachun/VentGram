@@ -19,7 +19,7 @@ class Project(CRideModel):
     category=models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
 
     title=models.CharField(max_length=50,)
-    description=models.TextField()
+    description=models.TextField(validators=[validators.MinLengthValidator(125)])
     objetive=models.TextField(blank=True)
     image=models.ImageField(upload_to='project/photos/%Y/%m/%d/',)
     status=models.CharField(max_length=30,)

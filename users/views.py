@@ -9,6 +9,7 @@ from django.views.generic import ListView, UpdateView, TemplateView, DetailView
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 from django.template import Context
+from django.core.paginator import Paginator
 
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
@@ -39,7 +40,11 @@ class UserDetailView(LoginRequiredMixin ,DetailView):
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         user=self.get_object()
-        context['projects']=Project.objects.filter(user=user).order_by('-created')
+        projects=Project.objects.filter(user=user).order_by('-created')
+        paginator=Paginator(projects, 2)
+        page=self.request.GET.get('page')
+        projects=paginator.get_page(page)
+        context['projects']=projects
         return context
 
 class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
@@ -52,16 +57,13 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateProfileView, self).get_context_data(**kwargs)
-        country=Country.objects.all()
-        province=Province.objects.all()
-        city=City.objects.all()   
         studies=('Primaria', 'Secundaria', 'Universidad', 'Maestria', 'Doctorado')
         work=('Desarrollo', 'Marketing', 'Diseño', 'Negocios', 'Electronica')
         gender=('Masculino', 'Femenino', 'Otro')
         
-        context['country']=country
-        context['province']=province
-        context['city']=city
+        context['country']=Country.objects.all()
+        context['province']=Province.objects.all()
+        context['city']=City.objects.all() 
         context['studies'] = studies
         context['work'] = work
         context['gender']= gender

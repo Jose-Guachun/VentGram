@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from posts.models import Project
+from posts.models import Project, Category
 
 
 
-admin.site.register(Project)
+
 class PostAdmin(admin.ModelAdmin):
     list_display=(
         'pk',
@@ -12,3 +12,6 @@ class PostAdmin(admin.ModelAdmin):
         'description',
         'status',
     )
+
+admin.site.register(Project)
+admin.site.register(Category)
