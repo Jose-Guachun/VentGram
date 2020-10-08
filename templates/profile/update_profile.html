@@ -2,7 +2,7 @@
 {% load static %}
 <div class="acc-setting">
     <h3>Perfil de usuario</h3>
-    <form action="{% url 'users:setting' %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'users:setting' %}" method="POST" enctype="multipart/form-data" id="updateForm" data-provinces-url="{% url 'users:ajax_load_province' %}">
         {% csrf_token %}
         <div class="row">
             <div class="col-lg-12 mt-2 mb-5">
@@ -103,7 +103,7 @@
                 <div class="cpp-fiel">
                     <h5>Pais</h5>
                     <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1"
+                        <select name="country" class="form-control" id="id_country"
                             style="-webkit-appearance: menulist-button;">
                             {% if user.profile.city.province.country %}
                             <option selected="true" value="{{ user.profile.city.province.country }}">{{ user.profile.city.province.country }}</option>
@@ -112,34 +112,22 @@
                                     <option value="{{ value }}">{{ value }}</option>
                                 {% endif %}
                             {% endfor %}
-                        {% else %}
-                            <option selected="true" disabled="disabled">Seleccione el Pais</option>
-                            {% for value in country %}
-                                <option value="{{ value }}">{{ value }}</option>
-                            {% endfor %}
-                        {% endif %}
-                        </select>
-                    </div>
-                    <h5>Provincia</h5>
-                    <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect2"
-                            style="-webkit-appearance: menulist-button;">
-                            {% if user.profile.city.province %}
-                            <option selected="true" value="{{ user.profile.city.province }}">{{ user.profile.city.province }}</option>
-                            {% for value in province %}
-                                {% if  value != user.profile.city.province %}
-                                    <option value="{{ value }}">{{ value }}</option>
-                                {% endif %}
-                            {% endfor %}
                             {% else %}
-                            <option selected="true" disabled="disabled">Seleccione la Provincia</option>
-                            {% for value in province %}
-                                <option value="{{ value }}">{{ value }}</option>
+                            <option selected="true" disabled="disabled">Seleccione el Pais</option>
+                            {% for country in countrys %}
+                                <option value="{{ country.pk }}">{{ country }}</option>
                             {% endfor %}
                         {% endif %}
                         </select>
                     </div>
 
+                    <h5>Provincia</h5>
+                    <div class="form-group">
+                        <select name="province" class="form-control" id="id_province"
+                            style="-webkit-appearance: menulist-button;">
+                        <option selected="true" disabled="disabled">Seleccione la Provincia</option>
+                        </select>
+                    </div>
                     <h5>Ciudad</h5>
                     <div class="form-group">
                         <select name="city" class="form-control" id="exampleFormControlSelect3"
@@ -230,3 +218,20 @@
     </form>
 </div>
 <!--acc-setting end-->
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script>
+    $("#id_country").change(function(){
+        var url= $("#updateForm").attr("data-provinces-url");
+        var countryId= $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'country':countryId
+            },
+            success:function(data){
+                $("#id_province").html(data);
+            }
+        });
+    })
+</script>

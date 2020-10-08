@@ -1,6 +1,6 @@
 {% extends 'posts/base.html' %}
 {% block head_content %}
-    Proyectos | VentGram
+    Filtros | VentGram
 {% endblock%}
 {% load static %}
 
@@ -9,7 +9,38 @@
     
     {% block row %}
     <div class="col-lg-3 col-md-4">
-        {% include 'posts/filter.html' %}
+        <div class="filter-heading pb-1 pl-0">
+            <h3>Filtros</h3>
+         </div><!--filter-heading end-->
+         <div class="paddy">
+             <div class="pb-2">
+                 <a href="#" title="">Proyectos nuevos</a>
+             </div>
+             <div class="pb-2">
+                 <a href="#" title="">Proyectos mas vistos</a>
+             </div>
+             <div class="pb-2">
+                 <a href="#" title="">Proyectos ma comentados</a>
+             </div>
+             <div class="pb-2">
+                 <a href="#" title="">Proyectos populares</a>
+             </div>
+             <div class="pb-2">
+                 <a href="#" title="">Proyectos mejor valorados</a>
+             </div>
+         
+         </div>               
+            <!--user-info end-->
+        <div class="filter-heading pb-1 pl-0">
+           <h3>Categoria</h3>
+        </div><!--filter-heading end-->
+        <div class="paddy">
+            {% for category in categorys %}
+            <div class="pb-2">
+                <a href="#" title="">{{ category }}</a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="col-lg-9 col-md-8 pd-right-none pd-left-none">
         <div class="row">

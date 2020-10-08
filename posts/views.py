@@ -15,6 +15,7 @@ from posts.forms import ProjectForm
 def FilterProjectView(request):
     busqueda = request.GET.get("buscar")
     projects = Project.objects.all()
+    categorys = Category.objects.all()
     if busqueda:
         projects = Project.objects.filter(
             Q(title__icontains = busqueda) |  
@@ -23,7 +24,7 @@ def FilterProjectView(request):
     paginator=Paginator(projects, 6)
     page=request.GET.get('page')
     projects=paginator.get_page(page)
-    return render(request, 'posts/list_project.html', {'projects':projects})
+    return render(request, 'posts/list_project.html', {'projects':projects, 'categorys':categorys})
 
 def ProjectFeedVie(request):
     busqueda = request.GET.get("buscar")

@@ -47,6 +47,9 @@ class UserDetailView(LoginRequiredMixin ,DetailView):
         context['projects']=projects
         return context
 
+
+
+
 class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
     #update profile view
     template_name='profile/account_setting.html'
@@ -60,9 +63,8 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
         studies=('Primaria', 'Secundaria', 'Universidad', 'Maestria', 'Doctorado')
         work=('Desarrollo', 'Marketing', 'Diseño', 'Negocios', 'Electronica')
         gender=('Masculino', 'Femenino', 'Otro')
-        
-        context['country']=Country.objects.all()
-        context['province']=Province.objects.all()
+
+        context['countrys']=Country.objects.all()
         context['city']=City.objects.all() 
         context['studies'] = studies
         context['work'] = work
@@ -72,6 +74,11 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         #Return to users profile.
         return reverse('users:setting')
+
+def load_province(request):
+    country=request.GET.get('country')
+    provinces=Province.objects.filter(country=country).order_by('name_province')
+    return render(request, 'profile/province_dropdown_list.html',{'provinces':provinces})
 
 class UpdateUserView(FormView, LoginRequiredMixin, UpdateView):
     #update User view

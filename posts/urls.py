@@ -37,7 +37,7 @@ urlpatterns = [
         ), 
 
     path(
-        route='posts/Filter',
+        route='posts/filter',
         view=views.FilterProjectView,
         name='list_project'
         ),

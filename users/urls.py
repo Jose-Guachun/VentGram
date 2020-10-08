@@ -53,4 +53,10 @@ urlpatterns = [
         name='detail'
     ),
    
+    #Ajax
+    path(
+        route='ajax/provinces/',
+        view=views.load_province,
+        name='ajax_load_province'
+    ),
 ]
