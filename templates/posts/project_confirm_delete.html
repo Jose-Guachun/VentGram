@@ -1,0 +1,17 @@
+{% extends 'posts/base.html' %}
+{% block head_content %}
+    Confirmacion de eliminacion | VentGram
+{% endblock%}
+{% load static %}
+
+    {% block other_top %}
+    {% endblock %}
+    
+    {% block row %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p> <strong>Dese eliminar el registro {{object}}</strong> </p>
+        <button class="btn btn-danger"> Confirmar </button>
+    </form>
+    <button class="btn btn-danger"> cancelar </button>
+    {% endblock %}

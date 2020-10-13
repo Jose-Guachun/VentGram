@@ -41,10 +41,14 @@ class UserDetailView(LoginRequiredMixin ,DetailView):
         context= super().get_context_data(**kwargs)
         user=self.get_object()
         projects=Project.objects.filter(user=user).order_by('-created')
+        projectsProfile=Project.objects.filter(user=user).order_by('-created')
+
         paginator=Paginator(projects, 2)
         page=self.request.GET.get('page')
         projects=paginator.get_page(page)
+
         context['projects']=projects
+        context['projectsPro']=projectsProfile
         return context
 
 
@@ -60,12 +64,11 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateProfileView, self).get_context_data(**kwargs)
-        studies=('Primaria', 'Secundaria', 'Universidad', 'Maestria', 'Doctorado')
+        studies=('Primaria', 'Secundaria', 'Superior', 'Maestria', 'Doctorado')
         work=('Desarrollo', 'Marketing', 'Diseño', 'Negocios', 'Electronica')
         gender=('Masculino', 'Femenino', 'Otro')
 
         context['countrys']=Country.objects.all()
-        context['city']=City.objects.all() 
         context['studies'] = studies
         context['work'] = work
         context['gender']= gender

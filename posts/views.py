@@ -1,19 +1,23 @@
 #Django 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import FormView, ListView, TemplateView, CreateView, DetailView
+from django.views.generic import FormView, ListView, TemplateView, CreateView, DetailView, DeleteView
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q
 from django.core.paginator import Paginator
 
-from users.models import Profile
+from users.models import Profile, User
 from posts.models import Project, Category
 #forms
 from posts.forms import ProjectForm
 
 
+
+@login_required
 def FilterProjectView(request):
-    busqueda = request.GET.get("buscar")
+    busqueda = request.POST.get("buscar")
+    filtro=request.POST.get("filtro")
     projects = Project.objects.all()
     categorys = Category.objects.all()
     if busqueda:
@@ -21,19 +25,24 @@ def FilterProjectView(request):
             Q(title__icontains = busqueda) |  
             Q(description__icontains = busqueda) 
         ).distinct()
-    paginator=Paginator(projects, 6)
+    elif filtro:
+        projects = Project.objects.filter(category=filtro)
+
+    paginator=Paginator(projects, 4)
     page=request.GET.get('page')
     projects=paginator.get_page(page)
     return render(request, 'posts/list_project.html', {'projects':projects, 'categorys':categorys})
 
-def ProjectFeedVie(request):
-    busqueda = request.GET.get("buscar")
+@login_required
+def ProjectFeedView(request):
+    busqueda = request.POST.get("buscar")
     projects = Project.objects.all()
     if busqueda:
         projects = Project.objects.filter(
             Q(title__icontains = busqueda) | 
             Q(description__icontains = busqueda) 
         ).distinct()
+
     paginator=Paginator(projects, 6)
     page=request.GET.get('page')
     projects=paginator.get_page(page)
@@ -44,14 +53,6 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     template_name='posts/detail_project.html'
     queryset=Project.objects.all()
     context_object_name='project'
-
-class ProjectFeedView(LoginRequiredMixin, ListView):
-    #retornar todas las publicaciones
-    template_name='posts/feed.html'
-    model=Project
-    ordering=('-created',)
-    paginate_by=6
-    context_object_name='projects'
     
 class CreatedProjectView(LoginRequiredMixin, CreateView):
     #Crear un nuevo post
@@ -70,5 +71,11 @@ class PostHomeView(TemplateView):
     #retornar todas las publicaciones
     template_name='home.html'
 
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
+    model=Project
 
+    def get_success_url(self):
+        #Return to users profile.
+        username=self.object.user.username
+        return reverse('users:detail', kwargs={'username':username})
 

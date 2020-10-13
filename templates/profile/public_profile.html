@@ -1,6 +1,6 @@
 {% extends 'posts/base.html' %}
 {% block head_content %}
-Perfil | @{{user.username|capfirst}} | VentGram
+Perfil | @{{user.username|capfirst}}
 {% endblock%}
 {% load static %}
 
@@ -38,159 +38,97 @@ Perfil | @{{user.username|capfirst}} | VentGram
                             </a>
                         </li>
                     </ul>
+                    
                 </div><!-- tab-feed end-->
             </div>
+
             <!--user-tab-sec end-->
-            <div class="product-feed-tab" id="saved-jobs">
-                
-            </div>
             <div class="product-feed-tab current" id="feed-dd">
+                {% if user == request.user %}
+                <div class="post-topbar">
+                    <div class="usy-dt">
+                        {% if user.profile.picture %}
+                        <img src="{{ user.profile.picture.url }}" alt="profile-image" width="40" height="40">
+                        {% else %}
+                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
+                        {% endif %}
+                    </div>
+                    <div class="post-st mb-2 mt-2">
+                        <ul>
+                            <li><a href="{% url 'posts:new_project' %}" title="Añadir" class="active">
+                                    <i class="fas fa-plus-square mr-2"></i>Añadir nuevo proyecto</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if projects %}
                 {% for project in projects %}
                     {% include 'posts/card_project.html' %}
                 {% endfor %}
-                {% include 'pagination.html' %}
+                    <div class="posts-section">
+                        {% include 'pagination.html' %}   
+                    </div>  
+                {% else %}
+                    <h3 style="font-size: 25px;font-weight: 600;">No tienes proyectos publicados</h3>
+                {% endif %}
             </div>
+
             
             <!--product-feed-tab end-->
             <div class="product-feed-tab" id="info-dd">
-                <div class="user-profile-ov">
-                    <h3><a href="#" title="" class="overview-open">Biografia</a> <a href="#" title=""
-                            class="overview-open"><i class="fa fa-pencil"></i></a></h3>
-                    <p>{{user.profile.biography}}</p>
-                </div>
                 <!--user-profile-ov end-->
                 <div class="user-profile-ov st2">
-                    <h3><a href="#" title="" class="exp-bx-open">Experience </a><a href="#" title=""
-                            class="exp-bx-open"><i class="fa fa-pencil"></i></a> <a href="#" title=""
-                            class="exp-bx-open"><i class="fa fa-plus-square"></i></a></h3>
-                    <h4>Web designer <a href="#" title=""><i class="fa fa-pencil"></i></a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec
-                        condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus
-                        consectetur aliquam lectus commodo viverra. </p>
-                    <h4>UI / UX Designer <a href="#" title=""><i class="fa fa-pencil"></i></a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec
-                        condimentum ipsum commodo id.</p>
-                    <h4>PHP developer <a href="#" title=""><i class="fa fa-pencil"></i></a></h4>
-                    <p class="no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam
-                        felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt.
-                        Vivamus consectetur aliquam lectus commodo viverra. </p>
+                    <h3>Datos
+                        {% if user == request.user %}
+                        <a href="{% url 'users:setting' %}" title="Personalizar Perfil"><i class="fa fa-pencil"></i></a></h3>
+                        {% endif %}
+                    <h4>Biografia</h4>
+                    <p>{{user.profile.biography}}</p>   
+                    <h4>Nivel Educativo</h4>
+                    <p>{{ user.profile.education_level }}</p>
+                    <h4>Telefono Celular</h4>
+                    <p>{{ user.profile.phone_number }}</p>
+                    <h4>Cedula</h4>
+                    <p>{{ user.profile.dni }}</p>
+                    <h4>Genero</h4>
+                    <p>{{ user.profile.gender }}</p>
+                    <h4>Ubicacion</h4>
+                    <p>{{ user.profile.city }}</p>
+                    <h4>Direccion de casa</h4>
+                    <p >{{ user.profile.home_address }}</p>
                 </div>
                 <!--user-profile-ov end-->
-                <div class="user-profile-ov">
-                    <h3><a href="#" title="" class="ed-box-open">Education</a> <a href="#" title=""
-                            class="ed-box-open"><i class="fa fa-pencil"></i></a> <a href="#" title=""><i
-                                class="fa fa-plus-square"></i></a></h3>
-                    <h4>Master of Computer Science</h4>
-                    <span>2015 - 2018</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec
-                        condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus
-                        consectetur aliquam lectus commodo viverra. </p>
-                </div>
-                <!--user-profile-ov end-->
-                <div class="user-profile-ov">
-                    <h3><a href="#" title="" class="lct-box-open">Location</a> <a href="#" title=""
-                            class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="#" title=""><i
-                                class="fa fa-plus-square"></i></a></h3>
-                    <h4>India</h4>
-                    <p>151/4 BT Chownk, Delhi </p>
-                </div>
-                <!--user-profile-ov end-->
-                <div class="user-profile-ov">
-                    <h3><a href="#" title="" class="skills-open">Skills</a> <a href="#" title="" class="skills-open"><i
-                                class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-plus-square"></i></a></h3>
-                    <ul>
-                        <li><a href="#" title="">HTML</a></li>
-                        <li><a href="#" title="">PHP</a></li>
-                        <li><a href="#" title="">CSS</a></li>
-                        <li><a href="#" title="">Javascript</a></li>
-                        <li><a href="#" title="">Wordpress</a></li>
-                        <li><a href="#" title="">Photoshop</a></li>
-                        <li><a href="#" title="">Illustrator</a></li>
-                        <li><a href="#" title="">Corel Draw</a></li>
-                    </ul>
-                </div>
-                <!--user-profile-ov end-->
+
             </div>
             <!--product-feed-tab end-->
 
             <div class="product-feed-tab" id="portfolio-dd">
                 <div class="portfolio-gallery-sec">
                     <h3>Portfolio</h3>
-                    <div class="portfolio-btn">
-                        <a href="#" title=""><i class="fas fa-plus-square"></i> Añadir </a>
+                    {% if user == request.user %}
+                    <div class="portfolio-btns">
+                        <a href="{% url 'posts:new_project' %}" title="Crear Proyecto"><i class="fas fa-plus-square"></i> Añadir </a>
                     </div>
+                    {% endif %}
                     <div class="gallery_pf">
                         <div class="row">
+                            {% for project in projectsPro %}
                             <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                
                                 <div class="gallery_pt">
-                                    <img src="{% static 'img/shop.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                    <img src="{{ project.image.url }}" alt="">
+                                    <a href="{% url 'posts:detail_project' project.pk %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 45px;">{{project.title}}</h3></a>
                                 </div>
-                                <!--gallery_pt end-->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
+                                {% if user == request.user %}
+                                <div  class="cadidatesbtn">
+                                        <a class="mr-5" title="Editar"  href="{% url 'posts:delete_project' project.pk %}" ><i class="far fa-edit mr-1"></i></a>
+                                        <a class="ml-5" title="Eliminar"  href="{% url 'posts:delete_project' project.pk %}"><i class="fas fa-trash-alt mr-1"></i></a>
                                 </div>
-                                <!--gallery_pt end-->
+                                {% endif %} 
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img1.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
-                                </div>
-                                <!--gallery_pt end-->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
-                                </div>
-                                <!--gallery_pt end-->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img1.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
-                                </div>
-                                <!--gallery_pt end-->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
-                                </div>
-                                <!--gallery_pt end-->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img1.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
-                                </div>
-                                <!--gallery_pt end-->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
-                                </div>
-                                <!--gallery_pt end-->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img1.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
-                                </div>
-                                <!--gallery_pt end-->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <div class="gallery_pt">
-                                    <img src="{% static 'img/resources/pf-img2.jpg'%}" alt="">
-                                    <a href="#" title=""><img src="{% static 'img/all-out.png'%}" alt=""></a>
-                                </div>
-                                <!--gallery_pt end-->
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <!--gallery_pf end-->
@@ -203,9 +141,6 @@ Perfil | @{{user.username|capfirst}} | VentGram
         <!--main-ws-sec end-->
         
     </div>
-
-
-
     <div class="col-lg-3">
         <div class="right-sidebar">
             <!--main-ws-sec
@@ -213,13 +148,13 @@ Perfil | @{{user.username|capfirst}} | VentGram
                     <a href="{% url 'users:setting' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Mensaje</a>
                 </ul> --->
                 {% if user == request.user %}
-                <ul class="flw-status text-left">
-                    <a href="{% url 'users:setting' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Editar Perfil</a>
+                <ul class="flw-status text-right">
+                    <a href="{% url 'users:setting' %}" type="button" class="btn btn-danger mb-3 " style=" padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Editar Perfil</a>
                 </ul>
                 {% else %}
-                    <a href=""class="ml-5 btn btn-sm btn-primary">
-                        Follow
-                    </a>
+                <ul class="flw-status text-right">
+                    <a href="{% url 'users:setting' %}" type="button" class="btn btn-secondary mb-3" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Seguir</a>
+                </ul>
                 {% endif %}
             <div class="widget widget-portfolio">
                 <div class="wd-heady">
@@ -229,30 +164,10 @@ Perfil | @{{user.username|capfirst}} | VentGram
                 </div>
                 <div class="pf-gallery">
                     <ul>
-                        <li><a href="#" title=""><img src="{% static 'img/shop.jpg'%}" alt=""></a>
+                        {% for project in projectsPro %}
+                        <li><a href="{% url 'posts:detail_project' project.pk %}" title=""><img src="{{ project.image.url }}" alt=""></a>
                         </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery2.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery3.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery4.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery5.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery6.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery7.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery8.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery9.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery10.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery11.png' %}" alt=""></a>
-                        </li>
-                        <li><a href="#" title=""><img src="{% static 'img/resources/pf-gallery12.png' %}" alt=""></a>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <!--pf-gallery end-->
@@ -261,148 +176,8 @@ Perfil | @{{user.username|capfirst}} | VentGram
         </div>
     </div>
 
+
 {% endblock%}
 {% block other_button %}
 <!--agregar vistas al final sin ningun contenedor puesto -->
-<div class="overview-box" id="overview-box">
-    <div class="overview-edit">
-        <h3>Overview</h3>
-        <span>5000 character left</span>
-        <form>
-            <textarea></textarea>
-            <button type="submit" class="save">Save</button>
-            <button type="submit" class="cancel">Cancel</button>
-        </form>
-        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-    </div>
-    <!--overview-edit end-->
-</div>
-<!--overview-box end-->
-
-<div class="overview-box" id="experience-box">
-    <div class="overview-edit">
-        <h3>Experience</h3>
-        <form>
-            <input type="text" name="subject" placeholder="Subject">
-            <textarea></textarea>
-            <button type="submit" class="save">Save</button>
-            <button type="submit" class="save-add">Save & Add More</button>
-            <button type="submit" class="cancel">Cancel</button>
-        </form>
-        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-    </div>
-    <!--overview-edit end-->
-</div>
-<!--overview-box end-->
-
-<div class="overview-box" id="education-box">
-    <div class="overview-edit">
-        <h3>Education</h3>
-        <form>
-            <input type="text" name="school" placeholder="School / University">
-            <div class="datepicky">
-                <div class="row">
-                    <div class="col-lg-6 no-left-pd">
-                        <div class="datefm">
-                            <input type="text" name="from" placeholder="From" class="datepicker">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 no-righ-pd">
-                        <div class="datefm">
-                            <input type="text" name="to" placeholder="To" class="datepicker">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <input type="text" name="degree" placeholder="Degree">
-            <textarea placeholder="Description"></textarea>
-            <button type="submit" class="save">Save</button>
-            <button type="submit" class="save-add">Save & Add More</button>
-            <button type="submit" class="cancel">Cancel</button>
-        </form>
-        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-    </div>
-    <!--overview-edit end-->
-</div>
-<!--overview-box end-->
-
-<div class="overview-box" id="location-box">
-    <div class="overview-edit">
-        <h3>Location</h3>
-        <form>
-            <div class="datefm">
-                <select>
-                    <option>Country</option>
-                    <option value="pakistan">Pakistan</option>
-                    <option value="england">England</option>
-                    <option value="india">India</option>
-                    <option value="usa">United Sates</option>
-                </select>
-                <i class="fa fa-globe"></i>
-            </div>
-            <div class="datefm">
-                <select>
-                    <option>City</option>
-                    <option value="london">London</option>
-                    <option value="new-york">New York</option>
-                    <option value="sydney">Sydney</option>
-                    <option value="chicago">Chicago</option>
-                </select>
-                <i class="fa fa-map-marker"></i>
-            </div>
-            <button type="submit" class="save">Save</button>
-            <button type="submit" class="cancel">Cancel</button>
-        </form>
-        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-    </div>
-    <!--overview-edit end-->
-</div>
-<!--overview-box end-->
-
-<div class="overview-box" id="skills-box">
-    <div class="overview-edit">
-        <h3>Skills</h3>
-        <ul>
-            <li><a href="#" title="" class="skl-name">HTML</a><a href="#" title="" class="close-skl"><i
-                        class="la la-close"></i></a></li>
-            <li><a href="#" title="" class="skl-name">php</a><a href="#" title="" class="close-skl"><i
-                        class="la la-close"></i></a></li>
-            <li><a href="#" title="" class="skl-name">css</a><a href="#" title="" class="close-skl"><i
-                        class="la la-close"></i></a></li>
-        </ul>
-        <form>
-            <input type="text" name="skills" placeholder="Skills">
-            <button type="submit" class="save">Save</button>
-            <button type="submit" class="save-add">Save & Add More</button>
-            <button type="submit" class="cancel">Cancel</button>
-        </form>
-        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-    </div>
-    <!--overview-edit end-->
-</div>
-<!--overview-box end-->
-
-<div class="overview-box" id="create-portfolio">
-    <div class="overview-edit">
-        <h3>Create Portfolio</h3>
-        <form>
-            <input type="text" name="pf-name" placeholder="Portfolio Name">
-            <div class="file-submit">
-                <input type="file" id="file">
-                <label for="file">Choose File</label>
-            </div>
-            <div class="pf-img">
-                <img src="images/resources/np.png" alt="">
-            </div>
-            <input type="text" name="website-url" placeholder="htp://www.example.com">
-            <button type="submit" class="save">Save</button>
-            <button type="submit" class="cancel">Cancel</button>
-        </form>
-        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-    </div>
-    <!--overview-edit end-->
-</div>
-<!--overview-box end-->
 {% endblock %}

@@ -20,7 +20,7 @@ urlpatterns = [
         
     path(
         route='posts/feed',
-        view=views.ProjectFeedVie,
+        view=views.ProjectFeedView,
         name='feed'
         ),
 
@@ -41,5 +41,11 @@ urlpatterns = [
         view=views.FilterProjectView,
         name='list_project'
         ),
+
+    path(
+        route='DeleteProject/<int:pk>',
+        view=views.ProjectDeleteView.as_view(),
+        name='delete_project'
+    )
         
 ]

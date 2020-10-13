@@ -78,7 +78,7 @@ class ProfileAdmin(admin.ModelAdmin):
         ('Profile', {
             'fields':
                 (
-                    'user', 'picture',
+                    'user', 'picture','city',
                     'gender',
                     'birth_date','education_level',
                     'work_area',

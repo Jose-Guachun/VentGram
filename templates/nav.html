@@ -47,7 +47,7 @@
                 </div>
                 <div class="notfication-details">
                   <div class="noty-user-img">
-                    <img src="img/resources/ny-img2.png" alt="">
+                    <img src="{% static 'img/resources/ny-img2.png' %} " alt="">
                   </div>
                   <div class="notification-info">
                     <h3><a href="messages.html" title="">Jassica William</a></h3>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="notfication-details">
                   <div class="noty-user-img">
-                    <img src="img/resources/ny-img3.png" alt="">
+                    <img src="{% static 'img/resources/ny-img3.png' %}" alt="">
                   </div>
                   <div class="notification-info">
                     <h3><a href="messages.html" title="">Jassica William</a></h3>
@@ -84,34 +84,7 @@
             <div class="nott-list">
               <div class="notfication-details">
                   <div class="noty-user-img">
-                    <img src="images/resources/ny-img1.png" alt="">
-                  </div>
-                  <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                  </div><!--notification-info -->
-                </div>
-                <div class="notfication-details">
-                  <div class="noty-user-img">
-                    <img src="images/resources/ny-img2.png" alt="">
-                  </div>
-                  <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                  </div><!--notification-info -->
-                </div>
-                <div class="notfication-details">
-                  <div class="noty-user-img">
-                    <img src="images/resources/ny-img3.png" alt="">
-                  </div>
-                  <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                  </div><!--notification-info -->
-                </div>
-                <div class="notfication-details">
-                  <div class="noty-user-img">
-                    <img src="images/resources/ny-img2.png" alt="">
+                    <img src="{% static 'img/resources/ny-img1.png' %}" alt="">
                   </div>
                   <div class="notification-info">
                     <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
@@ -132,15 +105,15 @@
     <div class="user-account">
       <div class="user-info mr-0">
         {% if request.user.profile.picture %}
-          <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="35" height="35">
+          <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
         {% else %}
-          <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="35" height="35">
+          <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
         {% endif %}
       </div>
       <div class="user-account-settingss" id="users">
         <ul class="on-off-status">
             <div class="usy-dt mr-2">
-                {% if user.profile.picture %}
+                {% if request.user.profile.picture %}
                   <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
                 {% else %}
                   <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">

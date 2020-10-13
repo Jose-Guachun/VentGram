@@ -9,8 +9,8 @@
     </div>
     <div class="post-st mb-3">
         <ul>
-            <li><a href="{% url 'posts:new_project' %}" title="">
-                    <i class="far fa-plus-square mr-2"></i>Añadir nuevo proyecto</a>
+            <li><a href="{% url 'posts:new_project' %}" title="Añadir" class="active">
+                    <i class="fas fa-plus-square mr-2"></i>Añadir nuevo proyecto</a>
             </li>
         </ul>
     </div>
@@ -18,8 +18,9 @@
 </div>
 <div class="offset-lg-3 col-lg-4  col-md-5 pd-right-none mt-1">
     <div class="search-bar mb-3">
-        <form method="GET" enctype="multipart/form-data">
-            <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar }}">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
             <button type="submit"><i class="la la-search"></i></button>
         </form>
     </div>

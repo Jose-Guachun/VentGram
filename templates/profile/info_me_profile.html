@@ -7,21 +7,27 @@
             {% else %}
             <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="180" height="180">
             {% endif %}
-
+            {% if user == request.user %}
+            <div class="add-dp" id="OpenImgUpload">
+                <a href="{% url 'users:setting' %}" class="" ><i class="fas fa-user-edit"></i></a>
+            </div>
+            {% endif %}
         </div>
         <!--user-pro-img end-->
         <div class="user-specs  pt-1 pb-0 pl-3 pr-3">
             <h3>{{user.first_name}} {{user.last_name}}</h3>
         </div>
         <div class="badges">
+            <span class="badge badge-success">{{user.profile.education_level}}</span>
             <span class="badge badge-info">{{user.profile.work_area}}</span>
         </div>
         <div class="user-specs py-2">
+            {% if user.profile.city %}
             <span><i class="fas fa-map-marker-alt pr-1"></i> {{user.profile.city}}, {{user.profile.city.province.country}}</span>
+            {% endif %}
         </div>
 
         <!--user_pro_status end-->
-
         <div class="text-left text-muted pl-3 pr-3 py-4">
             <p class="mb-2">
                 <strong>Usuario : </strong>
@@ -33,6 +39,7 @@
                 <strong>Email : </strong>
                 <span class="ml-2 text-capitalize"> {{ user.email}}</span>
             </p>
+
             <div class="text-center">
                 <a href=""><i class="fab fa-facebook"></i></a>
                 <a href=""><i class="fab fa-twitter"></i></a>

@@ -67,6 +67,9 @@ footer{
   align-self: flex-end;
 
 }
+.cuerpo{
+  height: calc(100vh - 81px);
+}
 /* ----footer*/
 
 /* ----navbar*/
@@ -138,6 +141,19 @@ footer{
   display: flex;
   align-items: center;
 }
+.box_category{
+  width: 100%;
+  height: 60px;
+  margin-right: 25px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px;
+  float: left;
+  background-color:rgb(255, 255, 255);
+  position:relative;
+  display: flex;
+  align-items: center;
+}
 .logo a h3{
   color: white;
   font-size: 40px;
@@ -149,11 +165,39 @@ footer{
   margin-top: 50px;
   padding: 20px;
 }
+.box_category button{
+  background-color: rgba(19, 19, 19, 0.432);
+  position: absolute;
+  width:100%; 
+  height: 100%; 
+  border:0px;
+   
+}
+.box_category button:hover{
+  background-color: rgba(66, 66, 66, 0.247);
+  position: absolute;
+  width:100%; 
+  height: 100%; 
+  border:0px; 
+}
+
+.box_category button:focus{
+  background-color:rgba(97, 34, 148, 0.473);
+}
+
+
 .card-img-top{
-  filter:brightness(85%);
+  filter:brightness(60%);
 }
 .card-img-top:hover{
-  filter:brightness(65%);
+  filter:brightness(70%);
+}
+
+.card-img-filter{
+  filter:brightness(75%);
+}
+.card-img-filter:hover{
+  filter:brightness(90%);
 }
 
 @media(max-width: 991px){

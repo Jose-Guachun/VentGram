@@ -44,7 +44,11 @@ Nuevo Proyecto | VentGram
                         </div>
                         <div class="col-sm-12 col-md-6 mb-2">
                             <h4>Imagen Cabecera</h4>
-                            <input class="py-2 {% if form.image.errors %}is-invalid{% endif %}" type="file" id="id_image" name="image" accept="image/*" required>
+                            <div class="file-submit">
+                                <input class="py-2 {% if form.image.errors %}is-invalid{% endif %}" type="file" id="id_image" name="image" accept="image/*" required>
+                                <label for="id_image">Seleccionar Imagen </label>
+                            </div>
+
                             <div class="invalid-feedback">
                                 {% for error in form.image.errors %}
                                     {{ error }}
@@ -119,11 +123,14 @@ Nuevo Proyecto | VentGram
 
                         <div class="col-sm-12 col-md-6 mb-2">
                             <h4>Documento</h4>
-                            <input 
-                                class="py-2 {% if form.document.errors %}is-invalid{% endif %}" 
-                                type="file" id="id_document" 
-                                name="document" 
-                                required>
+                            <div class="file-submit">
+                                <input 
+                                    class="py-2 {% if form.document.errors %}is-invalid{% endif %}" 
+                                    type="file" id="id_document" 
+                                    name="document" 
+                                    required>
+                                    <label for="id_document">Seleccionar Documento </label>
+                            </div>
                             <div class="invalid-feedback">
                                 {% for error in form.document.errors %}
                                     {{ error }}

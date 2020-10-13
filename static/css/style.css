@@ -2703,7 +2703,7 @@ footer {
     width: 40px;
     height: 40px;
     text-align: center;
-    background: #e44d3a;
+    background: #dc3545;
     padding: 12px;
     color: #ffff;
     left: 0;
@@ -2712,7 +2712,7 @@ footer {
 .add-dp i:hover {
 	font-size: 14px;
 	border: 2px solid #fff;
-    background: #e44d3a;
+    background: #c9303f;
 	padding: 11px;
 }
 .add-dp {
@@ -3117,12 +3117,13 @@ footer {
 	padding-left: 5px;
 	float: left;
 }
-.portfolio-btn {
+.portfolio-btns {
     float: right;
 }
-.portfolio-btn a {
+
+.portfolio-btns a {
     display: inline-block;
-    color: #e44d3a;
+    color: rgb(2, 102, 94);
     font-size: 16px;
 	font-weight: 600;
 }
@@ -3130,6 +3131,7 @@ footer {
 .portfolio-btn a i {
     margin-right: 5px;
 }
+
 .gallery_pf {
 	float: left;
 	width: 100%;
@@ -3396,7 +3398,7 @@ footer {
 }
 
 .file-submit [type="file"] + label {
-    background: #e44d3a;
+    background: #2a5ea1;
     border: none;
     float: left;
     border-top-right-radius: 0px;
@@ -4585,7 +4587,7 @@ a:hover {
 	cursor: pointer;
 }
 .save-stngs ul li button:hover {
-	background-color: #e44d3a;
+	background-color: #345c91;
 	color: #fff;
 	border-color: transparent;
 }
@@ -5692,18 +5694,19 @@ a:hover {
 	font-weight: 600;
 }
 .cadidatesbtn i{
-	color: #b2b2b2;
+	color: #ffffff;
     border: 1px solid #b2b2b2;
     font-size: 14px;
     text-align: center;
-    margin-left: 7px;
+	margin-left: 15px;
     border-radius: 3px;
-    padding: 10px;
+	padding: 10px;
+	position:absolute; top:93px;
 }
 .cadidatesbtn i:hover{
-	background-color: #e44d3a;
+	background-color: #0000006b;
 	color: #fff;
-	border:1px solid #e44d3a;
+	border:1px solid #b2b2b2;
 }
 .inner{
 	border-bottom: 2px solid #e5e5e5;

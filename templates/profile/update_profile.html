@@ -100,64 +100,68 @@
                 </div>
             </div>
             <div class="cp-field col-sm-12 col-md-6">
-                <div class="cpp-fiel">
+                <div >
                     <h5>Pais</h5>
-                    <div class="form-group">
-                        <select name="country" class="form-control" id="id_country"
-                            style="-webkit-appearance: menulist-button;">
+                    <div class="datefm mb-2">
+                            <select name="country" class="form-control" id="id_country">
+                                {% if user.profile.city.province.country %}
+                                <option selected="true" value="{{ user.profile.city.province.country.pk }}">{{ user.profile.city.province.country }}</option>
+                                {% for country in countrys %}
+                                    {% if  country != user.profile.city.province.country %}
+                                        <option value="{{ country.pk }}">{{ country }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                <option selected="true" disabled="disabled">Seleccione el Pais</option>
+                                {% for country in countrys %}
+                                    <option value="{{ country.pk }}">{{ country }}</option>
+                                {% endfor %}
+                            {% endif %}
+                            </select><i class="fa fa-globe"></i>
+                    </div>
+                    <h5>Provincia</h5>
+                    <div class="datefm mb-2">
+                        <select name="province" class="form-control" id="id_province">
                             {% if user.profile.city.province.country %}
-                            <option selected="true" value="{{ user.profile.city.province.country }}">{{ user.profile.city.province.country }}</option>
-                            {% for value in country %}
-                                {% if  value != user.profile.city.province.country %}
-                                    <option value="{{ value }}">{{ value }}</option>
+                            <option selected="true" value="{{ user.profile.city.province.pk }}">{{ user.profile.city.province }}</option>
+                            {% for province in provinces %}
+                                {% if  province != user.profile.city.province %}
+                                    <option value="{{ province.pk }}">{{ province }}</option>
                                 {% endif %}
                             {% endfor %}
                             {% else %}
-                            <option selected="true" disabled="disabled">Seleccione el Pais</option>
-                            {% for country in countrys %}
-                                <option value="{{ country.pk }}">{{ country }}</option>
-                            {% endfor %}
-                        {% endif %}
-                        </select>
-                    </div>
 
-                    <h5>Provincia</h5>
-                    <div class="form-group">
-                        <select name="province" class="form-control" id="id_province"
-                            style="-webkit-appearance: menulist-button;">
-                        <option selected="true" disabled="disabled">Seleccione la Provincia</option>
-                        </select>
+                            {% endif %}
+                        </select><i class="fas fa-map-marked-alt"></i>
                     </div>
                     <h5>Ciudad</h5>
-                    <div class="form-group">
-                        <select name="city" class="form-control" id="exampleFormControlSelect3"
-                            style="-webkit-appearance: menulist-button;">
+                    <div class="datefm mb-2">
+                        <select name="city" class="form-control" id="exampleFormControlSelect3">
                             {% if user.profile.city %}
                                 <option selected="true" value="user.profile.city">{{ user.profile.city }}</option>
                                 {% for value in city %}
                                     {% if  value != user.profile.city %}
-                                        <option value="value">{{ value }}</option>
+                                        <option value="value.pk">{{ value }}</option>
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
                                 <option selected="true" disabled="disabled">Seleccione la Ciudad</option>
                                 {% for value in city %}
-                                    <option value="value">{{ value }}</option>
+                                    <option value="value.pk">{{ value }}</option>
                                 {% endfor %}
                             {% endif %}
-                        </select>
+                        </select><i class="fas fa-map-marker-alt"></i>
                     </div>
 
                 </div>
             </div>
             <div class="cp-field col-sm-12 col-md-6 ">
-                <div class="cpp-fiel">
+                <div >
 
 
                     <h5>Nivel educativo</h5>
-                    <div class="form-group">
-                        <select name="education_level" class="form-control" id="exampleFormControlSelect3"
-                            style="-webkit-appearance: menulist-button;">
+                    <div class="datefm mb-2">
+                        <select name="education_level" class="form-control" id="exampleFormControlSelect3">
 
                             {% if user.profile.education_level %}
                             <option selected="true" value="{{ user.profile.education_level }}">
@@ -174,12 +178,11 @@
                             {% endfor %}
                             {% endif %}
 
-                        </select>
+                        </select><i class="fas fa-university"></i>
                     </div>
                     <h5>Medio en el que laboras</h5>
-                    <div class="form-group">
-                        <select name="work_area" class="form-control" id="exampleFormControlSelect3"
-                            style="-webkit-appearance: menulist-button;">
+                    <div class="datefm mb-2">
+                        <select name="work_area" class="form-control" id="exampleFormControlSelect3">
                             {% if user.profile.work_area %}
                             <option selected="true" value="{{ user.profile.work_area }}">{{user.profile.work_area }}</option>
                                 {% for value in work %}
@@ -193,7 +196,7 @@
                                 <option value="{{ value }}">{{ value }}</option>
                                 {% endfor %}
                             {% endif %}
-                        </select>
+                        </select><i class="fas fa-briefcase"></i>
                     </div>
 
                 </div>
