@@ -50,8 +50,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             'unique': 'Nombre de Usuario en uso'
         }
     )
-    first_name = models.CharField('first name', max_length=30, validators=[validators.MinLengthValidator(3)] , blank=True, null=True)
-    last_name = models.CharField('last name', max_length=30,validators=[validators.MinLengthValidator(3)], blank=True, null=True)
+    first_name = models.CharField('first name', max_length=30, validators=[validators.MinLengthValidator(3)])
+    last_name = models.CharField('last name', max_length=30,validators=[validators.MinLengthValidator(3)])
     code=models.CharField(
         'code', 
         max_length=20, 

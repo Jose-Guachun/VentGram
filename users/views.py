@@ -31,7 +31,7 @@ from django.contrib.auth.forms import AuthenticationForm
 class UserDetailView(LoginRequiredMixin ,DetailView):
     #User detail view
 
-    template_name='profile/public_profile.html'
+    template_name='profile/profile.html'
     slug_field='username'
     slug_url_kwarg='username'
     queryset=User.objects.all()
@@ -50,8 +50,6 @@ class UserDetailView(LoginRequiredMixin ,DetailView):
         context['projects']=projects
         context['projectsPro']=projectsProfile
         return context
-
-
 
 
 class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):

@@ -3,6 +3,7 @@ from django import forms
 
 #Models
 from posts.models import Project
+from VentGram.validators import SoloLetras
 
 
 class ProjectForm(forms.ModelForm):
@@ -21,4 +22,8 @@ class ProjectForm(forms.ModelForm):
             'website',
             'document',
             'collaborators',]
+    def clean_objetive(self):
+        objetive=self.cleaned_data['objetive'].title()
+        SoloLetras(objetive, 'Objetivo')
+        return objetive
         

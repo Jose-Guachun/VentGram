@@ -2,12 +2,12 @@ from django.core.exceptions import ValidationError
 
 
 def SoloLetras(palabra, name_camp):
-    for x in palabra:
-        if not x.isspace():
-            cadena = x
-    if not cadena.isalpha():
-        raise ValidationError('El campo ' + name_camp +
-                              ' solo tiene que contener letras.')
+    if palabra:
+        for x in palabra:
+            if not x.isspace():
+                cadena = x
+        if not cadena.isalpha():
+            raise ValidationError('El campo ' + name_camp +' solo tiene que contener letras.')
     return palabra
 
 

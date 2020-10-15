@@ -1,6 +1,6 @@
 #Django 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import FormView, ListView, TemplateView, CreateView, DetailView, DeleteView
+from django.views.generic import FormView, ListView, TemplateView, CreateView, DetailView, DeleteView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
@@ -56,7 +56,7 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     
 class CreatedProjectView(LoginRequiredMixin, CreateView):
     #Crear un nuevo post
-    template_name='posts/new_project.html'
+    template_name='posts/create_update_project.html'
     form_class=ProjectForm
     success_url=reverse_lazy('posts:feed')
 
@@ -67,9 +67,24 @@ class CreatedProjectView(LoginRequiredMixin, CreateView):
         context['profile']=self.request.user.profile
         return context
   
-class PostHomeView(TemplateView):
-    #retornar todas las publicaciones
-    template_name='home.html'
+class UpdateProjectView(LoginRequiredMixin, UpdateView):
+    #Crear un nuevo post
+    template_name='posts/create_update_project.html'
+    model=Project
+    form_class=ProjectForm
+
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['categorys']=Category.objects.all()
+        context['user']=self.request.user
+        context['profile']=self.request.user.profile
+        return context
+        
+    def get_success_url(self):
+        #Return to users profile.
+        username=self.object.user.username
+        return reverse('users:detail', kwargs={'username':username})
+
 
 class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model=Project
@@ -79,3 +94,6 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
         username=self.object.user.username
         return reverse('users:detail', kwargs={'username':username})
 
+class PostHomeView(TemplateView):
+    #retornar todas las publicaciones
+    template_name='home.html'

@@ -44,12 +44,17 @@
                         </font>
                     </span></li>
             </ul>
-
+            {% if project.profile.user == request.user %}
+            <ul class="bk-links">
+                <li><a title="Editar"  href="{% url 'posts:update_project' project.pk %}"><i class="la la-edit"></i></a></li>
+                <li><a title="Eliminar"  href="{% url 'posts:delete_project' project.pk %}"><i class="la la-trash-o"></i></a></li> 
+            </ul>
+            {% else %}
             <ul class="bk-links">
                 <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
                 <li><a href="#" title=""><i class="la la-envelope"></i></a></li> 
             </ul>
-
+            {% endif %}
 
         </div>
         <div class="job_descp">

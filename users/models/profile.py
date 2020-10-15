@@ -5,7 +5,7 @@ from django.conf import settings
 #utilities
 from utils.models import CRideModel
 from django.core import validators
-from users.validators import vcedula, SoloNumeros
+from VentGram.validators import vcedula, SoloNumeros
 
 class Profile(CRideModel):
     #profile model

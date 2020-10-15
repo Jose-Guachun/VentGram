@@ -105,6 +105,7 @@ Perfil | @{{user.username|capfirst}}
             <!--product-feed-tab end-->
 
             <div class="product-feed-tab" id="portfolio-dd">
+
                 <div class="portfolio-gallery-sec">
                     <h3>Portfolio</h3>
                     {% if user == request.user %}
@@ -120,13 +121,15 @@ Perfil | @{{user.username|capfirst}}
                                 <div class="gallery_pt">
                                     <img src="{{ project.image.url }}" alt="">
                                     <a href="{% url 'posts:detail_project' project.pk %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 45px;">{{project.title}}</h3></a>
+                                    {% if user == request.user %}
+                                        <div  class="cadidatesbtn">
+                                            <a title="Editar"  href="{% url 'posts:update_project' project.pk %}" ><i class="far fa-edit mr-1"></i></a> 
+                                            <a title="Eliminar"  href="{% url 'posts:delete_project' project.pk %}"><i class="fas fa-trash-alt mr-1"></i></a> 
+                                        </div>
+                                    
+                                    {% endif %} 
                                 </div>
-                                {% if user == request.user %}
-                                <div  class="cadidatesbtn">
-                                        <a class="mr-5" title="Editar"  href="{% url 'posts:delete_project' project.pk %}" ><i class="far fa-edit mr-1"></i></a>
-                                        <a class="ml-5" title="Eliminar"  href="{% url 'posts:delete_project' project.pk %}"><i class="fas fa-trash-alt mr-1"></i></a>
-                                </div>
-                                {% endif %} 
+
                             </div>
                             {% endfor %}
                         </div>

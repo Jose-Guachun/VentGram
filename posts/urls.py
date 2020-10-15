@@ -43,7 +43,13 @@ urlpatterns = [
         ),
 
     path(
-        route='DeleteProject/<int:pk>',
+        route='update_project/<int:pk>',
+        view=views.UpdateProjectView.as_view(),
+        name='update_project'
+        ),
+
+    path(
+        route='deleteproject/<int:pk>',
         view=views.ProjectDeleteView.as_view(),
         name='delete_project'
     )

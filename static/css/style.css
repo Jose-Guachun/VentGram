@@ -399,7 +399,7 @@ header {
 
 nav {
 	float: left;
-	width: 72%;
+	width: 71%;
 	text-align: right;
 }
 nav ul li {
@@ -1259,6 +1259,9 @@ a .user-specs h3:hover {
 	line-height: 30px;
 }
 .bk-links li i.la-envelope {
+	background-color: #e44d3a;
+}
+.bk-links li i.la-trash-o {
 	background-color: #e44d3a;
 }
 .bid_now {
@@ -4457,7 +4460,7 @@ a:hover {
 .account-tabs-setting {
 	float: left;
 	width: 100%;
-	padding: 70px 0;
+	padding: 50px 0;
 }
 .acc-leftbar {
 	float: left;
@@ -5696,12 +5699,13 @@ a:hover {
 .cadidatesbtn i{
 	color: #ffffff;
     border: 1px solid #b2b2b2;
-    font-size: 14px;
+	font-size: 14px;
+	margin-left:5px;
     text-align: center;
-	margin-left: 15px;
     border-radius: 3px;
 	padding: 10px;
-	position:absolute; top:93px;
+	position: relative; top: 90px;
+	background-color: #1313139a;
 }
 .cadidatesbtn i:hover{
 	background-color: #0000006b;

@@ -1,17 +1,28 @@
 {% extends 'posts/base.html' %}
 {% block head_content %}
-    Confirmacion de eliminacion | VentGram
+Confirmacion de eliminacion | VentGram
 {% endblock%}
 {% load static %}
 
-    {% block other_top %}
-    {% endblock %}
-    
-    {% block row %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        <p> <strong>Dese eliminar el registro {{object}}</strong> </p>
-        <button class="btn btn-danger"> Confirmar </button>
-    </form>
-    <button class="btn btn-danger"> cancelar </button>
-    {% endblock %}
+{% block row %}
+<div class="offset-lg-3 col-lg-6">
+    <div class="box">
+        <img src="{{ project.image.url }}" alt="">
+    </div>
+    <div class="portfolio-gallery-sec">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h3>Desea Eliminar El Proyecto de  {{object}}</h3>
+                <div class="save-stngs text-center pt-0">
+                    <ul>
+                        <li><button class="btn"> Confirmar </button></li>
+                        <li><a href="{% url 'users:detail' request.user.username %}" class="btn btn-danger" > Cancelar </a></li>
+                    </ul>
+                    
+                    
+                </div>
+        </form>
+        
+    </div>
+</div>
+{% endblock %}

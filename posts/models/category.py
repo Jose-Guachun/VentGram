@@ -7,7 +7,7 @@ from users.models import User
 
 #validators
 from django.core import validators
-from users.validators import SoloNumeros
+from VentGram.validators import SoloNumeros
 
 class Category(CRideModel):
     #profile model

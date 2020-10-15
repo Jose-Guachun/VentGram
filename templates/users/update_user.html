@@ -1,8 +1,9 @@
+
 <div class="acc-setting">
     <h3>Configuracion de cuenta</h3>
     <form action="{% url 'users:update_user' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-            
+            <div class="col-lg-12 cp-field mt-0 pd-left-none pd-right-none ">
                 <div class="cp-field col-sm-12 col-md-6">
                     <h5>Nombres</h5>
                     <div class="cpp-fiel">
@@ -12,8 +13,7 @@
                         name="first_name" 
                         placeholder="Ingrese su nombre"
                         value="{% if form.errors %}{{form.first_name.value }}{% else %}{{ user.first_name }}{% endif %}"
-                        />
-                        <i class="fas fa-signature"></i>
+                        /><i class="fas fa-signature"></i>
 
                         <div class="invalid-feedback">
                             {% for error in form.first_name.errors %}
@@ -23,24 +23,26 @@
                     </div>
                 </div>
                 <div class="cp-field col-sm-12 col-md-6">
-                    <h5>Apellidos</h5>
-                    <div class="cpp-fiel">
-                        <input 
-                        type="text" 
-                        class="{% if form.last_name.errors %}is-invalid{% endif %}" 
-                        name="last_name" 
-                        placeholder="Ingrese su apellido"
-                        value="{% if form.errors %}{{form.last_name.value }}{% else %}{{ user.last_name }}{% endif %}"
-                        />
-                        <i class="fas fa-signature"></i>
+                <h5>Apellidos</h5>
+                <div class="cpp-fiel">
+                    <input 
+                    type="text" 
+                    class="{% if form.last_name.errors %}is-invalid{% endif %}" 
+                    name="last_name" 
+                    placeholder="Ingrese su apellido"
+                    value="{% if form.errors %}{{form.last_name.value }}{% else %}{{ user.last_name }}{% endif %}"
+                    />
+                    <i class="fas fa-signature"></i>
 
-                        <div class="invalid-feedback">
-                            {% for error in form.first_name.errors %}
-                                {{ error }}
-                            {% endfor %}
-                        </div>
+                    <div class="invalid-feedback">
+                        {% for error in form.first_name.errors %}
+                            {{ error }}
+                        {% endfor %}
                     </div>
                 </div>
+                </div>
+            </div>
+            <div class="col-lg-12 cp-field mt-0 pd-left-none pd-right-none">
                 <div class="cp-field col-sm-12 col-md-6">
                     <h5>Nombre de Usuario</h5>
                     <div class="cpp-fiel">
@@ -79,11 +81,11 @@
                         </div>
                     </div>
                 </div>
-            
-        <div class="save-stngs pd2">
+            </div>
+        <div class="save-stngs ml-4">
             <ul>
                 <li><button type="submit">Guardar Configuracion</button></li>
-                <li><button type="submit">Cancelar Configuracion</button></li>
+                <li><a class="btn btn-danger" href="{% url 'users:update_user' %}">Cancelar Configuracion</a></li>
             </ul>
         </div>
     </form>

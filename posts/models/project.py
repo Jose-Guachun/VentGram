@@ -8,7 +8,7 @@ from posts.models import Category
 
 #validators
 from django.core import validators
-from users.validators import SoloNumeros
+from VentGram.validators import SoloNumeros
 
 
 class Project(CRideModel):
@@ -20,7 +20,7 @@ class Project(CRideModel):
 
     title=models.CharField(max_length=50,)
     description=models.TextField(validators=[validators.MinLengthValidator(125)])
-    objetive=models.TextField(blank=True)
+    objetive=models.TextField(validators=[validators.MinLengthValidator(15)])
     image=models.ImageField(upload_to='project/photos/%Y/%m/%d/',)
     status=models.CharField(max_length=30,)
     website=models.URLField(max_length=200, blank=True)

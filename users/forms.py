@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 #models
 from users.models import Profile, User
-from users.validators import SoloLetras, SoloNumeros
+from VentGram.validators import SoloLetras, SoloNumeros
 
 
 class ProfileForm(forms.ModelForm):

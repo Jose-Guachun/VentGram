@@ -5,7 +5,7 @@ import django.core.validators
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
-import users.validators
+import VentGram.validators
 
 
 class Migration(migrations.Migration):
@@ -83,11 +83,11 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateTimeField(auto_now_add=True, help_text='Fecha y hora en que se creo el objeto', verbose_name='created at')),
                 ('modified', models.DateTimeField(auto_now_add=True, help_text='Fecha y hora en el que se modifico el objeto', verbose_name='modified at')),
-                ('dni', models.CharField(blank=True, max_length=10, validators=[django.core.validators.MinLengthValidator(10), users.validators.SoloNumeros])),
+                ('dni', models.CharField(blank=True, max_length=10, validators=[django.core.validators.MinLengthValidator(10), VentGram.validators.SoloNumeros])),
                 ('gender', models.CharField(blank=True, max_length=20)),
                 ('birth_date', models.DateField(blank=True, null=True)),
                 ('biography', models.TextField(blank=True)),
-                ('phone_number', models.CharField(blank=True, max_length=20, validators=[django.core.validators.MinLengthValidator(10), users.validators.SoloNumeros])),
+                ('phone_number', models.CharField(blank=True, max_length=20, validators=[django.core.validators.MinLengthValidator(10), VentGram.validators.SoloNumeros])),
                 ('education_level', models.CharField(blank=True, max_length=50)),
                 ('work_area', models.CharField(blank=True, max_length=100)),
                 ('home_address', models.CharField(blank=True, max_length=100)),

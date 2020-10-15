@@ -28,16 +28,15 @@
                 <div class="posts-section">
                     <div class="post-bar">
                         <div class="user-specs pt-3 pb-0">
+                            {% if project.profile.user == request.user %}
                             <div class="ed-opts">
                                 <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                                 <ul class="ed-options">
-                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar post</font></font></a></li>
-                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">No guardado</font></font></a></li>
-                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">No licitar</font></font></a></li>
-                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cerca</font></font></a></li>
-                                    <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esconder</font></font></a></li>
+                                    <li><a href="{% url 'posts:update_project' project.pk %}" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar</font></font></a></li>
+                                    <li><a href="{% url 'posts:delete_project' project.pk %}" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar</font></font></a></li>
                                 </ul>
                             </div>
+                            {% endif %}
                             <h3>{{ project.title }}</h3>
                             <a href="{% url 'users:detail' project.user.username %}">Por: {{project.user.first_name }} {{project.user.last_name}} | @{{project.user.username }}</a>
                             <h4 class="pt-1">colaboradores: {{ project.collaborators }}</h4>
