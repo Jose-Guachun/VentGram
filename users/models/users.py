@@ -45,7 +45,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     username=models.CharField(
         'username', 
         unique=True, 
-        max_length=30,
+        max_length=20,
+        validators=[validators.MinLengthValidator(3)],
         error_messages={
             'unique': 'Nombre de Usuario en uso'
         }

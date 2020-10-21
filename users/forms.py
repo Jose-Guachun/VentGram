@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 #models
 from users.models import Profile, User
-from VentGram.validators import SoloLetras, SoloNumeros
+from VentGram.validators import SoloLetras, SoloNumeros, NumerosYLetras
 
 
 class ProfileForm(forms.ModelForm):
@@ -30,7 +30,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model=User
-        fields=["username", "first_name", "last_name", "email"]
+        fields=["username", "first_name", "last_name"]
     
     def clean_first_name(self):
         first_name=self.cleaned_data['first_name'].title()
@@ -41,17 +41,11 @@ class UserForm(forms.ModelForm):
         last_name=self.cleaned_data['last_name'].title()
         SoloLetras(last_name, 'Apellido')
         return last_name
-        
-    def clean_email(self):
-        #validacion del email
-        email=self.cleaned_data['email'].lower()
-        return email
 
     def clean_username(self):
         #username must be unique.
         username=self.cleaned_data['username'].capitalize()
-        if not username.isalnum():
-            raise forms.ValidationError('En el campo Nombre de Usuario debe ingresar solo numeros y letras sin ningun espacio.')
+        NumerosYLetras(username)
         return username
 
 class LoginForm(AuthenticationForm):

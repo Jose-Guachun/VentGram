@@ -22,8 +22,12 @@ class ProjectForm(forms.ModelForm):
             'website',
             'document',
             'collaborators',]
-    def clean_objetive(self):
-        objetive=self.cleaned_data['objetive'].title()
-        SoloLetras(objetive, 'Objetivo')
-        return objetive
+
+    widgets = {
+        'title': forms.TextInput(attrs={'placeholder':'Hola que hace '}),
+        'category': forms.Select(attrs={'class': 'form-control', 'placeholder':'Seleccione una categoria'}),
+        'status': forms.Select(attrs={'class': 'form-control'}),
+        'document': forms.FileInput(attrs={'class':'py-2', 'id':'id_document'},),
+        'image': forms.FileInput(attrs={'class':'py-2', 'id':'file'},),
+    }
         

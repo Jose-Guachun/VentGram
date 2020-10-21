@@ -1,4 +1,14 @@
 from django.core.exceptions import ValidationError
+from django import forms
+
+
+def NumerosYLetras(usuario):
+    if usuario.isalnum():
+        if usuario.isdigit():
+            raise forms.ValidationError('En el campo Nombre de Usuario debe ingresar solo numeros y letras sin ningun espacio.')
+    else:
+         raise forms.ValidationError('En el campo Nombre de Usuario debe ingresar solo numeros y letras sin ningun espacio.')
+    return usuario
 
 
 def SoloLetras(palabra, name_camp):

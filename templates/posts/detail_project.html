@@ -26,8 +26,14 @@
          <div class="col-lg-9 col-md-9 pd-left-none">
             <div class="main-ws-sec">
                 <div class="posts-section">
+                    <div class="box gallery_pt">
+                        
+                        <img src="{{ project.image.url }}" class="">
+                        <a href="" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 25px;font-size: 30px;font-weight: 600;">{{ project.title}}</h3></a>
+                    </div>
                     <div class="post-bar">
-                        <div class="user-specs pt-3 pb-0">
+
+                        <div class="user-specs pt-0 pb-0">
                             {% if project.profile.user == request.user %}
                             <div class="ed-opts">
                                 <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
@@ -55,14 +61,14 @@
                                 <hr>
                             <h3>Descripcion</h3>
                             <p>{{ project.description }}</p>
-                                <img src="{{ project.image.url }}" width="100%">
+                                
                         </div>
                         
                         <div class="user_pro_status">
                             <hr>
-                            <h5 class="mb-3" >DOCUMENTO</h5>
-                                <h5 class="mb-2"><i class="fas fa-file-alt mr-2"></i>Aplicación móvil iOS Shopping.pdf</h5>
-                                <a  href="{% url 'posts:feed' %}" type="button" class="btn btn-danger mb-2 " style="padding: .275rem .55rem; font-size: 0.8rem;">Ver documento</a>
+                            <h3 class="mb-3" style="font-weight: 600;">DOCUMENTO</h3>
+                                <h5 class="mb-2"><i class="fas fa-file-alt mr-2"></i>{{ project.document.name}}</h5>
+                                <a  href="{{ project.document.url }}" type="button" class="btn btn-danger mb-2 " style="padding: .275rem .55rem; font-size: 0.8rem;">Ver documento</a>
                         </div>
                         <div class="job-status-bar btm-line">                                               
                            <ul class="like-com">

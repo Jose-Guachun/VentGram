@@ -4,9 +4,11 @@ from django.conf import settings
 
 #Utilities
 from utils.models import CRideModel
+from users.models import Profile
 
 
 class Social_Net(CRideModel, models.Model):
+    profile=models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True)
     social_net=models.URLField(max_length=200, blank=True)
     
 class Country(models.Model):

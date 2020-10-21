@@ -29,17 +29,23 @@ urlpatterns = [
         ),
     
     path(
-        route='me/settings/',
+        route='me/update_profile/',
         view=views.UpdateProfileView.as_view(),
-        name='setting'
+        name='update_profile'
         ),
 
     path(
-        route='me/user/',
+        route='me/update_user/',
         view=views.UpdateUserView.as_view(),
         name='update_user'
         ),
-    
+        
+    path(
+        route='me/update_password/', 
+        view=views.UserChangePasswordView.as_view(),
+        name='change_password'
+        ),
+
     path(
         route='mail/',
         view=views.email_verified,

@@ -751,9 +751,11 @@ main {
 	text-align: center;
 }
 .usr-pic {
+	position: relative;
+	align-items: center;
 	padding-top: 10px;
-	width: 96px;
-	height: 96px;
+	width: 105px;
+	height: 105px;
 	margin: 0 auto;
 	margin-bottom: -48px;
 }
@@ -2719,7 +2721,7 @@ footer {
 	padding: 11px;
 }
 .add-dp {
-    margin: -16px;
+	margin: -16px;
     padding: 0;
 }
 .add-dp input[type=file] {

@@ -82,7 +82,7 @@ Perfil | @{{user.username|capfirst}}
                 <div class="user-profile-ov st2">
                     <h3>Datos
                         {% if user == request.user %}
-                        <a href="{% url 'users:setting' %}" title="Personalizar Perfil"><i class="fa fa-pencil"></i></a></h3>
+                        <a href="{% url 'users:update_profile' %}" title="Personalizar Perfil"><i class="fa fa-pencil"></i></a></h3>
                         {% endif %}
                     <h4>Biografia</h4>
                     <p>{{user.profile.biography}}</p>   
@@ -148,15 +148,15 @@ Perfil | @{{user.username|capfirst}}
         <div class="right-sidebar">
             <!--main-ws-sec
                 <ul class="flw-status text-left">
-                    <a href="{% url 'users:setting' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Mensaje</a>
+                    <a href="{% url 'users:update_profile' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Mensaje</a>
                 </ul> --->
                 {% if user == request.user %}
                 <ul class="flw-status text-right">
-                    <a href="{% url 'users:setting' %}" type="button" class="btn btn-danger mb-3 " style=" padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Editar Perfil</a>
+                    <a href="{% url 'users:update_profile' %}" type="button" class="btn btn-danger mb-3 " style=" padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Editar Perfil</a>
                 </ul>
                 {% else %}
                 <ul class="flw-status text-right">
-                    <a href="{% url 'users:setting' %}" type="button" class="btn btn-secondary mb-3" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Seguir</a>
+                    <a href="{% url 'users:update_profile' %}" type="button" class="btn btn-secondary mb-3" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Seguir</a>
                 </ul>
                 {% endif %}
             <div class="widget widget-portfolio">

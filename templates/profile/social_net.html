@@ -1,0 +1,49 @@
+{% extends 'account_setting.html' %}
+
+{% block redes %}
+<div class="acc-setting">
+    <h3>Redes Sociales</h3>
+      <form method="POST" enctype="multipart/form-data">
+      <div class="row notbar" >
+        <div class="col-sm-12 col-md-6">
+            <h4>Facebook</h4>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fab fa-facebook "></i></span>
+                    <input type="text" class="form-control" name="facebook" placeholder="Url">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <h4>Twitter</h4>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter "></i></span>
+                    <input type="text" class="form-control" name="Twitter" placeholder="Url">
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 ">
+            <h4>Linkedind</h4>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fab fa-linkedin-in"></i></span>
+                    <input type="text" class="form-control" name="linkedind" placeholder="Url">
+                </div>
+            </div>
+        </div>
+       
+      
+    <div class="save-stngs pd2">
+        <ul>
+            <li><button type="submit">Guardar configuracion</button></li>
+            <li><button type="submit">Cancelar configuracion</button></li>
+        </ul>
+    </div>
+</div> 
+      </form>
+      
+      <!--notifications-list end-->
+  </div><!--acc-setting end-->
+{% endblock %}

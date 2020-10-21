@@ -62,6 +62,8 @@ class CreatedProjectView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
+        status=('Iniciado', 'En Proceso', 'Finalizado')
+        context['status']=status
         context['categorys']=Category.objects.all()
         context['user']=self.request.user
         context['profile']=self.request.user.profile
@@ -75,6 +77,8 @@ class UpdateProjectView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
+        status=('Iniciado', 'En Proceso', 'Finalizado')
+        context['status']=status
         context['categorys']=Category.objects.all()
         context['user']=self.request.user
         context['profile']=self.request.user.profile

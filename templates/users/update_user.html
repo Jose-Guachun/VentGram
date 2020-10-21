@@ -1,7 +1,12 @@
+{% extends 'account_setting.html' %}
+{% block head_content %}
+Actualizar Usuario| @{{ user.username|capfirst }}
+{% endblock%}
+{% block user %}
 
 <div class="acc-setting">
     <h3>Configuracion de cuenta</h3>
-    <form action="{% url 'users:update_user' %}" method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
             <div class="col-lg-12 cp-field mt-0 pd-left-none pd-right-none ">
                 <div class="cp-field col-sm-12 col-md-6">
@@ -71,7 +76,8 @@
                         name="email" 
                         placeholder="Ingrese su correo electronico"
                         value="{% if form.errors %}{{form.email.value }}{% else %}{{ user.email }}{% endif %}"
-                        />
+                        readonly=readonly
+                        disabled=»disabled />
                         <i class="fas fa-envelope"></i>
 
                         <div class="invalid-feedback">
@@ -90,3 +96,6 @@
         </div>
     </form>
   </div>
+
+{% endblock %}
+

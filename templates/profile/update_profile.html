@@ -1,8 +1,13 @@
 <!--acc-setting-->
+{% extends 'account_setting.html' %}
+{% block head_content %}
+Actualizar Perfil | @{{ user.username|capfirst }}
+{% endblock%}
 {% load static %}
+{% block profile %}
 <div class="acc-setting">
     <h3>Perfil de usuario</h3>
-    <form action="{% url 'users:setting'  %}" method="POST" enctype="multipart/form-data" id="updateForm" data-provinces-url="{% url 'users:ajax_load_province' %}">
+    <form method="POST" enctype="multipart/form-data" id="updateForm" data-provinces-url="{% url 'users:ajax_load_province' %}">
         {% csrf_token %}
         <div class="row">
             <div class="col-lg-12 mt-2 mb-5">
@@ -215,10 +220,11 @@
         <div class="save-stngs pd2">
             <ul>
                 <li><button type="submit">Guardar Configuracion</button></li>
-                <li><button type="submit">Cancelar Configuracion</button></li>
+                <li><a class="btn btn-danger" href="{% url 'users:update_profile' %}">Cancelar Configuracion</a></li>
             </ul>
         </div>
     </form>
+
 </div>
 <!--acc-setting end-->
 <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
@@ -237,4 +243,6 @@
             }
         });
     })
-</script>
+</script>  
+{% endblock %}
+                      

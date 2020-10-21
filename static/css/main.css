@@ -52,14 +52,10 @@
 /* ----General*/
 
 
-/* ----Romper texto en varias lineas*/
-.preview{
-  width: 96px;
-  height: 96px;
-}
+/* ----image cabecera*/
 
 
-/* ----Romper texto en varias lineas*/
+/* ----image cabecera*/
 
 /* ----footer*/
 footer{
@@ -134,7 +130,6 @@ footer{
 .box {
   width: 100%;
   height: 115px;
-  margin-right: 25px;
   overflow: hidden;
   border-radius: 5px;
   border: 1px;
@@ -144,6 +139,31 @@ footer{
   display: flex;
   align-items: center;
 }
+.limitar{
+  word-break: break-all;
+}
+.box-general{
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.box_document{
+  width: 100%;
+  border:2px dashed #bbb;
+  color: #191431;
+  word-break: break-all;
+
+}
+.box_document a{
+  color: #004ab9;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 0px;
+}
+ 
+.box_document a:hover{
+  color: rgb(29, 159, 211);
+}   
 .box_category{
   width: 100%;
   height: 60px;
@@ -174,8 +194,8 @@ footer{
   width:100%; 
   height: 100%; 
   border:0px;
-   
 }
+
 .box_category button:hover{
   background-color: rgba(66, 66, 66, 0.247);
   position: absolute;

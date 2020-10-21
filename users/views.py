@@ -1,11 +1,16 @@
 #user views
 #Django
-from django.shortcuts import render
+from django.contrib import messages
+from django.http import JsonResponse
+from django.contrib.auth import update_session_auth_hash
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth import login, views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, UpdateView, TemplateView, DetailView 
+from django.views.generic import UpdateView, DetailView, CreateView 
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 from django.template import Context
@@ -18,6 +23,7 @@ from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
+
 
 #Models
 from users.models import Profile, User, City, Province, Country
@@ -54,8 +60,9 @@ class UserDetailView(LoginRequiredMixin ,DetailView):
 
 class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
     #update profile view
-    template_name='profile/account_setting.html'
+    template_name='profile/update_profile.html'
     form_class=ProfileForm
+
     def get_object(self):
         #return user profile
         return self.request.user.profile
@@ -74,7 +81,8 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
     
     def get_success_url(self):
         #Return to users profile.
-        return reverse('users:setting')
+        messages.success(self.request, 'Se modifico correctamente su perfil de usuario')
+        return reverse('users:update_profile')
 
 def load_province(request):
     country=request.GET.get('country')
@@ -83,7 +91,7 @@ def load_province(request):
 
 class UpdateUserView(FormView, LoginRequiredMixin, UpdateView):
     #update User view
-    template_name='profile/account_setting.html'
+    template_name='users/update_user.html'
     form_class=UserForm
     
     def get_object(self):
@@ -92,8 +100,44 @@ class UpdateUserView(FormView, LoginRequiredMixin, UpdateView):
     
     def get_success_url(self):
         #Return to users profile.
-        return reverse('users:setting')
+        messages.success(self.request, 'Se modifico correctamente su usuario')
+        return reverse('users:update_user')
 
+class UserChangePasswordView(LoginRequiredMixin, FormView):
+    model = User
+    form_class = PasswordChangeForm
+    template_name = 'users/change_password.html'
+    success_url = reverse_lazy('login')
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form(self, form_class=None):
+        form = PasswordChangeForm(user=self.request.user)
+        return form
+
+    def post(self, request, *args, **kwargs):
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Se modifico correctamente su contraseña')
+            return render(request, 'users/change_password.html')
+        return render(request, 'users/change_password.html', {'form':form})
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['entity'] = 'Password'
+        context['list_url'] = self.success_url
+        return context
+
+class CreateSocialNet(LoginRequiredMixin, CreateView):
+    """
+    docstring
+    """
+    pass
 class LoginView(FormView):
     #login view
     template_name='users/login.html'
