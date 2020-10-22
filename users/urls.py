@@ -35,6 +35,12 @@ urlpatterns = [
         ),
 
     path(
+        route='me/add_social_net/',
+        view=views.UpdateSocialNet.as_view(),
+        name='social_net'
+        ),
+
+    path(
         route='me/update_user/',
         view=views.UpdateUserView.as_view(),
         name='update_user'
@@ -44,6 +50,12 @@ urlpatterns = [
         route='me/update_password/', 
         view=views.UserChangePasswordView.as_view(),
         name='change_password'
+        ),
+
+    path(
+        route='me/delete_account/', 
+        view=views.UserDelete.as_view(),
+        name='delete_user'
         ),
 
     path(

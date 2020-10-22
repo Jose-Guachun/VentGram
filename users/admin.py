@@ -11,7 +11,6 @@ from users.models import User, Profile, City, Country, Province
 
 # Register your models here.
 
-
 admin.site.register(Country)
 class CountryAdmin(admin.ModelAdmin):
     list_display=(

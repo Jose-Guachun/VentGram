@@ -21,6 +21,10 @@ class Profile(CRideModel):
     education_level=models.CharField(max_length=50, blank=True)
     work_area=models.CharField(max_length=100, blank=True)
     home_address=models.CharField(max_length=100, blank=True)
+    facebook=models.URLField(max_length=200, blank=True)
+    twitter=models.URLField(max_length=200, blank=True)
+    linkedin=models.URLField(max_length=200, blank=True)
+    github=models.URLField(max_length=200, blank=True)
     
     picture=models.ImageField(
         upload_to='users/pictures',

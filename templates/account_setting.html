@@ -21,7 +21,11 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-
+                    {% if  error %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endif %}
                     {% if form.errors %}
                         <div class="alert alert-danger alert-dismissible show" role="alert">   
                             {% for field in form %}
@@ -40,8 +44,8 @@
                             <a href="{% url 'users:update_profile' %}"><i class="fas fa-id-badge"></i>Perfil</a>
                             <a href="{% url 'users:update_user' %}"><i class="far fa-user"></i>Usuario</a>
                             <a href="{% url 'users:change_password' %}"><i class="fa fa-lock"></i>Cambiar contraseña</a>
-                            <a href="#nav-notification"><i class="fas fa-globe-americas"></i>Redes Sociales</a>
-                            <a href="#nav-deactivate" ><i class="fa fa-random"></i>Eliminar Cuenta</a>
+                            <a href="{% url 'users:social_net' %}"><i class="fas fa-globe-americas"></i>Redes Sociales</a>
+                            <a href="{% url 'users:delete_user' %}" ><i class="fa fa-random"></i>Eliminar Cuenta</a>
                         </div>
                     </div><!--acc-leftbar end-->
                 </div>
@@ -52,7 +56,9 @@
 
                     {% block password %}{% endblock %}
 
-                    {% block redes %}{% endblock %}  
+                    {% block redes %}{% endblock %}
+                      
+                    {% block deactivate %}{% endblock %}
             </div>
         </div><!--account-tabs-setting end-->
     </div>

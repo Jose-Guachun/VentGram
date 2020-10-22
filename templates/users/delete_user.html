@@ -1,0 +1,32 @@
+{% extends 'account_setting.html' %}
+{% block head_content %}
+Eliminar Cuenta | @{{ user.username|capfirst }}
+{% endblock%}
+{% block deactivate %}
+
+<div class="acc-setting">
+    <h3>Eliminar Cuenta</h3>
+    <form method="POST" >
+        {% csrf_token %}
+        <div class="cp-field">
+            <h5>Eliminar cuenta definitivamente</h5>
+            <p>Si eliminas tu cuenta de VentGram, no podrás recuperar el contenido ni la información que compartiste en VentGram. También se eliminarán todos tus mensajes</p>
+        </div>
+        <div class="cp-field">
+            <h5>Contraseña</h5>
+            <div class="cpp-fiel">
+                <input type="password" name="password" placeholder="Escriba su contraseña actual">
+                <i class="fa fa-lock"></i>
+            </div>
+        </div>
+        <div class="save-stngs pd3">
+            <ul>
+                <li><button type="submit">Eliminar</button></li>
+                <li><a class="btn btn-danger" href="{% url 'posts:feed' %}">Cancelar Configuracion</a></li>
+            </ul>
+        </div>
+        <!--save-stngs end-->
+    </form>
+</div>
+<!--acc-setting end-->
+{% endblock %}

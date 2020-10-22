@@ -15,7 +15,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     {% if user.profile.picture %}
                         <img src="{{ user.profile.picture.url }}" alt="profile-image"  id="preview" width="96" height="96">
                     {% else %}
-                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
+                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" id="preview" width="96" height="96">
                     {% endif %}
                     <div class="add-dp" id="OpenImgUpload">
                         <input type="file" id="file" name="picture">
@@ -219,8 +219,8 @@ Actualizar Perfil | @{{ user.username|capfirst }}
         </div>
         <div class="save-stngs pd2">
             <ul>
-                <li><button type="submit">Guardar Configuracion</button></li>
-                <li><a class="btn btn-danger" href="{% url 'users:update_profile' %}">Cancelar Configuracion</a></li>
+                <li><button type="submit">Guardar</button></li>
+                <li><a class="btn btn-danger" href="{% url 'users:update_profile' %}">Cancelar</a></li>
             </ul>
         </div>
     </form>

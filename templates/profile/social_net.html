@@ -4,32 +4,75 @@
 <div class="acc-setting">
     <h3>Redes Sociales</h3>
       <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
       <div class="row notbar" >
         <div class="col-sm-12 col-md-6">
             <h4>Facebook</h4>
             <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fab fa-facebook "></i></span>
-                    <input type="text" class="form-control" name="facebook" placeholder="Url">
+                    <input
+                        class="{% if form.facebook.errors %}is-invalid{% endif %} form-control" 
+                        type="text" name="facebook" placeholder="Coloque la Url de su cuenta de Facebook "
+                        value="{% if form.errors %}{{form.facebook.value }}{% else %}{{ user.profile.facebook }}{% endif %}" />
+                </div>
+                <div class="invalid-feedback">
+                    {% for error in form.facebook.errors %}
+                    {{ error }}
+                    {% endfor %}
                 </div>
             </div>
+
         </div>
         <div class="col-sm-12 col-md-6">
             <h4>Twitter</h4>
             <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter "></i></span>
-                    <input type="text" class="form-control" name="Twitter" placeholder="Url">
+                    <input 
+                    class="{% if form.twitter.errors %}is-invalid{% endif %} form-control" 
+                    type="text" name="twitter" placeholder="Coloque la Url de su cuenta de Twitter "
+                    value="{% if form.errors %}{{form.twitter.value }}{% else %}{{ user.profile.twitter }}{% endif %}">
+                </div>
+                <div class="invalid-feedback">
+                    {% for error in form.twitter.errors %}
+                    {{ error }}
+                    {% endfor %}
                 </div>
             </div>
         </div>
         
         <div class="col-sm-12 col-md-6 ">
-            <h4>Linkedind</h4>
+            <h4>Linkedin</h4>
             <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fab fa-linkedin-in"></i></span>
-                    <input type="text" class="form-control" name="linkedind" placeholder="Url">
+                    <input class="{% if form.linkedin.errors %}is-invalid{% endif %} form-control"
+                    type="text"  name="linkedin" placeholder="Coloque la Url de su cuenta de Linkedin "
+                    value="{% if form.errors %}{{form.linkedin.value }}{% else %}{{ user.profile.linkedin }}{% endif %}">
+                </div>
+                <div class="invalid-feedback">
+                    {% for error in form.linkedin.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 ">
+            <h4>GitHub</h4>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fab fa-github"></i></span>
+                    <input 
+                    class="{% if form.github.errors %}is-invalid{% endif %} form-control"
+                    type="text"  name="github" placeholder="Coloque la Url de su cuenta de Github "
+                    value="{% if form.errors %}{{form.github.value }}{% else %}{{ user.profile.github }}{% endif %}">
+                </div>
+                <div class="invalid-feedback">
+                    {% for error in form.github.errors %}
+                    {{ error }}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -37,8 +80,8 @@
       
     <div class="save-stngs pd2">
         <ul>
-            <li><button type="submit">Guardar configuracion</button></li>
-            <li><button type="submit">Cancelar configuracion</button></li>
+            <li><button type="submit">Guardar</button></li>
+            <li><a class="btn btn-danger" href="{% url 'users:social_net' %}">Cancelar</a></li>
         </ul>
     </div>
 </div> 

@@ -18,7 +18,11 @@ class ProfileForm(forms.ModelForm):
             "phone_number", 
             "education_level", 
             "work_area", 
-            "home_address", 
+            "home_address",
+            "facebook",
+            "twitter",
+            "linkedin",
+            "github", 
             "picture"]
     widgets = {
     'education_level': forms.Select(attrs={'class': 'form-control'}),
@@ -106,7 +110,7 @@ class SignupForm(forms.ModelForm):
         #create user and profile
         data=self.cleaned_data
         data.pop('password_confirmation')
-
+        
         user= User.objects.create_user(**data)
         profile=Profile(user=user)
         profile.save()
