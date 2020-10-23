@@ -599,6 +599,10 @@ nav > ul > li > a:hover {
 	padding: 10px;
 	border-bottom: 1px solid #e5e5e5;
 }
+.on-off-status :hover{
+	background-color:rgb(241, 241, 241)
+}
+
 .on-off-status li {
 	float: left;
 	width: 100%;

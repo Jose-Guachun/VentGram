@@ -40,10 +40,19 @@
                 <span class="ml-2 text-capitalize"> {{ user.email}}</span>
             </p>
 
-            <div class="text-center">
-                <a href=""><i class="fab fa-facebook"></i></a>
-                <a href=""><i class="fab fa-twitter"></i></a>
-                <a href=""><i class="fab fa-linkedin"></i></a>
+            <div class="pb-4 pt-2" >
+                {% if  user.profile.facebook %}
+                <a sty href="{{user.profile.facebook}}" target="_blank"><img style=" display:block;margin:auto;" src="{% static 'img/facebook.png' %}" class="mr-2" width="35px" height="35px" alt=""></a>
+                {% endif %}
+                {% if  user.profile.twitter %}
+                <a href="{{user.profile.twitter}}" target="_blank"><img src="{% static 'img/twitter.png' %}" class="mr-2" width="33px" height="33px" alt=""></a>
+                {% endif %}
+                {% if  user.profile.linkedin %}
+                <a href="{{user.profile.linkedin}}" target="_blank"><img src="{% static 'img/linkedin.png' %}" class="mr-2" width="33px" height="33px" alt=""></a>
+                {% endif %}
+                {% if  user.profile.github %}
+                <a href="{{user.profile.github}}" target="_blank"><img src="{% static 'img/github.png' %}" class="mr-2" width="35px" height="35px" alt=""></a>
+                {% endif %}
             </div>
         </div>
     </div>

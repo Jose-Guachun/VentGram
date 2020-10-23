@@ -7,6 +7,13 @@ from utils.models import CRideModel
 from django.core import validators
 from VentGram.validators import vcedula, SoloNumeros
 
+from users.models import User
+
+def ruta(instance, file_name):
+    route='{}/{}/{}/{}'.format( 'users',instance.user.email,'profile_picture',file_name)
+    return route
+
+
 class Profile(CRideModel):
     #profile model
     #extencio de proxy model mas informacion en la base de datos
@@ -27,7 +34,7 @@ class Profile(CRideModel):
     github=models.URLField(max_length=200, blank=True)
     
     picture=models.ImageField(
-        upload_to='users/pictures',
+        upload_to=ruta,
         blank=True,
         null=True,
     )

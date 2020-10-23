@@ -9,11 +9,15 @@ from users.models import User
 from django.core import validators
 from VentGram.validators import SoloNumeros
 
+
+def ruta_imagen(instance, file_name):
+    route='{}/{}/{}'.format( 'category', instance.category, file_name)
+    return route
 class Category(CRideModel):
     #profile model
     #extencio de proxy model mas informacion en la base de datos
     category=models.CharField(max_length=60, validators=[validators.MinLengthValidator(5)])
-    image=models.ImageField(upload_to='category/photos/%Y/%m/%d/')
+    image=models.ImageField(upload_to=ruta_imagen)
     
 
     def __str__(self):

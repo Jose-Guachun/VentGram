@@ -10,6 +10,13 @@ from posts.models import Category
 from django.core import validators
 from VentGram.validators import SoloNumeros
 
+def ruta_imagen(instance, file_name):
+    route='{}/{}/{}/{}/{}'.format( 'users', instance.user.email, 'projects','img', file_name)
+    return route
+
+def ruta_documento(instance, file_name):
+    route='{}/{}/{}/{}/{}'.format( 'users', instance.user.email, 'projects', 'document', file_name)
+    return route
 
 class Project(CRideModel):
     #profile model
@@ -21,10 +28,10 @@ class Project(CRideModel):
     title=models.CharField(max_length=50,)
     description=models.TextField(validators=[validators.MinLengthValidator(125)])
     objetive=models.TextField(validators=[validators.MinLengthValidator(15)])
-    image=models.ImageField(upload_to='project/photos/%Y/%m/%d/',)
+    image=models.ImageField(upload_to=ruta_imagen)
     status=models.CharField(max_length=30,)
     website=models.URLField(max_length=200, blank=True)
-    document=models.FileField(upload_to='project/doc/%Y/%m/%d/',)
+    document=models.FileField(upload_to=ruta_documento)
     collaborators=models.CharField(max_length=300, validators=[validators.MinLengthValidator(5)], blank=True)
 
     def __str__(self):

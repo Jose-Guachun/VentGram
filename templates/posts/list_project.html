@@ -72,11 +72,13 @@
                 {% endfor %}
             {% else %}
             <div class="col-lg-6 col-md-12 pd-right-none mb-3">
-                <h1>No hay proyectos publicados</h1>
+                <h1>No existen proyectos publicados</h1>
             </div>
             {% endif %}
             </div>
+            {% if projects %}
             {% include 'pagination.html' %}
+            {% endif %}
     </div>
  
     {% endblock %}

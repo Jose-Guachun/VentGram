@@ -1,5 +1,7 @@
 {% extends 'account_setting.html' %}
-
+{% block head_content %}
+Redes Sociales| @{{ user.username|capfirst }}
+{% endblock%}
 {% block redes %}
 <div class="acc-setting">
     <h3>Redes Sociales</h3>
@@ -18,7 +20,7 @@
                 </div>
                 <div class="invalid-feedback">
                     {% for error in form.facebook.errors %}
-                    {{ error }}
+                        {{ error }}
                     {% endfor %}
                 </div>
             </div>
@@ -81,7 +83,7 @@
     <div class="save-stngs pd2">
         <ul>
             <li><button type="submit">Guardar</button></li>
-            <li><a class="btn btn-danger" href="{% url 'users:social_net' %}">Cancelar</a></li>
+            <li><a class="btn btn-danger mb-1" href="{% url 'users:social_net' %}">Cancelar</a></li>
         </ul>
     </div>
 </div> 

@@ -22,12 +22,12 @@ class ProjectForm(forms.ModelForm):
             'website',
             'document',
             'collaborators',]
-
+            
     widgets = {
         'title': forms.TextInput(attrs={'placeholder':'Hola que hace '}),
         'category': forms.Select(attrs={'class': 'form-control', 'placeholder':'Seleccione una categoria'}),
         'status': forms.Select(attrs={'class': 'form-control'}),
-        'document': forms.FileInput(attrs={'class':'py-2', 'id':'id_document'},),
+        'document': forms.FileInput(attrs={'class':'py-2'},),
         'image': forms.FileInput(attrs={'class':'py-2', 'id':'file'},),
     }
         

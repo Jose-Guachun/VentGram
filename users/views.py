@@ -143,8 +143,7 @@ class UserChangePasswordView(LoginRequiredMixin, FormView):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            messages.success(
-                request, 'Se modifico correctamente su contraseña')
+            messages.success(request, 'Se modifico correctamente su contraseña')
             return render(request, 'users/change_password.html')
         return render(request, 'users/change_password.html', {'form': form})
 

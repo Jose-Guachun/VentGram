@@ -112,30 +112,29 @@
       </div>
       <div class="user-account-settingss" id="users">
         <ul class="on-off-status">
-          <a href="{% url 'users:detail' request.user.username %}">
-            <div class="usy-dt mr-2">
-                {% if request.user.profile.picture %}
-                  <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
-                {% else %}
-                  <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
-                {% endif %}
-            </div>
-
-            <div >
-              <div class="fgt-sec">
-              <h6 class="mt-1 ml-0">{{user.first_name|capfirst}}</h6>
-              <p>Ver mi perfil</p></a>
+          <li>
+            <a href="{% url 'users:detail' request.user.username %}">
+              <div class="usy-dt mr-2">
+                  {% if request.user.profile.picture %}
+                    <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
+                  {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
+                  {% endif %}
               </div>
-            </div>
-
-        </ul>
+  
+              <div >
+                <div class="fgt-sec">
+                <h6 class="mt-1 ml-0">{{user.first_name|capfirst}}</h6>
+                <p>Ver mi perfil</p></a>
+          </li>
+          </ul>
 
         <h3>Ajustes</h3>
         <ul class="us-links">
-          <li><a href="{% url 'users:update_profile' %}" title="">Configuracion de Cuenta</a></li>
+          <li><a href="{% url 'users:update_profile' %}" title="Configuracion de Cuenta"><i class="fas fa-users-cog mr-2"></i>Configuracion de Cuenta</a></li>
 
         </ul>
-        <h3 class="tc"><a href="{% url 'users:logout' %}" title="">Cerrar Sesion</a></h3>
+        <h3 class="tc"><a href="{% url 'users:logout' %}" title="Cerrar Sesion"><i class="fas fa-power-off mr-2"></i>Cerrar Sesion</a></h3>
       </div><!--user-account-settingss end-->
     </div>
   </div><!--header-data end-->
