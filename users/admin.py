@@ -36,6 +36,8 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display=(
         'pk',
         'user',
+        'country',
+        'province',
         'city',
         'dni',
         'gender',
@@ -77,7 +79,8 @@ class ProfileAdmin(admin.ModelAdmin):
         ('Profile', {
             'fields':
                 (
-                    'user', 'picture','city',
+                    'user', 'picture',
+                    'country','province','city',
                     'gender',
                     'birth_date','education_level',
                     'work_area',

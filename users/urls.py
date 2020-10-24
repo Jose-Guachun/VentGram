@@ -77,4 +77,11 @@ urlpatterns = [
         view=views.load_province,
         name='ajax_load_province'
     ),
+
+        path(
+        route='ajax/city/',
+        view=views.load_city,
+        name='ajax_load_city'
+    ),
+
 ]

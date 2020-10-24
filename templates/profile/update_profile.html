@@ -7,7 +7,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
 {% block profile %}
 <div class="acc-setting">
     <h3>Perfil de usuario</h3>
-    <form method="POST" enctype="multipart/form-data" id="updateForm" data-provinces-url="{% url 'users:ajax_load_province' %}">
+    <form method="POST" enctype="multipart/form-data" id="updateForm" updateProfile-url="{% url 'users:update_profile' %}" data-provinces-url="{% url 'users:ajax_load_province' %}"  data-city-url="{% url 'users:ajax_load_city' %}">
         {% csrf_token %}
         <div class="row">
             <div class="col-lg-12 mt-2 mb-5">
@@ -109,10 +109,10 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     <h5>Pais</h5>
                     <div class="datefm mb-2">
                             <select name="country" class="form-control" id="id_country">
-                                {% if user.profile.city.province.country %}
-                                <option selected="true" value="{{ user.profile.city.province.country.pk }}">{{ user.profile.city.province.country }}</option>
+                                {% if user.profile.country %}
+                                <option selected="true" value="{{ user.profile.country.pk }}">{{ user.profile.country }}</option>
                                 {% for country in countrys %}
-                                    {% if  country != user.profile.city.province.country %}
+                                    {% if  country != user.profile.country %}
                                         <option value="{{ country.pk }}">{{ country }}</option>
                                     {% endif %}
                                 {% endfor %}
@@ -127,13 +127,16 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     <h5>Provincia</h5>
                     <div class="datefm mb-2">
                         <select name="province" class="form-control" id="id_province">
-                            {% if user.profile.city.province.country %}
-                            <option selected="true" value="{{ user.profile.city.province.pk }}">{{ user.profile.city.province }}</option>
-                            {% for province in provinces %}
-                                {% if  province != user.profile.city.province %}
-                                    <option value="{{ province.pk }}">{{ province }}</option>
+                            {% if user.profile.country %}
+                            <option selected="true" disabled>Seleccione la Provincia</option>
+                                {% if user.profile.province %}
+                                <option selected="true" value="{{ user.profile.province.pk }}">{{ user.profile.province }}</option>
                                 {% endif %}
-                            {% endfor %}
+                                {% for province in provinces %}
+                                    {% if  province != user.profile.province %}
+                                        <option value="{{ province.pk }}">{{ province }}</option>
+                                    {% endif %}
+                                {% endfor %}
                             {% else %}
 
                             {% endif %}
@@ -141,19 +144,21 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     </div>
                     <h5>Ciudad</h5>
                     <div class="datefm mb-2">
-                        <select name="city" class="form-control" id="exampleFormControlSelect3">
-                            {% if user.profile.city %}
-                                <option selected="true" value="user.profile.city">{{ user.profile.city }}</option>
-                                {% for value in city %}
-                                    {% if  value != user.profile.city %}
-                                        <option value="value.pk">{{ value }}</option>
+                        <select name="city" class="form-control" id="id_city">
+                            {% if user.profile.country %}
+                            <option selected="true" disabled>Seleccione la Ciudad</option>
+                                {% if user.profile.province %}
+                                    {% if user.profile.city %}
+                                        <option selected="true" value="{{user.profile.city.pk}}">{{ user.profile.city }}</option>
                                     {% endif %}
-                                {% endfor %}
+                                    {% for city in citys %}
+                                        {% if  city != user.profile.city %}
+                                            <option value="{{city.pk}}">{{ city }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
                             {% else %}
-                                <option selected="true" disabled="disabled">Seleccione la Ciudad</option>
-                                {% for value in city %}
-                                    <option value="value.pk">{{ value }}</option>
-                                {% endfor %}
+
                             {% endif %}
                         </select><i class="fas fa-map-marker-alt"></i>
                     </div>
@@ -231,8 +236,9 @@ Actualizar Perfil | @{{ user.username|capfirst }}
 <script>
     $("#id_country").change(function(){
         var url= $("#updateForm").attr("data-provinces-url");
+        var urlCity= $("#updateForm").attr("data-city-url");
         var countryId= $(this).val();
-
+        var provinceId=$(this).val();
         $.ajax({
             url: url,
             data: {
@@ -240,9 +246,47 @@ Actualizar Perfil | @{{ user.username|capfirst }}
             },
             success:function(data){
                 $("#id_province").html(data);
-            }
+            },
         });
-    })
+        $.ajax({
+            url: urlCity,
+            data: {
+                'province':provinceId
+            },
+            success:function(data){
+                $("#id_city").html(data);
+            },
+        });
+    });
+
+    $("#id_province").change(function(){
+        var url= $("#updateForm").attr("data-city-url");
+        var provinceId= $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'province':provinceId
+            },
+            success:function(data){
+                $("#id_city").html(data);
+            },
+        });
+    });
+    $("#id_city").change(function(){
+        var url= $("#updateForm").attr("updateProfile");
+        var cityId= $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'city':cityId
+            },
+            success:function(data){
+                $("#id_city").append('<option value="${data}">${data}</option>');
+            },
+        });
+    });
 </script>  
 {% endblock %}
                       

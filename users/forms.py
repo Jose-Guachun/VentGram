@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 #models
-from users.models import Profile, User
+from users.models import Profile, User, Province, City
 from VentGram.validators import SoloLetras, SoloNumeros, NumerosYLetras
 
 
@@ -12,6 +12,9 @@ class ProfileForm(forms.ModelForm):
         model=Profile
         fields=[
             "dni",
+            "country",
+            "province",
+            "city",
             "gender", 
             "birth_date", 
             "biography", 
@@ -29,7 +32,10 @@ class ProfileForm(forms.ModelForm):
     'work_area': forms.Select(attrs={'class': 'form-control'}),
     'gender': forms.Select(attrs={'class': 'form-control'}),
     }
-
+class AddressForm(forms.Form):
+    provinces = Province.objects.filter(country=1).order_by('name_province')
+    citys = City.objects.filter(province=1).order_by('name_city')
+ 
 class UserForm(forms.ModelForm):
 
     class Meta:

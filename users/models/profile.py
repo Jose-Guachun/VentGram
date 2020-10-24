@@ -18,6 +18,8 @@ class Profile(CRideModel):
     #profile model
     #extencio de proxy model mas informacion en la base de datos
     user=models.OneToOneField('users.User', on_delete=models.CASCADE,)
+    country=models.ForeignKey('users.Country', on_delete=models.CASCADE, blank=True, null=True)
+    province=models.ForeignKey('users.Province', on_delete=models.CASCADE, blank=True, null=True)
     city=models.ForeignKey('users.City', on_delete=models.CASCADE, blank=True, null=True)
     
     dni=models.CharField(max_length=10, validators=[validators.MinLengthValidator(10), SoloNumeros], blank=True)
