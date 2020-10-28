@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 from users.models import Profile, User
-from posts.models import Project, Category
+from posts.models import Project, Category, Status
 #forms
 from posts.forms import ProjectForm
 
@@ -17,24 +17,31 @@ from posts.forms import ProjectForm
 @login_required
 def FilterProjectView(request):
     busqueda = request.POST.get("buscar")
-    filtro=request.POST.get("filtro")
+    filtroCa=request.POST.get("filtroCategoria")
+    filtroEs=request.POST.get("filtroEstado")
     projects = Project.objects.all()
     categorys = Category.objects.all()
+    status = Status.objects.all()
+    context=()
     if busqueda:
         projects = Project.objects.filter(
             Q(title__icontains = busqueda) |  
             Q(description__icontains = busqueda) 
         ).distinct()
-    elif filtro:
-        projects = Project.objects.filter(category=filtro)
+    elif filtroCa:
+        projects = Project.objects.filter(category=filtroCa)
+        context=('Proyectos de ')
+    elif filtroEs:
+        context=('Proyectos con estado ')
+        projects = Project.objects.filter(status=filtroEs)
 
     paginator=Paginator(projects, 4)
     page=request.GET.get('page')
     projects=paginator.get_page(page)
-    return render(request, 'posts/list_project.html', {'projects':projects, 'categorys':categorys})
+    return render(request, 'posts/list_project.html', {'projects':projects, 'categorys':categorys, 'statuss':status, 'context':context})
 
 @login_required
-def ProjectFeedView(request):
+def ProjectFeedView(request,**kwargs):
     busqueda = request.POST.get("buscar")
     projects = Project.objects.all()
     if busqueda:
@@ -62,9 +69,6 @@ class CreatedProjectView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
-        status=('Iniciado', 'En Proceso', 'Finalizado')
-        context['status']=status
-        context['categorys']=Category.objects.all()
         context['user']=self.request.user
         context['profile']=self.request.user.profile
         return context
@@ -77,9 +81,6 @@ class UpdateProjectView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
-        status=('Iniciado', 'En Proceso', 'Finalizado')
-        context['status']=status
-        context['categorys']=Category.objects.all()
         context['user']=self.request.user
         context['profile']=self.request.user.profile
         return context

@@ -32,7 +32,7 @@ from users.models import Profile, User, City, Province, Country
 from posts.models import Project
 
 # Forms
-from users.forms import ProfileForm, SignupForm, LoginForm, UserForm, AddressForm
+from users.forms import ProfileForm, SignupForm, LoginForm, UserForm, SocialNetForm
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -72,9 +72,8 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateProfileView, self).get_context_data(**kwargs)
-        studies = ('Primaria', 'Secundaria',
-                   'Superior', 'Maestria', 'Doctorado')
-        work = ('Desarrollo', 'Marketing', 'Diseño', 'Negocios', 'Electronica')
+        studies = ('Primaria', 'Secundaria','Superior', 'Maestria', 'Doctorado')
+        work = ('Desarrollo', 'Marketing', 'Diseño', 'Negocios', 'Electronica', 'Otro')
         gender = ('Masculino', 'Femenino', 'Otro')
 
         country=self.object.user.profile.country
@@ -82,6 +81,7 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
 
         province=self.object.user.profile.province
         citys = City.objects.filter(province=province).order_by('name_city')
+
         context['countrys'] = Country.objects.all()
         context['provinces'] = provinces
         context['citys'] = citys
@@ -107,9 +107,10 @@ def load_city(request):
     citys = City.objects.filter(province=province).order_by('name_city')
     return render(request, 'profile/city_dropdown_list.html', {'citys': citys})
 
+
 class UpdateSocialNet(LoginRequiredMixin, UpdateView):
     template_name = 'profile/social_net.html'
-    form_class = ProfileForm
+    form_class = SocialNetForm
 
     def get_object(self):
         # return user profile

@@ -25,31 +25,56 @@
                     </a>     
                 </div>
              </div>
+         </div>
+         <div class="filter-heading pb-1 pl-0">
+            <h3>Categoria</h3>
+         </div><!--filter-heading end-->
+         <div class="paddy">
+             {% for category in categorys %}
+             <div class="pb-2">
+             <form method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                 <div class="box_category mb-1">
+                     <input type="hidden" name="filtroCategoria" value="{{ category.pk }}" />
+                     <input type="hidden" name="filtro_name" value="{{ category }}" />
+                     <img src="{{ category.image.url }}" alt="">
+                     <button class="btn" class="active">
+                             <div class="usy-name mt-1" >
+                                 <h3>{{ category }}</h3>
+                              </div>
+                     </button>
+                 </div>
+             </form>
+             </div>
+             {% endfor %}
+             
          </div>               
             <!--user-info end-->
-        <div class="filter-heading pb-1 pl-0">
-           <h3>Categoria</h3>
-        </div><!--filter-heading end-->
-        <div class="paddy">
-            {% for category in categorys %}
-            <div class="pb-2">
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="box_category mb-1">
-                    <input type="hidden" name="filtro" value="{{ category.pk }}" />
-                    <input type="hidden" name="filtro_name" value="{{ category }}" />
-                    <img src="{{ category.image.url }}" alt="">
-                    <button class="btn" class="active">
-                            <div class="usy-name mt-1" >
-                                <h3>{{ category }}</h3>
-                             </div>
-                    </button>
+            <div class="filter-heading pb-1 pl-0">
+                <h3>Estado</h3>
+             </div><!--filter-heading end-->
+            <div class="paddy">
+                {% for status in statuss %}
+                <div class="pb-2">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="box_category mb-1">
+                        <input type="hidden" name="filtroEstado" value="{{ status.pk }}" />
+                        <input type="hidden" name="filtro_name" value="{{ status }}" />
+                        <img src="{{ status.image.url }}" alt="">
+                        <button class="btn" class="active">
+                                <div class="usy-name mt-1" >
+                                    <h3>{{ status }}</h3>
+                                 </div>
+                        </button>
+                    </div>
+                </form>
                 </div>
-            </form>
+                {% endfor %}
             </div>
-            {% endfor %}
-            
-        </div>
+
+
+
     </div>
     <div class="col-lg-9 col-md-8 pd-right-none pd-left-none">
         <div class="row">
@@ -58,7 +83,7 @@
                 <!--main-ws-sec end-->
                 <div class="sign_link">
                     {% if request.POST.filtro_name %}
-                    <h3>PROYECTOS DE {{ request.POST.filtro_name }}</h3>
+                    <h3>{{context}}{{ request.POST.filtro_name }}</h3>
                     {% else %}
                     <h3>PROYECTOS DE EMPRENDIMIENTO</h3>
                     {% endif %}

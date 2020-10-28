@@ -22,20 +22,23 @@ class ProfileForm(forms.ModelForm):
             "education_level", 
             "work_area", 
             "home_address",
-            "facebook",
-            "twitter",
-            "linkedin",
-            "github", 
             "picture"]
     widgets = {
     'education_level': forms.Select(attrs={'class': 'form-control'}),
     'work_area': forms.Select(attrs={'class': 'form-control'}),
     'gender': forms.Select(attrs={'class': 'form-control'}),
     }
-class AddressForm(forms.Form):
-    provinces = Province.objects.filter(country=1).order_by('name_province')
-    citys = City.objects.filter(province=1).order_by('name_city')
- 
+
+class SocialNetForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields=[
+            "facebook",
+            "twitter",
+            "linkedin",
+            "github", 
+            ]
+
 class UserForm(forms.ModelForm):
 
     class Meta:
@@ -120,4 +123,3 @@ class SignupForm(forms.ModelForm):
         user= User.objects.create_user(**data)
         profile=Profile(user=user)
         profile.save()
-

@@ -1,2 +1,2 @@
-from .category import Category
+from .category import Category, Status
 from .project import Project

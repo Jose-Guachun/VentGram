@@ -15,8 +15,13 @@ Eliminar Cuenta | @{{ user.username|capfirst }}
         <div class="cp-field">
             <h5>Contraseña</h5>
             <div class="cpp-fiel">
-                <input type="password" name="password" placeholder="Escriba su contraseña actual">
+                <input class="{% if error %}is-invalid{% endif %}" type="password" name="password" placeholder="Escriba su contraseña actual">
                 <i class="fa fa-lock"></i>
+                {% if error %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+            {% endif %}
             </div>
         </div>
         <div class="save-stngs pd3">

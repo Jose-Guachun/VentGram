@@ -40,7 +40,7 @@ Actualizar Usuario| @{{ user.username|capfirst }}
                     <i class="fas fa-signature"></i>
 
                     <div class="invalid-feedback">
-                        {% for error in form.first_name.errors %}
+                        {% for error in form.last_name.errors %}
                             {{ error }}
                         {% endfor %}
                     </div>

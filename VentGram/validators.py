@@ -20,7 +20,6 @@ def SoloLetras(palabra, name_camp):
             raise ValidationError('El campo ' + name_camp +' solo tiene que contener letras.')
     return palabra
 
-
 def SoloNumeros(value):
     if not value.isdigit():
         raise ValidationError('El campo solo tiene que contener numeros.')
@@ -32,43 +31,55 @@ def Min_lenght(value):
         raise ValidationError(
             'Asegúrese de que este valor tenga 10 caracteres')
 
+def dividirCadena(cadena, separador, numeroCaracteres):
+    cifra = ""
+    contador = 0
+    for numero in cadena[::-1]:
+        if contador == numeroCaracteres:
+            cifra += separador
+            contador = 0
+            
+        contador += 1
+        cifra += numero
+
+    return (cifra)
 
 def vcedula(value):
     # sin ceros a la izquierda
     SoloNumeros(value)
+    cont=0
+    cedula=""
+    suma=0
+    validador=0
     try:
-        nocero = value.strip("0")
-        cedula = int(nocero, 0)
-        verificador = cedula % 10
-        numero = cedula//10
+        for digit in value:
+            cedula+=digit
+            cont=cont+1
+            if cont==2:
+                pro=int(cedula)
+                if not(pro > 0 and pro <= 24):
+                    raise ValidationError('Error provincia')
 
-    # mientras tenga números
-        suma = 0
-        while (numero > 0):
-
-            # posición impar
-            posimpar = numero % 10
-            numero = numero//10
-            posimpar = 2*posimpar
-        if (posimpar > 9):
-            posimpar = posimpar-9
-
-        # posición par
-        pospar = numero % 10
-        numero = numero//10
-
-        suma = suma + posimpar + pospar
-
-        decenasup = suma//10 + 1
-        calculado = decenasup*10 - suma
-        if (calculado >= 10):
-            calculado = calculado - 10
-
-        if (calculado == verificador):
-            validado = 1
-        else:
-            raise ValidationError('Numero de cedula incorrecta')
-        return (validado)
-
+            if cont==3:
+                indi=int(digit)
+                if not indi<6:
+                    raise ValidationError('Error digito 3 ')
+            if cont<10: 
+                if cont%2==0 :
+                    mult=int(digit)*1
+                else:
+                    mult=int(digit)*2      
+                
+                if mult>=10:
+                    mult=mult-9
+                suma+=mult
+                
+            if cont==10:
+                while suma%10 != 0:
+                    suma+=1
+                    validador+=1
+                    
+                if validador!=int(digit):
+                    raise ValidationError('Cedula Incorrecta')
     except ValueError:
         raise ValidationError('Algo fallo')

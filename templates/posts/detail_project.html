@@ -29,7 +29,7 @@
                     <div class="box gallery_pt">
                         
                         <img src="{{ project.image.url }}" class="">
-                        <a href="" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 25px;font-size: 30px;font-weight: 600;">{{ project.title}}</h3></a>
+                        <a href="" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 25px;font-size: 30px;font-weight: 600;">{{ project.title|title}}</h3></a>
                     </div>
                     <div class="post-bar">
 
@@ -45,30 +45,31 @@
                             {% endif %}
                             <h3>{{ project.title }}</h3>
                             <a href="{% url 'users:detail' project.user.username %}">Por: {{project.user.first_name }} {{project.user.last_name}} | @{{project.user.username }}</a>
+                            {% if project.collaborators %}
                             <h4 class="pt-1">colaboradores: {{ project.collaborators }}</h4>
+                            {% endif %}
                             <hr>
                         </div>
                         <div class="job_descp accountnone">
-                            <ul class="skill-tags">
-                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTML</font></font></a></li>
-                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PHP</font></font></a></li>
-                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSS</font></font></a></li>
-                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Javascript</font></font></a></li>
-                                <li><a href="#" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Wordpress</font></font></a></li>
-                            </ul>
                             <h3>Objetivo</h3>
-                            <p>{{ project.objetive }}</p>
+                            <p>{{ project.objetive|linebreaksbr }}</p>
                                 <hr>
                             <h3>Descripcion</h3>
-                            <p>{{ project.description }}</p>
-                                
+                            <p>{{ project.description|linebreaksbr }}</p>  
                         </div>
                         
                         <div class="user_pro_status">
                             <hr>
-                            <h3 class="mb-3" style="font-weight: 600;">DOCUMENTO</h3>
-                                <h5 class="mb-2"><i class="fas fa-file-alt mr-2"></i>{{ project.document.name}}</h5>
-                                <a  href="{{ project.document.url }}" type="button" class="btn btn-danger mb-2 " style="padding: .275rem .55rem; font-size: 0.8rem;">Ver documento</a>
+                            <h3 class="mb-3" style="font-weight: 600;">Documento</h3>
+                            <div class="row box_document_detail">
+
+                                <div class="col-lg-9 col-md-8 col-sm-8">
+                                    <h5 class="mt-3"><i class="fas fa-file-alt mr-2"></i>{{ project.document.name|slice:"41:"}}</h5>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4 text-right">
+                                    <a href="{{ project.document.url }}" title="DESCARGAR: {{ project.document.name|slice:'41:'}}" type="button" class="btn btn-danger mt-2 mb-2 text-center"style="padding: .275rem .55rem; font-size: 0.8rem;width: 100%; color:white ;"><i class="fas fa-download mr-1"></i>Descargar</a>
+                                </div>
+                            </div>  
                         </div>
                         <div class="job-status-bar btm-line">                                               
                            <ul class="like-com">

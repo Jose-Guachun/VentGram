@@ -7,7 +7,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
 {% block profile %}
 <div class="acc-setting">
     <h3>Perfil de usuario</h3>
-    <form method="POST" enctype="multipart/form-data" id="updateForm" updateProfile-url="{% url 'users:update_profile' %}" data-provinces-url="{% url 'users:ajax_load_province' %}"  data-city-url="{% url 'users:ajax_load_city' %}">
+    <form method="POST" enctype="multipart/form-data" id="updateForm" data-provinces-url="{% url 'users:ajax_load_province' %}"  data-city-url="{% url 'users:ajax_load_city' %}">
         {% csrf_token %}
         <div class="row">
             <div class="col-lg-12 mt-2 mb-5">
@@ -96,9 +96,9 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     <div class="form-control">
                         {% for value in gender %}
                             {% if value == user.profile.gender %}
-                            <label class="ml-2"><input type="radio" name="gender" value="{{ value }}" checked> {{ value }}</label>
+                            <label class="ml-2 mr-2"><input type="radio" name="gender" value="{{ value }}" checked> {{ value }}</label>
                             {% else %}
-                            <label><input type="radio" name="gender" value="{{ value }}"> {{ value }}</label>
+                            <label class="mr-2"><input type="radio" name="gender" value="{{ value }}"> {{ value }}</label>
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -236,9 +236,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
 <script>
     $("#id_country").change(function(){
         var url= $("#updateForm").attr("data-provinces-url");
-        var urlCity= $("#updateForm").attr("data-city-url");
         var countryId= $(this).val();
-        var provinceId=$(this).val();
         $.ajax({
             url: url,
             data: {
@@ -246,15 +244,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
             },
             success:function(data){
                 $("#id_province").html(data);
-            },
-        });
-        $.ajax({
-            url: urlCity,
-            data: {
-                'province':provinceId
-            },
-            success:function(data){
-                $("#id_city").html(data);
+                $("#id_city").html("<option>Seleccione la Ciudad</option>");
             },
         });
     });
@@ -270,20 +260,6 @@ Actualizar Perfil | @{{ user.username|capfirst }}
             },
             success:function(data){
                 $("#id_city").html(data);
-            },
-        });
-    });
-    $("#id_city").change(function(){
-        var url= $("#updateForm").attr("updateProfile");
-        var cityId= $(this).val();
-
-        $.ajax({
-            url: url,
-            data: {
-                'city':cityId
-            },
-            success:function(data){
-                $("#id_city").append('<option value="${data}">${data}</option>');
             },
         });
     });

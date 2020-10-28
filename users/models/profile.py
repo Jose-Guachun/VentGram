@@ -22,7 +22,7 @@ class Profile(CRideModel):
     province=models.ForeignKey('users.Province', on_delete=models.CASCADE, blank=True, null=True)
     city=models.ForeignKey('users.City', on_delete=models.CASCADE, blank=True, null=True)
     
-    dni=models.CharField(max_length=10, validators=[validators.MinLengthValidator(10), SoloNumeros], blank=True)
+    dni=models.CharField(max_length=10, validators=[validators.MinLengthValidator(10), vcedula], blank=True)
     gender=models.CharField(max_length=20, blank=True)
     birth_date=models.DateField(blank=True, null=True)
     biography=models.TextField(blank=True)

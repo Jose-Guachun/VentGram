@@ -56,7 +56,7 @@ Nuevo Proyecto | VentGram
                                 class="{% if form.title.errors %}is-invalid{% endif %}" 
                                 type="text" name="title" 
                                 placeholder="Ingrese el titulo de su proyecto (Obligatorio)"
-                                value="{% if form.errors %}{{ form.title.value }}{% else %}{{ project.title }}{% endif %}">
+                                value="{% if form.errors %}{{ form.title.value }}{% else %}{{ project.title }}{% endif %}" required>
                             <div class="invalid-feedback">
                                 {% for error in form.title.errors %}
                                     {{ error }}
@@ -83,7 +83,7 @@ Nuevo Proyecto | VentGram
                                 type="text" 
                                 name="website" 
                                 placeholder="Ingrese la url del proyecto (Opcional)"
-                                value="{% if form.errors %}{{ form.website.value }}{% else %}{{ project.website }}{% endif %}"">
+                                value="{% if form.errors %}{{ form.website.value }}{% else %}{{ project.website }}{% endif %}">
                             <div class="invalid-feedback">
                                 {% for error in form.website.errors %}
                                     {{ error }}
@@ -101,25 +101,11 @@ Nuevo Proyecto | VentGram
                                 </div>
                             </div>
                         </div>
+ 
                         <div class="col-sm-12 col-md-6 mb-2">
                             <h4>Estado</h4>
                             <div class="inp-field">
-                                <select name="status" class="form-control {% if form.status.errors %}is-invalid{% endif %}">
-                                    {% if project.status %}
-                                        {% for value in status %}
-                                        {% if  value != project.status %}
-                                            <option value="{{ value }}">{{ value }}</option>
-                                            {% else %}
-                                            <option selected="true" value="{{ value }}">{{ value }}</option>
-                                        {% endif %}    
-                                        {% endfor %}
-                                    {% else %}
-                                    <option selected="true" disabled="disabled">----------</option>
-                                    {% for value in status %}
-                                        <option value="{{ value }}">{{ value }}</option>
-                                    {% endfor %}
-                                    {% endif %}
-                                </select>
+                                {{form.status}}
                                 <div class="invalid-feedback">
                                     {% for error in form.status.errors %}
                                         {{ error }}
@@ -127,44 +113,57 @@ Nuevo Proyecto | VentGram
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="col-sm-12 col-md-6 mb-2">
-                            <h4>Documento</h4>
-                            <div class="box-general">
-                                <div class="box_document py-4 mb-2">
-                                    {% if project %}
-                                    <div class="pl-3 pr-3">
-                                        <img class="mt-0" src="{% static 'img/document.png' %}" alt="{{ project.document.name|slice:'74:' }}" width="40px" height="40px">
-                                        <h4 class="py-2" id="datos" title="{{ project.document.name|slice:'74:' }}">
-                                            {{ project.document.name|slice:"74:" }}
-                                            <a title="DESCARGAR: {{ project.document.name|slice:'74:' }}" href="{{ project.document.url }}"><i class="fas fa-download ml-2"></i></a>
-                                        </h4>
-                                    </div>
-                                    {% else %}
-                                    <div class="pl-3 pr-3 py-2">
-                                        <img class="mt-0" src="{% static 'img/document.png' %}" alt="documento" width="40px" height="40px">
-                                        <h4 class="py-2" id="datos"> Seleccione un documento (Obligatorio)</h4>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                                <div class="file-submit text-center">
-                                    <input type="file" id="archivo" name="document">
-                                    <label style="width: 100%;" for="archivo"><i class="fas fa-upload mr-2"></i>SUBIR DOCUMENTO</label>	
-                                </div>
+                            <h4 class="" >Tecnologias Utilizadas</h4>
+                            <input 
+                                class="{% if form.label.errors %}is-invalid{% endif %}" 
+                                type="text" name="label" 
+                                placeholder="Eje. Python, HTML5, CSS3, Django (Obligatorio)"
+                                value="{% if form.errors %}{{ form.label.value }}{% else %}{{ project.label }}{% endif %}" required>
+                            <div class="invalid-feedback">
+                                {% for error in form.label.errors %}
+                                    {{ error }}
+                                {% endfor %}
                             </div>
                         </div>
 
-                        <div class="col-lg-12 mb-2">
+                        <div class="col-lg-6 mb-2">
                             <h4>Objetivo</h4>
                             <textarea 
                                 class="{% if form.objetive.errors %}is-invalid{% endif %}" 
                                 name="objetive" 
                                 placeholder="Ingrese el objetivo del proyecto (Obligatorio) "
-                                >{% if form.errors %}{{ form.objetive.value }}{% else %}{{ project.objetive }}{% endif %}</textarea>
+                                required>{% if form.errors %}{{ form.objetive.value }}{% else %}{{ project.objetive }}{% endif %}</textarea>
                             <div class="invalid-feedback">
                                 {% for error in form.objetive.errors %}
                                     {{ error }}
                                 {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 mb-2">
+                            <h4>Documento</h4>
+                            <div class="box-general">
+                                <div class="box_document py-2 mb-2">
+                                    {% if project %}
+                                    <div class="pl-3 pr-3">
+                                        <img class="mb-0" src="{% static 'img/document.png' %}" alt="{{ project.document.name|slice:'41:' }}" width="45px" height="45px">
+                                        <h4 class="pb-4 py-2" id="datos" title="">
+                                            {{ project.document.name|slice:"41:" }}
+                                            <a title="DESCARGAR: {{ project.document.name|slice:'41:' }}" href="{{ project.document.url }}"><i class="fas fa-download ml-2 pt-2"></i></a>
+                                        </h4>
+                                    </div>
+                                    {% else %}
+                                    <div class="pl-3 pr-3">
+                                        <img class="mt-1" src="{% static 'img/document.png' %}" alt="documento" width="45px" height="45px">
+                                        <h4 class="py-3" id="datos">Seleccione un documento (Obligatorio)</h4>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="file-submit text-center mb-0">
+                                    <input type="file" id="archivo" name="document">
+                                    <label style="width: 100%;" for="archivo"><i class="fas fa-upload mr-2"></i>SUBIR DOCUMENTO</label>	
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-12 mb-2">
@@ -172,13 +171,16 @@ Nuevo Proyecto | VentGram
                             <textarea 
                                 class="{% if form.description.errors %}is-invalid{% endif %}"    
                                 name="description" 
-                                placeholder="Ingrese la descripcion del proyecto (Obligatorio)">{% if form.errors %}{{ form.description.value }}{% else %}{{ project.description }}{% endif %}</textarea>
+                                placeholder="Ingrese la descripcion del proyecto (Obligatorio)" 
+                                required>{% if form.errors %}{{ form.description.value }}{% else %}{{ project.description }}{% endif %}</textarea>
                             <div class="invalid-feedback">
                                 {% for error in form.description.errors %}
                                     {{ error }}
                                 {% endfor %}
                             </div>
                         </div>
+
+
                         <div class="col-lg-12 mb-2">
                             <ul>
                                 
@@ -186,6 +188,8 @@ Nuevo Proyecto | VentGram
                                 <li><a href="{% url 'posts:feed' %}" title="">Cancelar</a></li>
                             </ul>
                         </div>
+
+
                 </div>
             </form>
         </div><!--post-project-fields end-->

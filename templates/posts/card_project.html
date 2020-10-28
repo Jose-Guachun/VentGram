@@ -60,30 +60,6 @@
         <div class="job_descp">
             <h3><a href="{% url 'posts:detail_project' project.pk %}">{{ project.title }}</a></h3>
             <p>{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.pk %}" title="">...ver más</a></p>
-    
-            <ul class="skill-tags">
-                <li><a href="#" title="">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">HTML</font>
-                        </font>
-                    </a></li>
-                <li><a href="#" title="">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">PHP</font>
-                        </font>
-                    </a></li>
-                <li><a href="#" title="">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">CSS</font>
-                        </font>
-                    </a></li>
-                <li><a href="#" title="">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Javascript</font>
-                        </font>
-                    </a></li>
-    
-            </ul>
         </div>
         <div class="job-status-bar">
             <ul class="like-com">

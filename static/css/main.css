@@ -153,6 +153,13 @@ footer{
   word-break: break-all;
 
 }
+.box_document_detail{
+  width: 100%;
+  border:1px dashed rgb(207, 207, 207);
+  word-break: break-all;
+
+}
+
 .box_document a{
   color: #004ab9;
   text-align: left;

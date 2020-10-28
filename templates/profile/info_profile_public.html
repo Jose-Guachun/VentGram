@@ -21,7 +21,7 @@
                         <span class="badge badge-info">{{project.profile.work_area}}</span>
                     </div>
                     <div class="user-specs py-2">
-                        <span><i class="fas fa-map-marker-alt pr-1"></i> {{project.profile.city}}, {{project.profile.city.province.country}}</span>
+                        <span><i class="fas fa-map-marker-alt pr-1" style="color:rgb(52, 216, 52);"></i> {{project.profile.city}}, {{project.profile.city.province.country}}</span>
                     </div>
             
         </div>
@@ -41,12 +41,14 @@
 <h6>DETALLES</h6>
 <hr class="mt-2">
 <div class="user-specs py-2">
-    <h5>{{ project.title }}</h5>
+    <h5>{{ project.title| title }}</h5>
     <h5>{{ project.created}}</h5>
-    <h5 class="mt-4">CATEGORIA</h5>
+    <h5 class="mt-3">CATEGORIA</h5>
     <h5>{{ project.category }}</h5>
-    <h5 class="mt-4">TECNOLOGIAS UTILIZADAS</h5>
-    <h5>C# Xamarin</h5>
+    <h5 class="mt-3">TECNOLOGIAS UTILIZADAS</h5>
+    <h5>{{ project.label }}</h5>
+    <h5 class="mt-3">ESTADO</h5>
+    <h5>{{ project.status }}</h5>
 </div>
 
 
