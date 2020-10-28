@@ -225,8 +225,9 @@ class SignupView(FormView):
 
     def form_valid(self, form):
         # save form data
-        form.save()
-        return super().form_valid(form)
+        if form.is_valid():
+            form.save()
+            return super().form_valid(form)
         
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     template_name='users/logget_auth.html'

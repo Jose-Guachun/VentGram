@@ -1,6 +1,8 @@
 #Django
+from django.core import validators
+from django.core.exceptions import ValidationError
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 #models
 from users.models import Profile, User, Province, City
 from VentGram.validators import SoloLetras, SoloNumeros, NumerosYLetras
@@ -70,8 +72,13 @@ class LoginForm(AuthenticationForm):
 
 class SignupForm(forms.ModelForm):
     password=forms.CharField(label=False, max_length=70, widget=forms.PasswordInput(),)
-    password_confirmation=forms.CharField(label=False, max_length=70,  widget=forms.PasswordInput(),)
-    
+    password_confirmation=forms.CharField(label=False, max_length=70, widget=forms.PasswordInput(),)
+    def __init__(self, *args, **kwargs):
+        super(SignupForm, self).__init__(*args, **kwargs)
+        # desde aquí, puedes definir luego de iniciar el formulario, si los campos son obligatorios
+        self.fields['password'].required = True, # así no entrara al save(), si el campo no está lleno
+        self.fields['password_confirmation'].required = True,
+
     class Meta:
         model=User
         fields=('email', 'username', 'first_name', 'last_name')
@@ -104,16 +111,33 @@ class SignupForm(forms.ModelForm):
         if not username.isalnum():
             raise forms.ValidationError('En el campo Nombre de Usuario debe ingresar solo numeros y letras sin ningun espacio.')
         return username
-    
+        
     def clean(self):
         data=super().clean()
-        password=data['password']
-        password_confirmation=data['password_confirmation']
+        try:
+            password=data['password']
+            password_confirmation=data['password_confirmation']
+            if len(password)>5:
+                if password.islower() or password.isupper() :
+                    msg="La contraseña tiene que tener por lo menos 1 letra mayuscula y 1 minuscula"
+                    self.add_error('password', msg)
+                if password.isdigit() or  password.isalpha():
+                    msg="La contraseña tiene que contener numeros, letras y simbolos especiales"
+                    self.add_error('password', msg)
+            else:
+                msg="La contraseña tiene que tener como minimo 6 digitos"
+                self.add_error('password', msg)
 
-        if password != password_confirmation:
-            msg="Contraseña no coincide"
+            if password != password_confirmation:
+                msg="Contraseña no coincide"
+                self.add_error('password_confirmation', msg)
+            return data
+        except:
+            msg="La contraseña no tiene que estar conformada solo de espacios en blanco"
             self.add_error('password', msg)
-        return data
+
+        
+        
 
     def save(self):
         #create user and profile

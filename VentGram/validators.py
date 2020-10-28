@@ -1,7 +1,6 @@
 from django.core.exceptions import ValidationError
 from django import forms
 
-
 def NumerosYLetras(usuario):
     if usuario.isalnum():
         if usuario.isdigit():
