@@ -28,9 +28,9 @@
   
   <div class="form-label-group">
     <input type="password" id="inputPassword" 
-          class="form-control {% if form.password.errors %}is-invalid{% endif %}" 
-          placeholder="Contraseña" name="password" 
-          value="{% if form.errors %}{{form.password.value }}{% else %}{{ user.password }}{% endif %}"required>
+          class="form-control {% if form.password1.errors %}is-invalid{% endif %}" 
+          placeholder="Contraseña" name="password1" 
+          value="{% if form.errors %}{{form.password1.value }}{% else %}{{ user.password1 }}{% endif %}"required>
     <label for="inputPassword">Contraseña</label>
     <div class="invalid-feedback">
       {% for error in form.password.errors %}
@@ -43,13 +43,13 @@
     <input 
     type="password" 
     id="inputPassword_Confirmation" 
-    class="form-control {% if form.password_confirmation.errors %}is-invalid{% endif %}" 
+    class="form-control {% if form.password2.errors %}is-invalid{% endif %}" 
     placeholder="Confirmar Contraseña" 
-    name="password_confirmation" 
-    value="{% if form.errors %}{{form.password_confirmation.value }}{% else %}{{ user.password_confirmation }}{% endif %}"required>
+    name="password2" 
+    value="{% if form.errors %}{{form.password2.value }}{% else %}{{ user.password2 }}{% endif %}"required>
     <label for="inputPassword_Confirmation">Confirmar Contraseña</label>
     <div class="invalid-feedback">
-      {% for error in form.password_confirmation.errors %}
+      {% for error in form.password2.errors %}
           {{ error }}
       {% endfor %}
   </div>

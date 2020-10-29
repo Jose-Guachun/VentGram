@@ -1,6 +1,6 @@
 # user views
 # Django
-
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from django.http import JsonResponse
@@ -214,25 +214,22 @@ class LoginView(FormView):
             return super(LoginView, self).dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):
-        if form.is_verified:
-            login(self.request, form.get_user())
-            return super(LoginView, self).form_valid(form)
-        else:
-            return reverse_lazy('users:login')
+        login(self.request, form.get_user())
+        return super(LoginView, self).form_valid(form)
         
 
-class SignupView(FormView):
+class SignupView(CreateView):
     # Signup con classe base view
     template_name='users/signup.html'
+    model=Profile
     form_class=SignupForm
+    
     success_url=reverse_lazy('users:login')
 
     def form_valid(self, form):
         # save form data
         if form.is_valid():
             form.save()
-            email=form.cleaned_data.get('email')
-            send_email(email)
             return super().form_valid(form)
         
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
