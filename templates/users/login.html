@@ -16,12 +16,12 @@
 
     <div class="form-label-group">
       <input type="email" id="inputEmail" 
-      class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
-      placeholder="Dirección de correo electrónico" name="email" 
-      value="{% if form.errors %}{{form.email.value }}{% else %}{{ user.email }}{% endif %}"required>
+      class="form-control {% if form.username.errors %}is-invalid{% endif %}" 
+      placeholder="Dirección de correo electrónico" name="username" 
+      value="{% if form.errors %}{{form.username.value }}{% else %}{{ user.username }}{% endif %}"required>
       <label for="inputEmail">Dirección de correo electrónico</label>
       <div class="invalid-feedback">
-        {% for error in form.email.errors %}
+        {% for error in form.username.errors %}
             {{ error }}
         {% endfor %}
     </div>

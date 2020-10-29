@@ -214,8 +214,12 @@ class LoginView(FormView):
             return super(LoginView, self).dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):
-        login(self.request, form.get_user())
-        return super(LoginView, self).form_valid(form)
+        if form.is_verified:
+            login(self.request, form.get_user())
+            return super(LoginView, self).form_valid(form)
+        else:
+            return reverse_lazy('users:login')
+        
 
 class SignupView(FormView):
     # Signup con classe base view
@@ -227,6 +231,8 @@ class SignupView(FormView):
         # save form data
         if form.is_valid():
             form.save()
+            email=form.cleaned_data.get('email')
+            send_email(email)
             return super().form_valid(form)
         
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
