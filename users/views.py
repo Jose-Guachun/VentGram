@@ -12,7 +12,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth import login, views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import UpdateView, DetailView, CreateView, DeleteView
+from django.views.generic import UpdateView, DetailView, CreateView, DeleteView, TemplateView
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 from django.template import Context
@@ -224,17 +224,32 @@ class SignupView(CreateView):
     model=Profile
     form_class=SignupForm
     
-    success_url=reverse_lazy('users:login')
-
+    success_url=reverse_lazy('posts:feed')
+        
     def form_valid(self, form):
         # save form data
         if form.is_valid():
             form.save()
-            return super().form_valid(form)
+            valid = super().form_valid(form)
+            email = form.cleaned_data.get('email')
+            send_email(email)
+            password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=password)
+            login(self.request, user)
+            return valid
+
         
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     template_name='users/logget_auth.html'
 
+class VerifiedUser(LoginRequiredMixin, TemplateView):
+    template_name='users/verificationUser.html'
+
+def GenerateToken(request):
+    token_generator = PasswordResetTokenGenerator()
+    token = token_generator.make_token(request.user)
+    print(token)
+    return token
 
 def send_email(mail):
     context={'mail': mail}
@@ -243,8 +258,7 @@ def send_email(mail):
     content=template.render(context)
 
     email=EmailMultiAlternatives(
-        'un correo de prueba',
-        'hola ue hace',
+        'Verificacion de cuenta VentGram',
         settings.EMAIL_HOST_USER,
         [mail]
     )

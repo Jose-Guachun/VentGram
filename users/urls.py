@@ -27,7 +27,13 @@ urlpatterns = [
         view=views.SignupView.as_view(),
         name='signup',
         ),
-    
+
+    path(
+        route='verified/',
+        view=views.VerifiedUser.as_view(),
+        name='user_verified',
+        ),
+
     path(
         route='me/update_profile/',
         view=views.UpdateProfileView.as_view(),

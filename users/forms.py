@@ -1,4 +1,5 @@
 #Django
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core import validators
 from django.core.exceptions import ValidationError
 from django import forms
@@ -72,7 +73,7 @@ class SignupForm(UserCreationForm):
 
     class Meta:
         model=User
-        fields=('email', 'username', 'first_name', 'last_name', 'password1', 'password2')
+        fields=('email', 'username', 'first_name', 'last_name', 'password1', 'password2', 'code')
 
     def clean_first_name(self):
         first_name=self.cleaned_data['first_name'].title()
@@ -91,7 +92,6 @@ class SignupForm(UserCreationForm):
         if email_taken:
             raise forms.ValidationError('El email ingresado ya esta en uso. ')
         return email
-
 
     def clean_username(self):
         #username must be unique.
