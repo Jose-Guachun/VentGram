@@ -27,6 +27,12 @@ urlpatterns = [
         view=views.SignupView.as_view(),
         name='signup',
         ),
+
+    path(
+        route='validate/',
+        view=views.validate_token,
+        name='validate_token',
+        ),
     
     path(
         route='me/update_profile/',

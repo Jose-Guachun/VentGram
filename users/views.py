@@ -1,6 +1,6 @@
 # user views
 # Django
-
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from django.http import JsonResponse
@@ -12,14 +12,14 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth import login, views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import UpdateView, DetailView, CreateView, DeleteView
+from django.views.generic import UpdateView, DetailView, CreateView, DeleteView, TemplateView
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 from django.template import Context
 from django.core.paginator import Paginator
 
-from django.template.loader import get_template
-from django.core.mail import EmailMultiAlternatives
+
+
 from django.conf import settings
 # Django decorators
 from django.utils.decorators import method_decorator
@@ -214,45 +214,43 @@ class LoginView(FormView):
             return super(LoginView, self).dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):
-        if form.is_verified:
-            login(self.request, form.get_user())
-            return super(LoginView, self).form_valid(form)
-        else:
-            return reverse_lazy('users:login')
+        login(self.request, form.get_user())
+        return super(LoginView, self).form_valid(form)
         
 
 class SignupView(FormView):
     # Signup con classe base view
     template_name='users/signup.html'
     form_class=SignupForm
-    success_url=reverse_lazy('users:login')
+    success_url=reverse_lazy('users:validate_token')
 
     def form_valid(self, form):
         # save form data
         if form.is_valid():
             form.save()
             email=form.cleaned_data.get('email')
-            send_email(email)
+            password=form.cleaned_data.get('password')
+            user=authenticate(email=email, password=password)
+            login(self.request, user)
             return super().form_valid(form)
-        
+
+def validate_token(request):
+    context=()
+    if request.method=='POST':
+        token=request.POST.get('token')
+        code=request.user.code    
+        if token == code:
+            request.user.is_verified=True
+            request.user.save()
+            return redirect('posts:feed')
+        else:
+            context=('El codigo ingresado no es el correcto')
+    return render(request, 'users/validate_token.html', {'context':context})
+
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     template_name='users/logget_auth.html'
 
 
-def send_email(mail):
-    context={'mail': mail}
-
-    template=get_template('users/correo.html')
-    content=template.render(context)
-
-    email=EmailMultiAlternatives(
-        'un correo de prueba',
-        'hola ue hace',
-        settings.EMAIL_HOST_USER,
-        [mail]
-    )
-    email.attach_alternative(content, 'text/html')
-    email.send()
 
 def email_verified(request):
     if request.method== 'POST':

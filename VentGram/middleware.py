@@ -18,7 +18,6 @@ class SignUpBlockMiddleware:
             if  not request.user.is_staff:
                     if request.path in [reverse('users:signup'), reverse('posts:home')]:
                         return redirect('posts:feed')
-
         response = self.get_response(request)
         return response
 

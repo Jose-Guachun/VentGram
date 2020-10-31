@@ -55,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField('last name', max_length=30,validators=[validators.MinLengthValidator(3)])
     code=models.CharField(
         'code', 
-        max_length=20, 
+        max_length=100, 
         unique=True, blank=True, null=True,
         error_messages={
             'unique': 'Codigo en uso'

@@ -1,4 +1,5 @@
 #Django
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core import validators
 from django.core.exceptions import ValidationError
 from django import forms
@@ -6,6 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 #models
 from users.models import Profile, User, Province, City
 from VentGram.validators import SoloLetras, SoloNumeros, NumerosYLetras
+from users.mail import send_email
 
 
 class ProfileForm(forms.ModelForm):
@@ -64,11 +66,9 @@ class UserForm(forms.ModelForm):
         return username
 
 class LoginForm(AuthenticationForm):
-    username = forms.EmailField(label="Correo electrónico")
-
     class Meta:
         model = User
-        fields = ["username", "password", "is_verified"]
+        fields = ["username", "password"]
 
 class SignupForm(forms.ModelForm):
     password=forms.CharField(label=False, max_length=70, widget=forms.PasswordInput(),)
@@ -81,7 +81,7 @@ class SignupForm(forms.ModelForm):
 
     class Meta:
         model=User
-        fields=('email', 'username', 'first_name', 'last_name')
+        fields=('email', 'username', 'first_name', 'last_name', 'code')
 
     def clean_first_name(self):
         first_name=self.cleaned_data['first_name'].title()
@@ -117,7 +117,7 @@ class SignupForm(forms.ModelForm):
         try:
             password=data['password']
             password_confirmation=data['password_confirmation']
-            if len(password)>5:
+            if len(password)>7:
                 if password.islower() or password.isupper() :
                     msg="La contraseña tiene que tener por lo menos 1 letra mayuscula y 1 minuscula"
                     self.add_error('password', msg)
@@ -145,5 +145,10 @@ class SignupForm(forms.ModelForm):
         data.pop('password_confirmation')
         
         user= User.objects.create_user(**data)
+        token_generator = PasswordResetTokenGenerator()
+        token = token_generator.make_token(user)
+        user.code=token
+        user.save()
+        send_email(user.email, token)
         profile=Profile(user=user)
         profile.save()

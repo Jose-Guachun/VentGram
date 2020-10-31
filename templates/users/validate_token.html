@@ -1,0 +1,32 @@
+{% extends 'users/base.html' %}
+{% block head_content %}
+Activacion de Cuenta | VentGram
+{% endblock%}
+{% load static %}
+            
+
+{% block title %}
+<h5 class="card-title text-center mt-3 mb-0 pb-0" style="color: rgb(68, 68, 68);font-weight: 600;">Validacion De Cuenta</h5>
+<hr class="mt-1">
+{% endblock %}
+
+{% block container %}
+        <p>Se le a enviado un correo electronico con el codigo de verificacion por favor revise su correo electronico y coloque su codigo de seguridad.</p>
+        {% if context %}
+        <p class="alert alert-danger">{{context}}</p>
+        {% endif %}
+        <form method="POST" action="{% url 'users:validate_token' %}">
+            {% csrf_token %}
+            <div class="form-label-group">
+                <input class="form-control" id="inputtoken"  type="text" name="token" placeholder="Codigo de verificacion">
+                <label for="inputtoken">Codigo de verificacion</label>
+            
+            </div>
+            <button class="btn btn-lg btn-info btn-block btn-login font-weight-bold text-uppercase" type="submit">Validar Correo</button>
+        </form>
+
+
+    
+{% endblock %}
+
+<!--Contenido-->
