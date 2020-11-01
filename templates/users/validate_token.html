@@ -6,12 +6,12 @@ Activacion de Cuenta | VentGram
             
 
 {% block title %}
-<h5 class="card-title text-center mt-3 mb-0 pb-0" style="color: rgb(68, 68, 68);font-weight: 600;">Validacion De Cuenta</h5>
-<hr class="mt-1">
+Validacion De Cuenta
 {% endblock %}
 
 {% block container %}
-        <p>Se le a enviado un correo electronico con el codigo de verificacion por favor revise su correo electronico y coloque su codigo de seguridad.</p>
+        <p>Se le a enviado un correo electronico con el codigo de verificacion por favor revise su correo electronico y coloque su codigo de verificacion.</p>
+        <br>
         {% if context %}
         <p class="alert alert-danger">{{context}}</p>
         {% endif %}
@@ -22,7 +22,7 @@ Activacion de Cuenta | VentGram
                 <label for="inputtoken">Codigo de verificacion</label>
             
             </div>
-            <button class="btn btn-lg btn-info btn-block btn-login font-weight-bold text-uppercase" type="submit">Validar Correo</button>
+            <button class="btn btn-info btn-block btn-login font-weight-bold text-uppercase" type="submit">Verificacion</button>
         </form>
 
 

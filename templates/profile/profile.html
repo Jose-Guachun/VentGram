@@ -120,11 +120,11 @@ Perfil | @{{user.username|capfirst}}
                                 
                                 <div class="gallery_pt">
                                     <img src="{{ project.image.url }}" alt="">
-                                    <a href="{% url 'posts:detail_project' project.pk %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 45px;">{{project.title}}</h3></a>
+                                    <a href="{% url 'posts:detail_project' project.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 45px;">{{project.title}}</h3></a>
                                     {% if user == request.user %}
                                         <div  class="cadidatesbtn">
-                                            <a title="Editar"  href="{% url 'posts:update_project' project.pk %}" ><i class="far fa-edit mr-1"></i></a> 
-                                            <a title="Eliminar"  href="{% url 'posts:delete_project' project.pk %}"><i class="fas fa-trash-alt mr-1"></i></a> 
+                                            <a title="Editar"  href="{% url 'posts:update_project' project.url %}" ><i class="far fa-edit mr-1"></i></a> 
+                                            <a title="Eliminar"  href="{% url 'posts:delete_project' project.url %}"><i class="fas fa-trash-alt mr-1"></i></a> 
                                         </div>
                                     
                                     {% endif %} 
@@ -168,7 +168,7 @@ Perfil | @{{user.username|capfirst}}
                 <div class="pf-gallery">
                     <ul>
                         {% for project in projectsPro %}
-                        <li><a href="{% url 'posts:detail_project' project.pk %}" title=""><img src="{{ project.image.url }}" alt=""></a>
+                        <li><a href="{% url 'posts:detail_project' project.url %}" title=""><img src="{{ project.image.url }}" alt=""></a>
                         </li>
                         {% endfor %}
                     </ul>

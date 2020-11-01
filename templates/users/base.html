@@ -1,57 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+{% block head_content %}
+   
+{% endblock%}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block nav %}
+    {% include 'users/nav.html' %}
+{% endblock%}
 
-    <title>
-        {% block head_content %}{% endblock %}
-    </title>
+{% block content %}
 
-    <!-- Bootstrap, CSS, FontAwesome -->
-    {% load static %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+    {% block other_top %}
+    {% endblock %}
+    <main>
+        <div class="main-section">
+            <div class="container">
+                <div class="main-section-data">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-9 mx-auto">
+                            <div class="card card-signin flex-row my-3">
+                                <div class="card-img-left d-none d-md-flex ">
+                                    <!-- Background image for card set in CSS! -->
+                                </div>
+                                <div class="card-body">
 
-</head>
-
-<body>
-    <header>
-        {% include 'users/nav.html' %}
-    </header>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-xl-9 mx-auto">
-                <div class="card card-signin flex-row my-5">
-                    <div class="card-img-left d-none d-md-flex ">
-                        <!-- Background image for card set in CSS! -->
+                                    <div class="text-center">
+                                        <img src="{% static 'img/Logo_color.png' %}"  style="max-width: 40%;float: none;">
+                                    </div>
+                                    <h5 class="card-title text-center mt-3 mb-0 pb-0" style="color: rgb(68, 68, 68);font-weight: 500;">
+                                        {% block title %}{% endblock %}
+                                    </h5>
+                                    <hr class="mt-1">
+                                    {% block enla %}
+                                    {% endblock %}
+                                    {% block container %}{% endblock%}
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="card-body">
-                        <img src="{% static "img/Logo_color.png" %}" class="img-fluid rounded mx-auto d-block"
-                            style="max-width: 40%;">
-                        {% block title %}{% endblock %}
-                        {% block container %}{% endblock%}
-                    </div>
-                </div>
-            </div>
+                </div><!-- main-section-data end-->
+            </div> 
         </div>
-    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-</body>
+    </main>
 
-</html>
+    {% block other_button %}
+    {% endblock %}
+
+{% endblock %}
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock%}

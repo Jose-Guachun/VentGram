@@ -38,8 +38,8 @@
                             <div class="ed-opts">
                                 <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                                 <ul class="ed-options">
-                                    <li><a href="{% url 'posts:update_project' project.pk %}" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar</font></font></a></li>
-                                    <li><a href="{% url 'posts:delete_project' project.pk %}" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar</font></font></a></li>
+                                    <li><a href="{% url 'posts:update_project' project.url %}" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar</font></font></a></li>
+                                    <li><a href="{% url 'posts:delete_project' project.url %}" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar</font></font></a></li>
                                 </ul>
                             </div>
                             {% endif %}

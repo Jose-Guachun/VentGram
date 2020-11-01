@@ -2,9 +2,16 @@
 {% block head_content %}
   Login | VentGram
 {% endblock %}
+
+{% block enla %}
+<ul class="sign-control pr-0">
+  <li class="current"><a href="{% url 'users:login' %}" title="">Inicar Sesión</a></li>				
+  <li><a href="{% url 'users:signup' %}" title="">Registrarse</a></li>						
+</ul>
+{% endblock %}
+
 {% block title %}
-<h5 class="card-title text-center mt-3 mb-0 pb-0" style="color: rgb(68, 68, 68);">Bienvenido</h5>
-<hr class="mt-1">
+Bienvenido
 {% endblock %}
 
 {% block container %}
@@ -45,8 +52,8 @@
       <label class="custom-control-label ml-3" style="color: rgb(92, 92, 92);" for="customCheck1">Recordar Contraseña</label>
     </div>
 
-    <hr class="my-4">
-  <button class="btn btn-lg btn-primary btn-block btn-login font-weight-bold text-uppercase" type="submit">Inciar sesíon</button>
+    <hr class="my-3">
+  <button class="btn btn-info btn-block btn-login font-weight-bold text-uppercase" type="submit">Inciar sesión</button>
   <p class="d-block text-center mt-2 mb-1 small"> ¿Aún no tienes una cuenta? <a href="{% url "users:signup" %}">Registarte aquí.</a> </p>
   <p class="d-block text-center small"> ¿Se te olvidó tu contraseña? <a href="{% url "users:signup" %}">Recuperar contraseña</a> </p>
   </form>            

@@ -112,8 +112,11 @@ class UserAdmin(BaseUserAdmin):
         'first_name',
         'last_name',
         'is_admin',
+        'is_verified',
         'is_active',
         'is_staff',
+        'is_superuser',
+        'date_joined',
 
     )
     list_filter=('is_staff',)

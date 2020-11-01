@@ -1,7 +1,7 @@
 {% load static %}
 <div class="posts-section">
     <div class="box">
-        <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.pk %}">
+        <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.url %}">
             <img class="card-img-top" src="{{ project.image.url }}" alt="Project"></a>
         <div class="txt">
             <div class="usy-dt">
@@ -46,8 +46,8 @@
             </ul>
             {% if project.profile.user == request.user %}
             <ul class="bk-links">
-                <li><a title="Editar"  href="{% url 'posts:update_project' project.pk %}"><i class="la la-edit"></i></a></li>
-                <li><a title="Eliminar"  href="{% url 'posts:delete_project' project.pk %}"><i class="la la-trash-o"></i></a></li> 
+                <li><a title="Editar"  href="{% url 'posts:update_project' project.url %}"><i class="la la-edit"></i></a></li>
+                <li><a title="Eliminar"  href="{% url 'posts:delete_project' project.url %}"><i class="la la-trash-o"></i></a></li> 
             </ul>
             {% else %}
             <ul class="bk-links">
@@ -58,8 +58,8 @@
 
         </div>
         <div class="job_descp">
-            <h3><a href="{% url 'posts:detail_project' project.pk %}">{{ project.title }}</a></h3>
-            <p>{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.pk %}" title="">...ver más</a></p>
+            <h3><a href="{% url 'posts:detail_project' project.url %}">{{ project.title }}</a></h3>
+            <p>{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.url %}" title="">...ver más</a></p>
         </div>
         <div class="job-status-bar">
             <ul class="like-com">

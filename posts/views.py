@@ -60,12 +60,15 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     template_name='posts/detail_project.html'
     queryset=Project.objects.all()
     context_object_name='project'
+    slug_field = 'url'
+    slug_url_kwarg = 'url'
     
 class CreatedProjectView(LoginRequiredMixin, CreateView):
     #Crear un nuevo post
     template_name='posts/create_update_project.html'
     form_class=ProjectForm
     success_url=reverse_lazy('posts:feed')
+
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
@@ -78,6 +81,8 @@ class UpdateProjectView(LoginRequiredMixin, UpdateView):
     template_name='posts/create_update_project.html'
     model=Project
     form_class=ProjectForm
+    slug_field = 'url'
+    slug_url_kwarg = 'url'
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
@@ -93,6 +98,8 @@ class UpdateProjectView(LoginRequiredMixin, UpdateView):
 
 class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model=Project
+    slug_field = 'url'
+    slug_url_kwarg = 'url'
 
     def get_success_url(self):
         #Return to users profile.

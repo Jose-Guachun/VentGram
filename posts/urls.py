@@ -11,7 +11,6 @@ urlpatterns = [
 
     #managment
 
-
     path(
         route='',
         view=views.PostHomeView.as_view(),
@@ -19,39 +18,39 @@ urlpatterns = [
         ),
         
     path(
-        route='posts/feed',
+        route='posts/',
         view=views.ProjectFeedView,
         name='feed'
         ),
 
     path(
-        route='posts/<int:pk>/',
-        view=views.ProjectDetailView.as_view(),
-        name='detail_project'
-        ),
-
-    path(
-        route='posts/new_project',
-        view=views.CreatedProjectView.as_view(),
-        name='new_project'
-        ), 
-
-    path(
-        route='posts/filter',
+        route='posts/projects',
         view=views.FilterProjectView,
         name='list_project'
         ),
 
     path(
-        route='update_project/<int:pk>',
+        route='posts/create_project',
+        view=views.CreatedProjectView.as_view(),
+        name='new_project'
+        ), 
+
+    path(
+        route='posts/<slug:url>/',
+        view=views.ProjectDetailView.as_view(),
+        name='detail_project'
+        ),
+
+    path(
+        route='update_project/<slug:url>/',
         view=views.UpdateProjectView.as_view(),
         name='update_project'
         ),
 
     path(
-        route='deleteproject/<int:pk>',
+        route='delete_project/<slug:url>/',
         view=views.ProjectDeleteView.as_view(),
         name='delete_project'
-    )
+    ),
         
 ]

@@ -1,12 +1,37 @@
 {% load static %}
-
-  <div id="header" class="navbar navbar-expand-lg navbar-dark py-0">
-    <div class="container">
-      <div class="logo py-1">
-        <a href="{% url 'posts:home' %}">
-          <img src="{% static "img/Logo_VG.png" %}" width="20px" height="45px" alt="VentGram">
-  
-        </a>
+<div class="container">
+  <div class="header-data">
+    <div class="logo">
+      <a href="{% url 'posts:home' %}" title=""><img src="{% static 'img/Logo_col.png' %}" width="200px" height="50px"
+          alt=""></a>
     </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'posts:home' %}" title="">
+            <span><img src=" {% static 'img/icon1.png' %}" alt=""></span>
+            Inicio
+          </a>
+        </li>
+      </ul>
+    </nav><!--nav end-->
+    <!--logo end-->
+    {% if request.user.profile %}
+      <div class="user-account">
+        <div class="user-info mr-0">
+          {% if request.user.profile.picture %}
+          <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
+          {% else %}
+          <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
+          {% endif %}
+        </div>
+
+        <div class="user-account-settingss" id="users">
+          <h3 class="tc"><a href="{% url 'users:logout' %}" title="Cerrar Sesion"><i
+                class="fas fa-power-off mr-2"></i>Cerrar Sesion</a></h3>
+        </div>
+        <!--user-account-settingss end-->
+      </div>
+    {% endif %}
   </div>
 </div>

@@ -2,15 +2,33 @@
 {% block head_content%}
   Sign up | VentGram
 {% endblock %}
+
+{% block enla %}
+<ul class="sign-control pr-0">
+  <li ><a href="{% url 'users:login' %}" title="">Inicar Sesión</a></li>				
+  <li class="current"><a href="{% url 'users:signup' %}" title="">Registrarse</a></li>						
+</ul>
+{% endblock %}
+
 {% block title %}
-<h5 class="card-title text-center pb-0 mb-0" style="color: rgb(68, 68, 68);">Registro</h5>
-<hr class="pt-0">
+Regístrese en VentGram
 {% endblock %}
 {% block container %}
 
 <form action="{% url "users:signup" %}" method="POST">
   {% csrf_token %}
-
+  <div class="form-label-group">
+    <input type="email" id="inputEmail" 
+    class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
+    placeholder="Dirección de correo electrónico" name="email" 
+    value="{% if form.errors %}{{form.email.value }}{% else %}{{ user.email }}{% endif %}"required>
+    <label for="inputEmail">Dirección de correo electrónico</label>
+    <div class="invalid-feedback">
+      {% for error in form.email.errors %}
+          {{ error }}
+      {% endfor %}
+  </div>
+  </div>
   <div class="form-label-group">
     <input 
             type="text" id="inputUser" 
@@ -18,45 +36,13 @@
             placeholder="Nombre de usuario" 
             name="username" 
             value="{% if form.errors %}{{form.username.value }}{% else %}{{ user.username }}{% endif %}" required>
-    <label for="inputUser">Nombre de usuario</label>
+    <label for="inputUser">Usuario</label>
     <div class="invalid-feedback">
       {% for error in form.username.errors %}
           {{ error }}
       {% endfor %}
     </div>
   </div>
-  
-  <div class="form-label-group">
-    <input type="password" id="inputPassword" 
-          class="form-control {% if form.password.errors %}is-invalid{% endif %}" 
-          placeholder="Contraseña" name="password" 
-          value="{% if form.errors %}{{form.password.value }}{% else %}{{ user.password }}{% endif %}"required>
-    <label for="inputPassword">Contraseña</label>
-    <div class="invalid-feedback">
-      {% for error in form.password.errors %}
-          {{ error }}
-      {% endfor %}
-  </div>
-  </div>
-
-  <div class="form-label-group">
-    <input 
-    type="password" 
-    id="inputPassword_Confirmation" 
-    class="form-control {% if form.password_confirmation.errors %}is-invalid{% endif %}" 
-    placeholder="Confirmar Contraseña" 
-    name="password_confirmation" 
-    value="{% if form.errors %}{{form.password_confirmation.value }}{% else %}{{ user.password_confirmation }}{% endif %}"required>
-    <label for="inputPassword_Confirmation">Confirmar Contraseña</label>
-    <div class="invalid-feedback">
-      {% for error in form.password_confirmation.errors %}
-          {{ error }}
-      {% endfor %}
-  </div>
-  </div>
-       
-  <hr>
-
   <div class="form-label-group">
     <input 
       type="text" 
@@ -87,24 +73,42 @@
           {{ error }}
       {% endfor %}
   </div>
-  </div>
-
+  </div>     
+  <hr>
   <div class="form-label-group">
-    <input type="email" id="inputEmail" 
-    class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
-    placeholder="Dirección de correo electrónico" name="email" 
-    value="{% if form.errors %}{{form.email.value }}{% else %}{{ user.email }}{% endif %}"required>
-    <label for="inputEmail">Dirección de correo electrónico</label>
+    <input type="password" id="inputPassword" 
+          class="form-control {% if form.password.errors %}is-invalid{% endif %}" 
+          placeholder="Contraseña" name="password" 
+          value="{% if form.errors %}{{form.password.value }}{% else %}{{ user.password }}{% endif %}"required>
+    <label for="inputPassword">Contraseña</label>
     <div class="invalid-feedback">
-      {% for error in form.email.errors %}
+      {% for error in form.password.errors %}
           {{ error }}
       {% endfor %}
   </div>
   </div>
 
+  <div class="form-label-group">
+    <input 
+    type="password" 
+    id="inputPassword_Confirmation" 
+    class="form-control {% if form.password_confirmation.errors %}is-invalid{% endif %}" 
+    placeholder="Confirmar Contraseña" 
+    name="password_confirmation" 
+    value="{% if form.errors %}{{form.password_confirmation.value }}{% else %}{{ user.password_confirmation }}{% endif %}"required>
+    <label for="inputPassword_Confirmation">Confirmar Contraseña</label>
+    <div class="invalid-feedback">
+      {% for error in form.password_confirmation.errors %}
+          {{ error }}
+      {% endfor %}
+  </div>
+  </div>
+
+
+
   
   
-  <button class="btn btn-lg btn-primary btn-block btn-login font-weight-bold text-uppercase" type="submit">Registrarse</button>
+  <button class="btn btn-info btn-block btn-login font-weight-bold text-uppercase" type="submit">Registrarse</button>
   <p class="d-block text-center mt-2 small"> ¿Ya tienes una cuenta? <a href="{% url "users:login" %}">Inicia sesíon.</a> </p>   
 </form>
 {% endblock %}

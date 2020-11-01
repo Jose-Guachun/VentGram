@@ -122,14 +122,17 @@ section {
 	width: 100%;
 	position: relative;
 }
-img {
-	float: left;
-}
+
 p {
 	font-size: 14px;
 	line-height: 24px;
 	color: #666666;
 }
+
+img{
+	float: left;
+}
+
 hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -2227,18 +2230,17 @@ select {
 	background-color: #fff;
 }
 .sign-control {
-	float: left;
 	width: 100%;
-	text-align: right;
+	text-align: left;
 	padding-right: 50px;
-	margin-bottom: 70px;
+	margin-bottom: 25px;
 }
 .sign-control li {
 	display: inline-block;
 	margin-right: -5px;
 }
 .sign-control li a {
-	color: #000000;
+	color: #555555;
 	font-size: 14px;
 	font-weight: 500;
 	background-color: #e5e5e5;
@@ -2258,7 +2260,7 @@ select {
 	border-radius: 0 4px 4px 0;
 }
 .sign-control li.current a {
-	background-color: #e44d3a;
+	background-color: #8f1d89cc;
 	color: #fff;
 }
 .sign_in_sec {

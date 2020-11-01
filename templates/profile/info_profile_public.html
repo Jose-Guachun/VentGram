@@ -20,9 +20,11 @@
                     <div class="badges">
                         <span class="badge badge-info">{{project.profile.work_area}}</span>
                     </div>
+                    {% if project.profile.city %}
                     <div class="user-specs py-2">
-                        <span><i class="fas fa-map-marker-alt pr-1" style="color:rgb(52, 216, 52);"></i> {{project.profile.city}}, {{project.profile.city.province.country}}</span>
+                        <span><i class="fas fa-map-marker-alt pr-1" style="color:rgb(52, 216, 52);"></i> {{project.profile.city}}, {{project.profile.country}}</span>
                     </div>
+                    {% endif %}
             
         </div>
         

@@ -28,16 +28,18 @@
         </div>
 
         <!--user_pro_status end-->
-        <div class="text-left text-muted pl-3 pr-3 py-4">
+        <div class="text-left text-muted pl-3 pr-2 py-4">
             <p class="mb-2">
-                <strong>Usuario : </strong>
-                <span class="ml-2 text-capitalize">@{{ user.username }}</span>
+                <strong>Usuario :</strong>
+                <span class="ml-1 text-capitalize">@{{ user.username }}</span>
                 <br>
-                <strong>Telefono : </strong>
-                <span class="ml-2 text-capitalize"> {{ user.profile.phone_number }}</span>
+                {% if user.profile.phone_number %}
+                <strong>Telefono :</strong>
+                <span class="ml-1 text-capitalize">{{ user.profile.phone_number }}</span>
                 <br>
-                <strong>Email : </strong>
-                <span class="ml-2 text-capitalize"> {{ user.email}}</span>
+                {% endif %}
+                <strong>Email :</strong>
+                <span class="ml-1">{{ user.email|capfirst}}</span>
             </p>
 
             <div class="pb-4 pt-2" >

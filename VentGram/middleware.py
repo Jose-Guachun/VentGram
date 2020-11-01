@@ -16,8 +16,24 @@ class SignUpBlockMiddleware:
             la vista."""
         if not request.user.is_anonymous:
             if  not request.user.is_staff:
-                    if request.path in [reverse('users:signup'), reverse('posts:home')]:
-                        return redirect('posts:feed')
+                    if request.user.is_verified:
+                        if request.path in [reverse('users:signup'), reverse('posts:home'), reverse('users:validate_token')]:
+                            return redirect('posts:feed')
+                    else:
+                        if request.path in [
+                            reverse('users:signup'), 
+                            reverse('users:update_profile'),
+                            reverse('users:update_user'),
+                            reverse('users:social_net'),
+                            reverse('users:change_password'),
+                            reverse('users:delete_user'),
+
+                            reverse('posts:feed'),  
+                            reverse('posts:list_project'), 
+                            reverse('posts:new_project'),
+                            
+                            ]:
+                            return redirect('users:validate_token')
         response = self.get_response(request)
         return response
 

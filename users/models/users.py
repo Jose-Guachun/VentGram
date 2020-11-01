@@ -36,14 +36,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
 
     email=models.EmailField(
-        'email address', 
+        'Correo Electronico', 
         unique=True, 
         error_messages={
             'unique': 'Correo electronico en uso.'
         }
     )
     username=models.CharField(
-        'username', 
+        'Nombre de Usuario', 
         unique=True, 
         max_length=20,
         validators=[validators.MinLengthValidator(3)],
@@ -51,8 +51,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             'unique': 'Nombre de Usuario en uso'
         }
     )
-    first_name = models.CharField('first name', max_length=30, validators=[validators.MinLengthValidator(3)])
-    last_name = models.CharField('last name', max_length=30,validators=[validators.MinLengthValidator(3)])
+    first_name = models.CharField('Nombres', max_length=30, validators=[validators.MinLengthValidator(3)])
+    last_name = models.CharField('Apellidos', max_length=30,validators=[validators.MinLengthValidator(3)])
     code=models.CharField(
         'code', 
         max_length=100, 
@@ -63,7 +63,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         )
 
     is_admin=models.BooleanField(
-        'client status',
+        'Es Administrador',
         default=True,
         help_text=(
             'help easily distinguish users and perform queries. '
@@ -72,12 +72,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     is_verified=models.BooleanField(
-        'verified',
+        'Email Verificado',
         default=False,
         help_text=('se establece en verdadero cuando el usuario ha verificado su dirección de correo electrónico',
         )
     )
-    date_joined = models.DateTimeField('date joined', default=timezone.now)
+    date_joined = models.DateTimeField('Fecha de Registro', default=timezone.now)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
