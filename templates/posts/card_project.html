@@ -35,7 +35,7 @@
             <ul class="descp">
                 <li><img src="{% static 'img/icon8.png' %}" alt=""><span>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">{{ project.profile.work_area }}</font>
+                            <font style="vertical-align: inherit;">{{ project.category }}</font>
                         </font>
                     </span></li>
                 <li><img src="{% static 'img/icon9.png' %}" alt=""><span>
@@ -79,7 +79,7 @@
             </ul>
             <a href="#"><i class="fas fa-eye"></i>
                 <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Vistas 50</font>
+                    <font style="vertical-align: inherit;">{{project.views}}</font>
                 </font>
             </a>
         </div>

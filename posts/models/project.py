@@ -37,6 +37,7 @@ class Project(CRideModel):
     website=models.URLField(max_length=200, blank=True)
     document=models.FileField(upload_to=ruta_documento)
     collaborators=models.CharField(max_length=300, validators=[validators.MinLengthValidator(5)], blank=True)
+    views=models.IntegerField(blank=True)
     url = models.SlugField(max_length=255, unique=True)
 
     def save(self, *args, **kwargs):

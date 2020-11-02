@@ -5,7 +5,7 @@
         <div class="user-profile">
             <a href="{% url 'users:detail' project.user.username %}">
                 <div class="usr-pic">
-                {% if user.profile.picture %}
+                {% if project.profile.picture %}
                     <img src="{{ project.profile.picture.url }}"  alt="profile-image" width="96" height="96">
                 {% else %}
                     <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">

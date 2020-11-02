@@ -401,8 +401,8 @@ header {
 }
 
 nav {
-	float: left;
-	width: 71%;
+	float: right;
+	width: 70%;
 	text-align: right;
 }
 nav ul li {
@@ -599,7 +599,6 @@ nav > ul > li > a:hover {
 .on-off-status {
 	float: left;
 	width: 100%;
-	padding: 10px;
 	border-bottom: 1px solid #e5e5e5;
 }
 .on-off-status :hover{
@@ -666,6 +665,9 @@ nav > ul > li > a:hover {
 	border-bottom: 1px solid #e5e5e5;
 	padding: 20px;
 }
+.us-links:hover{
+	background-color:rgb(241, 241, 241)
+}
 .us-links li {
 	float: left;
 	width: 100%;
@@ -684,8 +686,15 @@ nav > ul > li > a:hover {
 .tc {
 	text-align: center;
 }
+.tc:hover {
+	background-color:rgb(241, 241, 241);
+}
+
 .tc a {
 	color: #000;
+}
+.tc a:hover {
+	color: rgb(196, 33, 33);
 }
 .user-info img {
 	margin-right: 10px;

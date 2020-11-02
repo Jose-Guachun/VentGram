@@ -13,7 +13,6 @@ from posts.models import Project, Category, Status
 from posts.forms import ProjectForm
 
 
-
 @login_required
 def FilterProjectView(request):
     busqueda = request.POST.get("buscar")
@@ -62,7 +61,9 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     context_object_name='project'
     slug_field = 'url'
     slug_url_kwarg = 'url'
-    
+
+
+
 class CreatedProjectView(LoginRequiredMixin, CreateView):
     #Crear un nuevo post
     template_name='posts/create_update_project.html'

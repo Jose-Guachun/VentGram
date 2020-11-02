@@ -38,4 +38,4 @@ class ProjectForm(forms.ModelForm):
         'category': forms.Select(attrs={'class': 'form-control'}),
         'status': forms.Select(attrs={'class': 'form-control'}),
     }
- 
+

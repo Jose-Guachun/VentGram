@@ -1,6 +1,7 @@
 # Django
 Django==3.0.5
 
+
 # Pillow para el trato de imagenes
 Pillow==7.1.2
 

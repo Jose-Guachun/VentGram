@@ -9,7 +9,7 @@
         {% block row %}
         <div class="col-lg-5 col-md-7 pd-left-none">
             <div class="usy-dt">
-                {% if user.profile.picture %}
+                {% if request.user.profile.picture %}
                     <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="40" height="40">
                 {% else %}
                     <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
@@ -80,7 +80,7 @@
                                 </li>
                                 <!--<li><a href="#" class="com"><i class="fas fa-comment-alt"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Comentarios 15</font></font></a></li>-->
                             </ul>
-                            <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas 50</font></font></a>                                             
+                            <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas {{project.views}}</font></font></a>                                             
                         </div>
                         <div class="comment-area">
                             <i class="la la-plus-circle"></i>
