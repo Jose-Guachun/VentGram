@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <div class="posts-section">
     <div class="box">
         <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.url %}">
@@ -22,7 +23,7 @@
                     </a>
                     <span><img src="{% static 'img/clock.png' %}" alt="">
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">{{ project.created }}</font>
+                            <font style="vertical-align: inherit;">{{ project.created|naturaltime }}</font>
                         </font>
                     </span>
                 </div>

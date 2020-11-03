@@ -9,6 +9,7 @@ from VentGram.validators import vcedula, SoloNumeros
 
 from users.models import User
 
+
 def ruta(instance, file_name):
     route='{}/{}/{}/{}'.format( 'users',instance.user.email,'profile_picture',file_name)
     return route
@@ -38,9 +39,19 @@ class Profile(CRideModel):
     picture=models.ImageField(
         upload_to=ruta,
         blank=True,
-        null=True,
-    )
+        null=True,)
 
     def __str__(self):
         #return username
         return str(self.user)
+    
+    def following(self):
+	    user_ids = Relationship.objects.filter(from_user=self.user)\
+							.values_list('to_user_id', flat=True)
+	    return User.objects.filter(id__in=user_ids)
+
+
+    def followers(self):
+	    user_ids = Relationship.objects.filter(to_user=self.user)\
+							.values_list('from_user_id', flat=True)
+	    return User.objects.filter(id__in=user_ids)

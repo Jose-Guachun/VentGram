@@ -19,12 +19,13 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from users import views
 from posts import views
+from iteractions import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('users/', include(('users.urls', 'users'), namespace='users')),
     path('', include(('posts.urls', 'posts'), namespace='posts')),
-    
+    path('iteractions/', include(('iteractions.urls', 'iteractions'), namespace='iteractions')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

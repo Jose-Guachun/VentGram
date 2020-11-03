@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <div class="main-left-sidebar">
     <div class="user_profile">
         <div class="user-pro-img mb-0">
@@ -32,6 +33,8 @@
         <!--user_pro_status end-->
         <div class="text-left text-muted pl-3 pr-2 py-4">
             <p class="mb-2">
+                <span>Se unio {{ user.profile.created|naturaltime }}</span>
+                <br>
                 <strong>Usuario :</strong>
                 <span class="ml-1 text-capitalize">@{{ user.username }}</span>
                 <br>       
