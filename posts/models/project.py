@@ -42,11 +42,8 @@ class Project(CRideModel):
 
     def save(self, *args, **kwargs):
         project=Project.objects.first()
-        if project:
-            pk=1
-        else:
-            pk=project.pk
-            pk+=1
+        pk=project.pk
+        pk+=1
 
         self.url = slugify(pk)+'-'+slugify(self.title)
         super(Project, self).save(*args, **kwargs)
