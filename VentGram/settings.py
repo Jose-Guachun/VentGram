@@ -44,9 +44,9 @@ INSTALLED_APPS = [
 
 
     #LocalApp
-    'iteractions',
     'users',
     'posts',
+    'iteractions',
 ]
 SESSION_SAVE_EVERY_REQUEST = True
 MIDDLEWARE = [
