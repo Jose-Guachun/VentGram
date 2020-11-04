@@ -17,7 +17,7 @@
                     <a href="{% url 'users:detail' project.user.username %}">
                         <h3>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">{{ project.user.first_name }} {{ project.user.last_name }}</font>
+                                <font style="vertical-align: inherit;">{{ project.user.username}}</font>
                             </font>
                         </h3>
                     </a>
@@ -52,14 +52,18 @@
             </ul>
             {% else %}
             <ul class="bk-links">
-                <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                {% if project.user not in request.user.profile.following %}
+                    <li><a href="{% url 'iteractions:follow' project.user %}" title="Seguir" class="flww"><i class="la la-plus"></i></a></li>
+                {% else %}
+                    <li><a href="{% url 'iteractions:unfollow' project.user %}" title="Siguiendo" class="flww"><i class="fas fa-check-circle"></i></a></li>
+                {% endif %}
                 <li><a href="#" title=""><i class="la la-envelope"></i></a></li> 
             </ul>
             {% endif %}
 
         </div>
         <div class="job_descp">
-            <h3><a href="{% url 'posts:detail_project' project.url %}">{{ project.title }}</a></h3>
+            <h3><a href="{% url 'posts:detail_project' project.url %}" title="{{ project.title }}">{{ project.title}}</a></h3>
             <p>{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.url %}" title="">...ver más</a></p>
         </div>
         <div class="job-status-bar">

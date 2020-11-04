@@ -15,18 +15,18 @@
                 </div>
             <!--username-dt end-->
                 <div class="user-specs pb-0">
-                    <h3>{{project.user.username}}</h3>
+                    <h3 class="mb-0">{{project.user.username}}</h3>
                 </div>
                 </a>
                     <div class="badges">
                         <span class="badge badge-info">{{project.profile.work_area}}</span>
                     </div>
-                    <div class="user-specs py-0">
-                        <h5>En VentGram {{ project.profile.created|naturaltime }}</h5>
+                    <div class="user-specs py-0 ">
+                        <h5 class="mb-0 py-1">En VentGram {{ project.profile.created|naturaltime }}</h5>
                     </div>
                     
                     {% if project.profile.city %}
-                    <div class="user-specs pb-2 pt-0">
+                    <div class="user-specs pb-2 pt-0 ">
                         <span><i class="fas fa-map-marker-alt pr-1" style="color:rgb(52, 216, 52);"></i> {{project.profile.city}}, {{project.profile.country}}</span>
                     </div>
                     {% endif %}
@@ -65,59 +65,3 @@
     <h5>{{ project.status }}</h5>
 </div>
 
-
-    <!--user-data end-->
-<!--<section class="col-md-12 col-lg-4">
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="text-center">
-                {% if profile.picture %}
-                    <img src="{{ profile.picture.url }}" class="rounded-circle" alt="profile-image" width="128" height="128">
-                {% else %}
-                    <img src="{% static 'img/user-default1.png' %}" class="rounded-circle" alt="profile-image" width="128" height="128">
-                {% endif %}
-
-                <h4 class="mb-0 mt-2 text-capitalize">
-                    {{ user.first_name}} {{ user.last_name }}
-                </h4>
-                <h6>
-                    {{ profile.profile }}
-                </h6>
-
-                <div class="media-body">
-                    <p class="ml-4"><input type="file" name="picture"></p>
-                </div>
-
-
-            </div>  
-            <div class="text-left text-muted font-13">`
-                <h5> Biografia</h5>
-                <p class="mb-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium minus dolore omnis fuga mollitia voluptatibus dicta labore laborum, nobis sapiente voluptas beatae, asperiores expedita. Similique repudiandae odio possimus facere assumenda.
-                </p>
-
-                <p class="mb-2">
-                    <strong>Nombres : </strong>
-                    <span class="ml-2 text-capitalize"> {{ user.first_name }} {{ user.last_name }}</span>
-                </p>
-                <p class="mb-2">
-                    <strong>Telefono : </strong>
-                    <span class="ml-2 text-capitalize"> {{ profile.phone_number }}</span>
-                </p>
-                <p class="mb-2">
-                    <strong>Email : </strong>
-                    <span class="ml-2 text-capitalize"> {{ user.email}}</span>
-                </p>
-                <p class="mb-2">
-                    <strong>Ubicacion: </strong>
-                    <span class="ml-2 text-capitalize"> {{ profile.city.name_city }}</span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-4">
-        <div div class="card-body">
-            <h5>mensajes</h5>
-        </div>
-    </div>
-</section>--->

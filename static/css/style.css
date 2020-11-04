@@ -1246,7 +1246,7 @@ a .user-specs h3:hover {
 }
 .descp li {
 	display: inline-block;
-	margin-right: 15px;
+	margin-right: 5px;
 }
 .descp li span {
 	color: #b2b2b2;
@@ -1261,7 +1261,6 @@ a .user-specs h3:hover {
 }
 .bk-links li {
 	display: inline-block;
-	margin-right: 7px;
 }
 .bk-links li:last-child {
 	margin-right: 0;
@@ -1308,7 +1307,7 @@ a .user-specs h3:hover {
 	color: #333;
 	font-size: 17px;
 	font-weight: 600;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 .job_descp a{
 	color: rgb(70, 70, 70) !important;
@@ -2739,6 +2738,35 @@ footer {
 	margin: -16px;
     padding: 0;
 }
+
+.add-dps i {
+    bottom: 0;
+    font-size: 14px;
+    box-shadow: none;
+    position: relative;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background: #ffffff;
+    padding: 2px;
+    color: rgb(31, 110, 175);
+    left: 0;
+    top: -5px;
+}
+
+.add-dps i:hover {
+	
+	font-size: 32px;
+	border: 2px solid white;
+    background: #ffffff;
+	padding: 1px;
+	color:rgb(25, 93, 150);
+}
+.add-dps {
+	margin: -16px;
+    padding: 0;
+}
 .add-dp input[type=file] {
     opacity: 0;
     padding: 10px 0px 9px;
@@ -2759,16 +2787,15 @@ footer {
 .user_pro_status {
 	float: left;
 	width: 100%;
-	padding-bottom: 27px;
 }
 .flw-hr {
 	float: left;
 	width: 100%;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 .flw-hr li {
 	display: inline-block;
-	margin-right: 17px;
+	margin-right: 5px;
 }
 .flw-hr li:last-child {
 	margin-right: 0;
@@ -2776,12 +2803,12 @@ footer {
 .flw-hr li a {
 	display: inline-block;
 	color: #ffffff;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;
-	padding: 11px 15px;
+	padding: 7px 8px;
 }
 .flw-hr li a i {
-	padding-right: 5px;
+	padding-right: 1px;
 }
 .flww {
 	background-color: #53d690;
@@ -2799,50 +2826,57 @@ footer {
 }
 .flw-status li {
 	display: inline-block;
-	margin-right: 50px;
+	margin-right: 15px;
 }
 .flw-status li:last-child {
 	margin-right: 0;
 }
 .flw-status li span {
 	color: #686868;
-	font-size: 20px;
+	font-size: 17px;
 	font-weight: 500;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	display: block;
 }
 .flw-status li b {
 	color: #000000;
-	font-size: 20px;
+	font-size: 17px;
 	font-weight: 600;
 }
 
 /* ================== social_links ============= */
 
 .social_links {
-	float: left;
+	float: center;
 	width: 100%;
-	text-align: left;
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top:10px;
 }
 .social_links li {
-	float: left;
+	padding-top:10px;
+	text-align: center;
+	float: center;
 	width: 100%;
 	padding: 15px 15px;
-	border-bottom: 1px solid #e5e5e5;
 }
 .social_links li a {
-	float: left;
+	float: center;
 	width: 100%;
 	color: #51a5fb;
 	font-size: 14px;
     font-weight: 400;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
+	overflow: hidden;
+	text-align: center;
+}
+.social_links li a img{
+	text-align: center;
 }
 .social_links li a i {
 	padding-right: 5px;
-	font-size: 20px;
+	font-size: 35px;
 	position: relative;
 	top: 3px;
 }

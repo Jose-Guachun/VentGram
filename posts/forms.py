@@ -24,7 +24,10 @@ class ProjectForm(forms.ModelForm):
             'website',
             'document',
             'collaborators',]
-    
+    def clean_title(self):
+        title=self.cleaned_data['title'].capitalize()
+        return title
+
     def clean_collaborators(self):
         collaborators=self.cleaned_data['collaborators'].title()
         SoloLetras(collaborators, 'Colaboradores')

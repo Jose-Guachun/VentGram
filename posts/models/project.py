@@ -29,7 +29,7 @@ class Project(CRideModel):
     category=models.ForeignKey(Category, on_delete=models.CASCADE)
     status=models.ForeignKey(Status, on_delete=models.CASCADE)
 
-    title=models.CharField('titulo',max_length=50)
+    title=models.CharField('titulo',max_length=100)
     description=models.TextField(validators=[validators.MinLengthValidator(125)])
     objetive=models.TextField(validators=[validators.MinLengthValidator(15)])
     image=models.ImageField(upload_to=ruta_imagen)
@@ -42,9 +42,11 @@ class Project(CRideModel):
     def save(self, *args, **kwargs):
         project=Project.objects.first()
         pk=project.pk
-        pk+=1
-
-        self.url = slugify(pk)+'-'+slugify(self.title)
+        cadena = slugify(pk)+'-'+slugify(self.title)
+        while Project.objects.filter(url=cadena).exists():
+            pk+=1
+            cadena = slugify(pk)+'-'+slugify(self.title)
+        self.url=cadena
         super(Project, self).save(*args, **kwargs)
 
     def __str__(self):

@@ -224,8 +224,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
         </div>
         <div class="save-stngs pd2">
             <ul>
-                <li><button type="submit">Guardar</button></li>
-                <li><a class="btn btn-danger mb-1" href="{% url 'users:update_profile' %}">Cancelar</a></li>
+                <li><button type="submit">Guardar</button><a class="btn btn-danger mb-1 pb-2 ml-2" href="{% url 'users:update_profile' %}">Cancelar</a></li>
             </ul>
         </div>
     </form>

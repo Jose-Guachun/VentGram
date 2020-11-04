@@ -90,8 +90,10 @@ Redes Sociales| @{{ user.username|capfirst }}
       
     <div class="save-stngs pd2">
         <ul>
-            <li><button type="submit">Guardar</button></li>
-            <li><a class="btn btn-danger mb-1" href="{% url 'users:social_net' %}">Cancelar</a></li>
+            <li><button type="submit">Guardar</button>
+                <a class="btn btn-danger mb-1 pb-2 ml-2" href="{% url 'users:social_net' %}">
+                    Cancelar
+                </a></li>
         </ul>
     </div>
 </div> 

@@ -26,8 +26,9 @@ Eliminar Cuenta | @{{ user.username|capfirst }}
         </div>
         <div class="save-stngs pd3">
             <ul>
-                <li><button type="submit">Eliminar</button></li>
-                <li><a class="btn btn-danger mb-1" href="{% url 'posts:feed' %}">Cancelar Configuracion</a></li>
+                <li><button type="submit">Eliminar</button>
+                    <a class="btn btn-danger mb-1 pb-2 ml-2" href="{% url 'posts:feed' %}">Cancelar</a>
+                </li>
             </ul>
         </div>
         <!--save-stngs end-->

@@ -120,7 +120,7 @@ Perfil | @{{user.username|capfirst}}
                                 
                                 <div class="gallery_pt">
                                     <img src="{{ project.image.url }}" alt="">
-                                    <a href="{% url 'posts:detail_project' project.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 45px;">{{project.title}}</h3></a>
+                                    <a href="{% url 'posts:detail_project' project.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{project.title}}</h3></a>
                                     {% if user == request.user %}
                                         <div  class="cadidatesbtn">
                                             <a title="Editar"  href="{% url 'posts:update_project' project.url %}" ><i class="far fa-edit mr-1"></i></a> 
@@ -150,15 +150,6 @@ Perfil | @{{user.username|capfirst}}
                 <ul class="flw-status text-left">
                     <a href="{% url 'users:update_profile' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Mensaje</a>
                 </ul> --->
-                {% if user == request.user %}
-                <ul class="flw-status text-right">
-                    <a href="{% url 'users:update_profile' %}" type="button" class="btn btn-danger mb-3 " style=" padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Editar Perfil</a>
-                </ul>
-                {% else %}
-                <ul class="flw-status text-right">
-                    <a href="{% url 'users:update_profile' %}" type="button" class="btn btn-secondary mb-3" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-user-edit mr-1"></i>Seguir</a>
-                </ul>
-                {% endif %}
             <div class="widget widget-portfolio">
                 <div class="wd-heady">
                     

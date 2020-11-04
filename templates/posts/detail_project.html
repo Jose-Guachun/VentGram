@@ -30,9 +30,9 @@
                     <div class="box gallery_pt">
                         
                         <img src="{{ project.image.url }}" class="">
-                        <a href="" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 25px;font-size: 30px;font-weight: 600;">{{ project.title|title}}</h3></a>
+                        <a href="" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 25px;font-size: 30px;font-weight: 600;">{{ project.title }}</h3></a>
                     </div>
-                    <div class="post-bar">
+                    <div class="post-bar" style="height: 100%;">
 
                         <div class="user-specs pt-0 pb-0">
                             {% if project.profile.user == request.user %}
@@ -44,7 +44,7 @@
                                 </ul>
                             </div>
                             {% endif %}
-                            <h3>{{ project.title }}</h3>
+                            <h3 style="text-transform:none">{{ project.title }}</h3>
                             <a href="{% url 'users:detail' project.user.username %}">Por: {{project.user.first_name }} {{project.user.last_name}} | @{{project.user.username }}</a>
                             {% if project.collaborators %}
                             <h4 class="pt-1">colaboradores: {{ project.collaborators }}</h4>
