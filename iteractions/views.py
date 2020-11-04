@@ -4,8 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 #model
-from users.models import User
-from iteractions.models import Relationship
+from users.models import Relationship, User
 
 # Create your views here.
 def follow(request, username):

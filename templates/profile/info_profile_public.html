@@ -1,6 +1,6 @@
 {% load static %}
 {% load humanize %}
-<h6 >UN PROYECTO DE</h6>
+<h6 style="font-weight: 600;">UN PROYECTO DE</h6>
 <hr class="mt-2">
     <div class="user-data full-width">
         <div class="user-profile">
@@ -21,8 +21,12 @@
                     <div class="badges">
                         <span class="badge badge-info">{{project.profile.work_area}}</span>
                     </div>
+                    <div class="user-specs py-0">
+                        <h5>En VentGram {{ project.profile.created|naturaltime }}</h5>
+                    </div>
+                    
                     {% if project.profile.city %}
-                    <div class="user-specs py-2">
+                    <div class="user-specs pb-2 pt-0">
                         <span><i class="fas fa-map-marker-alt pr-1" style="color:rgb(52, 216, 52);"></i> {{project.profile.city}}, {{project.profile.country}}</span>
                     </div>
                     {% endif %}
@@ -33,13 +37,13 @@
         <div class="user_pro_status">
             <ul class="flw-status">
                 {% if request.user.is_authenticated %}
-                {% if user == request.user %}
-                    {% if user not in request.user.profile.following %}
-                    <a href="{% url 'iteractions:follow' user %}" type="button" class="btn btn-secondary mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-plus-circle mr-2"></i>Seguir</a>
+                {% if project.user != request.user %}
+                    {% if project.user not in request.user.profile.following %}
+                    <a href="{% url 'iteractions:follow' project.user %}" type="button" class="btn btn-secondary mb-2" style="padding: .175rem .55rem; font-size: 0.8rem;"><i class="fas fa-plus-circle mr-1"></i>Seguir</a>
                     {% else %}
-                    <a href="{% url 'iteractions:unfollow' user %}" type="button" class="btn btn-secondary mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="fas fa-plus-circle mr-2"></i>Dejar de Seguir</a>
+                    <a href="{% url 'iteractions:unfollow' project.user %}" type="button" class="btn btn-secondary mb-2" style="padding: .175rem .55rem; font-size: 0.8rem;"><i class="fas fa-check-circle mr-1"></i>Siguiendo</a>
                     {% endif %}
-                <a href="{% url 'posts:feed' %}" type="button" class="btn btn-danger mb-2" style="padding: .275rem .55rem; font-size: 0.8rem;"><i class="far fa-envelope mr-2"></i>Mensaje</a>
+                <a href="{% url 'posts:feed' %}" type="button" class="btn btn-danger mb-2" style="padding: .175rem .55rem; font-size: 0.8rem;"><i class="far fa-envelope mr-1"></i>Mensaje</a>
                 {% endif%}
                 {% endif %}
             </ul>
@@ -47,16 +51,17 @@
         </div>
         <!--user-profile-->
     </div>
-<h6>DETALLES</h6>
+<h6 style="font-weight: 600;">DETALLES</h6>
 <hr class="mt-2">
 <div class="user-specs py-2">
-    <h5>{{ project.title| title }}</h5>
-    <h5>{{ project.created|naturaltime }}</h5>
-    <h5 class="mt-3">CATEGORIA</h5>
+    <h5 style="font-weight: 600;">TITULO</h5>
+    <h5>{{ project.title| upper }}</h5>
+    <h5><img src="{% static 'img/clock.png' %}" alt="Fecha de publicacion" class="mr-1">{{ project.created|naturaltime }}</h5>
+    <h5 style="font-weight: 600;" class="mt-3">CATEGORIA</h5>
     <h5>{{ project.category }}</h5>
-    <h5 class="mt-3">TECNOLOGIAS UTILIZADAS</h5>
+    <h5 style="font-weight: 600;" class="mt-3">TECNOLOGIAS UTILIZADAS</h5>
     <h5>{{ project.label }}</h5>
-    <h5 class="mt-3">ESTADO</h5>
+    <h5 style="font-weight: 600;" class="mt-3">ESTADO</h5>
     <h5>{{ project.status }}</h5>
 </div>
 
