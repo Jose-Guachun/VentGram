@@ -16,15 +16,11 @@
                 <div class="usy-name pt-2">
                     <a href="{% url 'users:detail' project.user.username %}">
                         <h3>
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">{{ project.user.username}}</font>
-                            </font>
+                            {{ project.user.username}}
                         </h3>
                     </a>
-                    <span><img src="{% static 'img/clock.png' %}" alt="">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">{{ project.created|naturaltime }}</font>
-                        </font>
+                    <span>
+                        <i class="fas fa-clock mr-1"></i>{{ project.created|naturaltime }}
                     </span>
                 </div>
             </div>
@@ -34,15 +30,13 @@
     <div class="post-bar pt-1">
         <div class="epi-sec">
             <ul class="descp">
-                <li><img src="{% static 'img/icon8.png' %}" alt=""><span>
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">{{ project.category }}</font>
-                        </font>
+                <li>
+                    <img src="{% static 'img/icon8.png' %}" alt="">
+                    <span>
+                        {{ project.category }}
                     </span></li>
                 <li><img src="{% static 'img/icon9.png' %}" alt=""><span>
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">{{ project.profile.city }}</font>
-                        </font>
+                       {{ project.status}}
                     </span></li>
             </ul>
             {% if project.profile.user == request.user %}
@@ -52,11 +46,6 @@
             </ul>
             {% else %}
             <ul class="bk-links">
-                {% if project.user not in request.user.profile.following %}
-                    <li><a href="{% url 'iteractions:follow' project.user %}" title="Seguir" class="flww"><i class="la la-plus"></i></a></li>
-                {% else %}
-                    <li><a href="{% url 'iteractions:unfollow' project.user %}" title="Siguiendo" class="flww"><i class="fas fa-check-circle"></i></a></li>
-                {% endif %}
                 <li><a href="#" title=""><i class="la la-envelope"></i></a></li> 
             </ul>
             {% endif %}

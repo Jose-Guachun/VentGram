@@ -6,6 +6,7 @@ from django.contrib import messages
 #model
 from users.models import User
 from iteractions.models import Relationship
+from posts.models import Project
 
 # Create your views here.
 def follow(request, username):

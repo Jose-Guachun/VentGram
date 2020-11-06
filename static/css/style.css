@@ -2748,7 +2748,6 @@ footer {
     width: 40px;
     height: 40px;
     text-align: center;
-    background: #ffffff;
     padding: 2px;
     color: rgb(31, 110, 175);
     left: 0;
@@ -2758,15 +2757,11 @@ footer {
 .add-dps i:hover {
 	
 	font-size: 32px;
-	border: 2px solid white;
-    background: #ffffff;
+	border: 2px solid rgba(255, 255, 255, 0);
 	padding: 1px;
 	color:rgb(25, 93, 150);
 }
-.add-dps {
-	margin: -16px;
-    padding: 0;
-}
+
 .add-dp input[type=file] {
     opacity: 0;
     padding: 10px 0px 9px;
@@ -2858,7 +2853,7 @@ footer {
 	text-align: center;
 	float: center;
 	width: 100%;
-	padding: 15px 15px;
+	padding: 15px 15px 5px;
 }
 .social_links li a {
 	float: center;
@@ -2878,7 +2873,7 @@ footer {
 	padding-right: 5px;
 	font-size: 35px;
 	position: relative;
-	top: 3px;
+	top: 0px;
 }
 .la-globe {
 	color: #51a5fb;

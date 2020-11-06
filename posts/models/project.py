@@ -40,13 +40,18 @@ class Project(CRideModel):
     url = models.SlugField(max_length=255, unique=True)
 
     def save(self, *args, **kwargs):
-        project=Project.objects.first()
-        pk=project.pk
-        cadena = slugify(pk)+'-'+slugify(self.title)
-        while Project.objects.filter(url=cadena).exists():
-            pk+=1
-            cadena = slugify(pk)+'-'+slugify(self.title)
-        self.url=cadena
+        if not self.url:
+            project=Project.objects.first()
+            if project is int:
+                pk=project.pk
+                pk+=1
+            else:
+                pk=1
+            cadena = slugify(self.user)+slugify(pk)+'-'+slugify(self.title)
+            while Project.objects.filter(url=cadena).exists():
+                pk+=1
+                cadena = slugify(self.user)+slugify(pk)+'-'+slugify(self.title)
+            self.url=cadena
         super(Project, self).save(*args, **kwargs)
 
     def __str__(self):

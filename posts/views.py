@@ -70,7 +70,6 @@ class CreatedProjectView(LoginRequiredMixin, CreateView):
     form_class=ProjectForm
     success_url=reverse_lazy('posts:feed')
 
-
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         context['user']=self.request.user

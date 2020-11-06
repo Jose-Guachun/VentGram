@@ -74,25 +74,25 @@
              {% if  user.profile.facebook %}
                 <a href="{{user.profile.facebook}}" target="_blank" ><i class="fab fa-facebook"></i></a>
              {% else %}
-                <a href=""><i class="fab fa-facebook" style="filter: grayscale();"></i></a>
+                <a><i class="fab fa-facebook" style="filter: grayscale();"></i></a>
              {% endif %}
              {% if  user.profile.twitter %}
                  <a href="{{user.profile.twitter}}" target="_blank"><i class="fab fa-twitter"></i></a>
              {% else %}
-             <a href=""><i class="fab fa-twitter" style="filter: grayscale();"></i></a>
+                <a><i class="fab fa-twitter" style="filter: grayscale();"></i></a>
              {% endif %}
              {% if  user.profile.linkedin %}
                  <a href="{{user.profile.linkedin}}" target="_blank"><i class="fab fa-linkedin-in" style="color: #0073b1;"></i></a>
              {% else %}
-             <a href=""><i class="fab fa-linkedin-in" style="filter: grayscale();"></i></a>
+                <a><i class="fab fa-linkedin-in" style="filter: grayscale();"></i></a>
              {% endif %}
              {% if  user.profile.github %}
                  <a href="{{user.profile.github}}" target="_blank"><i class="fab fa-github" style="color:black;"></i></a>
              {% else %}
-             <a href=""><i class="fab fa-github" style="filter: grayscale();"></i></a>
+                <a><i class="fab fa-github" style="filter: grayscale();"></i></a>
              {% endif %}
              {% if user ==  request.user %}
-             <a href="{% url 'users:social_net' %}"><i class="fas fa-edit" style="color:#53d690; font-size: 12px; "></i></a>
+             <a href="{% url 'users:social_net' %}"><i class="fas fa-edit" style="color:#53d690; font-size: 15px; top: -26px;left: -10px; width: 0px; padding-right:0px;"></i></a>
              {% endif %}
             </li>
 
