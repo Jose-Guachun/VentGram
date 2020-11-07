@@ -38,6 +38,8 @@ class Project(CRideModel):
     document=models.FileField(upload_to=ruta_documento)
     collaborators=models.CharField(max_length=300, validators=[validators.MinLengthValidator(5)], blank=True)
     url = models.SlugField(max_length=255, unique=True)
+    likes = models.IntegerField(default=0)
+
 
     def save(self, *args, **kwargs):
         if not self.url:

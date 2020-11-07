@@ -25,6 +25,24 @@ urlpatterns = [
         view=views.UserListView,
         name='list_user',
         ),
+
+    path(
+        route='<int:project_id>/<str:project_slug>/',
+        view=views.like,
+        name='like_project'
+        ),
+        
+    path(
+        route='notification/',
+        view=views.ShowNOtifications,
+        name='notification'
+        ),
+
+     path(
+        route='messages/',
+        view=views.MessagesViews.as_view(),
+        name='messages'
+        ),
 ]
 
 

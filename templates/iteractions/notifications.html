@@ -1,0 +1,54 @@
+{% extends 'posts/base.html' %}
+{% block head_content %}
+Notifications | VentGram
+{% endblock%}
+{% load static %}
+<!--herencia de posts/base html estructura de cuerpo de html-->
+
+{% block other_top %}
+<!--agregar vistas al inicio sin ningun contenedor puesto -->
+{% endblock %}
+
+{% block row %}
+<div class="col-lg-6 offset-lg-3">
+    <div class="acc-setting">
+        <h3>Notifications</h3>
+        <div class="notifications-list">
+
+            <!--Notfication Likes-->
+            {% for notification in notifications %}
+            <div class="notfication-details">
+                <ul class="bk-links">
+                    <a href="{% url 'users:social_net' %}" style="color:#4e4e4e;"><i class="fas fa-times-circle"></i></a>
+                </ul>
+                <a href="{% url 'users:detail' notification.sender.profile.user.username  %}" class="usy-dt">
+                    {% if notification.sender.profile.picture %}
+                    <img src="{{ notification.sender.profile.picture.url }}" alt="profile-image" width="37" height="37">
+                    {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
+                    {% endif %}
+                </a>
+                
+                <div class="notification-info">
+                    <h3>A <a href="{% url 'users:detail' notification.sender.profile.user.username  %}" title="">{{ notification.sender.profile.user.first_name }} {{ notification.sender.profile.user.last_name }}</a> le gusta tu publicacion.</h3>
+                    <h3>Del proyecto <a href="{% url 'posts:detail_project' notification.post.url %}">{{ notification.post.title}}</a></h3>
+                    <span>{{ notification.date }}</span>
+                </div>
+                
+            </div>
+            {% endfor %}
+            <!--Notification Likes -->
+        </div>
+        <!--notifications-list end-->
+    </div>
+    <!--acc-setting end-->
+</div>
+{% endblock %}
+
+
+{% block other_button %}
+<!--agregar vistas al final sin ningun contenedor puesto -->
+
+{% endblock %}
+
+<!--herencia de posts/base html estructura de cuerpo de html-->
