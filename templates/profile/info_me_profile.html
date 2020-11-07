@@ -39,9 +39,9 @@
                 {% if user != request.user %}
             
                 {% if user not in request.user.profile.following %}
-                    <li><a href="{% url 'iteractions:follow' user %}" title="" class="flww"><i class="la la-plus"></i> Seguir</a></li>
+                    <li><a href="{% url 'iteractions:follow' user user.username %}" title="" class="flww"><i class="la la-plus"></i> Seguir</a></li>
                 {% else %}
-                    <li><a href="{% url 'iteractions:unfollow' user %}" title="" class="flww"><i class="fas fa-check-circle"></i> Siguiendo</a></li>
+                    <li><a href="{% url 'iteractions:unfollow' user user.username %}" title="" class="flww"><i class="fas fa-check-circle"></i> Siguiendo</a></li>
                 {% endif %}
                 <li><a href="#" title="" class="hre"><i class="far fa-envelope"></i>Mensaje</a></li>
                 {% else %}

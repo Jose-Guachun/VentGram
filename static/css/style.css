@@ -421,7 +421,7 @@ nav ul ul {
 	top: 100%;
 	left: 0;
 	width: 200px;
-	background-color: #e44d3a;
+	background-color: #0e702bbb;
 	text-align: left;
 	padding: 20px 0 10px 0; 
 	opacity: 0;
@@ -3800,7 +3800,7 @@ a:hover {
 }
 .company-up-info ul li a {
 	display: inline-block;
-	padding: 0 12px;
+	padding: 0 8px;
 	color: #fff;
 	height: 35px;
 	line-height: 35px;

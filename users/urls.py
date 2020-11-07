@@ -64,11 +64,6 @@ urlpatterns = [
         name='delete_user'
         ),
 
-    path(
-        route='mail/',
-        view=views.email_verified,
-        name='mail'
-        ),
 
     #profile
     path(

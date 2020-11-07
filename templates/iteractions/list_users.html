@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_content %}
+    Usuarios | VentGram
+{% endblock%}
+
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock%}
+
+{% block content %}
+<section class="companies-info">
+    <div class="container">
+        <div class="company-title">
+            <h3>Todos los usuarios de VentGram</h3>
+        </div><!--company-title end-->
+        <div class="companies-list">
+            <div class="row">
+                {% include 'posts/section_post_shear.html' %}
+                {% for user in users %}
+                    {% if user != request.user %}
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="company_profile_info">
+                                <div class="company-up-info">
+                                    {% if user.profile.picture %}
+                                        <img src="{{user.profile.picture.url}}" alt="profile-image" width="96" height="96">
+                                    {% else %}
+                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
+                                    {% endif %}
+                                    <h3>{{user.username}}</h3>
+                                    <h4>{{user.email}}</h4>
+                                    <ul>
+                                        {% if request.user.is_authenticated %}
+                                            {% if user != request.user %}
+                                                {% if user not in request.user.profile.following %}
+                                                    <li><a href="{% url 'iteractions:follow' user user.email%}" title="" class="flww"><i class="la la-plus" style="font-size: 18px;top: 1px;padding-right: 2px;"></i>Seguir</a></li>
+                                                {% else %}
+                                                    <li><a href="{% url 'iteractions:unfollow' user user.email%}" title="" class="flww"><i class="fas fa-check-circle" style="font-size: 18px;top: 1px;padding-right: 4px;"></i>Siguiendo</a></li>
+                                                {% endif %}
+                                                <li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                    </ul>
+                                </div>
+                                <a href="{% url 'users:detail' user.username %}" title="" class="view-more-pro">Ver Perfil</a>
+                            </div><!--company_profile_info end-->
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div><!--companies-list end-->
+        <div class="process-comm">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div><!--process-comm end-->
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

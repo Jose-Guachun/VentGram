@@ -39,9 +39,9 @@
                 {% if request.user.is_authenticated %}
                 {% if project.user != request.user %}
                     {% if project.user not in request.user.profile.following %}
-                    <a href="{% url 'iteractions:follow' project.user %}" type="button" class="btn btn-secondary mb-2" style="padding: .175rem .55rem; font-size: 0.8rem;"><i class="fas fa-plus-circle mr-1"></i>Seguir</a>
+                    <a href="{% url 'iteractions:follow' project.user project.url %}" type="button" class="btn btn-secondary mb-2" style="padding: .175rem .55rem; font-size: 0.8rem;"><i class="fas fa-plus-circle mr-1"></i>Seguir</a>
                     {% else %}
-                    <a href="{% url 'iteractions:unfollow' project.user %}" type="button" class="btn btn-secondary mb-2" style="padding: .175rem .55rem; font-size: 0.8rem;"><i class="fas fa-check-circle mr-1"></i>Siguiendo</a>
+                    <a href="{% url 'iteractions:unfollow' project.user project.url %}" type="button" class="btn btn-secondary mb-2" style="padding: .175rem .55rem; font-size: 0.8rem;"><i class="fas fa-check-circle mr-1"></i>Siguiendo</a>
                     {% endif %}
                 <a href="{% url 'posts:feed' %}" type="button" class="btn btn-danger mb-2" style="padding: .175rem .55rem; font-size: 0.8rem;"><i class="far fa-envelope mr-1"></i>Mensaje</a>
                 {% endif%}

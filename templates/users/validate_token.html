@@ -6,11 +6,11 @@ Activacion de Cuenta | VentGram
             
 
 {% block title %}
-Validacion De Cuenta
+Validación De Cuenta
 {% endblock %}
 
 {% block container %}
-        <p>Se le a enviado un correo electronico con el codigo de verificacion por favor revise su correo electronico y coloque su codigo de verificacion.</p>
+        <p>Se le a enviado un correo electronico a {{request.user.email}} con el codigo de verificacion por favor revise su correo electronico y coloque su codigo de verificacion.</p>
         <br>
         {% if context %}
         <p class="alert alert-danger">{{context}}</p>

@@ -26,11 +26,12 @@
                     <img src="{% static 'img/user-default1.png' %}" class="ml-2 mt-2 mb-2" alt="profile-image" width="37" height="37">
                   {% endif %}
               </div>
-  
-              <div >
+
                 <div class="fgt-sec">
                 <h6 class="mt-3 ml-0 mb-0">{{user.first_name|capfirst}}</h6>
-                <p>Ver mi perfil</p></a>
+                <p>Ver mi perfil</p>
+              </div>
+              </a>
           </li>
           </ul>
 
@@ -69,6 +70,9 @@
             <span><img src="{% static 'img/icon4.png' %}" alt=""></span>
             Perfil
           </a>
+          <ul>
+            <li><a href="{% url 'iteractions:list_user' %}" title="">Usuarios</a></li>
+          </ul>
         </li>
         <li>
           <a href="#" title="" class="not-box-openm">

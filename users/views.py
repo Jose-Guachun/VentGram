@@ -250,12 +250,3 @@ def validate_token(request):
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     template_name='users/logget_auth.html'
 
-
-
-def email_verified(request):
-    if request.method== 'POST':
-        mail = request.POST.get('mail')
-
-        send_email(mail)
-
-    return render(request, 'users/mail.html', {})

@@ -3,6 +3,8 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 
+from users.models import User
+from posts.models import Project
 class SignUpBlockMiddleware:
     #Middleware de finalización de perfil.
     # Asegúrese de que cada usuario que interactúa con la plataformatienen su foto de perfil y biografía.
@@ -20,7 +22,23 @@ class SignUpBlockMiddleware:
                         if request.path in [reverse('users:signup'), reverse('posts:home'), reverse('users:validate_token')]:
                             return redirect('posts:feed')
                     else:
+                        
+                        users=User.objects.all()
+                        for user in users:
+                            if request.path in[
+                                reverse('users:detail', args=[user.username] ),
+                                ]:
+                                return redirect('users:validate_token')
+
+                        projects=Project.objects.all()
+                        for project in projects:
+                            if request.path in[
+                                reverse('posts:detail_project', args=[project.url] ),
+                                ]:
+                                return redirect('users:validate_token')  
+
                         if request.path in [
+                             
                             reverse('users:signup'), 
                             reverse('users:update_profile'),
                             reverse('users:update_user'),

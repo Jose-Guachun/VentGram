@@ -7,17 +7,24 @@ from iteractions import views
 
 
 urlpatterns = [
+        
     path(
-        route='follow/<str:username>/',
+        route='follow/<str:username>/<str:project_slug>/',
         view=views.follow,
         name='follow',
         ),
 
-	path(
-        route='unfollow/<str:username>/',
+    path(
+        route='unfollow/<str:username>/<str:project_slug>/',
         view=views.unfollow,
-        name='unfollow',),
-        
+        name='unfollow',
+        ),
+
+    path(
+        route='list_user/',
+        view=views.UserListView,
+        name='list_user',
+        ),
 ]
 
 
