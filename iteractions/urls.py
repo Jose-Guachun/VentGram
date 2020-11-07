@@ -16,8 +16,26 @@ urlpatterns = [
 	path(
         route='unfollow/<str:username>/',
         view=views.unfollow,
-        name='unfollow',),
+        name='unfollow',),   
+            
+    path(
+        route='<int:project_id>/like',
+        view=views.like,
+        name='like_project'
+        ),
         
+    path(
+        route='notification/',
+        view=views.ShowNOtifications,
+        name='notification'
+        ),
+
+     path(
+        route='messages/',
+        view=views.MessagesViews.as_view(),
+        name='messages'
+        ),
+ 
 ]
 
 

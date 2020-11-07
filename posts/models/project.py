@@ -38,10 +38,15 @@ class Project(CRideModel):
     document=models.FileField(upload_to=ruta_documento)
     collaborators=models.CharField(max_length=300, validators=[validators.MinLengthValidator(5)], blank=True)
     url = models.SlugField(max_length=255, unique=True)
+    likes = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         project=Project.objects.first()
-        pk=project.pk
+        if project is int:
+            pk=project.pk
+            pk+=1
+        else:
+            pk=1
         cadena = slugify(pk)+'-'+slugify(self.title)
         while Project.objects.filter(url=cadena).exists():
             pk+=1
@@ -51,5 +56,4 @@ class Project(CRideModel):
 
     def __str__(self):
         return '{} por @{}'.format(self.title, self.user.username)
-
 

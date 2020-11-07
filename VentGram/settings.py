@@ -153,7 +153,7 @@ AUTH_USER_MODEL = 'users.User'
 
 EMAIL_HOST="smtp.gmail.com"
 EMAIL_USE_TLS=True
-EMAI_PORT=587
+EMAIL_PORT=587
 EMAIL_HOST_USER="imaginecreate49@gmail.com"
 EMAIL_HOST_PASSWORD="19201996"
 

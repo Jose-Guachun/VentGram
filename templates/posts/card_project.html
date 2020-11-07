@@ -69,15 +69,15 @@
         <div class="job-status-bar">
             <ul class="like-com">
                 <li>
-                    <a href="#"><i class="fas fa-heart"></i>
+                    <a href="{% url 'iteractions:like_project' project.id  %}"><i class="fas fa-heart"></i>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;"> Me gusta</font>
+                            <font style="vertical-align: inherit;">Like</font>
                         </font>
                     </a>
                     <img src="{% static 'img/liked-img.png'  %}" alt="">
                     <span>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">25</font>
+                            <font style="vertical-align: inherit;">{{project.likes}}</font>
                         </font>
                     </span>
                 </li>

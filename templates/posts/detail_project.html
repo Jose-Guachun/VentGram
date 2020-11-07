@@ -72,17 +72,19 @@
                                 </div>
                             </div>  
                         </div>
+
                         <div class="job-status-bar btm-line">                                               
                            <ul class="like-com">
                                 <li>
-                                    <a href="#" class="active"><i class="fas fa-heart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Me gusta</font></font></a>
+                                    <a href="{% url 'iteractions:like_project' project.id  %}" class="deactive"><i class="fas fa-heart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Like </font></font></a>
                                     <img src="{% static 'img/liked-img.png' %}" alt="">
-                                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">25</font></font></span>
+                                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{project.likes}}</font></font></span>
                                 </li>
-                                <!--<li><a href="#" class="com"><i class="fas fa-comment-alt"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Comentarios 15</font></font></a></li>-->
+                              
                             </ul>
                             <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas {{project.views}}</font></font></a>                                             
                         </div>
+
                         <div class="comment-area">
                             <i class="la la-plus-circle"></i>
                             <div class="post_topbar">

@@ -1,0 +1,55 @@
+{% extends 'posts/base.html' %}
+{% block head_content %}
+Notifications | VentGram
+{% endblock%}
+{% load static %}
+<!--herencia de posts/base html estructura de cuerpo de html-->
+
+{% block other_top %}
+<!--agregar vistas al inicio sin ningun contenedor puesto -->
+{% endblock %}
+
+{% block row %}
+<div class="col-lg-6 offset-lg-3">
+    <div class="acc-setting">
+        <h3>Notifications</h3>
+        <div class="notifications-list">
+
+            <!--Notfication Likes-->
+            {% for notification in notifications %}
+            <div class="notfication-details">
+                <ul class="bk-links">
+                    <li><a title="Eliminar" href=""><i aria-hidden="true" class="fa fa-trash-o"></i></a></li>
+                </ul>
+                <div class="noty-user-img">
+                    {% if notification.sender.profile.picture %}
+                    <img src="{{ notification.sender.profile.picture.url }}" alt="profile-image" width="37" height="37">
+                    {% else %}
+                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
+                    {% endif %}
+                </div>
+                <div class="notification-info">
+                    <h3>To <a href="{% url 'users:detail' notification.sender.profile.user.username  %}" title="">{{ notification.sender.profile.user.first_name }} {{ notification.sender.profile.user.last_name }}</a> likes your post.</h3>
+
+                    <span>{{ notification.date }}</span>
+                </div>
+                <div class="noty-user-img">
+                    <img src="{{ notification.post.image.url }}" alt="profile-image" width="37" height="37">
+                </div>
+            </div>
+            {% endfor %}
+            <!--Notification Likes -->
+        </div>
+        <!--notifications-list end-->
+    </div>
+    <!--acc-setting end-->
+</div>
+{% endblock %}
+
+
+{% block other_button %}
+<!--agregar vistas al final sin ningun contenedor puesto -->
+
+{% endblock %}
+
+<!--herencia de posts/base html estructura de cuerpo de html-->

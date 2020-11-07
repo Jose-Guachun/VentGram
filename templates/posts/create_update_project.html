@@ -17,7 +17,7 @@ Nuevo Proyecto | VentGram
 <div class="col-lg-9 col-md-12 pd-right-none ">
     {% if form.errors %}
     <div class="alert alert-danger">  
-        Existen campos oblogatorios vacios por favor llene todos los campos
+        Existen campos obligatorios vacios por favor llene todos los campos
     </div> 
     {% endif %}
     <div class="post-project">
@@ -27,8 +27,8 @@ Nuevo Proyecto | VentGram
             <form  method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                <input type="hidden" name="user" value="{{ user.pk }}" />
-                <input type="hidden" name="profile" value="{{ profile.pk }}" />
+                <input type="hidden" name="user" value="{{ request.user.pk }}" />
+                <input type="hidden" name="profile" value="{{ request.profile.pk }}" />
 
                 <div class="row">
                     <div class="col-md-12 mb-2">

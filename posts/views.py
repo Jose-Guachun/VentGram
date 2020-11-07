@@ -9,8 +9,10 @@ from django.core.paginator import Paginator
 
 from users.models import Profile, User
 from posts.models import Project, Category, Status
+
 #forms
 from posts.forms import ProjectForm
+
 
 
 @login_required
@@ -54,6 +56,7 @@ def ProjectFeedView(request,**kwargs):
     projects=paginator.get_page(page)
     return render(request, 'posts/feed.html', {'projects':projects})
 
+
 class ProjectDetailView(LoginRequiredMixin, DetailView):
     #retornar detalle de post
     template_name='posts/detail_project.html'
@@ -69,7 +72,8 @@ class CreatedProjectView(LoginRequiredMixin, CreateView):
     template_name='posts/create_update_project.html'
     form_class=ProjectForm
     success_url=reverse_lazy('posts:feed')
-
+    slug_field = 'url'
+    slug_url_kwarg = 'url'
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)

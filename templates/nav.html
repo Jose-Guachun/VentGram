@@ -112,11 +112,12 @@
                   </div><!--notification-info -->
                 </div>
                 <div class="view-all-nots">
-                  <a href="messages.html" title="">View All Messsages</a>
+                  <a href="{% url 'iteractions:messages' %}" title="">View All Messsages</a>
                 </div>
             </div><!--nott-list end-->
           </div><!--notification-box end-->
         </li>
+    
         <li>
           <a href="#" title="" class="not-box-open">
             <span><img src="{% static 'img/icon7.png' %}" alt=""></span>
@@ -130,7 +131,7 @@
             <div class="nott-list">
               <div class="notfication-details">
                   <div class="noty-user-img">
-                    <img src="{% static 'img/resources/ny-img1.png' %}" alt="">
+                    <img src=""   width="37" height="37" >
                   </div>
                   <div class="notification-info">
                     <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
@@ -138,7 +139,7 @@
                   </div><!--notification-info -->
                 </div>
                 <div class="view-all-nots">
-                  <a href="#" title="">View All Notification</a>
+                  <a href="{% url 'iteractions:notification' %}" title="">View All Notification</a>
                 </div>
             </div><!--nott-list end-->
           </div><!--notification-box end-->
