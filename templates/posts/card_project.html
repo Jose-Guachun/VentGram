@@ -45,7 +45,9 @@
                 <li><a title="Eliminar"  href="{% url 'posts:delete_project' project.url %}"><i class="la la-trash-o"></i></a></li> 
             </ul>
             {% else %}
+            
             <ul class="bk-links">
+                <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
                 <li><a href="#" title=""><i class="la la-envelope"></i></a></li> 
             </ul>
             {% endif %}
@@ -58,22 +60,14 @@
         <div class="job-status-bar">
             <ul class="like-com">
                 <li>
-                    <a href="{% url 'iteractions:like_project' project.id project.id %}">
-                        <i class="fas fa-heart"></i> 
-                        Me gusta</a>
-                    <img src="{% static 'img/liked-img.png'  %}" alt="">
-                    <span>
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">{{project.likes}}</font>
-                        </font>
-                    </span>
+                    <a href="{% url 'posts:detail_project' project.url %}" class="active">
+                        <i class="fas fa-heart"></i> {{project.likes}}</a>
+                    <a href="{% url 'posts:detail_project' project.url %}" style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye ml-2"></i>2</a>
+                    
                 </li>
+
             </ul>
-            <a href="#"><i class="fas fa-eye"></i>
-                <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">{{project.views}}</font>
-                </font>
-            </a>
+
         </div>
     </div>
 </div>

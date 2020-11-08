@@ -43,10 +43,10 @@
           <li><a href="{% url 'users:update_user' %}" title="Configuracion de Cuenta"><i class="far fa-user mr-2"></i>Editar Usuario</a></li>
         </ul>
         <ul class="us-links">
-          <li><a href="{% url 'users:update_user' %}" title="Configuracion de Cuenta"><i class="fas fa-globe-americas mr-2"></i>Redes Sociales</a></li>
+          <li><a href="{% url 'users:social_net' %}" title="Configuracion de Cuenta"><i class="fas fa-globe-americas mr-2"></i>Redes Sociales</a></li>
         </ul>
         <ul class="us-links">
-          <li><a href="{% url 'users:update_user' %}" title="Configuracion de Cuenta"><i class="fa fa-lock mr-2"></i>Cambiar Contraseña</a></li>
+          <li><a href="{% url 'users:change_password' %}" title="Configuracion de Cuenta"><i class="fa fa-lock mr-2"></i>Cambiar Contraseña</a></li>
         </ul>
         <h3 class="tc"><a href="{% url 'users:logout' %}" title="Cerrar Sesion"><i class="fas fa-power-off mr-2"></i>Cerrar Sesion</a></h3>
       </div><!--user-account-settingss end-->
@@ -94,27 +94,8 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
                     <span>2 min ago</span>
                   </div><!--notification-info -->
-                </div>
-                <div class="notfication-details">
-                  <div class="noty-user-img">
-                    <img src="{% static 'img/resources/ny-img2.png' %} " alt="">
-                  </div>
-                  <div class="notification-info">
-                    <h3><a href="messages.html" title="">Jassica William</a></h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <span>2 min ago</span>
-                  </div><!--notification-info -->
-                </div>
-                <div class="notfication-details">
-                  <div class="noty-user-img">
-                    <img src="{% static 'img/resources/ny-img3.png' %}" alt="">
-                  </div>
-                  <div class="notification-info">
-                    <h3><a href="messages.html" title="">Jassica William</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
-                    <span>2 min ago</span>
-                  </div><!--notification-info -->
-                </div>
+              </div>
+
                 <div class="view-all-nots">
                   <a href="messages.html" title="">View All Messsages</a>
                 </div>
@@ -122,9 +103,12 @@
           </div><!--notification-box end-->
         </li>
         <li>
-          <a href="#" title="" class="not-box-open">
-            <span><img src="{% static 'img/icon7.png' %}" alt=""></span>
+          <a href="{% url 'iteractions:notification' %}" title="Notificaciones">
+            <span><img src="{% static 'img/icon7.png' %}"></span>
             Notificaciones
+            {% if count_notifications %}
+              <span class="badge">{{ count_notifications }}</span>>
+            {% endif %}
           </a>
           <div class="notification-box noti" id="notification">
             <div class="nt-title">
@@ -142,7 +126,11 @@
                   </div><!--notification-info -->
                 </div>
                 <div class="view-all-nots">
-                  <a href="{% url 'iteractions:notification' %}" title="">View All Notification</a>
+                  <a href="{% url 'iteractions:notification' %}" title="">
+                    {% if count_notifications %}
+                      {{ count_notifications }}
+                    {% endif %}
+                  </a>
                 </div>
             </div><!--nott-list end-->
           </div><!--notification-box end-->

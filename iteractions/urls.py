@@ -37,6 +37,11 @@ urlpatterns = [
         view=views.ShowNOtifications,
         name='notification'
         ),
+    
+    path(
+        route='<noti_id>/delete',
+        view=views.DeleteNotification,
+        name='delete-notification'),
 
      path(
         route='messages/',

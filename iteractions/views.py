@@ -25,6 +25,9 @@ def follow(request, username, project_slug):
 	to_user_id = to_user
 	rel = Relationship(from_user=current_user, to_user=to_user_id)
 	rel.save()
+
+	notify = Notification(sender=current_user, user=to_user_id, notification_type=3)
+	notify.save()
 	if project_slug==username:
 		return HttpResponseRedirect(reverse('users:detail', args=[username]))	
 	elif project_slug==to_user.email:
@@ -39,6 +42,9 @@ def unfollow(request, username, project_slug):
 	to_user_id = to_user.id
 	rel = Relationship.objects.filter(from_user=current_user.id, to_user=to_user_id).get()
 	rel.delete()
+
+	notify = Notification.objects.filter(sender=current_user, user=to_user_id, notification_type=3)
+	notify.delete()
 	if project_slug==username:
 		return HttpResponseRedirect(reverse('users:detail', args=[username]))	
 	elif project_slug==to_user.email:
@@ -102,19 +108,15 @@ def ShowNOtifications(request):
 def DeleteNotification(request, noti_id):
 	user = request.user
 	Notification.objects.filter(id=noti_id, user=user).delete()
-	return redirect('show-notifications')
+	return redirect('iteractions:notification')
 
-
+@login_required
 def CountNotifications(request):
 	count_notifications = 0
-	if request.user.is_authenticated:
+	if request.user:
 		count_notifications = Notification.objects.filter(user=request.user, is_seen=False).count()
-
 	return {'count_notifications':count_notifications}
 	
-
-class NotificationsViews(TemplateView):
-	template_name = 'iteractions/notifications.html'
-
+	
 class MessagesViews(TemplateView):
 	template_name = 'iteractions/messages.html'

@@ -1391,7 +1391,7 @@ a .user-specs h3:hover {
 }
 .like-com {
 	float: left;
-	margin-top: 20px;
+	margin-top: 8px;
 }
 .like-com li {
 	display: inline-block;
@@ -1406,10 +1406,10 @@ a .user-specs h3:hover {
 	margin-right: 5px;
 }
 .like-com li a:hover {
-	color: #e44d3a;
+	color: #ff4141;
 }
 .like-com li a.active {
-	color: #e44d3a;
+	color: #f51f1f;
 }
 .like-com li a i {
 	margin-right: 2px;

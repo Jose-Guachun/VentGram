@@ -12,32 +12,46 @@ Notifications | VentGram
 {% block row %}
 <div class="col-lg-6 offset-lg-3">
     <div class="acc-setting">
-        <h3>Notifications</h3>
+        <h3>Notificaciones</h3>
         <div class="notifications-list">
-
-            <!--Notfication Likes-->
             {% for notification in notifications %}
             <div class="notfication-details">
-                <ul class="bk-links">
-                    <a href="{% url 'users:social_net' %}" style="color:#4e4e4e;"><i class="fas fa-times-circle"></i></a>
-                </ul>
-                <a href="{% url 'users:detail' notification.sender.profile.user.username  %}" class="usy-dt">
-                    {% if notification.sender.profile.picture %}
-                    <img src="{{ notification.sender.profile.picture.url }}" alt="profile-image" width="37" height="37">
-                    {% else %}
-                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
-                    {% endif %}
-                </a>
-                
+                <a href="{% url 'iteractions:delete-notification' notification.id %}" style="color:#4e4e4e; float: right;"><i class="fas fa-times-circle"></i></a>
                 <div class="notification-info">
-                    <h3>A <a href="{% url 'users:detail' notification.sender.profile.user.username  %}" title="">{{ notification.sender.profile.user.first_name }} {{ notification.sender.profile.user.last_name }}</a> le gusta tu publicacion.</h3>
-                    <h3>Del proyecto <a href="{% url 'posts:detail_project' notification.post.url %}">{{ notification.post.title}}</a></h3>
-                    <span>{{ notification.date }}</span>
+                    <a href="{% url 'users:detail' notification.sender.profile.user.username  %}" class="usy-dt">
+                        {% if notification.sender.profile.picture %}
+                            <img src="{{ notification.sender.profile.picture.url }}" alt="profile-image" width="37" height="37">
+                        {% else %}
+                            <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
+                        {% endif %}
+                        </a>        
+                    <div class="ml-5">
+                        {% if notification.notification_type == 1 %}
+                            <h3><a 
+                                href="{% url 'users:detail' notification.sender.profile.user.username  %}">
+                                {{ notification.sender.profile.user.first_name}} {{ notification.sender.profile.user.last_name}}
+                                </a>@{{ notification.sender.profile.user.username }}
+                            </h3>
+                            <h3><i class="fas fa-heart mr-1" style="color: rgb(231, 71, 71);"></i>Indicó que le gusta tu proyecto.</h3>
+                            <h3><a href="{% url 'posts:detail_project' notification.post.url %}">{{ notification.post.title}} </a></h3>
+                        {% endif %}
+
+                        {% if notification.notification_type == 2 %}
+                            <h3><a href="{% url 'users:detail' notification.sender.profile.user.username  %}">{{ notification.sender.profile.user.first_name}} {{ notification.sender.profile.user.last_name}}
+                            </a>@{{ notification.sender.profile.user.username }} a comentado tu proyecto.</h3>
+                            <h3><a href="{% url 'posts:detail_project' notification.post.url %}">{{ notification.post.title}}</a></h3>
+                        {% endif %}
+
+                        {% if notification.notification_type == 3 %}
+                            <h3><a href="{% url 'users:detail' notification.sender.profile.user.username  %}">{{ notification.sender.profile.user.first_name}}{{ notification.sender.profile.user.last_name}}</a>@{{notification.sender.profile.user.username}}</h3>
+                            <h3><i class="fas fa-user-plus mr-1 " style="color: #53d690;"></i>Te siguió</a></h3>
+                        {% endif %}
+
+                            <h3 style="font-weight: 600; color:rgb(182, 182, 182); font-size: 12px;">{{ notification.date }}</h3>
+                    </div>
                 </div>
-                
             </div>
             {% endfor %}
-            <!--Notification Likes -->
         </div>
         <!--notifications-list end-->
     </div>
