@@ -45,12 +45,13 @@ Notifications | VentGram
 
                         {% if notification.notification_type == 2 %}
                             <h3><a href="{% url 'users:detail' notification.sender.profile.user.username  %}">{{ notification.sender.profile.user.first_name}} {{ notification.sender.profile.user.last_name}}
-                            </a> @{{ notification.sender.profile.user.username }} a comentado tu proyecto.</h3>
+                            </a> @{{ notification.sender.profile.user.username }}</h3>
+                            <h3><i class="fas fa-comment-dots"></i>a comentado tu proyecto.</h3>
                             <h3><a href="{% url 'posts:detail_project' notification.post.url %}">{{ notification.post.title}}</a></h3>
                         {% endif %}
 
                         {% if notification.notification_type == 3 %}
-                            <h3><a href="{% url 'users:detail' notification.sender.profile.user.username  %}">{{ notification.sender.profile.user.first_name}}{{ notification.sender.profile.user.last_name}}</a> @{{notification.sender.profile.user.username}}</h3>
+                            <h3><a href="{% url 'users:detail' notification.sender.profile.user.username  %}">{{ notification.sender.profile.user.first_name}} {{ notification.sender.profile.user.last_name}}</a> @{{notification.sender.profile.user.username}}</h3>
                             <h3><i class="fas fa-user-plus mr-1 " style="color: #53d690;"></i>Te siguió</a></h3>
                         {% endif %}
 
