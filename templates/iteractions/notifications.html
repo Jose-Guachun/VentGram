@@ -3,6 +3,7 @@
 Notifications | VentGram
 {% endblock%}
 {% load static %}
+{% load humanize %}
 <!--herencia de posts/base html estructura de cuerpo de html-->
 
 {% block other_top %}
@@ -12,9 +13,15 @@ Notifications | VentGram
 {% block row %}
 <div class="col-lg-6 offset-lg-3">
     <div class="acc-setting">
+        {% if notifications %}
         <h3>Notificaciones</h3>
+        {% else %}
+        <h3 class="text-center">No existen notificaciones</h3>
+        {% endif %}
         <div class="notifications-list">
+
             {% for notification in notifications %}
+            
             <div class="notfication-details">
                 <a href="{% url 'iteractions:delete-notification' notification.id %}" style="color:#4e4e4e; float: right;"><i class="fas fa-times-circle"></i></a>
                 <div class="notification-info">
@@ -30,7 +37,7 @@ Notifications | VentGram
                             <h3><a 
                                 href="{% url 'users:detail' notification.sender.profile.user.username  %}">
                                 {{ notification.sender.profile.user.first_name}} {{ notification.sender.profile.user.last_name}}
-                                </a>@{{ notification.sender.profile.user.username }}
+                                </a> @{{ notification.sender.profile.user.username }}
                             </h3>
                             <h3><i class="fas fa-heart mr-1" style="color: rgb(231, 71, 71);"></i>Indicó que le gusta tu proyecto.</h3>
                             <h3><a href="{% url 'posts:detail_project' notification.post.url %}">{{ notification.post.title}} </a></h3>
@@ -38,19 +45,20 @@ Notifications | VentGram
 
                         {% if notification.notification_type == 2 %}
                             <h3><a href="{% url 'users:detail' notification.sender.profile.user.username  %}">{{ notification.sender.profile.user.first_name}} {{ notification.sender.profile.user.last_name}}
-                            </a>@{{ notification.sender.profile.user.username }} a comentado tu proyecto.</h3>
+                            </a> @{{ notification.sender.profile.user.username }} a comentado tu proyecto.</h3>
                             <h3><a href="{% url 'posts:detail_project' notification.post.url %}">{{ notification.post.title}}</a></h3>
                         {% endif %}
 
                         {% if notification.notification_type == 3 %}
-                            <h3><a href="{% url 'users:detail' notification.sender.profile.user.username  %}">{{ notification.sender.profile.user.first_name}}{{ notification.sender.profile.user.last_name}}</a>@{{notification.sender.profile.user.username}}</h3>
+                            <h3><a href="{% url 'users:detail' notification.sender.profile.user.username  %}">{{ notification.sender.profile.user.first_name}}{{ notification.sender.profile.user.last_name}}</a> @{{notification.sender.profile.user.username}}</h3>
                             <h3><i class="fas fa-user-plus mr-1 " style="color: #53d690;"></i>Te siguió</a></h3>
                         {% endif %}
 
-                            <h3 style="font-weight: 600; color:rgb(182, 182, 182); font-size: 12px;">{{ notification.date }}</h3>
+                            <h3 style="font-weight: 600; color:rgb(182, 182, 182); font-size: 12px;">{{ notification.date|naturaltime }}</h3>
                     </div>
                 </div>
             </div>
+
             {% endfor %}
         </div>
         <!--notifications-list end-->

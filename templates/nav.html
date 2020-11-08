@@ -104,11 +104,13 @@
         </li>
         <li>
           <a href="{% url 'iteractions:notification' %}" title="Notificaciones">
-            <span><img src="{% static 'img/icon7.png' %}"></span>
+            <span><img src="{% static 'img/icon7.png' %}">
+              {% if count_notifications %}
+                <span class="badge">{{ count_notifications }}</span>
+              {% endif %}
+          </span>
             Notificaciones
-            {% if count_notifications %}
-              <span class="badge">{{ count_notifications }}</span>>
-            {% endif %}
+
           </a>
           <div class="notification-box noti" id="notification">
             <div class="nt-title">
