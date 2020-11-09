@@ -80,7 +80,7 @@ class ProfileAdmin(admin.ModelAdmin):
             'fields':
                 (
                     'user', 'picture',
-                    'country','province','city',
+                    'country','province','city','favorites',
                     'gender',
                     'birth_date','education_level',
                     'work_area',

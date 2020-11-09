@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.urls import reverse
 
 #model
-from users.models import User
+from users.models import User, Profile
 from iteractions.models import Relationship, Likes, Notification
 from posts.models import Project
 
@@ -117,6 +117,23 @@ def CountNotifications(request):
 		count_notifications = Notification.objects.filter(user=request.user, is_seen=False).count()
 	return {'count_notifications':count_notifications}
 	
-	
+
+@login_required
+def favorite(request, post_id):
+	user = request.user
+	post = Project.objects.get(id=post_id)
+	profile = Profile.objects.get(user=user)
+	url=post.url
+
+	if profile.favorites.filter(id=post_id).exists():
+		profile.favorites.remove(post)
+
+	else:
+		profile.favorites.add(post)
+
+	return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
+
+
+
 class MessagesViews(TemplateView):
 	template_name = 'iteractions/messages.html'

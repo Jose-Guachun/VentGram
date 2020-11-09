@@ -1,4 +1,7 @@
-#Django 
+#Django
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.template import loader 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import FormView, ListView, TemplateView, CreateView, DetailView, DeleteView, UpdateView
 from django.contrib.auth.decorators import login_required
@@ -54,14 +57,45 @@ def ProjectFeedView(request,**kwargs):
     projects=paginator.get_page(page)
     return render(request, 'posts/feed.html', {'projects':projects})
 
-class ProjectDetailView(LoginRequiredMixin, DetailView):
-    #retornar detalle de post
-    template_name='posts/detail_project.html'
-    queryset=Project.objects.all()
-    context_object_name='project'
-    slug_field = 'url'
-    slug_url_kwarg = 'url'
+@login_required
+def ProjectDetailView(request, url):
+	project = get_object_or_404(Project, url=url)
+	user = request.user
+	profile = Profile.objects.get(user=user)
+	favorited = False
 
+	#comment
+	#comments = Comment.objects.filter(post=post).order_by('date')
+	
+	if request.user.is_authenticated:
+		profile = Profile.objects.get(user=user)
+		#For the color of the favorite button
+
+		if profile.favorites.filter(url=url).exists():
+			favorited = True
+
+	#Comments Form
+	'''if request.method == 'POST':
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			comment.post = post
+			comment.user = user
+			comment.save()
+			return HttpResponseRedirect(reverse('postdetails', args=[url]))
+	else:
+		form = CommentForm()'''
+
+
+	template = loader.get_template('posts/detail_project.html')
+
+	context = {
+		'project':project,
+		'favorited':favorited,
+		'profile':profile,
+	}
+
+	return HttpResponse(template.render(context, request))
 
 
 class CreatedProjectView(LoginRequiredMixin, CreateView):

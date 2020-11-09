@@ -105,45 +105,65 @@ Perfil | @{{user.username|capfirst}}
             <!--product-feed-tab end-->
 
             <div class="product-feed-tab" id="portfolio-dd">
-
                 <div class="portfolio-gallery-sec">
-                    <h3>Portfolio</h3>
+                    <h3 class="mb-0">Portfolio</h3>
                     {% if user == request.user %}
                     <div class="portfolio-btns">
                         <a href="{% url 'posts:new_project' %}" title="Crear Proyecto"><i class="fas fa-plus-square"></i> Añadir </a>
                     </div>
                     {% endif %}
-                    <div class="gallery_pf">
+                    <br><br>
+                    <h3 class="mb-3 mt-3" >Favoritos</h3>
+                    <div class="gallery_pf ">
                         <div class="row">
-                            {% for project in projectsPro %}
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                
-                                <div class="gallery_pt">
-                                    <img src="{{ project.image.url }}" alt="">
-                                    <a href="{% url 'posts:detail_project' project.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{project.title}}</h3></a>
-                                    {% if user == request.user %}
-                                        <div  class="cadidatesbtn">
-                                            <a title="Editar"  href="{% url 'posts:update_project' project.url %}" ><i class="far fa-edit mr-1"></i></a> 
-                                            <a title="Eliminar"  href="{% url 'posts:delete_project' project.url %}"><i class="fas fa-trash-alt mr-1"></i></a> 
+                            {% if favorites %}    
+                                {% for favorite in favorites %} 
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                        <div class="gallery_pt">
+                                            <div class="gallery_pt">
+                                                <img src="{{ favorite.image.url }}" alt="">
+                                                <a href="{% url 'posts:detail_project' favorite.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{ favorite.title }}</h3></a>
+                                            </div>
                                         </div>
-                                    
-                                    {% endif %} 
-                                </div>
-
-                            </div>
-                            {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <h2 class="ml-1">No tiene favoritos agregados</h2>
+                            {% endif %}
                         </div>
                     </div>
+                    <h3 class="mb-3 mt-4" >Proyectos</h3>
+                    <div class="gallery_pf mb-0">
+                        <div class="row">
+                            {% if  projectsPro %}
+                                {% for project in projectsPro %}
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                    
+                                    <div class="gallery_pt">
+                                        <img src="{{ project.image.url }}" alt="">
+                                        <a href="{% url 'posts:detail_project' project.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{project.title}}</h3></a>
+                                        {% if user == request.user %}
+                                            <div  class="cadidatesbtn">
+                                                <a title="Editar"  href="{% url 'posts:update_project' project.url %}" ><i class="far fa-edit mr-1"></i></a> 
+                                                <a title="Eliminar"  href="{% url 'posts:delete_project' project.url %}"><i class="fas fa-trash-alt mr-1"></i></a> 
+                                            </div>
+                                        
+                                        {% endif %} 
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                            <h2 class="ml-1">No tiene proyectos agregados</h2>
+                            {% endif %}
                     <!--gallery_pf end-->
+                        </div>
+                    </div>
+
+
                 </div>
-                <!--portfolio-gallery-sec end-->
-            </div>
-            <!--product-feed-tab end-->
-            
+            </div>     
         </div>
-        <!--main-ws-sec end-->
-        
-    </div>
+    </div>    
     <div class="col-lg-3">
         <div class="right-sidebar">
             <!--main-ws-sec
