@@ -34,7 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     extends from Django AbstarctBaseUser, change the username field
     to email and some extra fields.
     """
-
+    
     email=models.EmailField(
         'Correo Electronico', 
         unique=True, 

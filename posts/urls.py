@@ -37,7 +37,7 @@ urlpatterns = [
 
     path(
         route='posts/<slug:url>/',
-        view=views.ProjectDetailView.as_view(),
+        view=views.ProjectDetailView,
         name='detail_project'
         ),
 

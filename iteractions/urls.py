@@ -31,6 +31,12 @@ urlpatterns = [
         view=views.like,
         name='like_project'
         ),
+
+    path(
+        route='<int:post_id>/favorite',
+        view=views.favorite,
+        name='post_favorite'
+        ),
         
     path(
         route='notification/',

@@ -48,6 +48,9 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.get_object()
+        profile = Profile.objects.get(user=user)
+        favorites=profile.favorites.all()
+
         projects = Project.objects.filter(user=user).order_by('-created')
         projectsProfile = Project.objects.filter(
             user=user).order_by('-created')
@@ -58,6 +61,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
         context['projects'] = projects
         context['projectsPro'] = projectsProfile
+        context['favorites']=favorites
         return context
 
 

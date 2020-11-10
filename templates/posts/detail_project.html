@@ -35,15 +35,25 @@
                     <div class="post-bar" style="height: 100%;">
 
                         <div class="user-specs pt-0 pb-0">
-                            {% if project.profile.user == request.user %}
+                            
                             <div class="ed-opts">
                                 <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                                 <ul class="ed-options">
-                                    <li><a href="{% url 'posts:update_project' project.url %}" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar</font></font></a></li>
-                                    <li><a href="{% url 'posts:delete_project' project.url %}" title=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar</font></font></a></li>
+
+                                    {% if project.profile.user == request.user %}
+                                        <li><a href="{% url 'posts:update_project' project.url %}" title="Editar">Editar</a></li>
+                                        <li><a href="{% url 'posts:delete_project' project.url %}" title="Eliminar">Eliminar</a></li>
+                                    {% else %}
+                                        {% if favorited %}
+                                            <li><a href="{% url 'iteractions:post_favorite' project.id %}" title="">Quitar de Favoritos</a></li>
+                                        {% else %}
+                                            <li><a href="{% url 'iteractions:post_favorite' project.id %}" title="">Agregar de Favoritos</a></li>
+                                        {% endif %}
+                                    {% endif %}
+
                                 </ul>
                             </div>
-                            {% endif %}
+                            
                             <h3 style="text-transform:none">{{ project.title }}</h3>
                             <a href="{% url 'users:detail' project.user.username %}">Por: {{project.user.first_name }} {{project.user.last_name}} | @{{project.user.username }}</a>
                             {% if project.collaborators %}

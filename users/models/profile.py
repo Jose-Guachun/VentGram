@@ -9,6 +9,7 @@ from VentGram.validators import vcedula, SoloNumeros
 
 
 from users.models import User
+from posts.models import Project
 from iteractions.models import Relationship
 
 def ruta(instance, file_name):
@@ -23,7 +24,8 @@ class Profile(CRideModel):
     country=models.ForeignKey('users.Country', on_delete=models.CASCADE, blank=True, null=True)
     province=models.ForeignKey('users.Province', on_delete=models.CASCADE, blank=True, null=True)
     city=models.ForeignKey('users.City', on_delete=models.CASCADE, blank=True, null=True)
-    
+    favorites = models.ManyToManyField(Project, related_name='favorites')
+
     dni=models.CharField(max_length=10, validators=[validators.MinLengthValidator(10), vcedula], blank=True)
     gender=models.CharField(max_length=20, blank=True)
     birth_date=models.DateField(blank=True, null=True)
