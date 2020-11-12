@@ -17,7 +17,7 @@ def ruta_imagen(instance, file_name):
     return route
 
 def ruta_documento(instance, file_name):
-    route='{}/{}/{}/{}/{}'.format( 'users', instance.user.email, 'projects', 'document', file_name)
+    route='{}/{}/{}/{}/{}'.format( 'users', instance.user.pk, 'projects', 'document   ', file_name)
     return route
 
 
@@ -38,7 +38,8 @@ class Project(CRideModel):
     document=models.FileField(upload_to=ruta_documento)
     collaborators=models.CharField(max_length=300, validators=[validators.MinLengthValidator(5)], blank=True)
     url = models.SlugField(max_length=255, unique=True)
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0, blank=True, null=True)
+    views=models.IntegerField(default=0, blank=True, null=True)
 
 
     def save(self, *args, **kwargs):

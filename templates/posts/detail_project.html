@@ -1,5 +1,5 @@
 {% extends 'posts/base.html' %}
-
+{% load humanize %}
 {% load static %}
 {% block head_content %}
    project | VentGram
@@ -13,7 +13,9 @@
                 {% if request.user.profile.picture %}
                     <img src="{{ user.profile.picture.url }}"  alt="profile-image" width="40" height="40">
                 {% else %}
-                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
+                <a href="{% url 'users:detail' request.user.username %}" class="like-coms" type="button">
+                    <span style="margin-top: 0px; width: 40px;height: 40px;padding-top: 4px;">{{request.user.first_name|first}}{{request.user.last_name|first}}</span>
+                </a>
                 {% endif %}
                 </div>
             <div class="post-st mb-3">
@@ -45,9 +47,9 @@
                                         <li><a href="{% url 'posts:delete_project' project.url %}" title="Eliminar">Eliminar</a></li>
                                     {% else %}
                                         {% if favorited %}
-                                            <li><a href="{% url 'iteractions:post_favorite' project.id %}" title="">Quitar de Favoritos</a></li>
+                                            <li><a href="{% url 'iteractions:post_favorite' project.id 1 %}" title="">Quitar de Favoritos</a></li>
                                         {% else %}
-                                            <li><a href="{% url 'iteractions:post_favorite' project.id %}" title="">Agregar de Favoritos</a></li>
+                                            <li><a href="{% url 'iteractions:post_favorite' project.id 1 %}" title="">Agregar a Favoritos</a></li>
                                         {% endif %}
                                     {% endif %}
 
@@ -75,90 +77,96 @@
                             <div class="row box_document_detail">
 
                                 <div class="col-lg-9 col-md-8 col-sm-8">
-                                    <h5 class="mt-3"><i class="fas fa-file-alt mr-2"></i>{{ project.document.name|slice:"41:"}}</h5>
+                                    <h5 class="mt-3"><i class="fas fa-file-alt mr-2"></i>{{ project.document.name|slice:"25:"}}</h5>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-4 text-right">
-                                    <a href="{{ project.document.url }}" title="DESCARGAR: {{ project.document.name|slice:'41:'}}" type="button" class="btn btn-danger mt-2 mb-2 text-center"style="padding: .275rem .55rem; font-size: 0.8rem;width: 100%; color:white ;"><i class="fas fa-download mr-1"></i>Descargar</a>
+                                    <a href="{{ project.document.url }}" title="DESCARGAR: {{ project.document.name|slice:'25:'}}" type="button" class="btn btn-danger mt-2 mb-2 text-center"style="padding: .275rem .55rem; font-size: 0.8rem;width: 100%; color:white ;"><i class="fas fa-download mr-1"></i>Descargar</a>
                                 </div>
                             </div>  
                         </div>
-                        <div class="job-status-bar btm-line">                                               
+                        <div class="job-status-bar btm-line mt-4">                                               
                            <ul class="like-com">
                                 <li>
-                                    <a href="{% url 'iteractions:like_project' project.id project.url %}" class="active"><i class="fas fa-heart"></i> Me gusta</a>
-                                    <img src="{% static 'img/liked-img.png' %}" alt="">
-                                    <span>{{project.likes}}</span>
+                                    {% if likes %}
+                                    <a href="{% url 'iteractions:like_project' project.id project.url %}" class="active"><i class="fas fa-heart"></i> Me gusta  {{project.likes}}</a>
+                                    {% else %}
+                                    <a href="{% url 'iteractions:like_project' project.id project.url %}"><i class="fas fa-heart"></i> Me gusta  {{project.likes}}</a>
+                                    {% endif %}
                                 </li>
                                 <!--<li><a href="#" class="com"><i class="fas fa-comment-alt"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Comentarios 15</font></font></a></li>-->
                             </ul>
-                            <a href="#"><i class="fas fa-eye"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vistas {{project.views}}</font></font></a>                                             
+                            <a class="active mt-3"><i class="fas fa-eye"></i>Vistas {{ project.views }}</a>                                             
                         </div>
                         <div class="comment-area">
                             <i class="la la-plus-circle"></i>
+                            {% for comment in comments %}
                             <div class="post_topbar">
                                 <div class="usy-dt">
-                                    <img src="{% static 'img/login.png' %}" width="40px" height="40px">
-                                    <div class="usy-name">
-                                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
-                                        <span><img src="{% static 'img/clock.png' %} " alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
+                                    {% if comment.user.profile.picture %}
+                                    <img src="{{ comment.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
+                                    {% else %}
+                                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
+                                    {% endif %}
+                                    <div class="comment">
+                                        <h3>{{comment.user.first_name}} {{comment.user.last_name }}</h3>
+                                        <span><img src="{% static 'img/clock.png' %} ">{{comment.date|naturaltime}}</span>
                                     </div>
-                                </div>
+                                </div>                 
                             </div>
                             <div class="reply-area">
-                                <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem ipsum dolor sit amet,</font></font></p>
-                                <span><i class="la la-mail-reply"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Respuesta</font></font></span>
-                                <div class="comment-area reply-rply1">
-                                    <div class="post_topbar">
-                                        <div class="usy-dt">
-                                            <img src="{% static 'img/login.png' %}" width="40px" height="40px">
-                                            <div class="usy-name">
-                                                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
-                                                <span><img src="{% static 'img/clock.png' %} " alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
-                                            </div>
+                                <p>
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">{{comment.body}}</font>
+                                    </font>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                          <a class="dropdown-item" href="#">Action</a>
                                         </div>
-                                    </div>
-                                    <div class="reply-area">
-                                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hola John</font></font></p>
-                                        <span><i class="la la-mail-reply"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Respuesta</font></font></span>
-                                    </div>
+                                      </div>
+                                <div class="ed-opts">
+                                    <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                    <ul class="ed-options">
+                                        <li><a href="{% url 'iteractions:delete-comments' comment.id project.url %}" title="Eliminar">Eliminar</a>
+                                        </li>
+                                    </ul>
+                                    
                                 </div>
+                                
+        
+                                </p>
                             </div>
-                        </div>
-                        <div class="comment-area">
-                            <div class="post_topbar">
-                                <div class="usy-dt">
-                                    <img src="{% static 'img/login.png' %}" width="40px" height="40px" alt="">
-                                    <div class="usy-name">
-                                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe</font></font></h3>
-                                        <span><img src="{% static 'img/clock.png' %}" alt=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hace 3 minutos</font></font></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="reply-area">
-                                <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </font><font style="vertical-align: inherit;">Aliquam luctus hendrerit metus, ut ullamcorper quam finibus en.</font></font></p>
-                                <span><i class="la la-mail-reply"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Respuesta</font></font></span>
-                            </div>
+                            {% endfor %}
                         </div>
                         <div class="postcomment">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    {% if request.user.profile.picture %}
-                                        <img src="{{ request.user.profile.picture.url }}"  alt="profile-image" width="40" height="40">
-                                    {% else %}
-                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
-                                    {% endif %}
+                            <form method="post" action="" role="form">
+                                {% csrf_token %}
+                                <div class="row">
+        
+                                    <div class="col-md-2">
+                                        {% if request.user.profile.picture %}
+                                        <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37"
+                                            height="37">
+                                        {% else %}
+                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37"
+                                            height="37">
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="col-md-8">                             
+                                        <form>
+                                            <div class="form-group">
+                                                {{ form.body }}
+                                            </div>
+                                        </form>
+                                    </div>
+        
+                                    <div class="col-md-2">
+                                        <button type="submit" name="action" class="btn btn-info">Comentar</button>
+                                    </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <form>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="inputPassword" placeholder="Publicar un comentario">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enviar</font></font></a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

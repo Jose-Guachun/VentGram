@@ -2,17 +2,24 @@
 {% load humanize %}
 <div class="posts-section">
     <div class="box">
-        <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.url %}">
-            <img class="card-img-top" src="{{ project.image.url }}" alt="Project"></a>
+        <form action="{% url 'posts:detail_project' project.url %}" method="POST">
+            {% csrf_token %}
+            <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.url %}">
+                <img class="card-img-top" src="{{ project.image.url }}" alt="Project"></a>
+        </form>
+
         <div class="txt">
             <div class="usy-dt">
-                <a href="{% url 'users:detail' project.user.username %}">
                     {% if project.profile.picture %}
-                    <img src="{{ project.profile.picture.url }}" alt="profile-image" width="50" height="50">
+                    <a href="{% url 'users:detail' project.user.username %}">
+                        <img src="{{ project.profile.picture.url }}" alt="profile-image" width="50" height="50">
+                    </a>
                     {% else %}
-                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="50" height="50">
+                    <a href="{% url 'users:detail' project.user.username %}" class="like-coms" >
+                        <span style="margin-top: 0px; width: 47px; height: 47px; font-size: 25px;padding: 8px; ">{{project.user.first_name|first}}{{project.user.last_name|first}}</span>
+                    </a>
                     {% endif %}
-                </a>
+                
                 <div class="usy-name pt-2">
                     <a href="{% url 'users:detail' project.user.username %}">
                         <h3>
@@ -47,8 +54,7 @@
             {% else %}
             
             <ul class="bk-links">
-                <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-                <li><a href="#" title=""><i class="la la-envelope"></i></a></li> 
+                <li><a href="#" title="Mensaje"><i class="la la-envelope"></i></a></li> 
             </ul>
             {% endif %}
 

@@ -9,10 +9,12 @@
                 {% if project.profile.picture %}
                     <img src="{{ project.profile.picture.url }}"  alt="profile-image" width="96" height="96">
                 {% else %}
-                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
+                    <div class="name-profile">
+                        <span >{{project.user.first_name|first}}{{project.user.last_name|first}}</span>
+                    </div>
                 {% endif %}
-
                 </div>
+                
             <!--username-dt end-->
                 <div class="user-specs pb-0">
                     <h3 class="mb-0">{{project.user.username}}</h3>
@@ -35,7 +37,7 @@
         
         <!--user-profile-->
         <div class="user_pro_status">
-            <ul class="flw-status">
+            <ul class="flw-status mt-1">
                 {% if request.user.is_authenticated %}
                 {% if project.user != request.user %}
                     {% if project.user not in request.user.profile.following %}

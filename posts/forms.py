@@ -23,7 +23,9 @@ class ProjectForm(forms.ModelForm):
             'status',
             'website',
             'document',
-            'collaborators',]
+            'collaborators',
+            'views',
+            ]
     def clean_title(self):
         title=self.cleaned_data['title'].capitalize()
         return title

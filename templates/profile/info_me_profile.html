@@ -6,7 +6,9 @@
             {% if user.profile.picture %}
             <img src="{{ user.profile.picture.url }}" alt="profile-image" width="180" height="180">
             {% else %}
-            <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="180" height="180">
+            <div class="like-com-profile">
+                <span>{{user.first_name|first}}{{user.last_name|first}}</span>
+            </div>
             {% endif %}
             {% if user == request.user %}
             <div class="add-dp" id="OpenImgUpload">

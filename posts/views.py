@@ -10,10 +10,13 @@ from django.urls import reverse, reverse_lazy
 from django.db.models import Q
 from django.core.paginator import Paginator
 
+from iteractions.models import Likes, Comment
 from users.models import Profile, User
 from posts.models import Project, Category, Status
+
 #forms
 from posts.forms import ProjectForm
+from iteractions.forms import CommentForm
 
 
 @login_required
@@ -37,7 +40,7 @@ def FilterProjectView(request):
         context=('Proyectos con estado ')
         projects = Project.objects.filter(status=filtroEs)
 
-    paginator=Paginator(projects, 4)
+    paginator=Paginator(projects, 6)
     page=request.GET.get('page')
     projects=paginator.get_page(page)
     return render(request, 'posts/list_project.html', {'projects':projects, 'categorys':categorys, 'statuss':status, 'context':context})
@@ -52,51 +55,56 @@ def ProjectFeedView(request,**kwargs):
             Q(description__icontains = busqueda) 
         ).distinct()
 
-    paginator=Paginator(projects, 6)
+    paginator=Paginator(projects, 9)
     page=request.GET.get('page')
     projects=paginator.get_page(page)
     return render(request, 'posts/feed.html', {'projects':projects})
 
 @login_required
 def ProjectDetailView(request, url):
-	project = get_object_or_404(Project, url=url)
-	user = request.user
-	profile = Profile.objects.get(user=user)
-	favorited = False
+    project= get_object_or_404(Project, url=url)
+    user= request.user
+    profile= Profile.objects.get(user=user)
+    favorited= False
+    
+    projects = Project.objects.get(url=url)
+    views=projects.views+1
+    print(views)
+    Project.objects.filter(url=url).update(views=views)
+    #like
+    is_like= Likes.objects.filter(user=user, post=project).exists()
 
-	#comment
-	#comments = Comment.objects.filter(post=post).order_by('date')
-	
-	if request.user.is_authenticated:
-		profile = Profile.objects.get(user=user)
-		#For the color of the favorite button
+    #comment
+    comments = Comment.objects.filter(post=project).order_by('date')
 
-		if profile.favorites.filter(url=url).exists():
-			favorited = True
+    if request.user.is_authenticated:
+        profile= Profile.objects.get(user=user)
+
+        if profile.favorites.filter(url=url).exists():
+            favorited=True
 
 	#Comments Form
-	'''if request.method == 'POST':
-		form = CommentForm(request.POST)
-		if form.is_valid():
-			comment = form.save(commit=False)
-			comment.post = post
-			comment.user = user
-			comment.save()
-			return HttpResponseRedirect(reverse('postdetails', args=[url]))
-	else:
-		form = CommentForm()'''
-
-
-	template = loader.get_template('posts/detail_project.html')
-
-	context = {
-		'project':project,
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = project
+            comment.user = user
+            comment.save()
+            return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))	
+    else:
+        form = CommentForm()
+    
+    template = loader.get_template('posts/detail_project.html')
+    context = {
+        'project':project,
 		'favorited':favorited,
 		'profile':profile,
-	}
-
-	return HttpResponse(template.render(context, request))
-
+        'form':form,
+        'comments':comments,
+        'likes':is_like,
+    }
+    return HttpResponse(template.render(context, request))
 
 class CreatedProjectView(LoginRequiredMixin, CreateView):
     #Crear un nuevo post

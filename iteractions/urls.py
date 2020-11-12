@@ -33,7 +33,7 @@ urlpatterns = [
         ),
 
     path(
-        route='<int:post_id>/favorite',
+        route='<int:post_id>/<int:position>',
         view=views.favorite,
         name='post_favorite'
         ),
@@ -48,6 +48,11 @@ urlpatterns = [
         route='<noti_id>/delete',
         view=views.DeleteNotification,
         name='delete-notification'),
+
+    path(
+        route='<int:comment_id>/<str:url>/delete',
+        view=views.DeleteComments,
+        name='delete-comments'),
 
      path(
         route='messages/',
