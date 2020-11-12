@@ -1186,20 +1186,27 @@ a .user-specs h3:hover {
 .ed-opts > a:hover {
 	color: #e44d3a;
 }
+
 .usy-name {
 	float: left;
 	margin-left: 15px;
 }
+
 .usy-name h3 {
-	color: #ffffff;
+	color: #fdfdfd;
 	font-size: 18px;
 	text-transform: capitalize;
 	font-weight: 600;
 	margin-bottom: 5px;
 	margin-top: 2px;
 }
+
 .usy-name span {
-	color: #e4e4e4;
+	color: #686868;
+	font-size: 14px;
+}
+.usy-name span {
+	color: #ffffff;
 	font-size: 14px;
 }
 .usy-name img {
@@ -6345,6 +6352,7 @@ a:hover {
 
 .reply-area p{
 	padding-bottom: 10px;
+	word-break: break-all;
 }
 .reply-area span{
 	cursor: pointer;

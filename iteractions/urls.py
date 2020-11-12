@@ -49,6 +49,11 @@ urlpatterns = [
         view=views.DeleteNotification,
         name='delete-notification'),
 
+    path(
+        route='<int:comment>/<str:url>/delete',
+        view=views.DeleteComments,
+        name='delete-comments'),
+
      path(
         route='messages/',
         view=views.MessagesViews.as_view(),

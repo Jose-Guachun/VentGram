@@ -214,6 +214,11 @@
 }
 }
 
+textarea.form-control {
+	max-width: 120px;
+	max-height: 120px;
+}
+
 @media (max-width: 410px) {
 	.post-st ul li a {font-size: 12px;padding: 0 6px;}
 	.like-com li a {font-size: 12px;}

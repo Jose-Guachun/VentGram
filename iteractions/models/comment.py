@@ -1,6 +1,6 @@
 from django.db import models
 from posts.models import Project
-from django.contrib.auth.models import User 
+from users.models import User 
 from iteractions.models import Notification
 
 from django.db.models.signals import post_save, post_delete
@@ -10,7 +10,7 @@ class Comment(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	body = models.TextField()
 	date = models.DateTimeField(auto_now_add=True)
-
+	
 	def user_comment_post(sender, instance, *args, **kwargs):
 		comment = instance
 		post = comment.post

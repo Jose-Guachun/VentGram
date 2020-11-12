@@ -12,9 +12,11 @@ from django.core.paginator import Paginator
 
 from users.models import Profile, User
 from posts.models import Project, Category, Status
+from iteractions.models import Comment, Likes
+
 #forms
 from posts.forms import ProjectForm
-
+from iteractions.forms import CommentForm
 
 @login_required
 def FilterProjectView(request):
@@ -63,10 +65,10 @@ def ProjectDetailView(request, url):
 	user = request.user
 	profile = Profile.objects.get(user=user)
 	favorited = False
+    #comment
+	comments = Comment.objects.filter(post=project).order_by('date')
+	likes = Likes.objects.filter(user=user, post=project).exists()
 
-	#comment
-	#comments = Comment.objects.filter(post=post).order_by('date')
-	
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(user=user)
 		#For the color of the favorite button
@@ -74,17 +76,17 @@ def ProjectDetailView(request, url):
 		if profile.favorites.filter(url=url).exists():
 			favorited = True
 
-	#Comments Form
-	'''if request.method == 'POST':
+	# Comments Form
+	if request.method == 'POST':
 		form = CommentForm(request.POST)
 		if form.is_valid():
 			comment = form.save(commit=False)
-			comment.post = post
+			comment.post = project
 			comment.user = user
 			comment.save()
-			return HttpResponseRedirect(reverse('postdetails', args=[url]))
+			return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
 	else:
-		form = CommentForm()'''
+		form = CommentForm()
 
 
 	template = loader.get_template('posts/detail_project.html')
@@ -93,6 +95,9 @@ def ProjectDetailView(request, url):
 		'project':project,
 		'favorited':favorited,
 		'profile':profile,
+        'form':form,
+		'comments':comments,
+        'likes': likes,
 	}
 
 	return HttpResponse(template.render(context, request))

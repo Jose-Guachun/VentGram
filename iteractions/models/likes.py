@@ -10,7 +10,7 @@ from iteractions.models import Notification
 class Likes(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like')
 	post = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='post_like')
-    
+	
 	def user_liked_post(sender, instance, *args, **kwargs):
 		like = instance
 		post = like.post

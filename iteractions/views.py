@@ -12,7 +12,7 @@ from django.urls import reverse
 
 #model
 from users.models import User, Profile
-from iteractions.models import Relationship, Likes, Notification
+from iteractions.models import Relationship, Likes, Notification, Comment
 from posts.models import Project
 
 
@@ -109,6 +109,12 @@ def DeleteNotification(request, noti_id):
 	user = request.user
 	Notification.objects.filter(id=noti_id, user=user).delete()
 	return redirect('iteractions:notification')
+
+
+def DeleteComments(request, comment, url):
+	comment = Comment.objects.get(id=comment)
+	Comment.objects.filter(id=comment.id, user= comment.user, post=comment.post).delete()
+	return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
 
 
 def CountNotifications(request):
