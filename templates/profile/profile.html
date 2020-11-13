@@ -50,7 +50,9 @@ Perfil | @{{user.username|capfirst}}
                         {% if user.profile.picture %}
                         <img src="{{ user.profile.picture.url }}" alt="profile-image" width="40" height="40">
                         {% else %}
-                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="40" height="40">
+                        <a href="{% url 'users:detail' request.user.username %}" class="like-coms" type="button">
+                            <span style="margin-top: 0px; width: 40px;height: 40px;padding-top: 4px;">{{request.user.first_name|first}}{{request.user.last_name|first}}</span>
+                        </a>
                         {% endif %}
                     </div>
                     <div class="post-st mb-2 mt-2">
@@ -71,11 +73,13 @@ Perfil | @{{user.username|capfirst}}
                         {% include 'pagination.html' %}   
                     </div>  
                 {% else %}
-                    <h3 style="font-size: 25px;font-weight: 600;">No tienes proyectos publicados</h3>
+                <div class="company-title" style="margin-top: -20px; margin-left: -20px;">
+                    <h3 style="font-size: 25px;font-weight: 600;" >No tiene proyectos publicados</h3>
+                </div>
+                    
                 {% endif %}
             </div>
 
-            
             <!--product-feed-tab end-->
             <div class="product-feed-tab" id="info-dd">
                 <!--user-profile-ov end-->
@@ -123,6 +127,12 @@ Perfil | @{{user.username|capfirst}}
                                             <div class="gallery_pt">
                                                 <img src="{{ favorite.image.url }}" alt="">
                                                 <a href="{% url 'posts:detail_project' favorite.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{ favorite.title }}</h3></a>
+                                                {% if user == request.user %}
+                                                    <div  class="cadidatesbtn">
+                                                        <a title="Quitar"  href="{% url 'iteractions:post_favorite' favorite.id 0 %}"><i class="fas fa-trash-alt mr-1"></i></a> 
+                                                    </div>
+                                                {% endif %} 
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +171,8 @@ Perfil | @{{user.username|capfirst}}
 
 
                 </div>
-            </div>     
+            </div>
+
         </div>
     </div>    
     <div class="col-lg-3">

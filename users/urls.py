@@ -71,7 +71,7 @@ urlpatterns = [
         view=views.UserDetailView.as_view(),
         name='detail'
     ),
-   
+
     #Ajax
     path(
         route='ajax/provinces/',

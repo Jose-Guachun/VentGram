@@ -19,13 +19,19 @@
                 {% include 'posts/section_post_shear.html' %}
                 {% for user in users %}
                     {% if user != request.user %}
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-2">
                             <div class="company_profile_info">
                                 <div class="company-up-info">
                                     {% if user.profile.picture %}
-                                        <img src="{{user.profile.picture.url}}" alt="profile-image" width="96" height="96">
+                                        <a href="{% url 'users:detail' user.username %}">
+                                            <img src="{{user.profile.picture.url}}" alt="profile-image" width="90" height="90">
+                                        </a>
                                     {% else %}
-                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="96" height="96">
+                                        <div class="list-user">
+                                            <a href="{% url 'users:detail' user.username %}" >
+                                            <span>{{user.first_name|first}}{{user.last_name|first}}</span>
+                                            </a>
+                                        </div>
                                     {% endif %}
                                     <h3>{{user.username}}</h3>
                                     <h4>{{user.email}}</h4>
@@ -50,13 +56,6 @@
                 {% endfor %}
             </div>
         </div><!--companies-list end-->
-        <div class="process-comm">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-            </div>
-        </div><!--process-comm end-->
     </div>
 </section>
 {% endblock %}

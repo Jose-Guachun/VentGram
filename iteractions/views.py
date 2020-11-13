@@ -12,7 +12,7 @@ from django.urls import reverse
 
 #model
 from users.models import User, Profile
-from iteractions.models import Relationship, Likes, Notification
+from iteractions.models import Relationship, Likes, Notification, Comment
 from posts.models import Project
 
 
@@ -116,10 +116,15 @@ def CountNotifications(request):
 	if request.user.is_authenticated:
 		count_notifications = Notification.objects.filter(user=request.user, is_seen=False).count()
 	return {'count_notifications':count_notifications}
+
+def DeleteComments(request, comment_id, url):
+	comment = Comment.objects.get(id=comment_id)
+	Comment.objects.filter(id=comment_id, user= comment.user, post=comment.post).delete()
+	return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
 	
 
 @login_required
-def favorite(request, post_id):
+def favorite(request, post_id, position):
 	user = request.user
 	post = Project.objects.get(id=post_id)
 	profile = Profile.objects.get(user=user)
@@ -130,8 +135,10 @@ def favorite(request, post_id):
 
 	else:
 		profile.favorites.add(post)
-
-	return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
+	if position != 0:
+		return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
+	else:
+		return HttpResponseRedirect(reverse('users:detail', args=[user.username]))
 
 
 
