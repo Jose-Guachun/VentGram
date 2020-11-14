@@ -140,6 +140,11 @@ footer{
 /* ----carrusel----*/
 
 /* ----card contenedor image*/
+.container-comment{
+  width: 100%;
+  background-color:rgb(248, 248, 248);
+  border-radius: 10px;
+}
 .box {
   width: 100%;
   height: 115px;

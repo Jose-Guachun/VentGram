@@ -6395,8 +6395,8 @@ a:hover {
 .job-status-bar hr {
 	margin:0 -40px;
 }
-.reply-area{
-	padding-left: 55px; 
+.reply-area {
+	padding-left: 50px; 
 }
 
 .reply-rply1 { 
@@ -6436,7 +6436,7 @@ a:hover {
 }
 .postcomment .form-control{
 	width: 112%;
-	margin-left: -50px;
+	margin-left: -58px;
 	background-color: #efefef;
 	border-radius: 3px;
 }

@@ -126,7 +126,7 @@ Perfil | @{{user.username|capfirst}}
                                         <div class="gallery_pt">
                                             <div class="gallery_pt">
                                                 <img src="{{ favorite.image.url }}" alt="">
-                                                <a href="{% url 'posts:detail_project' favorite.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{ favorite.title }}</h3></a>
+                                                <a href="{% url 'posts:detail_project' favorite.url 0 %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{ favorite.title }}</h3></a>
                                                 {% if user == request.user %}
                                                     <div  class="cadidatesbtn">
                                                         <a title="Quitar"  href="{% url 'iteractions:post_favorite' favorite.id 0 %}"><i class="fas fa-trash-alt mr-1"></i></a> 
@@ -151,7 +151,7 @@ Perfil | @{{user.username|capfirst}}
                                     
                                     <div class="gallery_pt">
                                         <img src="{{ project.image.url }}" alt="">
-                                        <a href="{% url 'posts:detail_project' project.url %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{project.title}}</h3></a>
+                                        <a href="{% url 'posts:detail_project' project.url 0 %}" title=""><h3 style="color: aliceblue; padding: 15px; padding-top: 20px; font-size: 16px;">{{project.title}}</h3></a>
                                         {% if user == request.user %}
                                             <div  class="cadidatesbtn">
                                                 <a title="Editar"  href="{% url 'posts:update_project' project.url %}" ><i class="far fa-edit mr-1"></i></a> 
@@ -190,7 +190,7 @@ Perfil | @{{user.username|capfirst}}
                 <div class="pf-gallery">
                     <ul>
                         {% for project in projectsPro %}
-                        <li><a href="{% url 'posts:detail_project' project.url %}" title=""><img src="{{ project.image.url }}" alt=""></a>
+                        <li><a href="{% url 'posts:detail_project' project.url project.id %}" title=""><img src="{{ project.image.url }}" alt=""></a>
                         </li>
                         {% endfor %}
                     </ul>

@@ -33,7 +33,7 @@ def follow(request, username, project_slug):
 	elif project_slug==to_user.email:
 		return redirect('iteractions:list_user')
 	else:
-		return HttpResponseRedirect(reverse('posts:detail_project', args=[project_slug]))
+		return HttpResponseRedirect(reverse('posts:detail_project', args=[project_slug, 0]))
 	
 @login_required
 def unfollow(request, username, project_slug):
@@ -50,7 +50,7 @@ def unfollow(request, username, project_slug):
 	elif project_slug==to_user.email:
 		return redirect('iteractions:list_user')
 	else:
-		return HttpResponseRedirect(reverse('posts:detail_project', args=[project_slug]))
+		return HttpResponseRedirect(reverse('posts:detail_project', args=[project_slug, 0]))
 
 @login_required
 def UserListView(request,**kwargs):
@@ -83,7 +83,7 @@ def like(request, project_id,  project_slug):
 	post.likes = current_likes
 	post.save()
 	if post.url == project_slug:
-		return HttpResponseRedirect(reverse('posts:detail_project', args=[project_slug]))
+		return HttpResponseRedirect(reverse('posts:detail_project', args=[project_slug, 0]))
 	elif post.id == int(project_slug):
 		return HttpResponseRedirect(reverse('posts:feed'))
 	else:
@@ -120,7 +120,7 @@ def CountNotifications(request):
 def DeleteComments(request, comment_id, url):
 	comment = Comment.objects.get(id=comment_id)
 	Comment.objects.filter(id=comment_id, user= comment.user, post=comment.post).delete()
-	return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
+	return HttpResponseRedirect(reverse('posts:detail_project', args=[url, 0]))
 	
 
 @login_required
@@ -136,7 +136,7 @@ def favorite(request, post_id, position):
 	else:
 		profile.favorites.add(post)
 	if position != 0:
-		return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
+		return HttpResponseRedirect(reverse('posts:detail_project', args=[url, 0]))
 	else:
 		return HttpResponseRedirect(reverse('users:detail', args=[user.username]))
 

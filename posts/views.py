@@ -10,10 +10,13 @@ from django.urls import reverse, reverse_lazy
 from django.db.models import Q
 from django.core.paginator import Paginator
 
+#models
 from iteractions.models import Likes, Comment
 from users.models import Profile, User
 from posts.models import Project, Category, Status
 
+#python
+import time
 #forms
 from posts.forms import ProjectForm
 from iteractions.forms import CommentForm
@@ -61,21 +64,26 @@ def ProjectFeedView(request,**kwargs):
     return render(request, 'posts/feed.html', {'projects':projects})
 
 @login_required
-def ProjectDetailView(request, url):
+def ProjectDetailView(request, url, project_id):
     project= get_object_or_404(Project, url=url)
     user= request.user
     profile= Profile.objects.get(user=user)
     favorited= False
+
     
-    projects = Project.objects.get(url=url)
-    views=projects.views+1
-    print(views)
-    Project.objects.filter(url=url).update(views=views)
+    if project_id != 0:
+        projects = Project.objects.get(url=url)
+        if projects.user != user:
+            views=projects.views+1
+            Project.objects.filter(url=url).update(views=views)
+
     #like
+    
     is_like= Likes.objects.filter(user=user, post=project).exists()
 
     #comment
-    comments = Comment.objects.filter(post=project).order_by('date')
+    comments = Comment.objects.filter(post=project).order_by('-date')
+    counts=Comment.objects.filter(post=project).count()
 
     if request.user.is_authenticated:
         profile= Profile.objects.get(user=user)
@@ -91,7 +99,7 @@ def ProjectDetailView(request, url):
             comment.post = project
             comment.user = user
             comment.save()
-            return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))	
+            return HttpResponseRedirect(reverse('posts:detail_project', args=[url, 0]))	
     else:
         form = CommentForm()
     
@@ -103,6 +111,7 @@ def ProjectDetailView(request, url):
         'form':form,
         'comments':comments,
         'likes':is_like,
+        'counts':counts,
     }
     return HttpResponse(template.render(context, request))
 

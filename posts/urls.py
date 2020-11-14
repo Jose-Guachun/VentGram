@@ -36,7 +36,7 @@ urlpatterns = [
         ), 
 
     path(
-        route='posts/<slug:url>/',
+        route='posts/<slug:url>/project1<int:project_id>48/',
         view=views.ProjectDetailView,
         name='detail_project'
         ),

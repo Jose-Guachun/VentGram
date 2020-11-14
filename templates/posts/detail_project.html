@@ -92,78 +92,99 @@
                                     {% else %}
                                     <a href="{% url 'iteractions:like_project' project.id project.url %}"><i class="fas fa-heart"></i> Me gusta  {{project.likes}}</a>
                                     {% endif %}
+                                    
                                 </li>
-                                <!--<li><a href="#" class="com"><i class="fas fa-comment-alt"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Comentarios 15</font></font></a></li>-->
+                                <li>
+                                    {% if comments %}
+                                    <a class="mt-3" style="color: rgb(39, 145, 231);"><i class="fas fa-comment-alt"></i> Comentarios {{counts}}</a>
+                                    {% else %}
+                                    <a class="mt-3" style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-comment-alt"></i> Comentarios {{counts}}</a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if comments %}
+                                    <a class="mt-3" style="color: rgb(49, 209, 57);"><i class="fas fa-eye"></i> Vistas {{ project.views }}</a>
+                                    {% else %}
+                                    <a class="mt-3" style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye"></i> Vistas {{ project.views }}</a>
+                                    {% endif %}  
+                                </li>
                             </ul>
-                            <a class="active mt-3"><i class="fas fa-eye"></i>Vistas {{ project.views }}</a>                                             
+                                                                   
                         </div>
-                        <div class="comment-area">
-                            <i class="la la-plus-circle"></i>
+
+                        {% if comments %}
+                        <div class="text-left">
+                            <h3 style="font-size: 20px; font-weight: 600;margin-bottom: 20px;">Comentarios</h3>
+                        </div>
+                        {% endif %}
+                        <div class="comment-area ">
                             {% for comment in comments %}
                             <div class="post_topbar">
-                                <div class="usy-dt">
-                                    {% if comment.user.profile.picture %}
-                                    <img src="{{ comment.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
-                                    {% else %}
-                                    <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
-                                    {% endif %}
-                                    <div class="comment">
-                                        <h3>{{comment.user.first_name}} {{comment.user.last_name }}</h3>
-                                        <span><img src="{% static 'img/clock.png' %} ">{{comment.date|naturaltime}}</span>
-                                    </div>
-                                </div>                 
-                            </div>
-                            <div class="reply-area">
-                                <p>
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">{{comment.body}}</font>
-                                    </font>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                          <a class="dropdown-item" href="#">Action</a>
-                                        </div>
-                                      </div>
-                                <div class="ed-opts">
+                                {% if comment.user == request.user %}
+                                <div class="ed-opts pr-3 pt-3">
                                     <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                                     <ul class="ed-options">
                                         <li><a href="{% url 'iteractions:delete-comments' comment.id project.url %}" title="Eliminar">Eliminar</a>
                                         </li>
                                     </ul>
-                                    
                                 </div>
-                                
-        
-                                </p>
+                                {% endif %}
+                                <div class="usy-dt pl-3 pt-3">
+                                    {% if comment.user.profile.picture %}
+                                    <a href="{% url 'users:detail' comment.user.username %}"><img src="{{ comment.user.profile.picture.url }}" alt="profile-image" width="37" height="37"></a>
+                                    {% else %}
+                                    <a href="{% url 'users:detail' comment.user.username %}" class="like-coms ml-1 pd-right-none" >
+                                        <span class="mt-0">{{comment.user.first_name|first}}{{comment.user.last_name|first}}</span>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                                <div class="container-comment pt-3">
+                                    <div class="comment ml-2">
+                                        <h3 class="mb-1" >{{comment.user.first_name}} {{comment.user.last_name }}</h3>
+                                        <span class="mb-1"><img src="{% static 'img/clock.png' %} ">{{comment.date|naturaltime}}</span>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="container-comment pl-3 pr-3">
+                                <div class="reply-area mb-3">
+                                    <p style="font-size: 17px;">{{comment.body|capfirst}} </p> 
+                                </div> 
+                            </div>
+
+
                             {% endfor %}
                         </div>
-                        <div class="postcomment">
+                        <div class="text-left mt-5">
+                            <h3 style="font-size: 20px; font-weight: 600;margin-bottom: 20px;">Agregar Comentario</h3>
+                        </div>
+                        <div>
                             <form method="post" action="" role="form">
                                 {% csrf_token %}
                                 <div class="row">
-        
-                                    <div class="col-md-2">
-                                        {% if request.user.profile.picture %}
-                                        <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37"
-                                            height="37">
-                                        {% else %}
-                                        <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37"
-                                            height="37">
-                                        {% endif %}
+                                    <div class="col-lg-1 col-md-2 col-sm-12 mb-3 pd-left-none ">
+                                        <div class="usy-dt">
+                                            {% if request.user.profile.picture %}
+                                            <a  href="{% url 'users:detail' request.user.username %}">
+                                                <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="50" height="50">
+                                            </a>
+                                            {% else %}
+                                            <a  href="{% url 'users:detail' request.user.username %}" class="like-coms mt-0 ml-1 pd-right-none" >
+                                                <span style="width: 50px; height: 50px; border-radius:40px; margin-top: -16px;line-height: 42px; font-size: 26px;">{{request.user.first_name|first}}{{request.user.last_name|first}}</span>
+                                            </a>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                     
-                                    <div class="col-md-8">                             
+                                    <div class="col-lg-8 col-md-10 col-sm-12 pd-left-none">                             
                                         <form>
-                                            <div class="form-group">
-                                                {{ form.body }}
+                                            <div class="form-group ">
+                                                <textarea  type="text" name="body" class="form-control" placeholder="Escribir un comentario" rows="5" required></textarea>
                                             </div>
                                         </form>
                                     </div>
         
-                                    <div class="col-md-2">
-                                        <button type="submit" name="action" class="btn btn-info">Comentar</button>
+                                    <div class="col-lg-3 col-md-12 col-sm-12 pd-left-none mt-1">
+                                        <button type="submit" name="action" class="btn btn-info" style="width: 100%;"><i class="fas fa-comment-alt mr-2"></i>Enviar</button>
                                     </div>
                                 </div>
                             </form>

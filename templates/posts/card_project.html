@@ -2,9 +2,9 @@
 {% load humanize %}
 <div class="posts-section">
     <div class="box">
-        <form action="{% url 'posts:detail_project' project.url %}" method="POST">
+        <form action="{% url 'posts:detail_project' project.url project.id %}" method="POST">
             {% csrf_token %}
-            <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.url %}">
+            <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.url project.id %}">
                 <img class="card-img-top" src="{{ project.image.url }}" alt="Project"></a>
         </form>
 
@@ -60,16 +60,14 @@
 
         </div>
         <div class="job_descp">
-            <h3><a href="{% url 'posts:detail_project' project.url %}" title="{{ project.title }}">{{ project.title}}</a></h3>
-            <p>{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.url %}" title="">...ver más</a></p>
+            <h3><a href="{% url 'posts:detail_project' project.url project.id %}" title="{{ project.title }}">{{ project.title}}</a></h3>
+            <p>{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.url project.id %}" title="">...ver más</a></p>
         </div>
         <div class="job-status-bar">
             <ul class="like-com">
                 <li>
-                    <a href="{% url 'posts:detail_project' project.url %}" class="active">
-                        <i class="fas fa-heart"></i> {{project.likes}}</a>
-                    <a href="{% url 'posts:detail_project' project.url %}" style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye ml-2"></i>2</a>
-                    
+                    <a class="active"><i class="fas fa-heart"></i> {{project.likes}}</a>
+                    <a style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye ml-2"></i> {{project.views}}</a>          
                 </li>
 
             </ul>
