@@ -118,8 +118,14 @@ def CountNotifications(request):
 	return {'count_notifications':count_notifications}
 
 def DeleteComments(request, comment_id, url):
+	projects = Project.objects.get(url=url)
+	
 	comment = Comment.objects.get(id=comment_id)
 	Comment.objects.filter(id=comment_id, user= comment.user, post=comment.post).delete()
+
+	count=projects.count_comments-1
+	Project.objects.filter(url=url).update(count_comments=count)
+    
 	return HttpResponseRedirect(reverse('posts:detail_project', args=[url, 0]))
 	
 

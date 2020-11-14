@@ -2,6 +2,7 @@
 {% load humanize %}
 <div class="posts-section">
     <div class="box">
+
         <form action="{% url 'posts:detail_project' project.url project.id %}" method="POST">
             {% csrf_token %}
             <a alt="{{ project.title }}" title="{{ project.title }}" href="{% url 'posts:detail_project' project.url project.id %}">
@@ -67,7 +68,9 @@
             <ul class="like-com">
                 <li>
                     <a class="active"><i class="fas fa-heart"></i> {{project.likes}}</a>
-                    <a style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye ml-2"></i> {{project.views}}</a>          
+                    <a style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-comment-alt ml-2"></i> {{project.count_comments}}</a>
+                    <a style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye ml-2"></i> {{project.views}}</a>
+                    
                 </li>
 
             </ul>

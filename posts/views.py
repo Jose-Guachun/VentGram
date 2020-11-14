@@ -70,9 +70,8 @@ def ProjectDetailView(request, url, project_id):
     profile= Profile.objects.get(user=user)
     favorited= False
 
-    
+    projects = Project.objects.get(url=url)
     if project_id != 0:
-        projects = Project.objects.get(url=url)
         if projects.user != user:
             views=projects.views+1
             Project.objects.filter(url=url).update(views=views)
@@ -83,7 +82,6 @@ def ProjectDetailView(request, url, project_id):
 
     #comment
     comments = Comment.objects.filter(post=project).order_by('-date')
-    counts=Comment.objects.filter(post=project).count()
 
     if request.user.is_authenticated:
         profile= Profile.objects.get(user=user)
@@ -99,6 +97,8 @@ def ProjectDetailView(request, url, project_id):
             comment.post = project
             comment.user = user
             comment.save()
+            count=projects.count_comments+1
+            Project.objects.filter(url=url).update(count_comments=count)
             return HttpResponseRedirect(reverse('posts:detail_project', args=[url, 0]))	
     else:
         form = CommentForm()
@@ -111,7 +111,6 @@ def ProjectDetailView(request, url, project_id):
         'form':form,
         'comments':comments,
         'likes':is_like,
-        'counts':counts,
     }
     return HttpResponse(template.render(context, request))
 

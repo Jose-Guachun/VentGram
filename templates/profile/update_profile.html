@@ -16,8 +16,8 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                         <img src="{{ user.profile.picture.url }}" alt="profile-image"  id="preview" width="96" height="96">
                     {% else %}
                     <img src=" " id="preview" width="96" height="96" style="margin-bottom: -16px;">
-                    <div class="like-com-profile">
-                        <span style="margin-left: 0px; width: 96px;height: 96px;padding-top: 33px; font-size: 50px; margin-bottom: -12px; margin-top: -83px;">{{request.user.first_name|first}}{{request.user.last_name|first}}</span>
+                    <div class="update-profile">
+                        <span>{{request.user.first_name|first}}{{request.user.last_name|first}}</span>
                     </div>
                     {% endif %}
                     <div class="add-dp" id="OpenImgUpload">

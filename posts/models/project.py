@@ -40,6 +40,7 @@ class Project(CRideModel):
     url = models.SlugField(max_length=255, unique=True)
     likes = models.IntegerField(default=0, blank=True, null=True)
     views=models.IntegerField(default=0, blank=True, null=True)
+    count_comments=models.IntegerField(default=0, blank=True, null=True)
 
 
     def save(self, *args, **kwargs):

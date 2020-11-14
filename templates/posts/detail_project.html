@@ -95,10 +95,10 @@
                                     
                                 </li>
                                 <li>
-                                    {% if comments %}
-                                    <a class="mt-3" style="color: rgb(39, 145, 231);"><i class="fas fa-comment-alt"></i> Comentarios {{counts}}</a>
+                                    {% if project.count_comments != 0 %}
+                                    <a class="mt-3" style="color: rgb(39, 145, 231);"><i class="fas fa-comment-alt"></i> Comentarios {{project.count_comments}}</a>
                                     {% else %}
-                                    <a class="mt-3" style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-comment-alt"></i> Comentarios {{counts}}</a>
+                                    <a class="mt-3" style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-comment-alt"></i> Comentarios {{project.count_comments}}</a>
                                     {% endif %}
                                 </li>
                                 <li>
