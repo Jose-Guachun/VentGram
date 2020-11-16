@@ -1,21 +1,19 @@
 #Django
-from django.template import loader
+from django.template import loader, RequestContext
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib import messages
 from django.urls import reverse
 
 #model
 from users.models import User, Profile
-from iteractions.models import Relationship, Likes, Notification, Comment
+from iteractions.models import Relationship, Likes, Notification, Comment, Message
 from posts.models import Project
-
-
 
 # Create your views here.
 @login_required
@@ -89,7 +87,6 @@ def like(request, project_id,  project_slug):
 	else:
 		return HttpResponseRedirect(reverse('posts:list_project'))
 
-
 @login_required
 def ShowNOtifications(request):
 	user = request.user
@@ -110,7 +107,6 @@ def DeleteNotification(request, noti_id):
 	Notification.objects.filter(id=noti_id, user=user).delete()
 	return redirect('iteractions:notification')
 
-
 def CountNotifications(request):
 	count_notifications = 0
 	if request.user.is_authenticated:
@@ -122,7 +118,6 @@ def DeleteComments(request, comment_id, url):
 	Comment.objects.filter(id=comment_id, user= comment.user, post=comment.post).delete()
 	return HttpResponseRedirect(reverse('posts:detail_project', args=[url]))
 	
-
 @login_required
 def favorite(request, post_id, position):
 	user = request.user
@@ -140,7 +135,82 @@ def favorite(request, post_id, position):
 	else:
 		return HttpResponseRedirect(reverse('users:detail', args=[user.username]))
 
+@login_required
+def Inbox(request):
+	messages = Message.get_messages(user=request.user)
+	active_direct = None
+	directs = None
 
+	if messages:
+		message = messages[0]
+		active_direct = message['user'].username
+		directs = Message.objects.filter(user=request.user, recipient=message['user'])
+		directs.update(is_read=True)
+		for message in messages:
+			if message['user'].username == active_direct:
+				message['unread'] = 0
+		active_direct = User.objects.get(username=message['user'].username)
+	context = {
+		'directs': directs,
+		'messages': messages,
+		'active_direct': active_direct,
+		}
 
-class MessagesViews(TemplateView):
-	template_name = 'iteractions/messages.html'
+	template = loader.get_template('iteractions/messages.html')
+
+	return HttpResponse(template.render(context, request))
+
+@login_required
+def Directs(request, username):
+	user = request.user
+	messages = Message.get_messages(user=user)
+	active_direct = User.objects.get(username=username)
+	directs = Message.objects.filter(user=user, recipient__username=username)
+	directs.update(is_read=True)
+	for message in messages:
+		if message['user'].username == username:
+			message['unread'] = 0
+
+	context = {
+		'directs': directs,
+		'messages': messages,
+		'active_direct':active_direct,
+	}
+
+	template = loader.get_template('iteractions/messages.html')
+
+	return HttpResponse(template.render(context, request))
+
+@login_required
+def SendDirect(request):
+	from_user = request.user
+	to_user_username = request.POST.get('to_user')
+	body = request.POST.get('body')
+	if body!='':
+		if request.method == 'POST':
+			to_user = User.objects.get(username=to_user_username)
+			Message.send_message(from_user, to_user, body)
+			return redirect('iteractions:messages')
+		else:
+			HttpResponseBadRequest()
+	else:
+		return redirect('iteractions:messages')
+
+@login_required
+def NewConversation(request, username):
+	from_user = request.user
+	body='hola'
+	try:
+		to_user = User.objects.get(username=username)
+	except Exception as e:
+		return redirect('iteractions:list_user')
+	if from_user != to_user:
+		Message.send_message(from_user, to_user, body)
+	return redirect('iteractions:messages')
+
+def checkDirects(request):
+	directs_count = 0
+	if request.user.is_authenticated:
+		directs_count = Message.objects.filter(user=request.user, is_read=False).count()
+
+	return {'directs_count':directs_count}

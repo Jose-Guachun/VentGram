@@ -85,7 +85,11 @@
         </li>
         <li>
           <a href="{% url 'iteractions:messages' %}" title="" class="not-box-openm">
-            <span><img src="{% static 'img/icon6.png' %}" alt=""></span>
+            <span><img src="{% static 'img/icon6.png' %}" alt="">
+              {% if directs_count %}
+              <span class="spans">{{directs_count}}</span>
+              {%endif%}
+            </span>
             Mensajes
           </a>
           <div class="notification-box msg" id="message">
