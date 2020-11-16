@@ -54,11 +54,27 @@ urlpatterns = [
         view=views.DeleteComments,
         name='delete-comments'),
 
-     path(
+    path(
         route='messages/',
-        view=views.MessagesViews.as_view(),
+        view=views.Inbox,
         name='messages'
         ),
+
+    path(
+        route='messages/directs/<username>',
+        view=views.Directs,
+        name='directs'
+        ),
+
+    path(
+        route='messages/send/',
+        view=views.SendDirect, 
+        name='send-direct'),
+
+    path(
+        route='messages/new/<username>',
+        view=views.NewConversation, 
+        name='newconversation'),
 ]
 
 

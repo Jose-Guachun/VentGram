@@ -10,7 +10,7 @@
     <div class="user-account">
       <div class="user-info mr-0">
         {% if request.user.profile.picture %}
-        <a type="button" class="mt-0">
+        <a type="button" class="mt-0 ml-2">
           <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
         </a>
         {% else %}
@@ -88,28 +88,6 @@
             <span><img src="{% static 'img/icon6.png' %}" alt=""></span>
             Mensajes
           </a>
-          <div class="notification-box msg" id="message">
-            <div class="nt-title">
-              <h4>Configuracion</h4>
-              <a href="#" title="">Clear all</a>
-            </div>
-            <div class="nott-list">
-              <div class="notfication-details">
-                  <div class="noty-user-img">
-                    <img src=" {% static 'img/resources/ny-img1.png' %}" alt="">
-                  </div>
-                  <div class="notification-info">
-                    <h3><a href="messages.html" title="">Jassica William</a> </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
-                    <span>2 min ago</span>
-                  </div><!--notification-info -->
-              </div>
-
-                <div class="view-all-nots">
-                  <a href="messages.html" title="">View All Messsages</a>
-                </div>
-            </div><!--nott-list end-->
-          </div><!--notification-box end-->
         </li>
         <li>
           <a href="{% url 'iteractions:notification' %}" title="Notificaciones">

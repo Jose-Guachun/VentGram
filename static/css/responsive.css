@@ -1,6 +1,11 @@
-
+@media (max-width: 1199px) {
+	.box_category a h3{
+		margin-top: 35px;
+	  }
+}
 
 @media (max-width: 991px) {
+	
 	header nav {position: fixed;top: 0;left: 0;width: 150px;height: 100%;background-color: rgba(43, 43, 71, 0.568);padding: 25px 20px;opacity: 0;visibility: hidden;z-index: 0}
 	header nav.active {opacity: 1;visibility: visible;z-index: 9999;}
 	header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}
@@ -48,6 +53,9 @@
 .usy-dt .reply {
     width: 230px;
 }
+.box_category a h3{
+	margin-top: 35px;
+  }
 }
 
 
@@ -96,11 +104,12 @@
 	.usy-dt .reply {
 		width: 450px;
 	}
+
 	
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.login_register {display: none;}
 	.forum-bar ul {float: right;}
 	.comment_box input {width: 84%;}
@@ -130,13 +139,16 @@
 	.usy-dt .reply {width: 270px;}
 	.privacy i {margin-left: 10px;}
 	.bids-detail ul { display: block;}
+	.box_category a h3{
+		margin-top: 115px;
+	  }
 }
 
 
 @media (max-width: 576px) {
 	.signin-pop {margin-bottom: 40px;}
 	.login-resources ul li {margin-bottom: 7px;}
-	.logo {width: 100%;text-align: center;}
+	.logo {width: 70%;text-align: right; position: absolute;}
 	.logo img {float: none;}
 	.search-bar {width: 100%;}
 	.user-account {float: left;}
@@ -212,6 +224,9 @@
     .close{
 	    display: none;
 }
+.box_category a h3{
+	margin-top: 100px;
+  }
 }
 
 @media (max-width: 410px) {

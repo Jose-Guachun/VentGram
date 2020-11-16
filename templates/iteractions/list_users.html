@@ -43,7 +43,7 @@
                                                 {% else %}
                                                     <li><a href="{% url 'iteractions:unfollow' user user.email%}" title="" class="flww"><i class="fas fa-check-circle" style="font-size: 18px;top: 1px;padding-right: 4px;"></i>Siguiendo</a></li>
                                                 {% endif %}
-                                                <li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
+                                                <li><a href="{% url 'iteractions:newconversation' user.username %}" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
                                             {% endif %}
                                         {% endif %}
                                         

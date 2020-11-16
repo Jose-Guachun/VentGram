@@ -275,8 +275,8 @@ nav ul li:hover > ul,
 header {
 	float: left;
 	width: 100%;
-	background: #191431;
-	background: linear-gradient(to right, rgb(2, 102, 94), rgb(43, 43, 71) );
+	height: 53px;
+	background: linear-gradient(to right, rgb(0, 72, 105), rgb(0, 121, 129) );
 }
 .header-data {
 	float: left;
@@ -285,7 +285,6 @@ header {
 .logo {
 	float: left;
 	width: 200px;
-	margin-right: 14px;
 	margin-top: 3px;
 }
 
@@ -408,7 +407,7 @@ nav {
 nav ul li {
 	display: inline-block;
 	text-align: center;
-	padding: 13px 13px;
+	padding: 11px 11px;
 	position: relative;
 }
 nav ul li:hover > ul {
@@ -552,8 +551,8 @@ nav > ul > li > a:hover {
 	float: left;
 	width: 100%;
 	padding-left:0px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 8px;
+	padding-bottom: 8px;
 	position: relative;
 }
 .user-account-settingss {
@@ -1093,7 +1092,7 @@ a .user-specs h3:hover {
 .post-st ul li a:hover,
 .post-st ul li a.active {
 	background: #191431;
-	background: linear-gradient(to right, rgb(2, 102, 94), rgb(43, 43, 71) );
+	background: linear-gradient(to right, rgb(0, 72, 105), rgb(0, 121, 129) );
 	color: #fff;
 }
 
@@ -2039,7 +2038,7 @@ a .user-specs h3:hover {
 	float: left;
 	width: 100%;
 	background: #191431;
-	background: linear-gradient(to right, rgb(2, 102, 94), rgb(43, 43, 71) );
+	background: linear-gradient(to right, rgb(0, 72, 105), rgb(0, 121, 129));
 
 	color: #fff;
 	text-align: center;
@@ -2097,7 +2096,7 @@ a .user-specs h3:hover {
 }
 .post-project-fields form ul li button.active {
 	background: #191431;
-	background: linear-gradient(to right, rgb(2, 102, 94), rgb(43, 43, 71) );
+	background: linear-gradient(to right, rgb(0, 72, 105), rgb(0, 121, 129) );
 	color: #fff;
 }
 .post-project-fields form ul li button,
@@ -2344,7 +2343,7 @@ select {
 	border-radius: 0 4px 4px 0;
 }
 .sign-control li.current a {
-	background-color: #8f1d89cc;
+	background-color: rgb(0, 116, 169);
 	color: #fff;
 }
 .sign_in_sec {
@@ -2825,12 +2824,14 @@ footer {
     width: 40px;
     height: 40px;
     text-align: center;
-    padding: 2px;
     color: rgb(31, 110, 175);
     left: 0;
     top: -5px;
 }
-
+.add-dpss i {
+	color:#53d690; 
+	box-shadow: none; 
+}
 .add-dps i:hover {
 	
 	font-size: 32px;
@@ -2926,11 +2927,10 @@ footer {
 	padding-top:10px;
 }
 .social_links li {
-	padding-top:10px;
 	text-align: center;
 	float: center;
 	width: 100%;
-	padding: 15px 15px 5px;
+	padding: 0px 15px 15px;
 }
 .social_links li a {
 	float: center;
@@ -4578,8 +4578,7 @@ a:hover {
 
 /* ============= account-tabs-setting ============ */
 
-.profile-account-setting {
-}
+
 .account-tabs-setting {
 	float: left;
 	width: 100%;
@@ -6265,9 +6264,7 @@ a:hover {
     float: right;
     vertical-align: .255em;
 }
-.checkbox{
-	
-}
+
 .form-check {   
     padding-left: 0;
 }
@@ -6400,9 +6397,6 @@ a:hover {
 	border-top:1px solid #e5e5e5;
 }
 
-.main-ws-sec .job-status-bar {
-	
-}
 .main-ws-sec .btm-line {
     padding-bottom: 20px !important;
     border-bottom: 1px solid #e5e5e5 !important;

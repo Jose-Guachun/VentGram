@@ -45,9 +45,10 @@
                 {% else %}
                     <li><a href="{% url 'iteractions:unfollow' user user.username %}" title="" class="flww"><i class="fas fa-check-circle"></i> Siguiendo</a></li>
                 {% endif %}
-                <li><a href="#" title="" class="hre"><i class="far fa-envelope"></i>Mensaje</a></li>
+                <li><a href="{% url 'iteractions:newconversation' user.username %}" title="" class="hre"><i class="far fa-envelope mr-1"></i>Mensaje</a></li>
                 {% else %}
-                <li><a href="{% url 'users:update_profile' %}" title="" class="hre"><i class="fas fa-user-edit mr-1"></i>Editar Perfil</a></li>
+                <li><a href="{% url 'users:update_user' %}" title="Editar Usuario" class="flww"><i class="far fa-user mr-1"></i>Usuario</a></li>
+                <li><a href="{% url 'users:update_profile' %}" title="Editar Perfil" class="hre"><i class="fas fa-user-edit mr-1"></i>Perfil</a></li>
                 {% endif %}
             </ul>
             {% endif %}
@@ -68,10 +69,19 @@
                     <p class="ml-1"><i class="fas fa-envelope  mr-1"></i>{{ user.email|capfirst}}</p>
                 </li>
             </ul>
+            {% if user ==  request.user %}
+            <hr class="mb-0">
+            {% else %}
             <hr>
+            {% endif %}
         </div>
         
         <ul class="social_links">
+            {% if user ==  request.user %}
+            <li class="add-dpss mb-0 text-right" >
+                <a href="{% url 'users:social_net' %}"><i class="fas fa-edit" style=" font-size: 15px;"></i></a>
+            </li>
+            {% endif %}
             <li class="add-dps">
              {% if  user.profile.facebook %}
                 <a href="{{user.profile.facebook}}" target="_blank" ><i class="fab fa-facebook"></i></a>
@@ -93,9 +103,7 @@
              {% else %}
                 <a><i class="fab fa-github" style="filter: grayscale();"></i></a>
              {% endif %}
-             {% if user ==  request.user %}
-             <a href="{% url 'users:social_net' %}"><i class="fas fa-edit" style="color:#53d690; font-size: 15px; top: -26px;left: -10px; width: 0px; padding-right:0px;"></i></a>
-             {% endif %}
+
             </li>
 
          </ul>

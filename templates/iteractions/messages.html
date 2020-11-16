@@ -1,239 +1,113 @@
-{% extends 'base.html' %}
+{% extends 'posts/base.html' %}
 {% block head_content %}
-Notifications | VentGram
+Messages | VentGram
 {% endblock%}
+
 {% load static %}
 <!--herencia de posts/base html estructura de cuerpo de html-->
 
-{% block nav %}
-    {% include 'nav.html' %}
-{% endblock%}
+{% block row %}
+<div class="col-lg-10 offset-lg-1">
+	<div id="frame">
+		<div id="sidepanel">
+			<div id="search" class="text-center mt-2">
+				<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+				<input type="text" placeholder="Search contacts..." />
+			</div>
+			<!--Mostrar contactos de mensajes-->
+			<div id="contacts">
+				<ul style="margin-right: 0px;">
+					{% if not messages%}
+					<span style="color: white;">No existen conversaciones</span>
+					{%else%}
+					{% for message in messages %}					
+					<a class="{% if active_direct == message.user.username %}is-active{% endif %}"
+						href="{% url 'iteractions:directs' message.user.username%}">
+						<li class="contact">
+							<div class="wrap">
+								<span class="contact-status online"></span>
+								{% if message.user.profile.picture %}
+								<img src="{{ message.user.profile.picture.url }}" alt="profile-image" width="37"
+									height="37">
+								{% else %}
+								<div class="like-coms-chat" >
+									<h2>{{message.user.first_name|first}}{{message.user.last_name|first}}</h2>
+								</div>
+								{% endif %}
+								<div class="meta">
+									<p class="name" style="color: white;">{{message.user.first_name}} {{message.user.last_name}}</p>
+									
+									{%if message.unread%}
+									<p class="preview" style="font-weight: normal; color: rgb(255, 255, 255);"><i
+											class="fas fa-comment-dots"></i> {{message.unread}} Mensajes nuevos...</p>
+									{%endif%}
+								</div>
+							</div>
+						</li>
+					</a>
+					{% endfor %}
+					{%endif%}
+				</ul>
+			</div>
+			<!--Nueva conversacion-->
+			<div id="bottom-bar">
+				<a href="{% url 'iteractions:list_user' %}">
+					<button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Nuevo
+							mensaje</span></button>
+				</a>
+			</div>
+		</div>
 
-{% block content %}
-<section class="messages-page">
-    <div class="container">
-        <div class="messages-sec">
-            <div class="row">
-                <div class="col-lg-4 col-md-12 no-pdd">
-                    <div class="msgs-list">
-                        <div class="msg-title">
-                            <h3>Messages</h3>
-                            <ul>
-                                <li><a href="#" title=""><i class="fa fa-cog"></i></a></li>
-                                <li><a href="#" title=""><i class="fa fa-ellipsis-v"></i></a></li>
-                            </ul>
-                        </div><!--msg-title end-->
-                        <div class="messages-list">
-                            <ul>
-                                <li class="active">
-                                    <div class="usr-msg-details">
-                                        <div class="usr-ms-img">
-                                            <img src="images/resources/m-img1.png" alt="">
-                                            <span class="msg-status"></span>
-                                        </div>
-                                        <div class="usr-mg-info">
-                                            <h3>John Doe</h3>
-                                            <p>Lorem ipsum dolor <img src="images/smley.png" alt=""></p>
-                                        </div><!--usr-mg-info end-->
-                                        <span class="posted_time">1:55 PM</span>
-                                        <span class="msg-notifc">1</span>
-                                    </div><!--usr-msg-details end-->
-                                </li>
-                                <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-ms-img">
-                                            <img src="images/resources/m-img2.png" alt="">
-                                        </div>
-                                        <div class="usr-mg-info">
-                                            <h3>David Vane</h3>
-                                            <p>Vestibulum ac diam..</p>
-                                        </div><!--usr-mg-info end-->
-                                        <span class="posted_time">1:55 PM</span>
-                                    </div><!--usr-msg-details end-->
-                                </li>
-                                <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-ms-img">
-                                            <img src="images/resources/m-img3.png" alt="">
-                                        </div>
-                                        <div class="usr-mg-info">
-                                            <h3>Nancy Dilan</h3>
-                                            <p>Quam vehicula.</p>
-                                        </div><!--usr-mg-info end-->
-                                        <span class="posted_time">1:55 PM</span>
-                                    </div><!--usr-msg-details end-->
-                                </li>
-                                <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-ms-img">
-                                            <img src="images/resources/m-img4.png" alt="">
-                                            <span class="msg-status"></span>
-                                        </div>
-                                        <div class="usr-mg-info">
-                                            <h3>Norman Kenney</h3>
-                                            <p>Nulla quis lorem ut..</p>
-                                        </div><!--usr-mg-info end-->
-                                        <span class="posted_time">1:55 PM</span>
-                                    </div><!--usr-msg-details end-->
-                                </li>
-                                <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-ms-img">
-                                            <img src="images/resources/m-img5.png" alt="">
-                                            <span class="msg-status"></span>
-                                        </div>
-                                        <div class="usr-mg-info">
-                                            <h3>James Dilan</h3>
-                                            <p>Vivamus magna just..</p>
-                                        </div><!--usr-mg-info end-->
-                                        <span class="posted_time">1:55 PM</span>
-                                    </div><!--usr-msg-details end-->
-                                </li>
-                                <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-ms-img">
-                                            <img src="images/resources/m-img6.png" alt="">
-                                        </div>
-                                        <div class="usr-mg-info">
-                                            <h3>Mike Dorn</h3>
-                                            <p>Praesent sapien massa.</p>
-                                        </div><!--usr-mg-info end-->
-                                        <span class="posted_time">1:55 PM</span>
-                                    </div><!--usr-msg-details end-->
-                                </li>
-                                <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-ms-img">
-                                            <img src="images/resources/m-img7.png" alt="">
-                                        </div>
-                                        <div class="usr-mg-info">
-                                            <h3>Patrick Morison</h3>
-                                            <p>Convallis a pellente...</p>
-                                        </div><!--usr-mg-info end-->
-                                        <span class="posted_time">1:55 PM</span>
-                                    </div><!--usr-msg-details end-->
-                                </li>
-                            </ul>
-                        </div><!--messages-list end-->
-                    </div><!--msgs-list end-->
-                </div>
-                <div class="col-lg-8 col-md-12 pd-right-none pd-left-none">
-                    <div class="main-conversation-box">
-                        <div class="message-bar-head">
-                            <div class="usr-msg-details">
-                                <div class="usr-ms-img">
-                                    <img src="images/resources/m-img1.png" alt="">
-                                </div>
-                                <div class="usr-mg-info">
-                                    <h3>John Doe</h3>
-                                    <p>Online</p>
-                                </div><!--usr-mg-info end-->
-                            </div>
-                            <a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
-                        </div><!--message-bar-head end-->
-                        <div class="messages-line mCustomScrollbar _mCS_1"><div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
-                            <div class="main-message-box">
-                                <div class="messg-usr-img">
-                                    <img src="images/resources/m-img1.png" alt="" class="mCS_img_loaded">
-                                </div><!--messg-usr-img end-->
-                                <div class="message-dt">
-                                    <div class="message-inner-dt img-bx">
-                                        <img src="images/resources/mt-img1.png" alt="" class="mCS_img_loaded">
-                                        <img src="images/resources/mt-img2.png" alt="" class="mCS_img_loaded">
-                                        <img src="images/resources/mt-img3.png" alt="" class="mCS_img_loaded">
-                                    </div><!--message-inner-dt end-->
-                                    <span>Sat, Aug 23, 1:08 PM</span>
-                                </div><!--message-dt end-->
-                            </div><!--main-message-box end-->
-                            <div class="main-message-box ta-right">
-                                <div class="message-dt">
-                                    <div class="message-inner-dt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                                    </div><!--message-inner-dt end-->
-                                    <span>Sat, Aug 23, 1:08 PM</span>
-                                </div><!--message-dt end-->
-                                <div class="messg-usr-img">
-                                    <img src="images/resources/m-img2.png" alt="" class="mCS_img_loaded">
-                                </div><!--messg-usr-img end-->
-                            </div><!--main-message-box end-->
-                            <div class="main-message-box st3">
-                                <div class="message-dt st3">
-                                    <div class="message-inner-dt">
-                                        <p>Cras ultricies ligula.<img src="images/smley.png" alt="" class="mCS_img_loaded"></p>
-                                    </div><!--message-inner-dt end-->
-                                    <span>5 minutes ago</span>
-                                </div><!--message-dt end-->
-                                <div class="messg-usr-img">
-                                    <img src="images/resources/m-img1.png" alt="" class="mCS_img_loaded">
-                                </div><!--messg-usr-img end-->
-                            </div><!--main-message-box end-->
-                            <div class="main-message-box ta-right">
-                                <div class="message-dt">
-                                    <div class="message-inner-dt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                                    </div><!--message-inner-dt end-->
-                                    <span>Sat, Aug 23, 1:08 PM</span>
-                                </div><!--message-dt end-->
-                                <div class="messg-usr-img">
-                                    <img src="images/resources/m-img2.png" alt="" class="mCS_img_loaded">
-                                </div><!--messg-usr-img end-->
-                            </div><!--main-message-box end-->
-                            <div class="main-message-box st3">
-                                <div class="message-dt st3">
-                                    <div class="message-inner-dt">
-                                        <p>Lorem ipsum dolor sit amet</p>
-                                    </div><!--message-inner-dt end-->
-                                    <span>2 minutes ago</span>
-                                </div><!--message-dt end-->
-                                <div class="messg-usr-img">
-                                    <img src="images/resources/m-img1.png" alt="" class="mCS_img_loaded">
-                                </div><!--messg-usr-img end-->
-                            </div><!--main-message-box end-->
-                            <div class="main-message-box ta-right">
-                                <div class="message-dt">
-                                    <div class="message-inner-dt">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                                    </div><!--message-inner-dt end-->
-                                    <span>Sat, Aug 23, 1:08 PM</span>
-                                </div><!--message-dt end-->
-                                <div class="messg-usr-img">
-                                    <img src="images/resources/m-img2.png" alt="" class="mCS_img_loaded">
-                                </div><!--messg-usr-img end-->
-                            </div><!--main-message-box end-->
-                            <div class="main-message-box st3">
-                                <div class="message-dt st3">
-                                    <div class="message-inner-dt">
-                                        <p>....</p>
-                                    </div><!--message-inner-dt end-->
-                                    <span>Typing...</span>
-                                </div><!--message-dt end-->
-                                <div class="messg-usr-img">
-                                    <img src="images/resources/m-img1.png" alt="" class="mCS_img_loaded">
-                                </div><!--messg-usr-img end-->
-                            </div><!--main-message-box end-->
-                        </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 344px; max-height: 594px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div><!--messages-line end-->
-                        <div class="message-send-area">
-                            <form>
-                                <div class="mf-field">
-                                    <input type="text" name="message" placeholder="Type a message here">
-                                    <button type="submit">Send</button>
-                                </div>
-                                <ul>
-                                    <li><a href="#" title=""><i class="fa fa-smile-o"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-camera"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
-                                </ul>
-                            </form>
-                        </div><!--message-send-area end-->
-                    </div><!--main-conversation-box end-->
-                </div>
-            </div>
-        </div><!--messages-sec end-->
-    </div>
-</section>
-<!--messages-page end-->
-{% endblock %}
+		<div class="content">
+			<div class="contact-profile">
+				{% if active_direct.profile.picture %}
+				<img src="{{ active_direct.profile.picture.url }}" alt="profile-image" width="37"
+					height="37">
+				{% else %}
+				<div class="like-coms">
+					<span
+						class="mt-2 ml-2 mr-2">{{active_direct.first_name|first}}{{active_direct.last_name|first}}</span>
+				</div>
+				{% endif %}
+				<p style="margin-top: 15px;">{{active_direct.first_name}} {{active_direct.last_name}}</p>
+				
+				<div class="social-media">
+					<i class="fa fa-facebook" aria-hidden="true"></i>
+					<i class="fa fa-twitter" aria-hidden="true"></i>
+					<i class="fa fa-instagram" aria-hidden="true"></i>
+				</div>
+			</div>
+			<!--Mostrar mensaje-->
+			<div class="messages">
+				<ul>
+					{% for direct in directs %}
+					<li class="sent">
+						{% if direct.sender.profile.picture %}
+						<img src="{{ direct.sender.profile.picture.url }}" alt="" width="20" height="20">
+						{% else %}
+						<div class="like-coms">
+							<span class="mt-0">{{direct.sender.first_name|first}}{{direct.sender.last_name|first}}</span>
+						</div>
+						{% endif %}
+						<p class="ml-1">{{direct.body}}</p>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
 
-{% block footer %}
-    {% include 'footer.html' %}
+			<!--Enviar mensaje-->
+			<form role="form" method="POST" action="{% url 'iteractions:send-direct' %}">
+				{% csrf_token %}
+				<div class="message-input">
+					<div class="wrap">
+						<input type="hidden" name="to_user" value="{{ active_direct }}" />
+						<textarea name="body" placeholder="Escribe un mensaje..."></textarea>
+						<button type="submit" name="action"><i class="fa fa-paper-plane"
+								aria-hidden="true"></i></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 {% endblock %}

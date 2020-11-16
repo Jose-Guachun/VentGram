@@ -70,6 +70,11 @@ class LoginForm(AuthenticationForm):
         model = User
         fields = ["username", "password"]
 
+    def clean_username(self):
+        #username must be unique.
+        username=self.cleaned_data['username'].lower()
+        return username
+
 class SignupForm(forms.ModelForm):
     password=forms.CharField(label=False, max_length=70, widget=forms.PasswordInput(),)
     password_confirmation=forms.CharField(label=False, max_length=70, widget=forms.PasswordInput(),)

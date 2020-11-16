@@ -42,6 +42,7 @@ def FilterProjectView(request):
     elif filtroEs:
         context=('Proyectos con estado ')
         projects = Project.objects.filter(status=filtroEs)
+        
 
     paginator=Paginator(projects, 6)
     page=request.GET.get('page')

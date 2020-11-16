@@ -1,4 +1,7 @@
 /* ----General*/
+.fijo{
+  margin-top: -30px;
+}
 .spans {
 	background: red;
    border-radius: 0.8em;
@@ -93,6 +96,19 @@ footer{
   background: linear-gradient(to right, rgb(2, 102, 94), rgb(43, 43, 71) );
 }
 /* ----navbar*/
+
+/* ----image-Home*/
+.fondo{
+  width: 100%;
+  height: 524px;
+}
+.fondo img{
+  padding: 56px 0px 56px 0px;
+}
+
+/* ----image-Home*/
+
+
 
 /* ----carrusel----*/
 #main .carousel-inner img {
@@ -212,6 +228,14 @@ footer{
   position: absolute;
   margin-top: 50px;
   padding: 20px;
+}
+.box_category a h3{
+  position: absolute;
+  margin-top: 50px;
+  padding: 7px 20px 10px 20px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
 }
 .box_category button{
   background-color: rgba(19, 19, 19, 0.432);
