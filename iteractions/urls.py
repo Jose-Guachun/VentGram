@@ -55,7 +55,7 @@ urlpatterns = [
         name='delete-comments'),
 
     path(
-        route='messages/',
+        route='messages/<str:username>',
         view=views.Inbox,
         name='messages'
         ),

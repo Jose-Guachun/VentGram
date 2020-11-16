@@ -4,6 +4,7 @@ Messages | VentGram
 {% endblock%}
 
 {% load static %}
+{% load humanize %}
 <!--herencia de posts/base html estructura de cuerpo de html-->
 
 {% block row %}
@@ -12,13 +13,16 @@ Messages | VentGram
 		<div id="sidepanel">
 			<div id="search" class="text-center mt-2">
 				<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-				<input type="text" placeholder="Search contacts..." />
+				<input type="text" placeholder="Buscar conversacion..." />
 			</div>
 			<!--Mostrar contactos de mensajes-->
 			<div id="contacts">
 				<ul style="margin-right: 0px;">
 					{% if not messages%}
-					<span style="color: white;">No existen conversaciones</span>
+					<div class="text-center mt-3">
+						<span style="color: white;">No existen conversaciones</span>
+					</div>
+					
 					{%else%}
 					{% for message in messages %}					
 					<a class="{% if active_direct == message.user.username %}is-active{% endif %}"
@@ -37,10 +41,10 @@ Messages | VentGram
 								<div class="meta">
 									<p class="name" style="color: white;">{{message.user.first_name}} {{message.user.last_name}}</p>
 									
-									{%if message.unread%}
+									{% if message.unread %}
 									<p class="preview" style="font-weight: normal; color: rgb(255, 255, 255);"><i
 											class="fas fa-comment-dots"></i> {{message.unread}} Mensajes nuevos...</p>
-									{%endif%}
+									{% endif %}
 								</div>
 							</div>
 						</li>
@@ -49,15 +53,15 @@ Messages | VentGram
 					{%endif%}
 				</ul>
 			</div>
+
 			<!--Nueva conversacion-->
 			<div id="bottom-bar">
 				<a href="{% url 'iteractions:list_user' %}">
-					<button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Nuevo
-							mensaje</span></button>
+					<button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Nuevo mensaje</span></button>
 				</a>
 			</div>
 		</div>
-
+		{% if request.user.username != username %}
 		<div class="content">
 			<div class="contact-profile">
 				{% if active_direct.profile.picture %}
@@ -81,16 +85,23 @@ Messages | VentGram
 			<div class="messages">
 				<ul>
 					{% for direct in directs %}
-					<li class="sent">
-						{% if direct.sender.profile.picture %}
-						<img src="{{ direct.sender.profile.picture.url }}" alt="" width="20" height="20">
-						{% else %}
-						<div class="like-coms">
-							<span class="mt-0">{{direct.sender.first_name|first}}{{direct.sender.last_name|first}}</span>
-						</div>
+						{% if direct.body != '' %}
+						<li class="sent">
+							{% if direct.sender.profile.picture %}
+							<img src="{{ direct.sender.profile.picture.url }}" alt="" width="20" height="20">
+							{% else %}
+							<div class="like-coms">
+								<span class="mt-0">{{direct.sender.first_name|first}}{{direct.sender.last_name|first}}</span>
+							</div>
+							{% endif %}
+							
+							<p class="ml-1">{{direct.body}}</p>
+							<div class="date">
+								<h1><i class="fas fa-clock mr-1"></i>{{ direct.date|naturaltime }}</h1>
+							</div>
+							
+						</li>
 						{% endif %}
-						<p class="ml-1">{{direct.body}}</p>
-					</li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -108,6 +119,11 @@ Messages | VentGram
 				</div>
 			</form>
 		</div>
+		{% else %}
+		<div class="content">
+
+		</div>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}

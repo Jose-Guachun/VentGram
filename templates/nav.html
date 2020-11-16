@@ -84,8 +84,12 @@
           </a>
         </li>
         <li>
-          <a href="{% url 'iteractions:messages' %}" title="" class="not-box-openm">
-            <span><img src="{% static 'img/icon6.png' %}" alt=""></span>
+          <a href="{% url 'iteractions:messages' request.user.username %}" title="" class="not-box-openm">
+            <span><img src="{% static 'img/icon6.png' %}" alt="">              
+              {% if directs_count %}
+                <span class="spans">{{directs_count}}</span>
+              {% endif %}
+            </span>
             Mensajes
           </a>
         </li>

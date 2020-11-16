@@ -147,7 +147,7 @@ def favorite(request, post_id, position):
 		return HttpResponseRedirect(reverse('users:detail', args=[user.username]))
 
 @login_required
-def Inbox(request):
+def Inbox(request, username):
 	messages = Message.get_messages(user=request.user)
 	active_direct = None
 	directs = None
@@ -160,11 +160,13 @@ def Inbox(request):
 		for message in messages:
 			if message['user'].username == active_direct:
 				message['unread'] = 0
-		active_direct = User.objects.get(username=message['user'].username)
+	active_direct = User.objects.get(username=username)
+		
 	context = {
 		'directs': directs,
 		'messages': messages,
 		'active_direct': active_direct,
+		'username':username
 		}
 
 	template = loader.get_template('iteractions/messages.html')
@@ -201,16 +203,16 @@ def SendDirect(request):
 		if request.method == 'POST':
 			to_user = User.objects.get(username=to_user_username)
 			Message.send_message(from_user, to_user, body)
-			return redirect('iteractions:messages')
+			return HttpResponseRedirect(reverse('iteractions:messages', args=[to_user_username]))
 		else:
 			HttpResponseBadRequest()
 	else:
-		return redirect('iteractions:messages')
+		return HttpResponseRedirect(reverse('iteractions:messages', args=[to_user_username]))
 
 @login_required
 def NewConversation(request, username):
 	from_user = request.user
-	body='hola'
+	body=''
 	try:
 		to_user = User.objects.get(username=username)
 		
@@ -218,11 +220,14 @@ def NewConversation(request, username):
 		return redirect('iteractions:list_user')
 	if from_user != to_user:
 		Message.send_message(from_user, to_user, body)
-	return redirect('iteractions:messages')
+	return HttpResponseRedirect(reverse('iteractions:messages', args=[username]))
 
 def checkDirects(request):
 	directs_count = 0
 	if request.user.is_authenticated:
-		directs_count = Message.objects.filter(user=request.user, is_read=False).count()
+		mensajes=Message.objects.filter(user=request.user, is_read=False)
+		for mensaje in mensajes:
+			if mensaje.body != '':
+				directs_count+=1
 
 	return {'directs_count':directs_count}
