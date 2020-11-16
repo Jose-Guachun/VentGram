@@ -11,10 +11,12 @@ Messages | VentGram
 <div class="col-lg-10 offset-lg-1">
 	<div id="frame">
 		<div id="sidepanel">
+			{% if messages %}
 			<div id="search" class="text-center mt-2">
 				<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
 				<input type="text" placeholder="Buscar conversacion..." />
 			</div>
+			{% endif %}
 			<!--Mostrar contactos de mensajes-->
 			<div id="contacts">
 				<ul style="margin-right: 0px;">
@@ -76,9 +78,19 @@ Messages | VentGram
 				<p style="margin-top: 15px;">{{active_direct.first_name}} {{active_direct.last_name}}</p>
 				
 				<div class="social-media">
-					<i class="fa fa-facebook" aria-hidden="true"></i>
-					<i class="fa fa-twitter" aria-hidden="true"></i>
-					<i class="fa fa-instagram" aria-hidden="true"></i>
+					{% if active_direct.profile.facebook %}
+					<a href="{{ active_direct.profile.facebook }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+					{% endif %}
+					{% if active_direct.profile.twitter %}
+					<a href="{{ active_direct.profile.twitter }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+					{% endif %}
+					{% if active_direct.profile.linkedin %}
+					<a href="{{ active_direct.profile.linkedin }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+					{% endif %}
+					{% if active_direct.profile.github %}
+					<a href="{{ active_direct.profile.github }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+					{% endif %}
+					
 				</div>
 			</div>
 			<!--Mostrar mensaje-->
@@ -86,21 +98,25 @@ Messages | VentGram
 				<ul>
 					{% for direct in directs %}
 						{% if direct.body != '' %}
-						<li class="sent">
-							{% if direct.sender.profile.picture %}
-							<img src="{{ direct.sender.profile.picture.url }}" alt="" width="20" height="20">
-							{% else %}
-							<div class="like-coms">
-								<span class="mt-0">{{direct.sender.first_name|first}}{{direct.sender.last_name|first}}</span>
-							</div>
-							{% endif %}
-							
-							<p class="ml-1">{{direct.body}}</p>
-							<div class="date">
-								<h1><i class="fas fa-clock mr-1"></i>{{ direct.date|naturaltime }}</h1>
-							</div>
-							
+						{% if direct.sender == request.user %}
+						<li class="replies text-right mb-0">
+							<p class="ml-1 ">{{direct.body}}</p>
+
 						</li>
+						<li class="mt-0 pt-0">
+							<div class="date text-right mr-2">
+								<h2>{{ direct.date|naturaltime }}</h2>
+							</div>
+						</li>
+						{% else %}
+						<li class="sent">
+							<p>{{direct.body}}</p>
+							<div class="date">
+								<h1 class="ml-2">{{ direct.date|naturaltime }}</h1>
+							</div>
+						</li>
+						{% endif %}
+
 						{% endif %}
 					{% endfor %}
 				</ul>
