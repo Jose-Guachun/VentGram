@@ -14,22 +14,13 @@
           {% if request.user.profile.picture %}
           <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
           {% else %}
-          <img src="{% static 'img/user-default1.png' %}" alt="profile-image" width="37" height="37">
+          <a class="like-coms mt-0 ml-1" type="button">
+            <span style="margin-top: 0px;">{{request.user.first_name|first}}{{request.user.last_name|first}}</span>
+          </a>
           {% endif %}
         </div>
 
         <div class="user-account-settingss" id="users">
-          <ul class="on-off-status">
-            <li>
-                <div class="usy-dt mr-2">
-                      <img src="{% static 'img/user-default1.png' %}" class="ml-2 mt-2 mb-2" alt="profile-image" width="37" height="37">
-                </div>
-  
-                  <div class="fgt-sec">
-                  <h6 class="mt-3 ml-0 mb-0">{{user.first_name|capfirst}}</h6>
-                </div>
-            </li>
-            </ul>
           <h3 class="tc"><a href="{% url 'users:logout' %}" title="Cerrar Sesion"><i
                 class="fas fa-power-off mr-2"></i>Cerrar Sesion</a></h3>
         </div>

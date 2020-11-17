@@ -27,13 +27,16 @@ class SignUpBlockMiddleware:
                         for user in users:
                             if request.path in[
                                 reverse('users:detail', args=[user.username] ),
+                                reverse('iteractions:messages', args=[user.username] ),
+                                reverse('iteractions:directs', args=[user.username] ),
+                                reverse('iteractions:newconversation', args=[user.username] ),
                                 ]:
                                 return redirect('users:validate_token')
 
                         projects=Project.objects.all()
                         for project in projects:
                             if request.path in[
-                                reverse('posts:detail_project', args=[project.url] ),
+                                reverse('posts:detail_project', args=[project.url, project.id] ),
                                 ]:
                                 return redirect('users:validate_token')  
 
@@ -49,6 +52,10 @@ class SignUpBlockMiddleware:
                             reverse('posts:feed'),  
                             reverse('posts:list_project'), 
                             reverse('posts:new_project'),
+
+                            reverse('iteractions:list_user'),
+                            reverse('iteractions:notification'),
+                            reverse('iteractions:send-direct'),
                             
                             ]:
                             return redirect('users:validate_token')

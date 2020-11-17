@@ -173,6 +173,25 @@ footer{
   display: flex;
   align-items: center;
 }
+
+.contimg{
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgb(0, 72, 105), rgb(0, 121, 129) );
+}
+.contimg h1{
+  font-family: fantasy;
+  color: white;
+  font-size: 40px; 
+  font-weight: 500;
+  padding: 70px 20px 0px 20px;
+}
+.contimg img{
+  margin: auto;
+  display: block;
+  padding:0px 70px 20px 70px ;
+}
+
 .limitar{
   word-break: break-all;
 }

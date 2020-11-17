@@ -117,6 +117,7 @@ def CountNotifications(request):
 		count_notifications = Notification.objects.filter(user=request.user, is_seen=False).count()
 	return {'count_notifications':count_notifications}
 
+
 def DeleteComments(request, comment_id, url):
 	projects = Project.objects.get(url=url)
 	
@@ -151,15 +152,18 @@ def Inbox(request, username):
 	messages = Message.get_messages(user=request.user)
 	active_direct = None
 	directs = None
+	if username != request.user.username:
+		if messages:
+			message = messages[0]
+			active_direct = message['user'].username
+			directs = Message.objects.filter(user=request.user, recipient=message['user'])
+			directs.update(is_read=True)
+			for message in messages:
+				if message['user'].username == active_direct:
+					message['unread'] = 0
+					
+	busqueda = request.POST.get("buscar")
 
-	if messages:
-		message = messages[0]
-		active_direct = message['user'].username
-		directs = Message.objects.filter(user=request.user, recipient=message['user'])
-		directs.update(is_read=True)
-		for message in messages:
-			if message['user'].username == active_direct:
-				message['unread'] = 0
 	active_direct = User.objects.get(username=username)
 		
 	context = {
@@ -207,7 +211,7 @@ def SendDirect(request):
 		else:
 			HttpResponseBadRequest()
 	else:
-		return HttpResponseRedirect(reverse('iteractions:messages', args=[to_user_username]))
+		return HttpResponseRedirect(reverse('iteractions/messages.html', args=[to_user_username]))
 
 @login_required
 def NewConversation(request, username):
@@ -231,3 +235,6 @@ def checkDirects(request):
 				directs_count+=1
 
 	return {'directs_count':directs_count}
+
+
+    

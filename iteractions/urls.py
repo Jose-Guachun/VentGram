@@ -47,12 +47,14 @@ urlpatterns = [
     path(
         route='<noti_id>/delete',
         view=views.DeleteNotification,
-        name='delete-notification'),
+        name='delete-notification'
+        ),
 
     path(
         route='<int:comment_id>/<str:url>/delete',
         view=views.DeleteComments,
-        name='delete-comments'),
+        name='delete-comments'
+        ),
 
     path(
         route='messages/<str:username>',
@@ -69,12 +71,15 @@ urlpatterns = [
     path(
         route='messages/send/',
         view=views.SendDirect, 
-        name='send-direct'),
+        name='send-direct'
+        ),
 
     path(
         route='messages/new/<username>',
         view=views.NewConversation, 
-        name='newconversation'),
+        name='newconversation'
+        ),
+
 ]
 
 

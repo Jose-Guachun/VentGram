@@ -10,13 +10,13 @@
     <div class="user-account">
       <div class="user-info mr-0">
         {% if request.user.profile.picture %}
-        <a type="button" class="mt-0 ml-2">
-          <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
-        </a>
-        {% else %}
-        <a class="like-coms mt-0 ml-1" type="button">
-            <span style="margin-top: 0px;">{{request.user.first_name|first}}{{request.user.last_name|first}}</span>
-        </a>
+          <a type="button" class="mt-0 ml-2">
+            <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
+          </a>
+          {% else %}
+          <a class="like-coms mt-0 ml-1" type="button">
+              <span style="margin-top: 0px;">{{request.user.first_name|first}}{{request.user.last_name|first}}</span>
+          </a>
         {% endif %}
       </div>
       <div class="user-account-settingss" id="users">

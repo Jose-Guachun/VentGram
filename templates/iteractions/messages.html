@@ -11,14 +11,20 @@ Messages | VentGram
 <div class="col-lg-10 offset-lg-1">
 	<div id="frame">
 		<div id="sidepanel">
+
+			<!--buscar usuario
 			{% if messages %}
 			<div id="search" class="text-center mt-2">
-				<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-				<input type="text" placeholder="Buscar conversacion..." />
+				<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+					<input type="text" name="buscar" placeholder="Buscar conversacion..." value="{{ request.POST.buscar }}" />
+				</form>
 			</div>
-			{% endif %}
+			{% endif %} -->
+			
 			<!--Mostrar contactos de mensajes-->
-			<div id="contacts">
+			<div id="contacts" class="mt-3">
 				<ul style="margin-right: 0px;">
 					{% if not messages%}
 					<div class="text-center mt-3">
@@ -42,10 +48,9 @@ Messages | VentGram
 								{% endif %}
 								<div class="meta">
 									<p class="name" style="color: white;">{{message.user.first_name}} {{message.user.last_name}}</p>
-									
 									{% if message.unread %}
 									<p class="preview" style="font-weight: normal; color: rgb(255, 255, 255);"><i
-											class="fas fa-comment-dots"></i> {{message.unread}} Mensajes nuevos...</p>
+											class="fas fa-comment-dots"></i> {{ message.unread }} Mensajes nuevos...</p>
 									{% endif %}
 								</div>
 							</div>
@@ -67,28 +72,29 @@ Messages | VentGram
 		<div class="content">
 			<div class="contact-profile">
 				{% if active_direct.profile.picture %}
-				<img src="{{ active_direct.profile.picture.url }}" alt="profile-image" width="37"
-					height="37">
+				<a href="{% url 'users:detail' active_direct.username %}"><img src="{{ active_direct.profile.picture.url }}" alt="profile-image" width="37" height="37"></a> 
 				{% else %}
-				<div class="like-coms">
-					<span
-						class="mt-2 ml-2 mr-2">{{active_direct.first_name|first}}{{active_direct.last_name|first}}</span>
-				</div>
+				<a href="{% url 'users:detail' active_direct.username %}"> 
+					<div class="like-coms">
+						<span
+							class="mt-2 ml-2 mr-2">{{active_direct.first_name|first}}{{active_direct.last_name|first}}</span>
+					</div>
+				</a> 
 				{% endif %}
-				<p style="margin-top: 15px;">{{active_direct.first_name}} {{active_direct.last_name}}</p>
+				<a href="{% url 'users:detail' active_direct.username %}"><p style="margin-top: 15px;">{{active_direct.first_name}} {{active_direct.last_name}}</p></a>
 				
 				<div class="social-media">
 					{% if active_direct.profile.facebook %}
 					<a href="{{ active_direct.profile.facebook }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
 					{% endif %}
 					{% if active_direct.profile.twitter %}
-					<a href="{{ active_direct.profile.twitter }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+					<a href="{{ active_direct.profile.twitter }}" target="_blank"><i class="fa fa-twitter" aria-hidden="false"></i></a> 
 					{% endif %}
 					{% if active_direct.profile.linkedin %}
-					<a href="{{ active_direct.profile.linkedin }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+					<a href="{{ active_direct.profile.linkedin }}" target="_blank" style="color: rgb(0, 123, 182);"><i class="fa fa-linkedin" aria-hidden="true"></i></a> 
 					{% endif %}
 					{% if active_direct.profile.github %}
-					<a href="{{ active_direct.profile.github }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+					<a href="{{ active_direct.profile.github }}" target="_blank" style="color: rgb(77, 77, 77);"><i class="fa fa-github" aria-hidden="true"></i></a>
 					{% endif %}
 					
 				</div>
@@ -137,7 +143,14 @@ Messages | VentGram
 		</div>
 		{% else %}
 		<div class="content">
-
+			<div class="contimg">
+				<div class="text-center">
+					<h1>Inicia una <br> conversación</h1>
+				</div>
+				<img src="{% static 'img/Logo_VG.png' %}">
+				<img src="{% static 'img/cm-main-img.png' %}" style="filter: hue-rotate(900deg);" >	
+			</div>
+			
 		</div>
 		{% endif %}
 	</div>
