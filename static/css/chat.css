@@ -414,10 +414,14 @@
   background: #e74c3c;
 }
 #frame #sidepanel #contacts ul li.contact .wrap img {
-  width: 40px;
+  object-fit: cover;
+  -webkit-border-radius: 100px;
   border-radius: 50%;
   float: left;
   margin-right: 10px;
+}
+.wrap img:hover {
+  border:1px solid white;
 }
 @media screen and (max-width: 767px) {
   #frame #sidepanel #contacts ul li.contact .wrap img {
@@ -539,6 +543,7 @@
   }
 }
 #frame .content .contact-profile {
+
   width: 100%;
   height: 60px;
   line-height: 60px;
@@ -546,10 +551,14 @@
   border-top:1px solid rgba(218, 218, 218, 0.795);
 }
 #frame .content .contact-profile img {
-  width: 40px;
+  object-fit: cover;
+  -webkit-border-radius: 100px;
   border-radius: 50%;
   float: left;
   margin: 9px 12px 0 9px;
+}
+.contact-profile img:hover {
+  border:1px solid white;
 }
 #frame .content .contact-profile p {
   float: left;

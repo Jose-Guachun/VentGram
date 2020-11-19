@@ -11,7 +11,7 @@
       <div class="user-info mr-0">
         {% if request.user.profile.picture %}
           <a type="button" class="mt-0 ml-2">
-            <img src="{{ request.user.profile.picture.url }}" alt="profile-image" width="37" height="37">
+            <img src="{{ request.user.profile.picture.url }}" alt="profile-image">
           </a>
           {% else %}
           <a class="like-coms mt-0 ml-1" type="button">
@@ -25,7 +25,7 @@
             <a href="{% url 'users:detail' request.user.username %}">
               <div class="usy-dt mr-2">
                   {% if request.user.profile.picture %}
-                    <img src="{{ request.user.profile.picture.url }}" class="ml-2 my-2" alt="profile-image" width="37" height="37">
+                    <img src="{{ request.user.profile.picture.url }}" class="ml-2 my-2" alt="profile-image" width="37" height="38">
                   {% else %}
                   <div class="like-coms ml-3">
                       <span>{{request.user.first_name|first}}{{request.user.last_name|first}}</span>

@@ -9,10 +9,10 @@
                 <img class="card-img-top" src="{{ project.image.url }}" alt="Project"></a>
         </form>
 
-        <div class="txt">
+        <div class="txt" >
             <div class="usy-dt">
                     {% if project.profile.picture %}
-                    <a href="{% url 'users:detail' project.user.username %}">
+                    <a href="{% url 'users:detail' project.user.username %}" class="mt-2">
                         <img src="{{ project.profile.picture.url }}" alt="profile-image" width="50" height="50">
                     </a>
                     {% else %}
@@ -27,9 +27,25 @@
                             {{ project.user.username}}
                         </h3>
                     </a>
-                    <span>
-                        <i class="fas fa-clock mr-1"></i>{{ project.created|naturaltime }}
-                    </span>
+                    <ul>
+                        <li>
+                            <span>
+                                <i class="fas fa-clock mr-1"></i>{{ project.created|naturaltime }}
+                            </span>
+                        </li>
+                    </ul>
+                    <!---
+                        <ul class="like-com mt-0">
+                            <li>
+                                <a style="color: rgb(247, 49, 49);"><i class="fas fa-heart"></i> {{project.likes}}</a>
+                                <a style="color: rgb(2, 162, 255);"><i class="fas fa-comment-alt ml-2"></i> {{project.count_comments}}</a>
+                                <a style="color: rgb(0, 202, 67);"><i class="fas fa-eye ml-2"></i> {{project.views}}</a>
+                                
+                            </li>
+            
+                        </ul>--->
+
+
                 </div>
             </div>
         </div>
@@ -61,15 +77,37 @@
 
         </div>
         <div class="job_descp">
-            <h3><a href="{% url 'posts:detail_project' project.url project.id %}" title="{{ project.title }}">{{ project.title}}</a></h3>
-            <p>{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.url project.id %}" title="">...ver más</a></p>
+                {% if project.title|length > 36  %}
+                <h3><a href="{% url 'posts:detail_project' project.url project.id %}" title="{{ project.title }}">{{ project.title|slice:":60"}}...</a></h3>
+                <p style="margin-bottom: 39px;">{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.url project.id %}" title="">...ver más</a></p>
+                {% else %}
+                <h3><a href="{% url 'posts:detail_project' project.url project.id %}" title="{{ project.title }}">{{ project.title|slice:":60"}}</a></h3>
+                <p style="margin-bottom: 55px;">{{ project.description|slice:":120" }} <a href="{% url 'posts:detail_project' project.url project.id %}" title="">...ver más</a></p>
+                {% endif %}
+
+            
         </div>
-        <div class="job-status-bar">
+           
+        <div class="job-status-bar pt-0">
             <ul class="like-com">
                 <li>
+                    {% if project.likes != 0 %}
                     <a class="active"><i class="fas fa-heart"></i> {{project.likes}}</a>
+                    {% else %}
+                    <a style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-heart"></i> {{project.likes}}</a>
+                    {% endif %}
+                    {% if project.count_comments != 0 %}
+                    <a  style="color: rgb(39, 145, 231);"><i class="fas fa-comment-alt ml-2"></i>{{project.count_comments}}</a>
+                    {% else %}
                     <a style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-comment-alt ml-2"></i> {{project.count_comments}}</a>
+                    {% endif %}
+                    {% if project.views != 0 %}
+                    <a style="color: rgb(49, 209, 57);"><i class="fas fa-eye ml-2"></i>{{ project.views }}</a>
+                    {% else %}
                     <a style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye ml-2"></i> {{project.views}}</a>
+                    {% endif %}
+                    
+                    
                     
                 </li>
 

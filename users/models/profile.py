@@ -24,7 +24,7 @@ class Profile(CRideModel):
     country=models.ForeignKey('users.Country', on_delete=models.CASCADE, blank=True, null=True)
     province=models.ForeignKey('users.Province', on_delete=models.CASCADE, blank=True, null=True)
     city=models.ForeignKey('users.City', on_delete=models.CASCADE, blank=True, null=True)
-    favorites = models.ManyToManyField(Project, related_name='favorites')
+    favorites = models.ManyToManyField(Project, related_name='favorites', blank=True)
 
     dni=models.CharField(max_length=10, validators=[validators.MinLengthValidator(10), vcedula], blank=True)
     gender=models.CharField(max_length=20, blank=True)

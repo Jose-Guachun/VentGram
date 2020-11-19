@@ -695,14 +695,25 @@ nav > ul > li > a:hover {
 .tc a:hover {
 	color: rgb(196, 33, 33);
 }
+
 .user-info img {
-	margin-right: 10px;
+    width:38px;
+    height:38px;
+	border-radius:50%;
+	object-fit: cover;
+	object-position: center center;
+	background-color:rgb(190, 190, 190);
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
-	border-radius: 100px;
+
 }
+.user-info img:hover {
+	border:1px solid rgb(255, 255, 255);
+
+}
+
 .user-info a {
 	color: #fff;
 	font-size: 14px;
@@ -775,6 +786,7 @@ main {
 	margin-bottom: -48px;
 }
 .usr-pic > img {
+	object-fit: cover;
 	float: none;
 	border: 1px solid #fff;
 	-webkit-border-radius: 100px;
@@ -1120,6 +1132,7 @@ a .user-specs h3:hover {
 	padding: 20px;
 	box-shadow: 0px 2px #e4e4e4;
 }
+
 .post_topbar {
 	float: left;
 	width: 100%;
@@ -1129,15 +1142,21 @@ a .user-specs h3:hover {
 	padding: 0;
 }
 .usy-dt {
+
 	float: left;
 }
 .usy-dt img {
+	object-fit: cover;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
-	border-radius: 100px;
+	border-radius: 50%;
 }
+.usy-dt img:hover {
+	border:1px solid rgb(255, 255, 255);
+}
+
 .ed-opts {
 	float: right;
 	position: relative;
@@ -1450,22 +1469,6 @@ a .user-specs h3:hover {
 	margin-bottom: -14px;
 }
 
-.like-com-profile{
-	width: 100%;
-	height: 180px;
-}
-.like-com-profile span{
-	line-height: 180px;
-	color: #ffffff;
-	font-size: 70px;
-	margin-top: 60px;
-	padding:46px 51px 46px 51px;
-	background-color: #1476b8;
-	border-radius: 200px;
-	text-align: center;
-	font-weight: 600;
-	
-}
 .name-profile span {
 	width: 96px;
 	height: 96px;
@@ -1485,21 +1488,30 @@ a .user-specs h3:hover {
 	width: 100%;
 	height: 100px;
 	margin-bottom: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 .list-user span{
-	line-height: 98px;
-	color: #ffffff;
+	width: 90px;
+	height: 90px;
 	font-size: 50px;
-	margin-top: 10px;
-	padding:16px 18px 16px 18px ;
+	border: 1px solid #fff;
+	color: #ffffff;
 	background-color: #1476b8;
-	border-radius: 100px;
-	text-align: center;
+	line-height: 88px;
+	border-radius: 180px;
+	float: left;
 	font-weight: 600;
 	
 }
+.list-user span:hover{
+	border:2px solid rgb(255, 255, 255);
+}
 .like-coms span:hover{
 	background-color: #1476b8;
+	border:1px solid rgb(255, 255, 255);
 }
 .like-coms button{
 	background-color:transparent;
@@ -2016,7 +2028,6 @@ a .user-specs h3:hover {
 	opacity: 1;
 	visibility: visible;
 	z-index: 999;
-	-webkit-transform: scale(1) translateX(-50%) translateY(-50%);
 }
 .post-project > a {
 	position: absolute;
@@ -2847,13 +2858,15 @@ footer {
 }
 
 .user-pro-img img {
+	object-fit: cover;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
-	border-radius: 100px;
+	border-radius: 50%;
 	float: none;
-	border: 1px solid white;
+	object-position: center center;
+
 }
 
 
@@ -3526,7 +3539,6 @@ footer {
 .file-submit [type="file"] + label {
     background: #2a5ea1;
     border: none;
-    float: left;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     border-top-left-radius: 3px;
@@ -3851,9 +3863,11 @@ a:hover {
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
-	border-radius: 100px;
-	height: 90px;
+	border-radius: 50%;
 	object-fit: cover;
+}
+.company-up-info img:hover {
+	border:1px solid white;
 }
 .company-up-info h3 {
 	color: #000000;
@@ -5963,7 +5977,6 @@ a:hover {
 	transition: all 0.3s;
 	vertical-align: middle;
 	margin: 0;
-	float: right;
 	text-transform: uppercase;
 }
 .add-pic-box [type="file"] + label:hover {

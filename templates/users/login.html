@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block enla %}
-<ul class="sign-control pr-0">
+<ul class="sign-control pr-0 pt-2">
   <li class="current"><a href="{% url 'users:login' %}" title="">Inicar Sesión</a></li>				
   <li><a href="{% url 'users:signup' %}" title="">Registrarse</a></li>						
 </ul>
@@ -47,15 +47,10 @@ Bienvenido
     </div>
     </div>
 
-    <div class="custom-control custom-checkbox mb-3">
-      <input type="checkbox" class="custom-control-input" id="customCheck1">
-      <label class="custom-control-label ml-3" style="color: rgb(92, 92, 92);" for="customCheck1">Recordar Contraseña</label>
-    </div>
-
     <hr class="my-3">
   <button class="btn btn-info btn-block btn-login font-weight-bold text-uppercase" type="submit">Inciar sesión</button>
-  <p class="d-block text-center mt-2 mb-1 small"> ¿Aún no tienes una cuenta? <a href="{% url "users:signup" %}">Registarte aquí.</a> </p>
-  <p class="d-block text-center small"> ¿Se te olvidó tu contraseña? <a href="{% url "users:signup" %}">Recuperar contraseña</a> </p>
+  <p class="d-block text-center mt-2 mb-5 small"> ¿Aún no tienes una cuenta? <a href="{% url "users:signup" %}">Registarte aquí.</a> </p>
+
   </form>            
 {% endblock %}
     

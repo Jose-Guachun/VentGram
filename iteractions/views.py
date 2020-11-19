@@ -152,6 +152,7 @@ def Inbox(request, username):
 	messages = Message.get_messages(user=request.user)
 	active_direct = None
 	directs = None
+
 	if username != request.user.username:
 		if messages:
 			message = messages[0]
@@ -159,18 +160,19 @@ def Inbox(request, username):
 			directs = Message.objects.filter(user=request.user, recipient=message['user'])
 			directs.update(is_read=True)
 			for message in messages:
-				if message['user'].username == active_direct:
+				if message['user'].username == active_direct :
 					message['unread'] = 0
-					
-	busqueda = request.POST.get("buscar")
-
+	
 	active_direct = User.objects.get(username=username)
-		
+
+	
+
 	context = {
 		'directs': directs,
 		'messages': messages,
 		'active_direct': active_direct,
-		'username':username
+		'username':username,
+
 		}
 
 	template = loader.get_template('iteractions/messages.html')
@@ -184,6 +186,7 @@ def Directs(request, username):
 	active_direct = User.objects.get(username=username)
 	directs = Message.objects.filter(user=user, recipient__username=username)
 	directs.update(is_read=True)
+
 	for message in messages:
 		if message['user'].username == username:
 			message['unread'] = 0
@@ -222,8 +225,12 @@ def NewConversation(request, username):
 		
 	except Exception as e:
 		return redirect('iteractions:list_user')
-	if from_user != to_user:
-		Message.send_message(from_user, to_user, body)
+	messages = Message.objects.filter(sender=from_user, recipient=to_user).exists()
+
+	if not messages:
+		if from_user != to_user:
+			Message.send_message(from_user, to_user, body)
+
 	return HttpResponseRedirect(reverse('iteractions:messages', args=[username]))
 
 def checkDirects(request):

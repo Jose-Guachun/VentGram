@@ -4,10 +4,10 @@
     <div class="user_profile">
         <div class="user-pro-img mb-0">
             {% if user.profile.picture %}
-            <img src="{{ user.profile.picture.url }}" alt="profile-image" width="180" height="180">
+            <img src="{{ user.profile.picture.url }}" alt="profile-image" width="200" height="200">
             {% else %}
-            <div class="like-com-profile">
-                <span>{{user.first_name|first}}{{user.last_name|first}}</span>
+            <div class="list-user" style="height: 200px;">
+                <span style="width:200px; height: 200px; font-size: 100px; line-height: 198px;">{{user.first_name|first}}{{user.last_name|first}}</span>
             </div>
             {% endif %}
             {% if user == request.user %}

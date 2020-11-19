@@ -32,30 +32,30 @@ Messages | VentGram
 					</div>
 					
 					{%else%}
-					{% for message in messages %}					
-					<a class="{% if active_direct == message.user.username %}is-active{% endif %}"
-						href="{% url 'iteractions:directs' message.user.username%}">
-						<li class="contact">
-							<div class="wrap">
-								<span class="contact-status online"></span>
-								{% if message.user.profile.picture %}
-								<img src="{{ message.user.profile.picture.url }}" alt="profile-image" width="37"
-									height="37">
-								{% else %}
-								<div class="like-coms-chat" >
-									<h2>{{message.user.first_name|first}}{{message.user.last_name|first}}</h2>
-								</div>
-								{% endif %}
-								<div class="meta">
-									<p class="name" style="color: white;">{{message.user.first_name}} {{message.user.last_name}}</p>
-									{% if message.unread %}
-									<p class="preview" style="font-weight: normal; color: rgb(255, 255, 255);"><i
-											class="fas fa-comment-dots"></i> {{ message.unread }} Mensajes nuevos...</p>
+					{% for message in messages %}
+						<a class="{% if active_direct == message.user.username %}is-active{% endif %}"
+							href="{% url 'iteractions:directs' message.user.username%}">
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status online"></span>
+									{% if message.user.profile.picture %}
+									<img src="{{ message.user.profile.picture.url }}" alt="profile-image" width="37"
+										height="37">
+									{% else %}
+									<div class="like-coms-chat" >
+										<h2>{{message.user.first_name|first}}{{message.user.last_name|first}}</h2>
+									</div>
 									{% endif %}
+									<div class="meta">
+										<p class="name" style="color: white;">{{message.user.first_name}} {{message.user.last_name}}</p>
+										{% if message.unread %}
+										<p class="preview" style="font-weight: normal; color: rgb(255, 255, 255);"><i
+												class="fas fa-comment-dots"></i> {{ message.unread }} Mensajes nuevos...</p>
+										{% endif %}
+									</div>
 								</div>
-							</div>
-						</li>
-					</a>
+							</li>
+						</a>
 					{% endfor %}
 					{%endif%}
 				</ul>
@@ -105,22 +105,21 @@ Messages | VentGram
 					{% for direct in directs %}
 						{% if direct.body != '' %}
 						{% if direct.sender == request.user %}
-						<li class="replies text-right mb-0">
-							<p class="ml-1 ">{{direct.body}}</p>
-
-						</li>
-						<li class="mt-0 pt-0">
-							<div class="date text-right mr-2">
-								<h2>{{ direct.date|naturaltime }}</h2>
-							</div>
-						</li>
+							<li class="replies text-right mb-0">
+								<p class="ml-1 ">{{direct.body}}</p>
+							</li>
+							<li class="mt-0 pt-0">
+								<div class="date text-right mr-2">
+									<h2>{{ direct.date|naturaltime }}</h2>
+								</div>
+							</li>
 						{% else %}
-						<li class="sent">
-							<p>{{direct.body}}</p>
-							<div class="date">
-								<h1 class="ml-2">{{ direct.date|naturaltime }}</h1>
-							</div>
-						</li>
+							<li class="sent">
+								<p>{{direct.body}}</p>
+								<div class="date">
+									<h1 class="ml-2">{{ direct.date|naturaltime }}</h1>
+								</div>
+							</li>
 						{% endif %}
 
 						{% endif %}
