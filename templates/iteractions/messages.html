@@ -82,7 +82,12 @@ Messages | VentGram
 				</a> 
 				{% endif %}
 				<a href="{% url 'users:detail' active_direct.username %}"><p style="margin-top: 15px;">{{active_direct.first_name}} {{active_direct.last_name}}</p></a>
-				
+				<div class="ed-opts">
+					<a href="" title="" class="ed-opts-open pr-3 pt-1" ><i class="la la-ellipsis-v"></i></a>
+					<ul class="ed-options" style="top: 82%; height: 40px; line-height: 0px; background-color:rgba(235, 19, 19, 0.747);">
+							<li><a href="{% url 'iteractions:delete_conversation' active_direct.id %}" title="Eliminar" style="color: white;">Eliminar Chat</a></li>
+					</ul>
+				</div>
 				<div class="social-media">
 					{% if active_direct.profile.facebook %}
 					<a href="{{ active_direct.profile.facebook }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
@@ -98,6 +103,7 @@ Messages | VentGram
 					{% endif %}
 					
 				</div>
+
 			</div>
 			<!--Mostrar mensaje-->
 			<div class="messages">
@@ -105,7 +111,7 @@ Messages | VentGram
 					{% for direct in directs %}
 						{% if direct.body != '' %}
 						{% if direct.sender == request.user %}
-							<li class="replies text-right mb-0">
+							<li class="replies text-right mb-0" >
 								<p class="ml-1 ">{{direct.body}}</p>
 							</li>
 							<li class="mt-0 pt-0">
@@ -133,7 +139,7 @@ Messages | VentGram
 				<div class="message-input">
 					<div class="wrap">
 						<input type="hidden" name="to_user" value="{{ active_direct }}" />
-						<textarea name="body" placeholder="Escribe un mensaje..."></textarea>
+						<textarea name="body" placeholder="Escribe un mensaje..." ></textarea>
 						<button type="submit" name="action"><i class="fa fa-paper-plane"
 								aria-hidden="true"></i></button>
 					</div>

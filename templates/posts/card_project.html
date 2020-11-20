@@ -71,7 +71,7 @@
             {% else %}
             
             <ul class="bk-links">
-                <li><a href="#" title="Mensaje"><i class="la la-envelope"></i></a></li> 
+                <li><a href="{% url 'iteractions:messages' project.user.username %}" title="Mensaje"><i class="la la-envelope"></i></a></li> 
             </ul>
             {% endif %}
 

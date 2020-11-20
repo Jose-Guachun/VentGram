@@ -77,7 +77,6 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UpdateProfileView, self).get_context_data(**kwargs)
         studies = ('Primaria', 'Secundaria','Superior', 'Maestria', 'Doctorado')
-        work = ('Desarrollo', 'Marketing', 'Diseño', 'Negocios', 'Electronica', 'Otro')
         gender = ('Masculino', 'Femenino', 'Otro')
 
         country=self.object.user.profile.country
@@ -90,7 +89,6 @@ class UpdateProfileView(FormView, LoginRequiredMixin, UpdateView):
         context['provinces'] = provinces
         context['citys'] = citys
         context['studies'] = studies
-        context['work'] = work
         context['gender'] = gender
         return context
 

@@ -61,7 +61,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     </div>
                 </div>
             </div>
-            <div class="cp-field col-sm-12 col-md-12">
+            <div class="cp-field col-sm-12 col-md-6">
                 <h5>Direccion de casa</h5>
                 <div class="cpp-fiel">
                     <input class="{% if form.home_address.errors %}is-invalid{% endif %}" type="text"
@@ -76,6 +76,22 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     </div>
                 </div>
             </div>
+            <div class="cp-field col-sm-12 col-md-6">
+                <h5>Medio en el que laboras</h5>
+                <div class="cpp-fiel">
+                    <input class="{% if form.work_area.errors %}is-invalid{% endif %}" type="text" name="work_area"
+                    placeholder="Eje.Desarrolador, Diseñador, etc."
+                    value="{% if form.errors %}{{form.work_area.value }}{% else %}{{ user.profile.work_area }}{% endif %}" />
+                    <i class="fas fa-briefcase"></i>
+                    
+                    <div class="invalid-feedback">
+                        {% for error in form.work_area.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
 
             {# Biography-field #}
             <div class="cp-field">
@@ -83,7 +99,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     <div class="form-group">
                         <h5>Biografia</h5>
                         <textarea class="form-control {% if form.biography.errors %}is-invalid{% endif %}"
-                            name="biography">{% if form.errors %}{{ form.biography.value }}{% else %}{{ user.profile.biography }}{% endif %}</textarea>
+                            name="biography" placeholder="Describa su biografía">{% if form.errors %}{{ form.biography.value }}{% else %}{{ user.profile.biography }}{% endif %}</textarea>
                         <div class="invalid-feedback">
                             {% for error in form.biography.errors %}
                             {{ error }}
@@ -192,24 +208,6 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                             {% endif %}
 
                         </select><i class="fas fa-university"></i>
-                    </div>
-                    <h5>Medio en el que laboras</h5>
-                    <div class="datefm mb-2">
-                        <select name="work_area" class="form-control" id="exampleFormControlSelect3">
-                            {% if user.profile.work_area %}
-                            <option selected="true" value="{{ user.profile.work_area }}">{{user.profile.work_area }}</option>
-                                {% for value in work %}
-                                    {% if  value  != user.profile.work_area %}
-                                        <option value="{{ value }}">{{ value }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
-                            <option selected="true" disabled="disabled">Seleccione el medio en el que labora</option>
-                                {% for value in work %}
-                                <option value="{{ value }}">{{ value }}</option>
-                                {% endfor %}
-                            {% endif %}
-                        </select><i class="fas fa-briefcase"></i>
                     </div>
 
                 </div>

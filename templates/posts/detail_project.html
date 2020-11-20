@@ -40,11 +40,17 @@
                             
                             <div class="ed-opts">
                                 <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                <ul class="ed-options">
+                                <ul class="ed-options" style="width: 160px;">
 
                                     {% if project.profile.user == request.user %}
+                                        {% if favorited %}
+                                            <li><a href="{% url 'iteractions:post_favorite' project.id 1 %}" title="" style="text-transform: none;">Quitar de favoritos</a></li>
+                                        {% else %}
+                                            <li><a href="{% url 'iteractions:post_favorite' project.id 1 %}" title="" style="text-transform: none;">Agregar a favoritos</a></li>
+                                        {% endif %}
                                         <li><a href="{% url 'posts:update_project' project.url %}" title="Editar">Editar</a></li>
                                         <li><a href="{% url 'posts:delete_project' project.url %}" title="Eliminar">Eliminar</a></li>
+
                                     {% else %}
                                         {% if favorited %}
                                             <li><a href="{% url 'iteractions:post_favorite' project.id 1 %}" title="">Quitar de Favoritos</a></li>
@@ -103,10 +109,17 @@
                                 </li>
                                 <li>
                                     {% if comments %}
-                                    <a class="mt-3" style="color: rgb(49, 209, 57);"><i class="fas fa-eye"></i> Vistas {{ project.views }}</a>
+                                    <a class="mt-3" style="color: rgb(49, 209, 57);"><i class="fas fa-eye" style="font-size: 16px;"></i> Vistas {{ project.views }}</a>
                                     {% else %}
-                                    <a class="mt-3" style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye"></i> Vistas {{ project.views }}</a>
+                                    <a class="mt-3" style="color: rgba(141, 141, 141, 0.726);"><i class="fas fa-eye" style="font-size: 16px;"></i> Vistas {{ project.views }}</a>
                                     {% endif %}  
+                                </li>
+                                <li>
+                                    {% if favorited %}
+                                        <a class="mt-3" href="{% url 'iteractions:post_favorite' project.id 1 %}" style="color: rgb(214, 21, 21);"><i class="fas fa-minus-circle" style="font-size: 16px;"></i> Quitar de favoritos</a>
+                                    {% else %}
+                                        <a class="mt-3" href="{% url 'iteractions:post_favorite' project.id 1 %}" style="color: rgb(19, 152, 175);"><i class="fas fa-plus-circle" style="font-size: 16px;"></i> Guardar en favoritos</a>
+                                    {% endif %}
                                 </li>
                             </ul>
                                                                    

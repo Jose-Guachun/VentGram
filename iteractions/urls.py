@@ -80,6 +80,12 @@ urlpatterns = [
         name='newconversation'
         ),
 
+    path(
+        route='delete/<recipient>',
+        view=views.DeleteConversation, 
+        name='delete_conversation'
+        ),
+
 ]
 
 

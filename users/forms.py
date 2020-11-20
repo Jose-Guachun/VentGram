@@ -29,9 +29,13 @@ class ProfileForm(forms.ModelForm):
             "picture"]
     widgets = {
     'education_level': forms.Select(attrs={'class': 'form-control'}),
-    'work_area': forms.Select(attrs={'class': 'form-control'}),
     'gender': forms.Select(attrs={'class': 'form-control'}),
     }
+    def clean_work_area(self):
+        work_area=self.cleaned_data['work_area'].title()
+        SoloLetras(work_area, 'Medio en el que laboras')
+        return  work_area
+
 
 class SocialNetForm(forms.ModelForm):
     class Meta:

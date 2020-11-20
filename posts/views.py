@@ -82,7 +82,7 @@ def ProjectDetailView(request, url, project_id):
     is_like= Likes.objects.filter(user=user, post=project).exists()
 
     #comment
-    comments = Comment.objects.filter(post=project).order_by('-date')
+    comments = Comment.objects.filter(post=project).order_by('date')
 
     if request.user.is_authenticated:
         profile= Profile.objects.get(user=user)

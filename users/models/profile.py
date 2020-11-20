@@ -5,7 +5,7 @@ from django.conf import settings
 #utilities
 from utils.models import CRideModel
 from django.core import validators
-from VentGram.validators import vcedula, SoloNumeros
+from VentGram.validators import vcedula, SoloNumeros, SoloLetras
 
 
 from users.models import User
@@ -32,7 +32,7 @@ class Profile(CRideModel):
     biography=models.TextField(blank=True)
     phone_number=models.CharField(max_length=20, validators=[validators.MinLengthValidator(10), SoloNumeros], blank=True)
     education_level=models.CharField(max_length=50, blank=True)
-    work_area=models.CharField(max_length=100, blank=True)
+    work_area=models.CharField(max_length=100, blank=True, validators=[validators.MinLengthValidator(4)], )
     home_address=models.CharField(max_length=100, blank=True)
     facebook=models.URLField(max_length=200, blank=True)
     twitter=models.URLField(max_length=200, blank=True)

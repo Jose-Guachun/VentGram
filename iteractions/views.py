@@ -233,6 +233,14 @@ def NewConversation(request, username):
 
 	return HttpResponseRedirect(reverse('iteractions:messages', args=[username]))
 
+
+def DeleteConversation(request,  recipient):
+	user=request.user
+	Message.objects.filter(user=user, recipient= recipient).delete()
+    
+	return HttpResponseRedirect(reverse('iteractions:messages', args=[request.user.username]))
+
+
 def checkDirects(request):
 	directs_count = 0
 	if request.user.is_authenticated:
