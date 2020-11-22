@@ -13,7 +13,7 @@ urlpatterns = [
 
     path(
         route='',
-        view=views.PostHomeView.as_view(),
+        view=views.PostHomeView,
         name='home'
         ),
         

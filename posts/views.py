@@ -157,6 +157,9 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
         username=self.object.user.username
         return reverse('users:detail', kwargs={'username':username})
 
-class PostHomeView(TemplateView):
-    #retornar todas las publicaciones
-    template_name='home.html'
+def PostHomeView(request,**kwargs):
+    projects = Project.objects.all()
+    paginator=Paginator(projects, 6)
+    page=request.GET.get('page')
+    projects=paginator.get_page(page)
+    return render(request, 'home.html', {'projects':projects})
