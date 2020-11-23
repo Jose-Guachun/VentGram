@@ -10068,7 +10068,7 @@ hr.light {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(to bottom, rgba(66, 92, 90, 0.8) 0%, rgba(36, 189, 216, 0.8) 100%), url('../img/bg-masthead.jpg');
+  background: linear-gradient(to bottom, rgba(66, 92, 90, 0.8) 0%, rgba(36, 189, 216, 0.8) 100%), url('../img/fondo.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -10103,9 +10103,11 @@ header.masthead h1 {
 #portfolio .container-fluid .portfolio-box, #portfolio .container-sm .portfolio-box, #portfolio .container-md .portfolio-box, #portfolio .container-lg .portfolio-box, #portfolio .container-xl .portfolio-box {
   position: relative;
   display: block;
+
 }
 #portfolio .container-fluid .portfolio-box .portfolio-box-caption, #portfolio .container-sm .portfolio-box .portfolio-box-caption, #portfolio .container-md .portfolio-box .portfolio-box-caption, #portfolio .container-lg .portfolio-box .portfolio-box-caption, #portfolio .container-xl .portfolio-box .portfolio-box-caption {
   display: flex;
+  object-fit: cover;
   align-items: center;
   justify-content: center;
   flex-direction: column;
