@@ -6,7 +6,7 @@ from django.utils.text import slugify
 #utilities
 from utils.models import CRideModel
 from users.models import User
-from posts.models import Category, Status
+from posts.models import Category, Status, TypeProject
 
 #validators
 from django.core import validators
@@ -27,6 +27,7 @@ class Project(CRideModel):
     user=models.ForeignKey(User, on_delete=models.CASCADE,)
     profile= models.ForeignKey('users.profile', on_delete=models.CASCADE,)
     category=models.ForeignKey(Category, on_delete=models.CASCADE)
+    typeProject=models.ForeignKey(TypeProject, on_delete=models.CASCADE)
     status=models.ForeignKey(Status, on_delete=models.CASCADE)
 
     title=models.CharField('titulo',max_length=100)

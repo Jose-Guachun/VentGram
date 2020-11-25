@@ -18,7 +18,7 @@
                     <div class="box_category mb-1">
                             <a href="{% url 'posts:list_project' %}" >
                                 <img src="{% static 'img/fon.jpg' %}" class="card-img-top" alt="">
-                                <h3>Ver Todos</h3>
+                                <h3>Ver todo</h3>
                             </a>  
                     </div>
                  </div>
@@ -45,7 +45,29 @@
                  </div>
                  {% endfor %}
                  
-             </div>               
+             </div> 
+             <div class="filter-heading pb-1 pl-0">
+                <h3>Tipos de proyectos</h3>
+             </div><!--filter-heading end-->
+            <div class="paddy">
+                {% for type in types %}
+                <div class="pb-2">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="box_category mb-1">
+                        <input type="hidden" name="filtroType" value="{{ type.pk }}" />
+                        <input type="hidden" name="filtro_name" value="{{ type }}" />
+                        <img src="{{ type.image.url }}" alt="">
+                        <button class="btn" class="active">
+                                <div class="usy-name mt-1" >
+                                    <h3>{{ type }}</h3>
+                                 </div>
+                        </button>
+                    </div>
+                </form>
+                </div>
+                {% endfor %}
+            </div>              
                 <!--user-info end-->
                 <div class="filter-heading pb-1 pl-0">
                     <h3>Estado</h3>

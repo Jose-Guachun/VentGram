@@ -55,7 +55,7 @@ def unfollow(request, username, project_slug):
 @login_required
 def UserListView(request,**kwargs):
     busqueda = request.POST.get("buscar")
-    users = User.objects.all()
+    users = User.objects.all().order_by('username')
     if busqueda:
         users = User.objects.filter(
             Q(username__icontains = busqueda) | 

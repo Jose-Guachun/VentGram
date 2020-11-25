@@ -50,7 +50,7 @@ Nuevo Proyecto | VentGram
                             {% endfor %}
                         </div>
                     </div>
-                        <div class="col-sm-12 col-md-6 mb-2">
+                        <div class="col-sm-12 col-md-12 mb-2">
                             <h4>Titulo</h4>
                             <input 
                                 class="{% if form.title.errors %}is-invalid{% endif %}" 
@@ -91,6 +91,19 @@ Nuevo Proyecto | VentGram
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 mb-2">
+                            <h4 class="" >Tecnologias Utilizadas</h4>
+                            <input 
+                                class="{% if form.label.errors %}is-invalid{% endif %}" 
+                                type="text" name="label" 
+                                placeholder="Eje. Python, HTML5, CSS3, Django (Obligatorio)"
+                                value="{% if form.errors %}{{ form.label.value }}{% else %}{{ project.label }}{% endif %}" required>
+                            <div class="invalid-feedback">
+                                {% for error in form.label.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-2">
                             <h4>Categoria</h4>
                             <div class="inp-field ">
                                 {{form.category}}
@@ -113,20 +126,19 @@ Nuevo Proyecto | VentGram
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="col-sm-12 col-md-6 mb-2">
-                            <h4 class="" >Tecnologias Utilizadas</h4>
-                            <input 
-                                class="{% if form.label.errors %}is-invalid{% endif %}" 
-                                type="text" name="label" 
-                                placeholder="Eje. Python, HTML5, CSS3, Django (Obligatorio)"
-                                value="{% if form.errors %}{{ form.label.value }}{% else %}{{ project.label }}{% endif %}" required>
-                            <div class="invalid-feedback">
-                                {% for error in form.label.errors %}
-                                    {{ error }}
-                                {% endfor %}
+                            <h4>Tipo de Proyecto</h4>
+                            <div class="inp-field">
+                                {{form.typeProject}}
+                                <div class="invalid-feedback">
+                                    {% for error in form.typeProject.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
+                        
+
 
                         <div class="col-lg-6 mb-2">
                             <h4>Objetivo</h4>

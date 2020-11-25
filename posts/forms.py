@@ -21,6 +21,7 @@ class ProjectForm(forms.ModelForm):
             'objetive',
             'image',
             'status',
+            'typeProject',
             'website',
             'document',
             'collaborators',
@@ -41,6 +42,7 @@ class ProjectForm(forms.ModelForm):
             
     widgets = {
         'category': forms.Select(attrs={'class': 'form-control'}),
+        'typeProject': forms.Select(attrs={'class': 'form-control'}),
         'status': forms.Select(attrs={'class': 'form-control'}),
     }
 

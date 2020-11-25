@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from posts.models import Project, Category, Status
+from posts.models import Project, Category, Status, TypeProject
 
 
 
@@ -15,4 +15,5 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Project)
 admin.site.register(Category)
+admin.site.register(TypeProject)
 admin.site.register(Status)

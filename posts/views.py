@@ -13,7 +13,7 @@ from django.core.paginator import Paginator
 #models
 from iteractions.models import Likes, Comment
 from users.models import Profile, User
-from posts.models import Project, Category, Status
+from posts.models import Project, Category, Status, TypeProject
 
 #python
 import time
@@ -27,8 +27,10 @@ def FilterProjectView(request):
     busqueda = request.POST.get("buscar")
     filtroCa=request.POST.get("filtroCategoria")
     filtroEs=request.POST.get("filtroEstado")
+    filtroTy=request.POST.get("filtroType")
     projects = Project.objects.all()
     categorys = Category.objects.all()
+    typeProject=TypeProject.objects.all()
     status = Status.objects.all()
     context=()
     if busqueda:
@@ -38,16 +40,20 @@ def FilterProjectView(request):
         ).distinct()
     elif filtroCa:
         projects = Project.objects.filter(category=filtroCa)
-        context=('Proyectos de ')
+        context=('Proyectos de categoria ')
     elif filtroEs:
         context=('Proyectos con estado ')
         projects = Project.objects.filter(status=filtroEs)
+    elif filtroTy:
+        context=('Proyectos de tipo ')
+        projects = Project.objects.filter(typeProject=filtroTy)
+    
         
 
     paginator=Paginator(projects, 6)
     page=request.GET.get('page')
     projects=paginator.get_page(page)
-    return render(request, 'posts/list_project.html', {'projects':projects, 'categorys':categorys, 'statuss':status, 'context':context})
+    return render(request, 'posts/list_project.html', {'projects':projects, 'categorys':categorys, 'statuss':status, 'context':context, 'types':typeProject})
 
 @login_required
 def ProjectFeedView(request,**kwargs):
