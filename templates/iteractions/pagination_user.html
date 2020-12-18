@@ -1,0 +1,20 @@
+<div class="col-12 text-center">
+    {% if users.has_previous %}
+
+    <a class="btn btn-danger" href="?page={{ users.previous_page_number }}">
+        Anterior
+    </a>
+
+    {% endif %}
+
+    <a class="btn btn-danger" href="#">
+        {{ users.number }} de {{ users.paginator.num_pages }}
+    </a>
+
+    {% if users.has_next %}
+
+    <a class="btn btn-danger" href="?page={{ users.next_page_number }}">
+        Siguiente
+    </a>
+    {% endif %}
+</div>

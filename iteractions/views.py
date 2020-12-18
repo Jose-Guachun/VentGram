@@ -61,7 +61,7 @@ def UserListView(request,**kwargs):
             Q(username__icontains = busqueda) | 
             Q(email__icontains = busqueda) 
         ).distinct()	
-    paginator=Paginator(users, 6)
+    paginator=Paginator(users, 8)
     page=request.GET.get('page')
     users=paginator.get_page(page)
     return render(request, 'iteractions/list_users.html', {'users':users})

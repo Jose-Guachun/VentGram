@@ -54,8 +54,13 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+
+                {% if users %}
+                    {% include 'iteractions/pagination_user.html' %}
+                {% endif %}
             </div>
         </div><!--companies-list end-->
+
     </div>
 </section>
 {% endblock %}
