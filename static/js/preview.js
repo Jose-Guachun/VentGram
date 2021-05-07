@@ -17,7 +17,12 @@ $("#file").change(function () {
 window.addEventListener('load', inicio, false);
 
 function inicio() {
-  document.getElementById('archivo').addEventListener('change', cargar, false);
+  var archivo = document.getElementById("archivo");
+  if(archivo)
+  {
+    document.getElementById('archivo').addEventListener('change', cargar, false);
+  }
+  
 }
 
 function cargar(ev) {
@@ -29,6 +34,11 @@ function cargar(ev) {
 }
 
 function leer(ev) {
-  document.getElementById('editor').value = ev.target.result;
+  var editor= document.getElementById("editor");
+  if(editor)
+    {
+    document.getElementById('editor').value = ev.target.result;
+    }
+  
 }
 //reflejar documento 

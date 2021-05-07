@@ -7,7 +7,7 @@
     <div class="menu-btn">
       <a href="#" title=""><i class="fa fa-bars"></i></a>
     </div><!--menu-btn end-->
-    <div class="user-account">
+    <div id="iteraction" class="user-account">
       <div class="user-info mr-0">
         {% if request.user.profile.picture %}
           <a type="button" class="mt-0 ml-2">
@@ -109,15 +109,6 @@
               <a href="#" title="">Clear all</a>
             </div>
             <div class="nott-list">
-              <div class="notfication-details">
-                  <div class="noty-user-img">
-                    <img src="{% static 'img/resources/ny-img1.png' %}" alt="">
-                  </div>
-                  <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                  </div><!--notification-info -->
-                </div>
                 <div class="view-all-nots">
                   <a href="{% url 'iteractions:notification' %}" title="">
                     {% if count_notifications %}
@@ -129,7 +120,10 @@
           </div><!--notification-box end-->
         </li>
       </ul>
+      
     </nav><!--nav end-->
 
   </div><!--header-data end-->
+
 </div>
+
