@@ -1,4 +1,5 @@
 <!--acc-setting-->
+
 {% extends 'account_setting.html' %}
 {% block head_content %}
 Actualizar Perfil | @{{ user.username|capfirst }}
@@ -21,7 +22,7 @@ Actualizar Perfil | @{{ user.username|capfirst }}
                     </div>
                     {% endif %}
                     <div class="add-dp" id="OpenImgUpload">
-                        <input type="file" id="file" name="picture">
+                        <input type="file" id="file" name="picture" accept="image/*">
                         <label for="file"><i class="fas fa-camera"></i></label>
                     </div>
                 </div>

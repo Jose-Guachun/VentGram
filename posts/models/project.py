@@ -30,7 +30,7 @@ class Project(CRideModel):
     typeProject=models.ForeignKey(TypeProject, on_delete=models.CASCADE)
     status=models.ForeignKey(Status, on_delete=models.CASCADE)
 
-    title=models.CharField('titulo',max_length=100)
+    title=models.CharField('titulo',max_length=300)
     description=models.TextField(validators=[validators.MinLengthValidator(125)])
     objetive=models.TextField(validators=[validators.MinLengthValidator(15)])
     image=models.ImageField(upload_to=ruta_imagen)

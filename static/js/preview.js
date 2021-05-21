@@ -1,7 +1,7 @@
 function readImage(input) {
   var archivoInput = document.getElementById("file");
   var archivoRuta = archivoInput.value;
-  var extPermitidas = /(.jpg|.jpeg)$/i;
+  var extPermitidas = /(.jpg|.jpeg|.png)$/i;
   if(!extPermitidas.exec(archivoRuta)){
       alert('Asegurese de haber seleccionado una imagen');
       archivoInput.value = '';
