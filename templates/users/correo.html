@@ -1,9 +1,226 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block head_content %}
-    blog
+blog
 {% endblock%}
 
 {% block content %}
-    <h1>Bienvenido a VentGram {{ mail }}</h1>
-    <h2>Tu codigo de verificacion es: {{token}}</h2>
+
+<div style="line-height:inherit;margin:0;padding:0;background-color:#f0f4f7">
+    <div
+        style="color:transparent;opacity:0;font-size:0px;border:0;max-height:1px;width:1px;margin:0px;padding:0px;border-width:0px!important;display:none!important;line-height:0px!important">
+        <img border="0" width="1" height="1"
+            src=""
+            class="CToWUd"></div>
+            <img
+        src=""
+        style="border:0;width:1px;height:1px;border-width:0px!important;display:none!important;line-height:0!important"
+        width="1" height="1" class="CToWUd">
+    <table
+        style="line-height:inherit;table-layout:fixed;vertical-align:top;min-width:320px;border-spacing:0;border-collapse:collapse;background-color:#f0f4f7;width:100%"
+        cellpadding="0" cellspacing="0" width="100%" bgcolor="#f0f4f7" valign="top">
+        <tbody style="line-height:inherit">
+            <tr style="line-height:inherit;border-collapse:collapse;vertical-align:top" valign="top">
+                <td style="line-height:inherit;border-collapse:collapse;word-break:break-word;vertical-align:top"
+                    valign="top">
+                    <div
+                        style="line-height:inherit;background-image:url('');background-position:top left;background-repeat:no-repeat;background-color:rgb(43, 43, 71)">
+                        <div
+                            style="line-height:inherit;min-width:320px;max-width:600px;word-wrap:break-word;word-break:break-word;Margin:0 auto;background-color:transparent">
+                            <div
+                                style="line-height:inherit;border-collapse:collapse;display:table;width:100%;background-color:transparent">
+                                <div
+                                    style="line-height:inherit;min-width:320px;max-width:600px;display:table-cell;vertical-align:top;width:600px">
+                                    <div style="line-height:inherit;width:100%!important">
+                                        <div
+                                            style="line-height:inherit;border-top:0px dotted transparent;border-left:0px dotted transparent;border-bottom:0px dotted transparent;border-right:0px dotted transparent;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px">
+                                            <div align="center"
+                                                style="line-height:inherit;padding-right:0px;padding-left:30px"> <img
+                                                    border="0"
+                                                    src="https://i.postimg.cc/jjv0Zdsj/logo-col3.png"
+                                                    alt="VentGram- Nunca pares de emprender"
+                                                    title="VentGram- Nunca pares de emprender"
+                                                    style="line-height:inherit;text-decoration:none;height:auto;border:0;width:100%;max-width:300px;display:block"
+                                                    width="300" class="CToWUd a6T" tabindex="0">
+                                                <div class="a6S" dir="ltr"
+                                                    style="opacity: 0.01; left: 404px; top: 257px;">
+                                                    <div id=":ox" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button"
+                                                        tabindex="0" aria-label="Descargar el archivo adjunto "
+                                                        data-tooltip-class="a1V" data-tooltip="Descargar">
+                                                        <div class="akn">
+                                                            <div class="aSK J-J5-Ji aYr"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="line-height:inherit;background-color:transparent">
+                        <div
+                            style="line-height:inherit;min-width:320px;max-width:600px;word-wrap:break-word;word-break:break-word;Margin:0 auto;background-color:#ffffff">
+                            <div
+                                style="line-height:inherit;border-collapse:collapse;display:table;width:100%;background-color:#ffffff">
+                                <div
+                                    style="line-height:inherit;min-width:320px;max-width:600px;display:table-cell;vertical-align:top;width:600px">
+                                    <div style="line-height:inherit;width:100%!important">
+                                        <div
+                                            style="line-height:inherit;border-top:0px solid transparent;border-left:0px solid transparent;border-bottom:0px solid transparent;border-right:0px solid transparent;padding-top:30px;padding-bottom:30px;padding-right:30px;padding-left:30px">
+                                            <div
+                                                style="color:#555555;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif;line-height:1.8;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px">
+                                                <div
+                                                    style="line-height:1.8;font-size:12px;color:#555555;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif">
+                                                    <p
+                                                        style="line-height:1.8;word-break:break-word;text-align:left;font-size:16px;margin:0">
+                                                        <span style="line-height:inherit;font-size:16px">Hola, Bienvenido a VentGram &nbsp;{{ mail }}                                  <br style="line-height:inherit"><br
+                                                                style="line-height:inherit">Para empezar en VentGram.
+                                                            <strong style="line-height:inherit">Solo&nbsp;necesitas verificar tu correo electrónico.</strong>
+                                                                <br style="line-height:inherit">
+                                                                Si no tienes iniciado sesion es probable que la tengas que inicar para colocar el codigo.
+                                                        </span>
+                                                        <br style="line-height:inherit"><br
+                                                            style="line-height:inherit">Tu codigo de verificacion es el siguiente: <strong>{{token}}</strong>
+
+                                                        <br style="line-height:inherit"><br
+                                                            style="line-height:inherit">Para verificarlo, dale click a este botón:<br style="line-height:inherit"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="line-height:inherit;background-color:transparent">
+                        <div
+                            style="line-height:inherit;min-width:320px;max-width:600px;word-wrap:break-word;word-break:break-word;Margin:0 auto;background-color:#fdfdfd">
+                            <div
+                                style="line-height:inherit;border-collapse:collapse;display:table;width:100%;background-color:#fdfdfd">
+                                <div
+                                    style="line-height:inherit;min-width:320px;max-width:600px;display:table-cell;vertical-align:top;width:600px">
+                                    <div style="line-height:inherit;width:100%!important">
+                                        <div
+                                            style="line-height:inherit;border-top:0px solid transparent;border-left:0px solid transparent;border-bottom:0px solid transparent;border-right:0px solid transparent;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px">
+                                            <div align="center"
+                                                style="line-height:inherit;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px">
+                                                <a href="http://localhost:8000/users/validate"
+                                                    style="line-height:inherit;text-decoration:none;display:inline-block;color:#ffffff;background-color:rgb(2, 102, 94);border-radius:20px;width:auto;width:auto;border-top:1px solid rgb(2, 102, 94);border-right:1px solid rgb(2, 102, 94);border-bottom:1px solid rgb(2, 102, 94);border-left:1px solid rgb(2, 102, 94);padding-top:5px;padding-bottom:5px;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif;text-align:center;word-break:keep-all"
+                                                    target="_blank"
+                                                    data-saferedirecturl="https://www.google.com/url?q=https://links.platzi.com/u/click?_t%3D560c3cfe000145bda231402f0ccd36bf%26_m%3D3defde6713eb41e7a159d7c4568296bf%26_e%3DJHC5VJNYIUa8TdmygdxquQs-tU3cm4Q26GNdAWvjYs84VaZbz9_oW1pEVigWrv40kdbpvNdW-Vo5L7yzxonLXh-YkLfez4qU6XkkF3qKVNifGSuhTamxqAv3cyPamB70VHX3dcyj2FQ72xSB1FbC855qex2gsC-bZZmmkkMkSO9QQk0MJ5ElnLvMRxVaba5eJMkPh63NLUGQIHZk5ro7ZoF6zAXjWoJrf9Km-gDH97wBXN10c2PDfbv1hoLHCQghcGWCG99HrtZvb4KoVQkBiBDs0AYkvA60KLEwZhfj2hD6-c9QVKkNvMIojk_zZ8hYIUwSFqgLKkjz9KSYNFHROhYIG4vUu36lI44mbL41Ktv9AFt2HvcnIv0eIRIEqhRVfbig2R89y7arPJWoQdK7gojqd-Zi6aQu38paecQaMD-H04cKgS4U9KLbJ0MxxOst9a7F22tfwioAUy_co2eBJvII3qYNP6zocWDMz_4tKKdrO-izjnAPlr6uUrYVJVoZ&amp;source=gmail&amp;ust=1621699046131000&amp;usg=AFQjCNEccaZB5ryZpoLEBLIcqbcZza7X9A"><span
+                                                        style="line-height:inherit;padding-left:20px;padding-right:20px;font-size:16px;display:inline-block"><span
+                                                            style="font-size:16px;line-height:2;word-break:break-word">Coloca tu codigo aquí!</span></span></a> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="line-height:inherit;background-color:transparent">
+                        <div
+                            style="line-height:inherit;min-width:320px;max-width:600px;word-wrap:break-word;word-break:break-word;Margin:0 auto;background-color:#ffffff">
+                            <div
+                                style="line-height:inherit;border-collapse:collapse;display:table;width:100%;background-color:#ffffff">
+                                <div
+                                    style="line-height:inherit;min-width:320px;max-width:600px;display:table-cell;vertical-align:top;width:600px">
+                                    <div style="line-height:inherit;width:100%!important">
+                                        <div
+                                            style="line-height:inherit;border-top:0px solid transparent;border-left:0px solid transparent;border-bottom:0px solid transparent;border-right:0px solid transparent;padding-top:30px;padding-bottom:30px;padding-right:30px;padding-left:30px">
+                                            <div
+                                                style="color:#555555;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif;line-height:1.8;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px">
+                                                <div
+                                                    style="line-height:1.8;font-size:12px;color:#555555;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="line-height:inherit;background-color:transparent">
+                        <div
+                            style="line-height:inherit;min-width:320px;max-width:600px;word-wrap:break-word;word-break:break-word;Margin:0 auto;background-color:transparent">
+                            <div
+                                style="line-height:inherit;border-collapse:collapse;display:table;width:100%;background-color:transparent">
+                                <div
+                                    style="line-height:inherit;min-width:320px;max-width:600px;display:table-cell;vertical-align:top;width:600px">
+                                    <div style="line-height:inherit;width:100%!important">
+                                        <div
+                                            style="line-height:inherit;border-top:0px solid transparent;border-left:0px solid transparent;border-bottom:0px solid transparent;border-right:0px solid transparent;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px">
+                                            <div
+                                                style="color:#555555;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif;line-height:1.2;padding-top:30px;padding-right:10px;padding-bottom:30px;padding-left:10px">
+                                                <div
+                                                    style="line-height:1.2;font-size:12px;color:#555555;font-family:Lato,Tahoma,Verdana,Segoe,sans-serif">
+                                                    <p
+                                                        style="font-size:14px;line-height:1.2;word-break:break-word;text-align:center;margin:0">
+                                                    </p>
+                                                    <table align="center" width="100%" style="border-spacing:0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td
+                                                                    style="padding-top:30px;padding-right:0;padding-bottom:10px;padding-left:0">
+                                                                    <table width="100%" style="border-spacing:0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:10px;width:100%;text-align:center">
+                                                                                    <img width="100"
+                                                                                        alt="Ventgram"
+                                                                                        border="0"
+                                                                                        style="width:100%;max-width:100px;height:auto;margin:0 auto"
+                                                                                        src="https://i.postimg.cc/G21srCVG/logocolor2.png"> </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td
+                                                                    style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
+                                                                    <table width="100%" style="border-spacing:0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="padding-top:10px;padding-right:10px;padding-bottom:20px;padding-left:10px;width:100%;text-align:left">
+                                                                                    <p
+                                                                                        style="Margin-top:0px;Margin-bottom:0px;font-family:'Lato',sans-serif;font-size:14px;color:#1f3744;text-align:center;line-height:14px">
+                                                                                        <span
+                                                                                            style="font-size:12px">Enviado
+                                                                                            con <span
+                                                                                                style="font-family:Lato,sans-serif;line-height:14px;color:rgb(152,202,63)!important">♥</span>
+                                                                                            desde VentGram - Ecuador</span>
+                                                                                    </p>
+
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <img border="0" width="1" height="1" alt=""
+        src="https://ci6.googleusercontent.com/proxy/xGmM_EP1qBojHjygu4afTnf8PIhQ6rABZcEv-xjM0UljfWbFWH4beozKWaNDc74tHRv9nq3YxmJyrRHk_caoB91QW6-Atg53U3GWLU_TtQWp6Oq9kNZpNhc22TlaonNbukeZ-_Q9Wkh-jVULX3ePjfJI9ACCyPtopueQ7Cy6XK2bP6Xz_Lq0eXPToGkhz-NaCFgrvrXdP_-rTHN9VA=s0-d-e1-ft#http://links1.platzi.com/q/_Cs5Y0zW1_ArLc-tumuOSw~~/AARGbAA~/RgRhw5ttPlcDc3BjQgpf2m0W4V95-lC3UhhoYXlhbmxvcGV6MTk5OUBnbWFpbC5jb21YBAAAABk~"
+        class="CToWUd">
+    <div class="yj6qo"></div>
+    <div class="adL">
+    </div>
+</div>
 {% endblock %}
