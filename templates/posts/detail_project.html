@@ -83,10 +83,10 @@
                             <div class="row box_document_detail">
 
                                 <div class="col-lg-9 col-md-8 col-sm-8">
-                                    <h5 class="mt-3"><i class="fas fa-file-alt mr-2"></i>{{ project.document.name|slice:"25:"}}</h5>
+                                    <h5 class="mt-3"><i class="fas fa-file-alt mr-2"></i>{{ project.document.name|slice:"25:"}}</h5> 
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-4 text-right">
-                                    <a href="{{ project.document.url }}" title="DESCARGAR: {{ project.document.name|slice:'25:'}}" type="button" class="btn btn-danger mt-2 mb-2 text-center"style="padding: .275rem .55rem; font-size: 0.8rem;width: 100%; color:white ;"><i class="fas fa-download mr-1"></i>Descargar</a>
+                                    <a href="{{ project.document.url }}" target="_blank" title="DESCARGAR: {{ project.document.name|slice:'25:'}}" type="button" class="btn btn-danger mt-2 mb-2 text-center"style="padding: .275rem .55rem; font-size: 0.8rem;width: 100%; color:white ;"><i class="fas fa-download mr-1"></i>Descargar</a>
                                 </div>
                             </div>  
                         </div>
