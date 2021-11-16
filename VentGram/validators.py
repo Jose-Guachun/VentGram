@@ -82,4 +82,4 @@ def vcedula(value):
                 if validador!=int(digit):
                     raise ValidationError('Cedula Incorrecta')
     except ValueError:
-        raise ValidationError('Algo fallo')
+        raise ValidationError('Algo fallo en la validacion de cedula')

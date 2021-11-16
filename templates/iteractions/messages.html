@@ -108,6 +108,7 @@ Messages | VentGram
 			<!--Mostrar mensaje-->
 			<div class="messages">
 				<ul>
+					
 					{% for direct in directs %}
 						{% if direct.body != '' %}
 						{% if direct.sender == request.user %}

@@ -165,7 +165,7 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
 
 def PostHomeView(request,**kwargs):
     projects = Project.objects.all()
-    paginator=Paginator(projects, 3)
+    paginator=Paginator(projects, 6)
     page=request.GET.get('page')
     projects=paginator.get_page(page)
     return render(request, 'home.html', {'projects':projects})
